@@ -1,0 +1,233 @@
+[ {
+  "id" : "cf7209cd-a9e2-36d8-fe38-5990ac8eb89a",
+  "name" : "title",
+  "label" : "RSS title",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "RECENT EPISODES"
+}, {
+  "id" : "44de159c-198b-105b-356f-1df0d343dc44",
+  "name" : "rss_feed_type",
+  "label" : "Add an RSS feed",
+  "required" : true,
+  "locked" : false,
+  "display" : "radio",
+  "placeholder" : "Search",
+  "choices" : [ [ "external", "Use an external RSS feed" ], [ "blog", "Use a HubSpot-hosted blog" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "external"
+}, {
+  "id" : "0cbeb648-1de9-ba95-0503-fb5f450bc505",
+  "name" : "rss_url",
+  "label" : "RSS URL",
+  "required" : true,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "44de159c-198b-105b-356f-1df0d343dc44",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "external",
+    "property" : null,
+    "operator" : "MATCHES_REGEX",
+    "access" : null
+  },
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "https://jashow.org/feed/jasradio/"
+}, {
+  "id" : "55d29dd1-133f-a7df-6bd8-5327f5168c8a",
+  "name" : "content_group_id",
+  "label" : "Blog",
+  "required" : true,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "44de159c-198b-105b-356f-1df0d343dc44",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "blog",
+    "property" : null,
+    "operator" : "MATCHES_REGEX",
+    "access" : null
+  },
+  "type" : "blog",
+  "display_width" : null,
+  "default" : 138943615368
+}, {
+  "id" : "23b8825d-1d5b-608c-e851-5e6c5f17cf0b",
+  "name" : "topic_id",
+  "label" : "Filter by tag",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "44de159c-198b-105b-356f-1df0d343dc44",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "blog",
+    "property" : null,
+    "operator" : "MATCHES_REGEX",
+    "access" : null
+  },
+  "tag_value" : "ID",
+  "type" : "tag",
+  "display_width" : null,
+  "default" : ""
+}, {
+  "id" : "c138a117-787c-2e35-0939-4c24ca8c0249",
+  "name" : "number_of_items",
+  "label" : "Maximum number of posts to display",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 0,
+  "step" : 1,
+  "type" : "number",
+  "display_width" : null,
+  "default" : 5
+}, {
+  "id" : "829209cf-1ad9-f40c-4c9a-c6a4dc10659a",
+  "name" : "include_featured_image",
+  "label" : "Include featured image",
+  "help_text" : "Please note: the RSS Listing module won't show featured images from an external RSS feed.",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "cfc27cc0-1369-4d48-a381-65a02d4e2362",
+  "name" : "show_author",
+  "label" : "Show author name",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "d3f0797e-8daf-11ee-c090-e044f8f65768",
+  "name" : "attribution_text",
+  "label" : "Author attribution text",
+  "help_text" : "The text that attributes an author to a post",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "cfc27cc0-1369-4d48-a381-65a02d4e2362",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : null,
+    "access" : null
+  },
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "by"
+}, {
+  "id" : "1fb24926-f77b-fde8-99b1-cf2e8711cd31",
+  "name" : "show_detail",
+  "label" : "Show summary",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "d1469c6f-3b00-e813-5e55-fe24e3767b3d",
+  "name" : "limit_to_chars",
+  "label" : "Limit summary length (number of characters)",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "1fb24926-f77b-fde8-99b1-cf2e8711cd31",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : null,
+    "access" : null
+  },
+  "display" : "text",
+  "min" : 0,
+  "step" : 1,
+  "type" : "number",
+  "display_width" : null,
+  "default" : 200
+}, {
+  "id" : "02d7cfeb-8597-0eb9-80eb-d77b039e80ef",
+  "name" : "click_through_text",
+  "label" : "Summary clickthrough text",
+  "help_text" : "The text which will be displayed for the clickthrough link at the end of a post summary",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "1fb24926-f77b-fde8-99b1-cf2e8711cd31",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "MATCHES_REGEX",
+    "access" : null
+  },
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Listen now"
+}, {
+  "id" : "c38045a3-6253-4a5b-29cf-4ef9440eefa4",
+  "name" : "show_date",
+  "label" : "Show publish date",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "b2bac1dc-536a-32f1-6630-396d0ac60288",
+  "name" : "publish_date_format",
+  "label" : "Publish date format",
+  "help_text" : "Format for the publish date",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "c38045a3-6253-4a5b-29cf-4ef9440eefa4",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "MATCHES_REGEX",
+    "access" : null
+  },
+  "display" : "select",
+  "placeholder" : "Select date format",
+  "choices" : [ [ "short", "06/11/06 12:00PM" ], [ "medium", "Jun 6, 2006 12:00:00 pm" ], [ "long", "June 6, 2017 12:00:00 pm EDT" ], [ "MMMM d, yyyy 'at' h:mm a", "June 6, 2006 at 12:00 pm" ], [ "h:mm a 'on' MMMM d, yyyy", "12:00 pm on June 6, 2006" ], [ "MMMM d, yyyy", "June 6, 2006" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "MMMM d, yyyy"
+}, {
+  "id" : "1472a8cc-6dc3-cd7d-bbbc-228b17d304e7",
+  "name" : "publish_date_text",
+  "label" : "Publish date indicator text",
+  "help_text" : "The text that indicates when a post was published",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "c38045a3-6253-4a5b-29cf-4ef9440eefa4",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : null,
+    "access" : null
+  },
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "posted at"
+} ]

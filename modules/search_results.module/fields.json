@@ -1,0 +1,2499 @@
+[ {
+  "id" : "title",
+  "name" : "title",
+  "label" : "Title",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "title.show_title",
+    "name" : "show_title",
+    "label" : "Show title",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "title.heading_tag",
+    "name" : "heading_tag",
+    "label" : "Heading tag",
+    "help_text" : "Choose a heading level. H1 is the largest, followed by H2, and so on.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "title.show_title",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "display" : "select",
+    "placeholder" : "Select a heading type",
+    "choices" : [ [ "h1", "H1" ], [ "h2", "H2" ], [ "h3", "H3" ], [ "h4", "H4" ], [ "h5", "H5" ], [ "h6", "H6" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "h1"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "show_title" : false,
+    "heading_tag" : "h1"
+  }
+}, {
+  "id" : "results",
+  "name" : "results",
+  "label" : "Results",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "results.display_for_each_result",
+    "name" : "display_for_each_result",
+    "label" : "",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "choices" : [ [ "image", "Display an image preview for each result" ] ],
+    "multiple" : true,
+    "reordering_enabled" : false,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "display_for_each_result" : [ ]
+  }
+}, {
+  "id" : "pagination",
+  "name" : "pagination",
+  "label" : "Pagination",
+  "inline_help_text" : "Pagination helps users browse long lists of results by organizing them into pages.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "pagination.numbers",
+    "name" : "numbers",
+    "label" : "Numbers",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "choices" : [ [ "show_numbers", "Show numbers" ] ],
+    "multiple" : true,
+    "reordering_enabled" : false,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ "show_numbers" ]
+  }, {
+    "id" : "first_and_last",
+    "name" : "first_and_last",
+    "label" : "First and last",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "choices" : [ [ "show_arrows", "Show arrows" ], [ "show_labels", "Show labels" ] ],
+    "multiple" : true,
+    "reordering_enabled" : false,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ "show_arrows", "show_labels" ]
+  }, {
+    "id" : "pagination.first_label",
+    "name" : "first_label",
+    "label" : "First label",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "first_and_last",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "show_labels",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "First"
+  }, {
+    "id" : "pagination.last_label",
+    "name" : "last_label",
+    "label" : "Last label",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "first_and_last",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "show_labels",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Last"
+  }, {
+    "id" : "previous_and_next",
+    "name" : "previous_and_next",
+    "label" : "Previous and next",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "choices" : [ [ "show_arrows", "Show arrows" ], [ "show_labels", "Show labels" ] ],
+    "multiple" : true,
+    "reordering_enabled" : false,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : [ "show_arrows", "show_labels" ]
+  }, {
+    "id" : "pagination.previous_label",
+    "name" : "previous_label",
+    "label" : "Previous label",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "previous_and_next",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "show_labels",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Previous"
+  }, {
+    "id" : "pagination.next_label",
+    "name" : "next_label",
+    "label" : "Next label",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "previous_and_next",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "show_labels",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Next"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "numbers" : [ "show_numbers" ],
+    "first_and_last" : [ "show_arrows", "show_labels" ],
+    "first_label" : "First",
+    "last_label" : "Last",
+    "previous_and_next" : [ "show_arrows", "show_labels" ],
+    "previous_label" : "Previous",
+    "next_label" : "Next"
+  }
+}, {
+  "id" : "default_text",
+  "name" : "default_text",
+  "label" : "Default text",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "default_text.results_title",
+    "name" : "results_title",
+    "label" : "Results title",
+    "help_text" : "Enter the title you would like to display above the search results.",
+    "required" : false,
+    "locked" : false,
+    "placeholder" : "Search results for “{{ searched_term|escape }}”",
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Search results for “{{ searched_term|escape }}”"
+  }, {
+    "id" : "default_text.results_count_message",
+    "name" : "results_count_message",
+    "label" : "Search results count",
+    "required" : false,
+    "locked" : false,
+    "placeholder" : "Displaying [[offset]] – [[limit]] of [[total]] results",
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Displaying [[offset]] – [[limit]] of [[total]] results"
+  }, {
+    "id" : "default_text.featured_image",
+    "name" : "featured_image",
+    "label" : "Featured Image",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Featured Image"
+  }, {
+    "id" : "default_text.search_results_article_title",
+    "name" : "search_results_article_title",
+    "label" : "Search Results Article Title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Search Results Article Title"
+  }, {
+    "id" : "default_text.search_results_article_description",
+    "name" : "search_results_article_description",
+    "label" : "Search result article description.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Some preview text from each page will be displayed here to help your visitors browse through the search results quickly and find the page they need."
+  }, {
+    "id" : "default_text.navigation_aria_label",
+    "name" : "navigation_aria_label",
+    "label" : "Navigation aria label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Paging navigation"
+  }, {
+    "id" : "default_text.no_results_message",
+    "name" : "no_results_message",
+    "label" : "No results message",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Sorry. There were no results for [[search_term]].</p><p>Try rewording your query, or browse through our site.</p>"
+  }, {
+    "id" : "default_text.first_page_link_text",
+    "name" : "first_page_link_text",
+    "label" : "First page link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "First Page"
+  }, {
+    "id" : "default_text.current_page_aria_label",
+    "name" : "current_page_aria_label",
+    "label" : "Current page aria label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Current Page"
+  }, {
+    "id" : "default_text.page_number_aria_label",
+    "name" : "page_number_aria_label",
+    "label" : "Page number aria label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Page"
+  }, {
+    "id" : "default_text.last_page_link_text",
+    "name" : "last_page_link_text",
+    "label" : "Last page link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Last Page"
+  }, {
+    "id" : "default_text.previous_page_link_text",
+    "name" : "previous_page_link_text",
+    "label" : "Previous page link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Previous"
+  }, {
+    "id" : "default_text.next_page_link_text",
+    "name" : "next_page_link_text",
+    "label" : "Next page link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Next"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "results_title" : "Search results for “{{ searched_term|escape }}”",
+    "results_count_message" : "Displaying [[offset]] – [[limit]] of [[total]] results",
+    "featured_image" : "Featured Image",
+    "search_results_article_title" : "Search Results Article Title",
+    "search_results_article_description" : "Some preview text from each page will be displayed here to help your visitors browse through the search results quickly and find the page they need.",
+    "navigation_aria_label" : "Paging navigation",
+    "no_results_message" : "<p>Sorry. There were no results for [[search_term]].</p><p>Try rewording your query, or browse through our site.</p>",
+    "first_page_link_text" : "First Page",
+    "current_page_aria_label" : "Current Page",
+    "page_number_aria_label" : "Page",
+    "last_page_link_text" : "Last Page",
+    "previous_page_link_text" : "Previous",
+    "next_page_link_text" : "Next"
+  }
+}, {
+  "id" : "styles",
+  "name" : "styles",
+  "label" : "Styles",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "styles.container",
+    "name" : "container",
+    "label" : "Container",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.container.spacing",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.container.spacing.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "type" : "spacing",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "spacing" : { }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "spacing" : {
+        "spacing" : { }
+      }
+    }
+  }, {
+    "id" : "styles.title",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "title.show_title",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "styles.title.font",
+      "name" : "font",
+      "label" : "Font",
+      "required" : false,
+      "locked" : false,
+      "load_external_fonts" : true,
+      "type" : "font",
+      "display_width" : null,
+      "default" : {
+        "size_unit" : "px"
+      }
+    }, {
+      "id" : "styles.title.transform",
+      "name" : "transform",
+      "label" : "Transform",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "capitalize", "Capitalize" ], [ "uppercase", "Uppercase" ], [ "lowercase", "Lowercase" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "font" : {
+        "size_unit" : "px"
+      }
+    }
+  }, {
+    "id" : "styles.results_count_message",
+    "name" : "results_count_message",
+    "label" : "Results count message",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.results_count_message.font",
+      "name" : "font",
+      "label" : "Font",
+      "required" : false,
+      "locked" : false,
+      "load_external_fonts" : true,
+      "type" : "font",
+      "display_width" : null,
+      "default" : {
+        "size_unit" : "px"
+      }
+    }, {
+      "id" : "styles.results_count_message.transform",
+      "name" : "transform",
+      "label" : "Transform",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "capitalize", "Capitalize" ], [ "uppercase", "Uppercase" ], [ "lowercase", "Lowercase" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "font" : {
+        "size_unit" : "px"
+      }
+    }
+  }, {
+    "id" : "styles.results",
+    "name" : "results",
+    "label" : "Results",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.results.featured_image",
+      "name" : "featured_image",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "results.display_for_each_result",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "styles.results.featured_image.size",
+        "name" : "size",
+        "label" : "Size",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.results.featured_image.size.aspect_ratio",
+          "name" : "aspect_ratio",
+          "label" : "Aspect ratio",
+          "required" : false,
+          "locked" : false,
+          "display" : "select",
+          "choices" : [ [ "1/1", "1:1" ], [ "3/2", "3:2" ], [ "2/3", "2:3" ], [ "4/3", "4:3" ], [ "3/4", "3:4" ], [ "16/9", "16:9" ] ],
+          "multiple" : false,
+          "reordering_enabled" : true,
+          "preset" : null,
+          "type" : "choice",
+          "display_width" : null
+        }, {
+          "id" : "styles.results.featured_image.size.width",
+          "name" : "width",
+          "label" : "Width",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "min" : 25,
+          "max" : 75,
+          "step" : 5,
+          "suffix" : "%",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.results.featured_image.corner",
+        "name" : "corner",
+        "label" : "Corner",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.results.featured_image.corner.radius",
+          "name" : "radius",
+          "label" : "Radius",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.results.featured_image.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.results.featured_image.spacing.spacing",
+          "name" : "spacing",
+          "label" : "Spacing",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "padding" : true
+            }
+          },
+          "type" : "spacing",
+          "display_width" : null,
+          "default" : { }
+        }, {
+          "id" : "styles.results.featured_image.spacing.between_image_and_content",
+          "name" : "between_image_and_content",
+          "label" : "Between image and content",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "min" : 0,
+          "max" : 50,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "spacing" : { }
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "size" : { },
+        "corner" : { },
+        "spacing" : {
+          "spacing" : { }
+        }
+      }
+    }, {
+      "id" : "styles.results.title",
+      "name" : "title",
+      "label" : "Title",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.results.title.font",
+        "name" : "font",
+        "label" : "Font",
+        "required" : false,
+        "locked" : false,
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "size_unit" : "px"
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      }
+    }, {
+      "id" : "fb798ced-43e0-e574-4fa0-9aec774460f8",
+      "name" : "author",
+      "label" : "Author",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "1adb92dd-2879-0aee-b682-b338e7e98997",
+        "name" : "font",
+        "label" : "Font",
+        "required" : false,
+        "locked" : false,
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "size_unit" : "px"
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      }
+    }, {
+      "id" : "styles.results.description",
+      "name" : "description",
+      "label" : "Preview text",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.results.description.font",
+        "name" : "font",
+        "label" : "Font",
+        "required" : false,
+        "locked" : false,
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "size_unit" : "px"
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      }
+    }, {
+      "id" : "styles.results.spacing",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.results.spacing.space_between_results",
+        "name" : "space_between_results",
+        "label" : "Space between results",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "min" : 12,
+        "max" : 48,
+        "step" : 2,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : { }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "featured_image" : {
+        "size" : { },
+        "corner" : { },
+        "spacing" : {
+          "spacing" : { }
+        }
+      },
+      "title" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      },
+      "author" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      },
+      "description" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      },
+      "spacing" : { }
+    }
+  }, {
+    "id" : "styles.pagination",
+    "name" : "pagination",
+    "label" : "Pagination",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.pagination.numbers",
+      "name" : "numbers",
+      "label" : "Numbers",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "pagination.numbers",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "show_numbers",
+        "property" : null,
+        "operator" : "MATCHES_REGEX",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "styles.pagination.numbers.text",
+        "name" : "text",
+        "label" : "Text",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.text.font",
+          "name" : "font",
+          "label" : "Font",
+          "required" : false,
+          "locked" : false,
+          "load_external_fonts" : true,
+          "type" : "font",
+          "display_width" : null,
+          "default" : {
+            "size_unit" : "px"
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        }
+      }, {
+        "id" : "styles.pagination.numbers.background",
+        "name" : "background",
+        "label" : "Background",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.background.color",
+          "name" : "color",
+          "label" : "Color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }, {
+        "id" : "styles.pagination.numbers.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.spacing.spacing",
+          "name" : "spacing",
+          "label" : "Spacing",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "margin" : true
+            }
+          },
+          "type" : "spacing",
+          "display_width" : null,
+          "default" : { }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "spacing" : { }
+        }
+      }, {
+        "id" : "styles.pagination.numbers.border",
+        "name" : "border",
+        "label" : "Border",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.border.border",
+          "name" : "border",
+          "label" : "Border",
+          "required" : false,
+          "locked" : false,
+          "allow_custom_border_sides" : false,
+          "type" : "border",
+          "display_width" : null,
+          "default" : { }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "border" : { }
+        }
+      }, {
+        "id" : "styles.pagination.numbers.corner",
+        "name" : "corner",
+        "label" : "Corner",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.corner.radius",
+          "name" : "radius",
+          "label" : "Radius",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.pagination.numbers.hover",
+        "name" : "hover",
+        "label" : "Hover",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.hover.text_color",
+          "name" : "text_color",
+          "label" : "Text color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.numbers.hover.background_color",
+          "name" : "background_color",
+          "label" : "Background color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.numbers.hover.border_color",
+          "name" : "border_color",
+          "label" : "Border color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }, {
+        "id" : "styles.pagination.numbers.active",
+        "name" : "active",
+        "label" : "Active",
+        "help_text" : "Styles the numbered link matching the page that you're currently on.",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.numbers.active.text_color",
+          "name" : "text_color",
+          "label" : "Text color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.numbers.active.background_color",
+          "name" : "background_color",
+          "label" : "Background color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.numbers.active.border_color",
+          "name" : "border_color",
+          "label" : "Border color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "active" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }
+    }, {
+      "id" : "styles.pagination.previous_and_next",
+      "name" : "previous_and_next",
+      "label" : "Previous and next",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "OR",
+        "criteria" : [ {
+          "controlling_field" : "previous_and_next",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_arrows",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        }, {
+          "controlling_field" : "previous_and_next",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_labels",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "children" : [ {
+        "id" : "styles.pagination.previous_and_next.text",
+        "name" : "text",
+        "label" : "Text",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "previous_and_next",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_labels",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.text.font",
+          "name" : "font",
+          "label" : "Font",
+          "required" : false,
+          "locked" : false,
+          "load_external_fonts" : true,
+          "type" : "font",
+          "display_width" : null,
+          "default" : {
+            "size_unit" : "px"
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        }
+      }, {
+        "id" : "styles.pagination.previous_and_next.icon",
+        "name" : "icon",
+        "label" : "Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "previous_and_next",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_arrows",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.icon.size",
+          "name" : "size",
+          "label" : "Size",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.pagination.previous_and_next.background",
+        "name" : "background",
+        "label" : "Background",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.background.color",
+          "name" : "color",
+          "label" : "Color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }, {
+        "id" : "styles.pagination.previous_and_next.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.spacing.space_between_text_and_icon",
+          "name" : "space_between_text_and_icon",
+          "label" : "Space between text and icon",
+          "required" : false,
+          "locked" : false,
+          "visibility_rules" : "ADVANCED",
+          "advanced_visibility" : {
+            "boolean_operator" : "AND",
+            "criteria" : [ {
+              "controlling_field" : "previous_and_next",
+              "controlling_field_path" : null,
+              "controlling_value_regex" : "show_arrows",
+              "property" : null,
+              "operator" : "MATCHES_REGEX",
+              "access" : null
+            }, {
+              "controlling_field" : "previous_and_next",
+              "controlling_field_path" : null,
+              "controlling_value_regex" : "show_labels",
+              "property" : null,
+              "operator" : "MATCHES_REGEX",
+              "access" : null
+            } ],
+            "children" : [ ]
+          },
+          "display" : "slider",
+          "max" : 25,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        }, {
+          "id" : "styles.pagination.previous_and_next.spacing.spacing",
+          "name" : "spacing",
+          "label" : "Spacing",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "margin" : true
+            }
+          },
+          "type" : "spacing",
+          "display_width" : null,
+          "default" : { }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "spacing" : { }
+        }
+      }, {
+        "id" : "styles.pagination.previous_and_next.border",
+        "name" : "border",
+        "label" : "Border",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.border.border",
+          "name" : "border",
+          "label" : "Border",
+          "required" : false,
+          "locked" : false,
+          "allow_custom_border_sides" : false,
+          "type" : "border",
+          "display_width" : null,
+          "default" : { }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "border" : { }
+        }
+      }, {
+        "id" : "styles.pagination.previous_and_next.corner",
+        "name" : "corner",
+        "label" : "Corner",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.corner.radius",
+          "name" : "radius",
+          "label" : "Radius",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.pagination.previous_and_next.hover",
+        "name" : "hover",
+        "label" : "Hover",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.previous_and_next.hover.text_color",
+          "name" : "text_color",
+          "label" : "Text color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "previous_and_next",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "show_labels",
+            "property" : null,
+            "operator" : "MATCHES_REGEX",
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.previous_and_next.hover.background_color",
+          "name" : "background_color",
+          "label" : "Background color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.previous_and_next.hover.border_color",
+          "name" : "border_color",
+          "label" : "Border color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "icon" : { },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }
+    }, {
+      "id" : "styles.pagination.first_and_last",
+      "name" : "first_and_last",
+      "label" : "First and last",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "OR",
+        "criteria" : [ {
+          "controlling_field" : "first_and_last",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_arrows",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        }, {
+          "controlling_field" : "first_and_last",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_labels",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "children" : [ {
+        "id" : "styles.pagination.first_and_last.text",
+        "name" : "text",
+        "label" : "Text",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "first_and_last",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_labels",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.text.font",
+          "name" : "font",
+          "label" : "Font",
+          "required" : false,
+          "locked" : false,
+          "load_external_fonts" : true,
+          "type" : "font",
+          "display_width" : null,
+          "default" : {
+            "size_unit" : "px"
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        }
+      }, {
+        "id" : "styles.pagination.first_and_last.icon",
+        "name" : "icon",
+        "label" : "Icon",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "first_and_last",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "show_arrows",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        },
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.icon.size",
+          "name" : "size",
+          "label" : "Size",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.pagination.first_and_last.background",
+        "name" : "background",
+        "label" : "Background",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.background.color",
+          "name" : "color",
+          "label" : "Color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }, {
+        "id" : "styles.pagination.first_and_last.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.spacing.space_between_text_and_icon",
+          "name" : "space_between_text_and_icon",
+          "label" : "Space between text and icon",
+          "required" : false,
+          "locked" : false,
+          "visibility_rules" : "ADVANCED",
+          "advanced_visibility" : {
+            "boolean_operator" : "AND",
+            "criteria" : [ {
+              "controlling_field" : "first_and_last",
+              "controlling_field_path" : null,
+              "controlling_value_regex" : "show_arrows",
+              "property" : null,
+              "operator" : "MATCHES_REGEX",
+              "access" : null
+            }, {
+              "controlling_field" : "first_and_last",
+              "controlling_field_path" : null,
+              "controlling_value_regex" : "show_labels",
+              "property" : null,
+              "operator" : "MATCHES_REGEX",
+              "access" : null
+            } ],
+            "children" : [ ]
+          },
+          "display" : "slider",
+          "max" : 25,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        }, {
+          "id" : "styles.pagination.first_and_last.spacing.spacing",
+          "name" : "spacing",
+          "label" : "Spacing",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "margin" : true
+            }
+          },
+          "type" : "spacing",
+          "display_width" : null,
+          "default" : { }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "spacing" : { }
+        }
+      }, {
+        "id" : "styles.pagination.first_and_last.border",
+        "name" : "border",
+        "label" : "Border",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.border.border",
+          "name" : "border",
+          "label" : "Border",
+          "required" : false,
+          "locked" : false,
+          "allow_custom_border_sides" : false,
+          "type" : "border",
+          "display_width" : null,
+          "default" : { }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "border" : { }
+        }
+      }, {
+        "id" : "styles.pagination.first_and_last.corner",
+        "name" : "corner",
+        "label" : "Corner",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.corner.radius",
+          "name" : "radius",
+          "label" : "Radius",
+          "required" : false,
+          "locked" : false,
+          "display" : "text",
+          "max" : 100,
+          "step" : 1,
+          "suffix" : "px",
+          "type" : "number",
+          "display_width" : null
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.pagination.first_and_last.hover",
+        "name" : "hover",
+        "label" : "Hover",
+        "required" : false,
+        "locked" : false,
+        "children" : [ {
+          "id" : "styles.pagination.first_and_last.hover.text_color",
+          "name" : "text_color",
+          "label" : "Text color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : "first_and_last",
+            "controlling_field_path" : null,
+            "controlling_value_regex" : "show_labels",
+            "property" : null,
+            "operator" : "MATCHES_REGEX",
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.first_and_last.hover.background_color",
+          "name" : "background_color",
+          "label" : "Background color",
+          "required" : false,
+          "locked" : false,
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }, {
+          "id" : "styles.pagination.first_and_last.hover.border_color",
+          "name" : "border_color",
+          "label" : "Border color",
+          "required" : false,
+          "locked" : false,
+          "visibility" : {
+            "controlling_field" : null,
+            "controlling_field_path" : null,
+            "controlling_value_regex" : null,
+            "property" : null,
+            "operator" : null,
+            "access" : null,
+            "hidden_subfields" : {
+              "opacity" : true
+            }
+          },
+          "type" : "color",
+          "display_width" : null,
+          "default" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        } ],
+        "tab" : "STYLE",
+        "expanded" : false,
+        "group_occurrence_meta" : null,
+        "type" : "group",
+        "display_width" : null,
+        "default" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "icon" : { },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      }
+    }, {
+      "id" : "styles.pagination.spacing",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.pagination.spacing.space_between_links",
+        "name" : "space_between_links",
+        "label" : "Space between links",
+        "required" : false,
+        "locked" : false,
+        "display" : "slider",
+        "min" : 0,
+        "max" : 50,
+        "step" : 5,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      }, {
+        "id" : "styles.pagination.spacing.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : null,
+          "access" : null,
+          "hidden_subfields" : {
+            "padding" : true
+          }
+        },
+        "type" : "spacing",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "spacing" : { }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "numbers" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "active" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      },
+      "previous_and_next" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "icon" : { },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      },
+      "first_and_last" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "icon" : { },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      },
+      "spacing" : {
+        "spacing" : { }
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "container" : {
+      "spacing" : {
+        "spacing" : { }
+      }
+    },
+    "title" : {
+      "font" : {
+        "size_unit" : "px"
+      }
+    },
+    "results_count_message" : {
+      "font" : {
+        "size_unit" : "px"
+      }
+    },
+    "results" : {
+      "featured_image" : {
+        "size" : { },
+        "corner" : { },
+        "spacing" : {
+          "spacing" : { }
+        }
+      },
+      "title" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      },
+      "author" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      },
+      "description" : {
+        "font" : {
+          "size_unit" : "px"
+        }
+      },
+      "spacing" : { }
+    },
+    "pagination" : {
+      "numbers" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "active" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      },
+      "previous_and_next" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "icon" : { },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      },
+      "first_and_last" : {
+        "text" : {
+          "font" : {
+            "size_unit" : "px"
+          }
+        },
+        "icon" : { },
+        "background" : {
+          "color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        },
+        "spacing" : {
+          "spacing" : { }
+        },
+        "border" : {
+          "border" : { }
+        },
+        "corner" : { },
+        "hover" : {
+          "text_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "background_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          },
+          "border_color" : {
+            "color" : null,
+            "opacity" : null,
+            "rgba" : null,
+            "rgb" : null,
+            "hex" : null
+          }
+        }
+      },
+      "spacing" : {
+        "spacing" : { }
+      }
+    }
+  }
+} ]

@@ -1,0 +1,11 @@
+{
+  "global" : false,
+  "content_types" : [ "BLOG_LISTING" ],
+  "master_language" : "en",
+  "categories" : [ "blog" ],
+  "host_template_types" : [ "BLOG_LISTING" ],
+  "module_id" : 175668977724,
+  "label" : "Blog Pagination",
+  "icon" : "../../../mV0_d-web-default-modules_hubspot/img/icon/ellipses.svg",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,210 @@
+<div class="accordion-{{name}}" id="{{ module.module_id_name }}">
+  <h3 class="module-heading-{{name}} module-heading">{{ module.module_heading }}</h3>
+  
+  <div class="accordion-items-{{name}}" role="tablist">
+    {% for item in module.item %}
+      <div class="accordion-item-{{name}}" role="tab">
+        <div class="question-{{name}}" aria-label="{{ item.question }}" role="button">
+          <div class="icon-wrapper icon-plus-{{name}}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1332_2146)">
+                <path d="M18.375 23.0625H5.625C3.03614 23.0625 0.9375 20.9639 0.9375 18.375V5.625C0.9375 3.03614 3.03614 0.937502 5.625 0.937502H18.375C20.9639 0.937502 23.0625 3.03614 23.0625 5.625V18.375C23.0625 20.9639 20.9639 23.0625 18.375 23.0625Z" stroke="#393D3F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M12.0469 7.73438V16.2188" stroke="#393D3F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.82812 11.999H16.2656" stroke="#393D3F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+            <defs>
+              <clipPath id="clip0_1332_2146">
+                <rect width="24" height="24" fill="white"/>
+              </clipPath>
+            </defs>
+            </svg>
+          </div>
+
+          <div class="icon-wrapper icon-minus-{{name}}">
+            <svg width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <g clip-path="url(#clip0_1332_2115)">
+                <path d="M18.375 23.0625H5.625C3.03614 23.0625 0.9375 20.9639 0.9375 18.375V5.625C0.9375 3.03614 3.03614 0.937502 5.625 0.937502H18.375C20.9639 0.937502 23.0625 3.03614 23.0625 5.625V18.375C23.0625 20.9639 20.9639 23.0625 18.375 23.0625Z" stroke="#393D3F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+                <path d="M7.82812 11.999H16.2656" stroke="#393D3F" stroke-width="2" stroke-miterlimit="10" stroke-linecap="round" stroke-linejoin="round"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_1332_2115">
+                  <rect width="24" height="24" fill="white"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </div>
+
+          <h4 class="question-txt-{{name}}">{{ item.question }}</h4>
+        </div>
+
+        <div class="answer-{{name}}">
+          {% if item.answer_field_type == "ans-text" %}
+            <p class="answer-txt-{{name}}">{{ item.text_field }}</p>
+          {% endif %}
+
+          {% if item.answer_field_type == "ans-rich-text" %}
+            {% inline_rich_text field="richtext_field" value="{{ item.richtext_field }}" %}
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% require_js %}
+  <script>    
+    $(document).ready(function() {
+      $('.question-{{name}}').click(function() {
+        // Get the parent accordion item
+        let accordionItem = $(this).parent();
+
+        // Check if the parent item is already active
+        if (accordionItem.hasClass('active')) {
+          // Remove the active class and slide up the answer
+          accordionItem.removeClass('active');
+          accordionItem.find('.answer-{{name}}').slideUp(500);
+        } else {
+          // Remove active class from all other accordion items
+          $('.accordion-item-{{name}}').removeClass('active');
+
+          // Slide up all other answer modules
+          $('.answer-{{name}}').not(accordionItem.find('.answer-{{name}}')).slideUp(500);
+
+          // Add active class to clicked item's parent
+          accordionItem.addClass('active');
+
+          // Slide down answer module in the active item
+          accordionItem.find('.answer-{{name}}').slideDown(500);
+        }
+      });
+  });
+  </script>
+{% end_require_js %}
+
+{% require_css %}
+  <style>
+    .accordion-{{name}} *,
+    .accordion-{{name}} *::before,
+    .accordion-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .accordion-{{name}} {
+      {{ module.style.module_spacing.css }}
+    }
+    
+    .accordion-{{name}} .module-heading-{{name}} {
+      margin-bottom: 20px;
+      color: rgba({{ module.style.heading_color.color|convert_rgb }}, {{ module.style.heading_color.opacity/100 }});
+    }
+    
+    .accordion-{{name}} .accordion-items-{{name}} {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} {
+      background: rgba({{ module.style.items.background_color.color|convert_rgb }}, {{ module.style.items.background_color.opacity/100 }});
+      padding: 12px;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      border-radius: 5px;
+      {{ module.style.items.border_field.css }}
+    }
+
+    .accordion-{{name}} .accordion-item-{{name}} .question-{{name}} {
+      display: flex;
+      gap: 8px;
+      cursor: pointer;
+      min-height: 24px;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .icon-wrapper {
+      height: 24px;
+      min-height: 24px;
+      max-height: 24px;
+      width: 24px;
+      min-width: 24px;
+      max-width: 24px;
+      overflow: hidden;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .icon-wrapper svg {
+      max-width: 100%;
+      max-height: 100%;
+      display: block;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .icon-wrapper svg path {
+      stroke: rgba({{ module.style.items.text_color.color|convert_rgb }}, {{ module.style.items.text_color.opacity/100 }});
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .icon-wrapper svg rect {
+      fill: rgba({{ module.style.items.background_color.color|convert_rgb }}, {{ module.style.items.background_color.opacity/100 }});
+    }
+
+    .accordion-{{name}} .accordion-item-{{name}} .icon-plus-{{name}} {}
+
+    .accordion-{{name}} .accordion-item-{{name}}.active .icon-plus-{{name}},
+    .accordion-{{name}} .accordion-item-{{name}} .icon-minus-{{name}} {
+      position: absolute;
+      top: 0;
+      left: 0;
+      opacity: 0;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}}.active .icon-minus-{{name}} {
+      position: static;
+      opacity: 1;
+    }
+
+    .accordion-{{name}} .accordion-item-{{name}} .question-txt-{{name}} {
+      color: rgba({{ module.style.items.text_color.color|convert_rgb }}, {{ module.style.items.text_color.opacity/100 }});
+      font-size: 16px;
+      font-weight: 700;
+      line-height: 1.4;
+      margin: 0;
+    }
+
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} {
+      padding-left: 32px;
+      display: none;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text p,
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text span,
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text li {
+      color: rgba({{ module.style.items.text_color.color|convert_rgb }}, {{ module.style.items.text_color.opacity/100 }});
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text li {
+      margin-bottom: 10px;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text strong {
+      font-weight: 700;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text > *:first-child {
+      margin-top: 0;
+    }
+    
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .hs_cos_wrapper_type_inline_rich_text > *:last-child {
+      margin-bottom: 0;
+    }
+    
+
+    .accordion-{{name}} .accordion-item-{{name}} .answer-{{name}} .answer-txt-{{name}} {
+      color: rgba({{ module.style.items.text_color.color|convert_rgb }}, {{ module.style.items.text_color.opacity/100 }});
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      margin: 0;
+    }
+  </style>
+{% end_require_css %}

@@ -1,0 +1,473 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Audio Bible 2024
+  screenshotPath: ../images/template-previews/audio-bible.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--audio-bible"
+%}
+
+  {# Section #1 - Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Hero",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "Call to action",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "href_with_scheme" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "href_with_scheme" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          heading="Audio Bible",
+          show_button=true,
+          show_subheading=true,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/audio_bible_hero_bg_2x.png"
+                },
+                "background_image_overlay" : false
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 215
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 215
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              }
+            }
+          },
+          subheading="Lorem ipsum dolor sit amet"
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #2 - Content #}
+  {% dnd_section
+    full_width=false,
+    max_width=1200
+  %}
+    {% dnd_column
+      offset=0,
+      width=7,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "30px",
+          "top" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h2 style="font-weight: 600; font-size: 28px; font-family: Lato, sans-serif;">Mission</h2>
+            <p style="font-size: 16px; font-weight: 500; color: #7c7c7c;"><span style="color: #393d3f;">ATRI is committed to fulfilling the Great Commission through enduring partnerships bringing the hope of the gospel to people worldwide. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language.&nbsp;</span></p>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row
+        padding={
+          "default" : {
+            "bottom" : "20px",
+            "left" : "0px",
+            "right" : "0px",
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_module
+          path="@hubspot/linked_image",
+          offset=0,
+          width=12,
+          horizontal_alignment="CENTER",
+          img={
+            "alt" : "audio_bible_illustration",
+            "height" : 854,
+            "max_height" : 854,
+            "max_width" : 1280,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/audio_bible_illustration.png",
+            "width" : 1280
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. </span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">With your help, we have reached over 17 million people with God’s Word. Access to Audio Bibles gives these men, women, and children the Word of God to guide, encourage, and point them to a saving knowledge of Jesus Christ.</span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">Donations made to ATRI help deliver Audio Bibles to places with the most immediate need and help us spread awareness of this great need. FCBH can prioritize areas where access to the Word of God is urgently required. The funds play a vital role in covering the costs involved in producing, transporting, and distributing the Audio Bibles to these remote and often dangerous locations, as well as promoting Audio Bibles through the show. Together, we are making a lasting impact and bringing the life-transforming message of the Gospel to men, women, and children worldwide.</span></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/product-cards",
+          offset=0,
+          width=12,
+          cards=[ {
+            "button" : {
+              "button_text" : "Donate now"
+            },
+            "product_image" : {
+              "alt" : "Proclaimer",
+              "height" : 440,
+              "loading" : "lazy",
+              "max_height" : 440,
+              "max_width" : 441,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_1_2x.png",
+              "width" : 441
+            },
+            "text_field" : "The Proclaimer is a solar-powered digital player, preloaded with an Audio Bible in the local heart language. Used in church services, villages, and listening groups, the Proclaimer provides thousands of hours of Bible listening, discussion, and discipleship, allowing people to become saturated with God’s Word and learn what it is to follow Jesus.",
+            "title" : "Proclaimer"
+          }, {
+            "button" : {
+              "button_text" : "Donate now"
+            },
+            "product_image" : {
+              "alt" : "Memory card",
+              "height" : 440,
+              "loading" : "lazy",
+              "max_height" : 440,
+              "max_width" : 441,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_2_2x.png",
+              "width" : 441
+            },
+            "text_field" : "Micro SD cards are small memory devices that are loaded with the Word of God translated into the needed language and provided to a pastor or Christian worker overseas. When these micro SD cards are inserted into mobile phones, people can hear the Word of God in their own language.",
+            "title" : "Micro SD Cards"
+          }, {
+            "button" : {
+              "button_text" : "Donate now"
+            },
+            "product_image" : {
+              "alt" : "Biblestick",
+              "height" : 440,
+              "loading" : "lazy",
+              "max_height" : 440,
+              "max_width" : 441,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_3_2x.png",
+              "width" : 441
+            },
+            "text_field" : "BibleSticks are personal digital players that are battery powered and come loaded with an Audio Bible. Some are distributed to the men and women in our Armed Forces, while others are sent to refugee camps to be given to people who need to hear the truth of God’s Word in their language. A BibleStick and an SD card are sent together with this gift.",
+            "title" : "Biblestick"
+          }, {
+            "button" : {
+              "button_text" : "Donate now"
+            },
+            "product_image" : {
+              "alt" : "Audio Bundle",
+              "height" : 440,
+              "loading" : "lazy",
+              "max_height" : 440,
+              "max_width" : 441,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_4_2x.png",
+              "width" : 441
+            },
+            "text_field" : "Providing three different Audio Bible devices, the Audio Bible bundle gives the gift of 3 SD cards, 3 BibleSticks, and an Audio Proclaimer. The SD Cards can be placed in phones, BibleSticks are used by soldiers in the field, and in refugee camps, and Audio Proclaimers are designed to be heard by larger groups of people. ",
+            "title" : "Audio Bundle"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h3 style="font-weight: 500; font-size: 24px;">History</h3>
+            <p style="font-size: 16px; font-weight: 500;"><span>This partnership was inspired by Dr. John Ankerberg's experience in 2013 when he was asked to find an audio version of the Bible for a blind acquaintance who could no longer read. Through his search, Dr. Ankerberg discovered FCBH. Dr. Ankerberg recognized FCBH's significant impact on fulfilling The Great Commission and how it aligns with the mission of ATRI. He connected with FCBH and discovered their desire to share their work through media. Thus, a partnership was born, with ATRI responsible for sharing FCBH's mission through various media outlets, most notably on The John Ankerberg Show. At the same time, FCBH continues its primary work of translating, sharing, and delivering the Word of God.</span></p>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row
+        padding={
+          "default" : {
+            "bottom" : "40px",
+            "left" : "0px",
+            "right" : "0px",
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_module
+          path="@hubspot/linked_image",
+          offset=0,
+          width=12,
+          horizontal_alignment="CENTER",
+          img={
+            "alt" : "audio_bible_illustration_2",
+            "height" : 854,
+            "loading" : "lazy",
+            "max_height" : 854,
+            "max_width" : 1280,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/audio_bible_illustration_2.png",
+            "width" : 1280
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Accordion",
+          offset=0,
+          width=12,
+          item=[ {
+            "answer_field_type" : "ans-text",
+            "question" : "Why are Audio Bibles so important?",
+            "richtext_field" : "",
+            "text_field" : "Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language."
+          }, {
+            "answer_field_type" : "ans-rich-text",
+            "question" : "What are Audio Bible Devices and how are they used?",
+            "richtext_field" : "<p>The different types of Audio Bible devices we help provide are:</p>\n<ol>\n<li><strong>Micro SD Cards</strong>: Small memory devices loaded with the Word of God in the needed language, distributed to pastors and Christian workers overseas. When inserted into mobile phones, individuals can listen to the Bible in their own language. Micro SD cards are easily shared among people, impacting several individuals with just one card, often allowing them to hear the Bible in their heart language for the first time.</li>\n<li><strong>BibleSticks</strong>: Personal digital players powered by batteries and preloaded with an Audio Bible. Approved for military use, these devices are distributed to US military personnel in English and Spanish and to refugees in camps where hope and God's Word are needed. BibleSticks offer comfort and light in challenging environments, whether on the front lines or in refugee camps.</li>\n<li><strong>Proclaimer</strong>: A solar-powered digital player with an Audio Bible in the local language, the Proclaimer is used to share the Good News of Jesus Christ in churches, villages, and listening groups worldwide. Providing hours of Bible listening and discussion, the Proclaimer facilitates discipleship and guides individuals to follow Jesus with the help of the Holy Spirit.</li>\n<li><strong>Audio Bible Bundle</strong><span>&nbsp;</span>-The Audio Bible bundle includes 3 SD cards, 3 BibleSticks, and an Audio Proclaimer. The SD cards are compatible with phones without internet access, enabling individuals to listen to the Bible in their heart language. BibleSticks are utilized by soldiers and refugees, allowing them to access the gospel in their language and share it with others. Audio Proclaimers are ideal for large groups, fostering community gatherings for communal listening and learning from God's Word.</li>\n</ol>",
+            "text_field" : ""
+          }, {
+            "answer_field_type" : "ans-rich-text",
+            "question" : "Why does an apologetics ministry focus so much on distributing Audio Bibles?",
+            "richtext_field" : "<p>The John Ankerberg Show is an apologetics ministry passionate about fulfilling The Great Commission. It is estimated that 70% of people currently alive learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, 1.3 billion people still do not have access to God's Word in a format they can understand. The John Ankerberg Show's goal is to ensure that every man, woman, and child has an opportunity to hear and respond to Christ.</p>\n<p>To help achieve this goal, we have partnered with 'Faith Comes By Hearing' (FCBH) to provide Audio Bibles. This partnership was partly inspired by Dr. John Ankerberg's experience in 2013 when he was asked to find an audio version of the Bible for a blind acquaintance who could no longer read. Through his search, Dr. Ankerberg discovered FCBH, an organization that spends years creating translations and recording audio versions of the Bible in specific languages. They then distribute these Audio Bibles to groups of people who need them most.</p>\n<p>Dr. Ankerberg recognized FCBH's significant impact on fulfilling The Great Commission and how it aligns with the mission and passion of The John Ankerberg Show. He connected with FCBH and discovered their desire to share their work through media. Thus, a partnership was born, with The John Ankerberg Show responsible for sharing FCBH's mission through various media outlets. At the same time, FCBH continues its primary work of translating, sharing, and delivering the Word of God.</p>\n<p>Thanks to gifts given to The John Ankerberg Show, this partnership has had a significant impact, reaching almost 17,000,000 people. Dr. Ankerberg's passion for this partnership is evident when he discusses it, inspiring those around him.</p>",
+            "text_field" : ""
+          }, {
+            "answer_field_type" : "ans-text",
+            "question" : "How do Audio Bibles get to remote locations?",
+            "richtext_field" : "",
+            "text_field" : "The donations received through The John Ankerberg Show help deliver Audio Bibles to places with the most immediate need. FCBH can prioritize areas where access to the Word of God is urgently required. The funds play a vital role in covering the costs involved in producing, transporting, and distributing the Audio Bibles to these remote and often dangerous locations, as well as promoting Audio Bibles through the show."
+          }, {
+            "answer_field_type" : "ans-rich-text",
+            "question" : "How can I help?",
+            "richtext_field" : "<p>At The John Ankerberg Show, we highly value the support of our viewers. Your generous donations and prayer support play a vital role in spreading the word of God through Audio Bibles. With your partnership, we are empowered to reach out to more people all over the world and share the hope and love of Jesus Christ.</p>\n<p>There are two significant ways you can contribute to this cause. Firstly, you can choose to donate any amount you feel led to give. Your generous contribution will enable us to pursue our mission and impact the lives of people globally. Secondly, we ask that you keep us in your prayers. Please pray for our ministry and all the dedicated individuals at Faith Comes By Hearing. Pray for the people actively distributing audio Bibles in the field and for those who have the opportunity to hear and listen to these life-changing devices.</p>\n<p>When you choose to give, your gift serves a dual purpose. It helps us spread awareness about the fantastic work of Faith Comes by Hearing, allowing us to reach even more people with the power of Audio Bibles. Additionally, your donation directly funds the creation and distribution of these devices to locations that need them most. Together, we can make a lasting impact and bring the life-transforming message of the Gospel to every man, woman and child.</p>",
+            "text_field" : ""
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+
+    {% dnd_column
+      offset=7,
+      width=5,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "80px"
+        }
+      }
+    %}
+      {# Donate form module goes here #}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Disclaimer module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Disclaimer",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

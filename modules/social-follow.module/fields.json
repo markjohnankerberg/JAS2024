@@ -1,0 +1,335 @@
+[ {
+  "id" : "social_links",
+  "name" : "social_links",
+  "label" : "Social links",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 4
+  },
+  "children" : [ {
+    "id" : "social_account",
+    "name" : "social_account",
+    "label" : "Social account",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "facebook-f", "Facebook" ], [ "x-twitter", "Twitter" ], [ "instagram", "Instagram" ], [ "linkedin-in", "LinkedIn" ], [ "youtube", "YouTube" ], [ "pinterest-p", "Pinterest" ], [ "envelope", "Email" ], [ "link", "Website" ], [ "whatsapp", "Whatsapp" ], [ "custom_icon", "Custom icon" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "facebook-f"
+  }, {
+    "id" : "social_links.custom_icon",
+    "name" : "custom_icon",
+    "label" : "Custom icon",
+    "required" : true,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : "social_account",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "custom_icon",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "icon_set" : "fontawesome-6.4.2",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "arrow-alt-circle-up",
+      "type" : "SOLID",
+      "unicode" : "f35b"
+    }
+  }, {
+    "id" : "social_links.social_link",
+    "name" : "social_link",
+    "label" : "Social link",
+    "required" : true,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "EMAIL_ADDRESS" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "no_follow" : false,
+      "open_in_new_tab" : true,
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.facebook.com",
+        "type" : "EXTERNAL"
+      }
+    }
+  }, {
+    "id" : "social_links.accessibility",
+    "name" : "accessibility",
+    "label" : "Accessibility options",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "social_links.accessibility.title",
+      "name" : "title",
+      "label" : "Title",
+      "required" : true,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Follow us on Facebook"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "social_account" : "facebook-f",
+    "social_link" : {
+      "no_follow" : false,
+      "open_in_new_tab" : true,
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.facebook.com",
+        "type" : "EXTERNAL"
+      }
+    },
+    "accessibility" : {
+      "title" : "Follow us on Facebook"
+    }
+  }, {
+    "social_account" : "linkedin-in",
+    "social_link" : {
+      "no_follow" : false,
+      "open_in_new_tab" : true,
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.linkedin.com",
+        "type" : "EXTERNAL"
+      }
+    },
+    "accessibility" : {
+      "title" : "Follow us on LinkedIn"
+    }
+  }, {
+    "social_account" : "x-twitter",
+    "social_link" : {
+      "no_follow" : false,
+      "open_in_new_tab" : true,
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.twitter.com",
+        "type" : "EXTERNAL"
+      }
+    },
+    "accessibility" : {
+      "title" : "Follow us on Twitter"
+    }
+  }, {
+    "social_account" : "instagram",
+    "social_link" : {
+      "no_follow" : false,
+      "open_in_new_tab" : true,
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.instagram.com",
+        "type" : "EXTERNAL"
+      }
+    },
+    "accessibility" : {
+      "title" : "Follow us on Instagram"
+    }
+  } ]
+}, {
+  "id" : "styles",
+  "name" : "styles",
+  "label" : "Styles",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "styles.fill",
+    "name" : "fill",
+    "label" : "Fill",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.fill.color",
+      "name" : "color",
+      "label" : "Color",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : null,
+        "controlling_value_regex" : null,
+        "property" : null,
+        "operator" : null,
+        "access" : null,
+        "hidden_subfields" : {
+          "opacity" : true
+        }
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null,
+        "rgba" : null,
+        "rgb" : null,
+        "hex" : null
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.size",
+    "name" : "size",
+    "label" : "Size",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.size.size",
+      "name" : "size",
+      "label" : "Size",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 1,
+      "max" : 50,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.background",
+    "name" : "background",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.background.color",
+      "name" : "color",
+      "label" : "Color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : null,
+        "opacity" : null,
+        "rgba" : null,
+        "rgb" : null,
+        "hex" : null
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.corner",
+    "name" : "corner",
+    "label" : "Corner",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.corner.radius",
+      "name" : "radius",
+      "label" : "Radius",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.spacing",
+    "name" : "spacing",
+    "label" : "Spacing",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.spacing.space_between_icons",
+      "name" : "space_between_icons",
+      "label" : "Space between icons",
+      "required" : false,
+      "locked" : false,
+      "display" : "slider",
+      "min" : 0,
+      "max" : 50,
+      "step" : 5,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null
+    }, {
+      "id" : "styles.spacing.spacing",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : { }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.alignment",
+    "name" : "alignment",
+    "label" : "Alignment",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.alignment.alignment",
+      "name" : "alignment",
+      "label" : "Alignment",
+      "required" : false,
+      "locked" : false,
+      "alignment_direction" : "HORIZONTAL",
+      "type" : "alignment",
+      "display_width" : null,
+      "default" : { }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

@@ -1,0 +1,718 @@
+[ {
+  "id" : "tier",
+  "name" : "tier",
+  "label" : "Product tier",
+  "required" : false,
+  "locked" : false,
+  "enabled_features" : [ "font_size", "standard_emphasis", "block", "font_family", "alignment" ],
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<h2>Free</h2>"
+}, {
+  "id" : "description",
+  "name" : "description",
+  "label" : "Product description",
+  "required" : false,
+  "locked" : false,
+  "enabled_features" : [ "font_size", "standard_emphasis", "block", "font_family", "alignment" ],
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : "<p>For teams that need additional security, control, and support.</p>"
+}, {
+  "id" : "feature_icon",
+  "name" : "feature_icon",
+  "label" : "Features list icon",
+  "required" : false,
+  "locked" : false,
+  "icon_set" : "fontawesome-6.4.2",
+  "type" : "icon",
+  "display_width" : null,
+  "default" : {
+    "name" : "check",
+    "type" : "SOLID",
+    "unicode" : "f00c"
+  }
+}, {
+  "id" : "features",
+  "name" : "features",
+  "label" : "Features",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 50,
+    "sorting_label_field" : null,
+    "default" : 4
+  },
+  "allow_new_line" : false,
+  "show_emoji_picker" : true,
+  "type" : "text",
+  "display_width" : null,
+  "default" : [ "10 users included", "2 GB of storage", "Email support", "Help center access" ]
+}, {
+  "id" : "price",
+  "name" : "price",
+  "label" : "Price",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "$0"
+}, {
+  "id" : "timeframe",
+  "name" : "timeframe",
+  "label" : "Price timeframe",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "/ mo"
+}, {
+  "id" : "button_text",
+  "name" : "button_text",
+  "label" : "Button text",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Sign up for free"
+}, {
+  "id" : "button_target",
+  "name" : "button_target",
+  "label" : "Button target",
+  "required" : false,
+  "locked" : false,
+  "display" : "radio",
+  "choices" : [ [ "payment_link", "Use a payment link" ], [ "custom_link", "Other" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "payment_link"
+}, {
+  "id" : "button_link",
+  "name" : "button_link",
+  "label" : "Button link",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "button_target",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "custom_link",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "supported_types" : [ "EXTERNAL", "CONTENT" ],
+  "show_advanced_rel_options" : false,
+  "type" : "link",
+  "display_width" : null,
+  "default" : {
+    "url" : {
+      "content_id" : null,
+      "type" : "EXTERNAL",
+      "href" : ""
+    }
+  }
+}, {
+  "id" : "payment_link",
+  "name" : "payment_link",
+  "label" : "Payment link",
+  "required" : true,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "button_target",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "payment_link",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "type" : "payment",
+  "display_width" : null,
+  "default" : { }
+}, {
+  "id" : "checkout_behavior",
+  "name" : "checkout_behavior",
+  "label" : "Checkout behavior",
+  "required" : false,
+  "locked" : false,
+  "visibility_rules" : "ADVANCED",
+  "advanced_visibility" : {
+    "boolean_operator" : "AND",
+    "criteria" : [ {
+      "controlling_field" : "button_target",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "payment_link",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    }, {
+      "controlling_field" : "payment_link",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "id\":\\d+",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    } ],
+    "children" : [ ]
+  },
+  "display" : "radio",
+  "choices" : [ [ "new_tab", "Open in a new tab" ], [ "overlay", "Sliding overlay" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "overlay"
+}, {
+  "id" : "styles",
+  "name" : "styles",
+  "label" : "Styles",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "styles.features",
+    "name" : "features",
+    "label" : "Features",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.features.icon",
+      "name" : "icon",
+      "label" : "Icon",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.features.icon.color",
+        "name" : "color",
+        "label" : "Color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : null,
+          "access" : null,
+          "hidden_subfields" : {
+            "opacity" : true
+          }
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgba" : null,
+          "rgb" : null,
+          "hex" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.features.text",
+      "name" : "text",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.features.text.font",
+        "name" : "font",
+        "label" : "Font",
+        "required" : false,
+        "locked" : false,
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.features.border",
+      "name" : "border",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.features.border.color",
+        "name" : "color",
+        "label" : "Color",
+        "required" : false,
+        "locked" : false,
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgba" : null,
+          "rgb" : null,
+          "hex" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.features.alignment",
+      "name" : "alignment",
+      "label" : "Alignment",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.features.alignment.alignment",
+        "name" : "alignment",
+        "label" : "Alignment",
+        "required" : false,
+        "locked" : false,
+        "alignment_direction" : "HORIZONTAL",
+        "type" : "alignment",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.price",
+    "name" : "price",
+    "label" : "Price",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.price.text",
+      "name" : "text",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.price.text.font",
+        "name" : "font",
+        "label" : "Font",
+        "required" : false,
+        "locked" : false,
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.price.alignment",
+      "name" : "alignment",
+      "label" : "Alignment",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.price.alignment.alignment",
+        "name" : "alignment",
+        "label" : "Alignment",
+        "required" : false,
+        "locked" : false,
+        "alignment_direction" : "HORIZONTAL",
+        "type" : "alignment",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.button",
+    "name" : "button",
+    "label" : "Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.button.text",
+      "name" : "text",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.button.text.font",
+        "name" : "font",
+        "label" : "Font",
+        "required" : false,
+        "locked" : false,
+        "load_external_fonts" : true,
+        "type" : "font",
+        "display_width" : null,
+        "default" : {
+          "font" : null,
+          "font_set" : "DEFAULT",
+          "styles" : null,
+          "size" : null,
+          "size_unit" : null,
+          "color" : null,
+          "variant" : null,
+          "fallback" : null,
+          "style" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.button.background",
+      "name" : "background",
+      "label" : "Background",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.button.background.color",
+        "name" : "color",
+        "label" : "Color",
+        "required" : false,
+        "locked" : false,
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgba" : null,
+          "rgb" : null,
+          "hex" : null
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.button.border",
+      "name" : "border",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.button.border.border",
+        "name" : "border",
+        "label" : "Border",
+        "required" : false,
+        "locked" : false,
+        "allow_custom_border_sides" : false,
+        "type" : "border",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.button.corner",
+      "name" : "corner",
+      "label" : "Corner",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.button.corner.radius",
+        "name" : "radius",
+        "label" : "Radius",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "max" : 100,
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.button.spacing",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.button.spacing.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : null,
+          "access" : null,
+          "hidden_subfields" : {
+            "margin" : true
+          }
+        },
+        "type" : "spacing",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.button.alignment",
+      "name" : "alignment",
+      "label" : "Alignment",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.button.alignment.alignment",
+        "name" : "alignment",
+        "label" : "Alignment",
+        "required" : false,
+        "locked" : false,
+        "alignment_direction" : "HORIZONTAL",
+        "type" : "alignment",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  }, {
+    "id" : "styles.card",
+    "name" : "card",
+    "label" : "Card",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "styles.card.background",
+      "name" : "background",
+      "label" : "Background",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.card.background.background_type",
+        "name" : "background_type",
+        "label" : "Background type",
+        "required" : false,
+        "locked" : false,
+        "display" : "radio",
+        "choices" : [ [ "none", "None" ], [ "color", "Background color" ], [ "gradient", "Background gradient" ], [ "image", "Background image" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "none"
+      }, {
+        "id" : "styles.card.background.color",
+        "name" : "color",
+        "label" : "Color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "styles.card.background.background_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "color",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : null,
+          "opacity" : null,
+          "rgba" : null,
+          "rgb" : null,
+          "hex" : null
+        }
+      }, {
+        "id" : "styles.card.background.gradient",
+        "name" : "gradient",
+        "label" : "Gradient",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "styles.card.background.background_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "gradient",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "gradient",
+        "display_width" : null,
+        "default" : { }
+      }, {
+        "id" : "styles.card.background.image",
+        "name" : "image",
+        "label" : "Image",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : "styles.card.background.background_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "backgroundimage",
+        "display_width" : null,
+        "default" : {
+          "src" : "",
+          "background_position" : "MIDDLE_CENTER",
+          "background_size" : "cover"
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.card.border",
+      "name" : "border",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.card.border.border",
+        "name" : "border",
+        "label" : "Border",
+        "required" : false,
+        "locked" : false,
+        "allow_custom_border_sides" : false,
+        "type" : "border",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.card.corner",
+      "name" : "corner",
+      "label" : "Corner",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.card.corner.radius",
+        "name" : "radius",
+        "label" : "Radius",
+        "required" : false,
+        "locked" : false,
+        "display" : "text",
+        "max" : 100,
+        "step" : 1,
+        "suffix" : "px",
+        "type" : "number",
+        "display_width" : null
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    }, {
+      "id" : "styles.card.spacing",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "styles.card.spacing.spacing",
+        "name" : "spacing",
+        "label" : "Spacing",
+        "required" : false,
+        "locked" : false,
+        "type" : "spacing",
+        "display_width" : null,
+        "default" : { }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

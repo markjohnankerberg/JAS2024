@@ -1,0 +1,2176 @@
+<link href="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/css/select2.min.css" rel="stylesheet" />
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/select2@4.0.13/dist/js/select2.min.js"></script>
+<style>
+  @media (min-width: 768px) {
+    .dnd-section:has(.section-{{name}}) {
+      min-height: 100px;
+    }
+
+    .dnd-column:has(.section-{{name}}) {
+      /*
+      position: sticky;
+      top: 140px;
+      */
+      position: relative;
+      height: fit-content;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+  
+  .section-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    background-color: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+  .inner-section-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .form-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: 500px;
+    font-family: Lato, sans-serif;
+    background-color: #1B314B;
+    border: none;
+    border-radius: 20px;
+    padding: 40px;
+    margin: 0 auto;
+  }
+  .payment-form-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  .one-time-steps-body-{{name}}{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+  }
+  .one-time-steps-{{name}},
+  .one-time-steps-divider-{{name}}{
+    font-size: 14px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.45px;
+    color: #39577B;
+    margin: 0;
+  }
+  .one-time-steps-{{name}}.one-time-steps-active{
+     color: #ffffff;
+  }
+  .onetime-or-monthly-{{name}}{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1Fr);
+    grid-column-gap: 0px;
+    border: 1px solid #FAF9F8;
+    border-radius: 5px;
+    padding: 0;
+    margin: 16px 0;
+  }
+  .onetime-or-monthly-{{name}} button.payment-version-{{name}}{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    letter-spacing: -0.02px !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    text-transform: none !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .onetime-or-monthly-{{name}} button#oneTimePaymentVersionButton.payment-version-{{name}}.active-payment-version{
+    color: #1B314B !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    border-radius: 4px 0 0 4px !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .onetime-or-monthly-{{name}} button#oneTimePaymentVersionButton.payment-version-{{name}}:hover{
+    color: #1B314B !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    border-radius: 4px 0 0 4px !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .onetime-or-monthly-{{name}} button#monthlyPaymentVersionButton.payment-version-{{name}}.active-payment-version{
+    color: #1B314B !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    border-radius: 0 4px 4px 0 !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .onetime-or-monthly-{{name}} button#monthlyPaymentVersionButton.payment-version-{{name}}:hover{
+    color: #1B314B !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    border-radius: 0 4px 4px 0 !important;
+    transition: all 0.3s ease-in-out;
+  }
+  .step {
+    display: none;
+  }
+  .step.active {
+    display: block;
+  }
+  #oneTimeStep1 form,
+  #oneTimeStep2 form,
+  #oneTimeStep3 form,
+  #oneTimeStep4 form,
+  #oneTimeStep5 form{
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    padding: 0;
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}}{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(3, 1Fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 0;
+    margin: 32px 0 32px 0;
+  }  
+  @media (max-width: 900px) {
+    #oneTimeStep1 .predefined-amounts-{{name}}{
+      grid-template-columns: repeat(2, 1Fr);
+    }
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}} button.amount-btn{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 58px;
+    font-family: Lato, sans-serif;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    font-style: normal;
+    letter-spacing: -0.2px !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    color: #ffffff;
+    text-align: center;
+    background-color: #2A5587;
+    border: 1px solid #2A5587;
+    border-radius: 5px;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}} button.amount-btn:hover{
+    color: #2A5587;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}} button.amount-btn.selected-amount-btn{
+    color: #2A5587;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  .custom-amount-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    }
+  #oneTimeStep1 form label,
+  #oneTimeStep2 form label,
+  #oneTimeStep3 form label,
+  #oneTimeStep4 form label,
+  #oneTimeStep5 form label{
+    position: relative;
+    display: block;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0;
+    margin: 0 0 8px 0;
+  }
+  #oneTimeStep1 form label span.required-asterisk,
+  #oneTimeStep2 form label span.required-asterisk,
+  #oneTimeStep3 form label span.required-asterisk,
+  #oneTimeStep4 form label span.required-asterisk,
+  #oneTimeStep5 form label span.required-asterisk{
+    color: #E8D7C6;
+  }
+  #oneTimeStep1 form input,
+  #oneTimeStep2 form input,
+  #oneTimeStep3 form input,
+  #oneTimeStep3 form select,
+  #oneTimeStep4 form input,
+  #oneTimeStep4 form select,
+  #oneTimeStep5 form input{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: 38px;
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    padding: 9px 12px;
+    margin: 0 0 24px 0;
+  }
+  #oneTimeStep1 form input::placeholder,
+  #oneTimeStep2 form input::placeholder,
+  #oneTimeStep3 form input::placeholder,
+  #oneTimeStep4 form input::placeholder,
+  #oneTimeStep5 form input::placeholder{
+    font-family: Lato, sans-serif;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.2;
+    text-decoration: none;
+    color: #ffffff;
+  }
+  #oneTimeStep1 form input:focus-visible,
+  #oneTimeStep2 form input:focus-visible,
+  #oneTimeStep3 form input:focus-visible,
+  #oneTimeStep4 form input:focus-visible,
+  #oneTimeStep5 form input:focus-visible{
+    outline: none;
+  }
+  #oneTimeStep1 form select:focus-visible,
+  #oneTimeStep2 form select:focus-visible,
+  #oneTimeStep3 form select:focus-visible,
+  #oneTimeStep4 form select:focus-visible,
+  #oneTimeStep5 form select:focus-visible{
+    outline: none;
+  }
+  #oneTimeStep1 form textarea:focus-visible,
+  #oneTimeStep2 form textarea:focus-visible,
+  #oneTimeStep3 form textarea:focus-visible,
+  #oneTimeStep4 form textarea:focus-visible,
+  #oneTimeStep5 form textarea:focus-visible{
+    outline: none;
+  }
+  #oneTimeStep1 form input:-webkit-autofill,
+  #oneTimeStep2 form input:-webkit-autofill,
+  #oneTimeStep3 form input:-webkit-autofill,
+  #oneTimeStep4 form input:-webkit-autofill,
+  #oneTimeStep5 form input:-webkit-autofill,
+  #oneTimeStep1 form textarea:-webkit-autofill,
+  #oneTimeStep2 form textarea:-webkit-autofill,
+  #oneTimeStep3 form textarea:-webkit-autofill,
+  #oneTimeStep4 form textarea:-webkit-autofill,
+  #oneTimeStep5 form textarea:-webkit-autofill{
+    background-color: #1b314b !important;
+    color: #ffffff !important;  /* Set the text color to white */
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 0px 1000px #1b314b inset !important;
+    -webkit-text-fill-color: #ffffff !important;  /* Ensures white autofill text */
+  }
+  #oneTimeStep1 form input:-webkit-autofill:focus,
+  #oneTimeStep2 form input:-webkit-autofill:focus,
+  #oneTimeStep3 form input:-webkit-autofill:focus,
+  #oneTimeStep4 form input:-webkit-autofill:focus,
+  #oneTimeStep5 form input:-webkit-autofill:focus,
+  #oneTimeStep1 form select:-webkit-autofill:focus,
+  #oneTimeStep2 form select:-webkit-autofill:focus,
+  #oneTimeStep3 form select:-webkit-autofill:focus,
+  #oneTimeStep4 form select:-webkit-autofill:focus,
+  #oneTimeStep5 form select:-webkit-autofill:focus,
+  #oneTimeStep1 form textarea:-webkit-autofill:focus,
+  #oneTimeStep2 form textarea:-webkit-autofill:focus,
+  #oneTimeStep3 form textarea:-webkit-autofill:focus,
+  #oneTimeStep4 form textarea:-webkit-autofill:focus,
+  #oneTimeStep5 form textarea:-webkit-autofill:focus{
+    background-color: #1b314b !important;
+    color: #ffffff !important;  /* Set the text color to white */
+    border: 1px solid #ffffff;
+    box-shadow: 0 0 0px 1000px #1b314b inset !important;
+    -webkit-text-fill-color: #ffffff !important;  /* Ensures white autofill text */
+  }
+  #oneTimeStep1 .get-total-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    margin: 16px 0 16px 0;
+  }
+  #oneTimeStep1 .get-total-{{name}} p{
+    font-size: 20px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.02px;
+    text-transform: none;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+  }
+  #oneTimeStep1 button#step1ButtonNext{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    font-family: Lato, sans-serif;
+    font-size: 13px !important;
+    font-weight: 700 !important;
+    font-style: normal;
+    letter-spacing: 0px !important;
+    text-transform: uppercase !important;
+    text-decoration: none !important;
+    color: #1B314B;
+    text-align: center;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 16px 0 0 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+  #oneTimeStep1 button#step1ButtonNext:hover{
+    font-weight: 700;
+    color: #ffffff;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 .back-next-buttons-body-{{name}},
+  #oneTimeStep3 .back-next-buttons-body-{{name}},
+  #oneTimeStep4 .back-next-buttons-body-{{name}},
+  #oneTimeStep5 .back-next-buttons-body-{{name}}{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1Fr);
+    grid-column-gap: 32px;
+    padding: 0;
+    margin: 16px 0 0 0;
+  }
+  #oneTimeStep2 button#step2ButtonNext,
+  #oneTimeStep2 button#step2ButtonBack,
+  #oneTimeStep3 button#step3ButtonNext,
+  #oneTimeStep3 button#step3ButtonBack,
+  #oneTimeStep4 button#step4ButtonNext,
+  #oneTimeStep4 button#step4ButtonBack,
+  #oneTimeStep5 button#step5ButtonNext,
+  #oneTimeStep5 button#step5ButtonBack{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    text-align: center;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0;
+    margin: 16px 0 0 0;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonBack,
+  #oneTimeStep3 button#step3ButtonBack,
+  #oneTimeStep4 button#step4ButtonBack,
+  #oneTimeStep5 button#step5ButtonBack{
+    color: #ffffff;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonBack:hover,
+  #oneTimeStep3 button#step3ButtonBack:hover,
+  #oneTimeStep4 button#step4ButtonBack:hover,
+  #oneTimeStep5 button#step5ButtonBack:hover{
+    color: #1B314B;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonNext,
+  #oneTimeStep3 button#step3ButtonNext,
+  #oneTimeStep4 button#step4ButtonNext,
+  #oneTimeStep5 button#step5ButtonNext{
+    color: #1B314B;
+    background-color: #ffffff;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonNext:hover,
+  #oneTimeStep3 button#step3ButtonNext:hover,
+  #oneTimeStep4 button#step4ButtonNext:hover,
+  #oneTimeStep5 button#step5ButtonNext:hover{
+    color: #ffffff;
+    background-color: transparent;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep4 #shippingFormInputs{
+    position: relative;
+    display: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  #card-element,
+  #card-expiry,
+  #card-csv {
+    display: block;
+    width: 100%;
+    height: 38px;
+    padding: 9px 12px !important;
+    background-color: transparent !important;
+    border-radius: 5px !important;
+    transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease !important;
+    border: 1px solid #ffffff !important;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02) !important;
+    margin: 0 0 24px 0 !important;
+  }
+  /* FORM VALIDATION */
+  .help {
+    position: relative;
+    display: none;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.5;
+    text-transform: none;
+    text-decoration: none;
+    color: #E8D7C6;
+    text-align: left;
+    margin: -16px 0 16px 0;
+  }
+  .invalid .help {
+    display: block;
+  }
+  #missing-card-number,
+  #missing-card-expire,
+  #missing-card-csv{
+    position: relative;
+    display: none;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: normal;
+    line-height: 1.5;
+    text-transform: none;
+    text-decoration: none;
+    color: #E8D7C6;
+    text-align: left;
+    margin: -16px 0 16px 0;
+  }
+  #oneTimeStep5 input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: fieldtext !important;
+}
+  /* MODALS */
+  .popup-container-{{name}}{
+    position: relative;
+    }
+  .popup-container-inner-{{name}}{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+  .popup-{{name}} {
+    position: relative;
+    width: 450px;
+    height: auto;
+    font-weight: 700;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #000;
+    padding: 30px 20px;
+    z-index: 10001;
+  }
+  .popup-{{name}} p{
+    font-family: Lato, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.35px;
+    text-transform: none;
+    text-decoration: none;
+    color: #1B314B;
+    padding: 0;
+    margin: 0;
+  }
+@media (max-width: 490px){
+  .popup-{{name}} {
+    width: calc(100% - 40px);
+  }
+}
+  .overlay-{{name}} {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    display: none;
+  }
+  .buttons-body-{{name}}{
+    display: block;
+    text-align: center;
+    }
+  button.button-false-{{name}} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #a1611c;
+    border: 1px solid #a1611c;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 16px auto 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  button.button-false-{{name}}:hover {
+    color: #a1611c;
+    background-color: transparent;
+    border: 1px solid #a1611c;
+  }
+  button.button-true-{{name}} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1B314B;
+    border: 1px solid #1B314B;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 16px auto 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  button.button-true-{{name}}:hover {
+    color: #1B314B;
+    background-color: transparent;
+    border: 1px solid #1B314B;
+  }
+  .after-payment-body-{{name}}{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    padding: 0;
+    margin: 0;
+    }
+  .loader {
+    position: relative;
+    display: none;
+    width: 200px;
+    height: 200px;
+  }
+  .loader svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .loader svg circle {
+    fill: none;
+    stroke: #fff;
+    stroke-width: 10px;
+    stroke-linecap: round;
+    animation: animate 2s linear infinite;
+  }
+  .loader svg:nth-child(1) circle {
+    filter: blur(10px);
+    stroke: #43acff;
+  }
+  .loader svg:nth-child(2) circle {
+    filter: blur(20px);
+    stroke: #43acff;
+  }
+  @keyframes animate {
+    0% {
+      stroke-dasharray: 295;
+      stroke-dashoffset: 295;
+    }
+    50% {
+      stroke-dasharray: 295;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dasharray: 295;
+      stroke-dashoffset: -295;
+    }
+  }
+  .after-payment-messages-{{name}}{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 0;
+    margin: 0;
+    }
+  .after-payment-messages-{{name}} p.after-payment-main-message-{{name}}{
+    position: relative;
+    display: block;
+    font-size: 18px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.03px;
+    text-transform: none;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    }
+  .after-payment-messages-{{name}} p.after-payment-additional-message-{{name}}{
+    position: relative;
+    display: block;
+    font-size: 16px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.02px;
+    text-transform: none;
+    text-decoration: none;
+    color: #ffffff;
+    padding: 0;
+    margin: 0;
+    }
+  a.after-payment-try-again-{{name}}{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 38px;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0;
+    margin: 16px 0 0 0;
+    transition: all 0.3s ease-in-out;
+    }
+  a.after-payment-try-again-{{name}}:hover{
+    color: #1B314B;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    }
+</style>
+<div class="section-{{name}}">
+  <div class="inner-section-{{name}}">
+    <div style="display: none;">
+      <p id="getPaymentVersion"></p>
+      <p id="getShippingSameAsBilling"></p>
+    </div>
+    <div id="jasFormBody" class="form-body-{{name}}">
+      <div id="jasFormAfterPayment" class="after-payment-body-{{name}}">
+        <div id="jasAfterPaymentLoader" class="loader">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="50"></circle>
+          </svg>
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="50"></circle>
+          </svg>
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="50"></circle>
+          </svg>
+        </div>
+        <div id="jasAfterPaymentMessages" class="after-payment-messages-{{name}}">
+          <p id="mainMessage" class="after-payment-main-message-{{name}}"></p>
+          <p id="additionalMessage" class="after-payment-additional-message-{{name}}"></p>
+          <a id="tryAgain" class="after-payment-try-again-{{name}}" href="/donate">Try Agaian</a>
+        </div>
+      </div>
+      <!--- Pyment Body --->
+      <div id="jasFormPymentBody" class="payment-form-body-{{name}}">
+      <!-- One Time Steps -->
+      <div id="oneTimeSteps" class="one-time-steps-body-{{name}}" style="display: none;">
+        <div id="oneTimeStepsAmount" class="one-time-steps-{{name}} one-time-steps-active">Donation Amount</div>
+        <div class="one-time-steps-divider-{{name}}">/</div>
+        <div id="oneTimeStepsContact" class="one-time-steps-{{name}}">Personal Information</div>
+        <div class="one-time-steps-divider-{{name}}">/</div>
+        <div id="oneTimeStepsPayment" class="one-time-steps-{{name}}">Payment Information</div>
+      </div>
+      <style>
+        .form-steps-body-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 12px;
+          padding: 0;
+          margin: 0;
+          }
+        .form-step-counter-block-{{name}}{
+          position: relative;
+          display: block;
+          text-align: left;
+          padding: 0;
+          margin: 0;
+          }
+        .form-step-counter-body-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 6px;
+          padding: 0;
+          margin: 0;
+          }
+        .current-step-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 25px;
+          height: 25px;
+          background-color: #ffffff;
+          border: 1px solid #ffffff;
+          border-radius: 5px;
+          padding: 0;
+          margin: 0;
+          }
+        .current-step-{{name}} p{
+          font-size: 15px;
+          font-weight: bold;
+          line-height: 1;
+          letter-spacing: 0px;
+          color: #1B314B;
+          margin: 0;
+          }
+        p.surrent-step-of-{{name}}{
+          font-size: 15px;
+          font-weight: 400;
+          line-height: 1;
+          letter-spacing: 0px;
+          color: #ffffff;
+          margin: 0;
+          }
+        .total-steps-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: 25px;
+          height: 25px;
+          background-color: transparent;
+          border: 1px solid #ffffff;
+          border-radius: 5px;
+          padding: 0;
+          margin: 0;
+          }
+        .total-steps-{{name}} p{
+          font-size: 15px;
+          font-weight: bold;
+          line-height: 1;
+          letter-spacing: 0px;
+          color: #ffffff;
+          margin: 0;
+          }
+        .form-step-name-{{name}}{
+          position: relative;
+          display: block;
+          text-align: left;
+          padding: 0;
+          margin: 0;
+          }
+        .form-step-name-{{name}} p{
+          font-size: 15px;
+          font-weight: bold;
+          line-height: 1;
+          letter-spacing: 0px;
+          color: #ffffff;
+          margin: 0;
+          }
+      </style>
+       <div id="formStep1" class="form-steps-body-{{name}}">
+         <div class="form-step-counter-block-{{name}}">
+            <div class="form-step-counter-body-{{name}}">
+              <div class="current-step-{{name}}">
+                <p id="currentStep">1</p>
+              </div>
+              <p class="surrent-step-of-{{name}}">of</p>
+              <div class="total-steps-{{name}}">
+                <p>5</p>
+              </div>
+           </div>
+         </div>
+         <div class="form-step-name-{{name}}">
+           <p id="stepName">Donation Amount</p>
+         </div>
+      </div>
+      
+      <!-- One Time Payment or Subscription -->
+      <div class="onetime-or-monthly-{{name}}">
+        <button type="button" id="oneTimePaymentVersionButton" class="payment-version-{{name}} active-payment-version">One-time</button>
+        <button type="button" id="monthlyPaymentVersionButton" class="payment-version-{{name}}">Monthly</button>
+      </div>
+      
+      <!-- Step 1: Amount and Description -->
+      <div id="oneTimeStep1" class="step active">
+        <form id="oneTimeAmountForm">
+          <div id="predefinedAmounts" class="predefined-amounts-{{name}}">
+            <button type="button" class="amount-btn" data-amount="1000" data-price-id="price_1QxIeDBs5OBzf0qzJXXoHeT1">$1000.00</button>
+            <button type="button" class="amount-btn" data-amount="500" data-price-id="price_1QxIcxBs5OBzf0qzX0HnsdOJ">$500.00</button>
+            <button type="button" class="amount-btn" data-amount="250" data-price-id="price_1QxIbOBs5OBzf0qzgryDjVdH">$250.00</button>
+            <button type="button" class="amount-btn" data-amount="100" data-price-id="price_1QxIa2Bs5OBzf0qzlWkqxthV">$100.00</button>
+            <button type="button" class="amount-btn" data-amount="50" data-price-id="price_1QxIYvBs5OBzf0qzE57IKtEM">$50.00</button>
+            <button type="button" class="amount-btn" data-amount="25" data-price-id="price_1QxIU3Bs5OBzf0qzRYaavnsI">$25.00</button>
+          </div>
+          <div id="customAmountBody" class="custom-amount-body-{{name}}">
+            <label for="custom-amount">Custom Amount:</label>
+            <input type="number" id="customAmount" name="custom-amount" placeholder="Custom Amount (in USD)">
+          </div>
+          <label for="comment">Comment:</label>
+          <input type="text" id="comment" name="comment" placeholder="Comment">
+          <div class="get-total-{{name}}">
+            <p>Total: $<span id="getTotal">0.00</span></p>
+          </div>
+          <input type="hidden" id="setAmount" name="set-amount">
+          <input type="hidden" id="subscriptionPriceId" name="subscription-price-id">
+          <button type="submit" id="step1ButtonNext">Next</button>
+        </form>
+      </div>
+      <!-- Step 2: Contact Info -->
+      <div id="oneTimeStep2" class="step">
+        <form id="oneTimeContactForm">
+          <div id="customFormField">
+            <label for="name">First Name<span class="required-asterisk">*</span></label>
+            <input type="text" id="firstName" required>
+            <p id="helpFirstName" class="help">Please enter your First Name.</p>
+          </div>
+          <div id="customFormField">
+            <label for="name">Last Name<span class="required-asterisk">*</span></label>
+            <input type="text" id="lastName" required>
+            <p id="helpLastName" class="help">Please enter your Last Name.</p>
+          </div>
+          <div id="customFormField">
+            <label for="email">Email<span class="required-asterisk">*</span></label>
+            <input type="email" id="email" required>
+            <p id="helpEmail" class="help">Please enter your Email Address.</p>
+          </div>
+          <div id="customFormField">
+            <label for="phone">Phone Number<span class="required-asterisk">*</span></label>
+            <input type="tel" id="phoneNumber" required>
+            <p id="helpPhoneNumber" class="help">Please enter your Phone Number.</p>
+          </div>
+          <div class="back-next-buttons-body-{{name}}">
+            <button type="button" id="step2ButtonBack">Back</button>
+            <button type="submit" id="step2ButtonNext">Next</button>
+          </div>
+        </form>
+      </div>
+      <style>
+        .select2-container {
+          margin: 0 0 24px 0;
+        }
+        .select2-container--default .select2-selection--single {
+          height: 38px;
+          background-color: transparent;
+          border: 1px solid #ffffff;
+          border-radius: 5px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__placeholder {
+          color: #ffffff;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__rendered {
+          color: #ffffff;
+          line-height: 38px;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow {
+          height: 36px;
+          position: absolute;
+          top: 1px;
+          right: 1px;
+          width: 20px;
+        }
+        .select2-dropdown {
+          border: 1px solid #ffffff !important;
+          border-radius: 5px !important;
+        }
+        .select2-container--open .select2-dropdown--above {
+          top: -8px;
+        }
+        .select2-container--open .select2-dropdown--below {
+          top: 8px;
+        }
+        .select2-search--dropdown {
+          padding: 8px;
+        }
+        .select2-container--default .select2-search--dropdown .select2-search__field {
+          border: 1px solid #2A5587;
+          border-radius: 5px;
+        }
+        .select2-search--dropdown .select2-search__field {
+          padding: 8px 4px;
+        }
+        .select2-container--default .select2-results__option--highlighted[aria-selected] {
+          background-color: #1B314B;
+          color: #ffffff;
+        }
+        .select2-container--default .select2-results__option[aria-selected=true] {
+          background-color: #2A5587;
+          color: #ffffff;
+        }
+        input.select2-search__field:focus-visible{
+          outline: none;
+        }
+        .select2-container--default .select2-selection--single .select2-selection__arrow b {
+          border-color: #ffffff transparent transparent transparent;
+        }
+      </style>
+      <!-- Step 3: Address Info -->
+      <div id="oneTimeStep3" class="step">
+        <form id="oneTimeAddressForm">
+          <div id="customFormField">
+            <label for="country">Country<span class="required-asterisk">*</span></label>
+            <select id="country" required>
+              <option value="">Select Country</option>
+            </select>
+            <p id="helpCountry" class="help">Please enter your Country.</p>
+          </div>
+          <div id="customFormField">
+            <label for="streetAddress">Street Address<span class="required-asterisk">*</span></label>
+            <input type="text" id="streetAddress" required>
+            <p id="helpStreetAddress" class="help">Please enter your Street Address.</p>
+          </div>
+          <div id="customFormField">
+            <label for="townCity">Town / City<span class="required-asterisk">*</span></label>
+            <input type="text" id="townCity" required>
+            <p id="helpTownCity" class="help">Please enter your Town / City.</p>
+          </div>
+          <div id="addressStateFormField">
+            <label for="stateCounty">State<span class="required-asterisk">*</span></label>
+            <select id="stateCounty">
+              <option value="">Select State</option>
+            </select>
+            <p id="helpStateCounty" class="help">Please enter your State.</p>
+          </div>
+          <div id="customFormField">
+            <label for="postcode">Postcode / ZIP<span class="required-asterisk">*</span></label>
+            <input type="text" id="postcode" required>
+            <p id="helpPostcode" class="help">Please enter your Postcode / ZIP.</p>
+          </div>
+          <div class="back-next-buttons-body-{{name}}">
+            <button type="button" id="step3ButtonBack">Back</button>
+            <button type="submit" id="step3ButtonNext">Next</button>
+          </div>
+        </form>
+      </div>
+      <style>
+        #oneTimeStep4 form label.shipping-address-checkbox__label {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          height: 25px;
+          font-family: Lato, sans-serif;
+          font-size: 16px;
+          font-weight: 400;
+          font-style: normal;
+          line-height: 1.2;
+          text-decoration: none;
+          color: #ffffff;
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          padding: 0 0 0 35px;
+          margin: 0 0 24px 0;
+        }
+        #oneTimeStep4 form label.shipping-address-checkbox__label input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+        #oneTimeStep4 form span.shipping-address__custom-checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: transparent;
+          border: 1px solid #ffffff;
+          border-radius: 5px;
+        }
+        #oneTimeStep4 form label.shipping-address-checkbox__label:hover input ~ .shipping-address__custom-checkmark {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+        #oneTimeStep4 form label.shipping-address-checkbox__label input:checked ~ .shipping-address__custom-checkmark {
+          background-color: #ffffff;
+        }
+        #oneTimeStep4 .shipping-address__custom-checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+        #oneTimeStep4 .shipping-address-checkbox__label input:checked ~ .shipping-address__custom-checkmark:after {
+          display: block;
+        }
+       .shipping-address-checkbox__label .shipping-address__custom-checkmark:after {
+          left: 8px;
+          top: 4px;
+          width: 7px;
+          height: 12px;
+          border: solid #1B314B;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      </style>
+      <!-- Step 4: Shipping Address -->
+      <div id="oneTimeStep4" class="step">
+        <form id="oneTimeShippingForm">
+          <div id="customFormField">
+            <label class="shipping-address-checkbox__label">Same as Billing Address
+              <input id="shippingAddressCheckbox" type="checkbox" checked="checked">
+              <span class="shipping-address__custom-checkmark"></span>
+            </label>
+          </div>
+          <div id="shippingFormInputs">
+            <div id="customFormField">
+              <label for="shippingCountry">Shipping Country<span class="required-asterisk">*</span></label>
+              <select id="shippingCountry">
+                <option value="">Select Shipping Country</option>
+              </select>
+              <p id="helpShippingCountry" class="help">Please enter Shipping Country.</p>
+            </div>
+            <div id="customFormField">
+              <label for="shippingStreetAddress">Shipping Street Address<span class="required-asterisk">*</span></label>
+              <input type="text" id="shippingStreetAddress">
+              <p id="helpShippingStreetAddress" class="help">Please enter Shipping Street Address.</p>
+            </div>
+            <div id="customFormField">
+              <label for="shippingTownCity">Shipping Town / City<span class="required-asterisk">*</span></label>
+              <input type="text" id="shippingTownCity">
+              <p id="helpShippingTownCity" class="help">Please enter Shipping Town / City.</p>
+            </div>
+            <div id="shippingStateFormField">
+              <label for="shippingStateCounty">Shipping State<span class="required-asterisk">*</span></label>
+              <select id="shippingStateCounty">
+                <option value="">Select Shipping State</option>
+              </select>
+              <p id="helpShippingStateCounty" class="help">Please enter Shipping State.</p>
+            </div>
+            <div id="customFormField">
+              <label for="shippingPostcode">Postcode / ZIP<span class="required-asterisk">*</span></label>
+              <input type="text" id="shippingPostcode">
+              <p id="helpShippingPostcode" class="help">Please enter Shipping Postcode / ZIP.</p>
+            </div>
+          </div>
+          <div class="back-next-buttons-body-{{name}}">
+              <button type="button" id="step4ButtonBack">Back</button>
+              <button type="submit" id="step4ButtonNext">Next</button>
+            </div>
+        </form>
+      </div>
+      <!-- Step 5: Payment -->
+      <div id="oneTimeStep5" class="step">
+        <form id="oneTimePaymentForm">
+          <label for="card-element">Card number<span class="required-asterisk">*</span></label>
+          <div id="card-element"></div>
+          <div id="missing-card-number" role="alert"></div>
+          <div style="display: flex; flex-direction: row; gap: 32px;">
+            <div style="position: relative; display: block; width: 100%;">
+              <label for="card-expiry">Expiration<span class="required-asterisk">*</span></label>
+              <div id="card-expiry"></div>
+              <div id="missing-card-expire" role="alert"></div>
+            </div>
+            <div style="position: relative; display: block; width: 100%;">
+              <label for="card-csv">CVC<span class="required-asterisk">*</span></label>
+              <div id="card-csv"></div>
+              <div id="missing-card-csv" role="alert"></div>
+            </div>
+          </div>
+          <div class="back-next-buttons-body-{{name}}">
+            <button type="button" id="step5ButtonBack">Back</button>
+            <button type="submit" id="step5ButtonNext">Donate Now</button>
+          </div>
+        </form>
+      </div>
+      
+      </div>
+      <!--- Payment Body END --->
+    </div>
+  </div>
+  <!-- Alert If There Is No Amount -->
+  <div class="popup-container-{{name}}">
+    <div class="overlay-{{name}}" id="noAmount">
+      <div class="popup-container-inner-{{name}}">
+        <div class="popup-{{name}}">
+          <p>To proceed, please select a predefined amount (e.g., $50, $100) or enter your own custom amount in USD.</p>
+          <div class="buttons-body-{{name}}">
+            <button type="button" class="button-true-{{name}}" id="okNoAmount">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  let selectedPaymentVersion = 'one-time';
+  document.getElementById('getPaymentVersion').innerHTML = selectedPaymentVersion;
+  
+  const oneTimeBtn = document.getElementById('oneTimePaymentVersionButton');
+  const monthlyBtn = document.getElementById('monthlyPaymentVersionButton');
+  const customAmountBody = document.getElementById('customAmountBody');
+  
+  // Handle click for the one-time button
+  oneTimeBtn.addEventListener('click', () => {
+    customAmountBody.style.display = 'block';
+    if (!oneTimeBtn.classList.contains('active-payment-version')) {
+      // Update the buttons' active class
+      oneTimeBtn.classList.add('active-payment-version');
+      monthlyBtn.classList.remove('active-payment-version');    
+      // Update the selected payment version based on the button class
+      selectedPaymentVersion = 'one-time';
+      document.getElementById('getPaymentVersion').innerHTML = selectedPaymentVersion;
+    }
+  });
+  // Handle click for the monthly button
+  monthlyBtn.addEventListener('click', () => {
+    customAmountBody.style.display = 'none';
+    if (!monthlyBtn.classList.contains('active-payment-version')) {
+      // Update the buttons' active class
+      monthlyBtn.classList.add('active-payment-version');
+      oneTimeBtn.classList.remove('active-payment-version');
+      // Update the selected payment version based on the button class
+      selectedPaymentVersion = 'monthly';
+      document.getElementById('getPaymentVersion').innerHTML = selectedPaymentVersion;
+    }
+  });
+  
+  /*** START WITH MAIN CODE ***/
+ const checkPaymentVersion = async () => {
+   // Swich End Points depending if it is One-time or Monthly
+   let setEndPoint = 'https://jas.nenad-code.dev/';
+   if(getPaymentVersion == 'monthly'){
+     setEndPoint = 'https://monthlyjas.nenad-code.dev/'
+   } else if (getPaymentVersion == 'one-time'){
+     setEndPoint = 'https://jas.nenad-code.dev/';
+   }
+   console.log(setEndPoint);
+   const {publishableKey} = await fetch(setEndPoint).then((r) => r.json());
+   if (!publishableKey) {
+     addMessage(
+       'No publishable key returned from the server. Please check `.env` and try again'
+     );
+     alert('Please set your Stripe publishable API key in the .env file');
+   }
+   const stripe = Stripe(publishableKey);
+   const elements = stripe.elements();
+   let cardNumberElement;
+   let cardExpiryElement;
+   let cardCvcElement;
+   
+   // Prepare Stripe Elelents
+       cardNumberElement = elements.create('cardNumber',{
+         showIcon: true,
+         style: {
+           base: {
+             iconColor: '#ffffff',
+            color: '#ffffff',
+            fontWeight: 'normal',
+            fontFamily: 'Lato',
+            fontSize: '16px',
+            fontSmoothing: 'antialiased',
+             ':-webkit-autofill': {
+               color: '#ffffff',
+             },
+             '::placeholder': {
+               fontWeight: '400',
+               color: '#ffffff',
+             },
+           },
+           invalid: {
+             iconColor: '#c20000',
+             color: '#c20000',
+           },
+         },
+       });
+       cardNumberElement.mount('#card-element');
+       // Remove warning on focus if there are Creadit Card Number Issues
+       cardNumberElement.on('focus', function(event) {
+         document.getElementById('missing-card-number').style.display = "none";
+       });
+       cardExpiryElement = elements.create('cardExpiry',{
+         style: {
+           base: {
+             iconColor: '#ffffff',
+             color: '#ffffff',
+             fontWeight: 'normal',
+             fontFamily: 'Lato',
+             fontSize: '16px',
+             fontSmoothing: 'antialiased',
+             ':-webkit-autofill': {
+               color: '#ffffff',
+             },
+             '::placeholder': {
+               color: '#ffffff',
+             },
+           },
+           invalid: {
+             color: '#c20000',
+           },
+         },
+       });
+       cardExpiryElement.mount('#card-expiry');
+       // Remove warning on focus if there are Creadit Card Expiration Date Issues 
+       cardExpiryElement.on('focus', function(event) {
+         document.getElementById('missing-card-expire').style.display = "none";
+       });
+       cardCvcElement = elements.create('cardCvc',{
+         style: {
+           base: {
+             color: '#ffffff',
+            fontWeight: 'normal',
+            fontFamily: 'Lato',
+            fontSize: '16px',
+            fontSmoothing: 'antialiased',
+             ':-webkit-autofill': {
+               color: '#ffffff',
+             },
+             '::placeholder': {
+               color: '#ffffff',
+             },
+           },
+           invalid: {
+             color: '#c20000',
+           },
+         },
+       });
+       cardCvcElement.mount('#card-csv');
+       // Remove warning on focus if there are Creadit Card CVC Issues
+       cardCvcElement.on('focus', function(event) {
+         document.getElementById('missing-card-csv').style.display = "none";
+       });
+   
+     // Select all the predefined amount buttons
+     const amountButtons = document.querySelectorAll('.amount-btn');
+     const amountInput = document.getElementById('customAmount');
+     const subscriptionPriceIdInput = document.getElementById('subscriptionPriceId');
+     const setAmount = document.getElementById('setAmount');
+     let getSubscriptionPriceId;
+     // Add event listener for each button
+     amountButtons.forEach(button => {
+       button.addEventListener('click', function() {
+         var predefinedAmount = parseFloat(this.getAttribute('data-amount')).toFixed(2);
+         document.getElementById('getTotal').innerHTML = predefinedAmount;
+         setAmount.value = predefinedAmount;
+         subscriptionPriceIdInput.value = this.getAttribute('data-price-id');
+         // Remove 'selected' class from all buttons first
+         amountButtons.forEach(btn => btn.classList.remove('selected-amount-btn'));
+         // Add 'selected' class to the clicked button
+         this.classList.add('selected-amount-btn');
+         amountInput.value = null;
+       });
+     });
+     // Add event listener to the amount input to deselect buttons on manual input
+     amountInput.addEventListener('input', function() {
+       // If a custom amount is entered, remove the 'selected' class from all buttons
+       if (this.value) {
+         var customAmount = parseFloat(this.value).toFixed(2);
+         document.getElementById('getTotal').innerHTML = customAmount;
+         setAmount.value = customAmount;
+         amountButtons.forEach(button => button.classList.remove('selected-amount-btn'));
+       }
+     });
+     
+     /* STEP 1 - Donation Amount */
+     document.getElementById('oneTimeAmountForm').addEventListener('submit', (event) => {
+       event.preventDefault();
+       if(setAmount.value > 0){
+       // Move to step 2
+       document.getElementById('oneTimeStep1').classList.remove('active');
+       document.getElementById('oneTimeStep2').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsAmount').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "2";
+       document.getElementById('stepName').innerText = "Personal Information";
+       } else {
+         {showNoAmount()};
+         function showNoAmount() {
+           document.getElementById("noAmount").style.display = "block";
+         }
+         document.getElementById("okNoAmount").onclick = function(){okNoAmount()};
+         function okNoAmount() {
+           document.getElementById("noAmount").style.display = "none";
+         }
+       }
+     });
+     /* STEP 2 - Personal Info */
+     const contactForm = document.getElementById('oneTimeContactForm');
+     const contactFormFields = Array.from(contactForm.elements);
+     contactForm.noValidate = true;
+     let submittedContactForm = false;
+     
+     // Remove Alert Messages if Validation Fails
+     contactFormFields.forEach(field => {
+       field.addEventListener('focus', () => {
+         field.setCustomValidity(''); // Clear custom validity message
+         field.parentElement.classList.remove('invalid'); // Remove invalid class
+       });
+       field.addEventListener('click', () => {
+         field.setCustomValidity(''); // Clear custom validity message
+         field.parentElement.classList.remove('invalid'); // Remove invalid class
+       });
+     });
+     // Validate Contact Form
+     contactForm.addEventListener('submit', validateContactForm);
+     // If Validation is Successful, go to last step
+     contactForm.addEventListener('submit', (event) => {
+       event.preventDefault();
+       // Move to step 3
+       document.getElementById('oneTimeStep2').classList.remove('active');
+       document.getElementById('oneTimeStep3').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsContact').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsPayment').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "3";
+       document.getElementById('stepName').innerText = "Billing Details";
+     });
+     // Handle back button to step 1
+     document.getElementById('step2ButtonBack').addEventListener('click', () => {
+       // Move back to step 1
+       document.getElementById('oneTimeStep2').classList.remove('active');
+       document.getElementById('oneTimeStep1').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsContact').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsAmount').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "1";
+       document.getElementById('stepName').innerText = "Donation Amount";
+     });
+     function validateContactForm(e) {
+       const validateContactForm = e.target;
+       const contactFormFields = Array.from(validateContactForm.elements);
+       // reset fields
+       contactFormFields.forEach(i => {
+         i.setCustomValidity('');
+         i.parentElement.classList.remove('invalid');
+       });
+       // email or tel set?
+       /*
+        const err = validateContactForm.email.value || validateContactForm.tel.value ? '' : 'error';
+        const err = validateContactForm.email.value ? '' : 'error';
+        validateContactForm.email.setCustomValidity(err);
+        validateContactForm.tel.setCustomValidity(err);
+      */
+       if (!validateContactForm.checkValidity()) {
+         // form is invalid - cancel submit
+         e.preventDefault();
+         e.stopImmediatePropagation();
+         // apply invalid class
+         contactFormFields.forEach(i => {
+           if (!i.checkValidity()) {
+             // field is invalid - add class
+             i.parentElement.classList.add('invalid');
+           }
+         });     
+       }
+     }
+   
+     /* STEP 3 - Billing Info */
+     const addressForm = document.getElementById('oneTimeAddressForm');
+     const addressFormFields = Array.from(addressForm.elements);
+     addressForm.noValidate = true;
+     let submittedAddressForm = false;
+   
+     const addressCountryDropdown = document.getElementById("country");
+   try {
+        // Fetch JSON from HubSpot (Replace URL with your HubSpot endpoint)
+        const response = await fetch("https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/raw_assets/public/JAS2024/json/countries.json");
+        const countries = await response.json();
+
+        // Populate the dropdown
+        for (const [countryName, countryCode] of Object.entries(countries)) {
+            const option = document.createElement("option");
+            option.value = countryCode; // Country code as value
+            option.textContent = countryName; // Country name as display text
+            addressCountryDropdown.appendChild(option);
+            // Preselect "United States" (US)
+            if (countryCode === "US") {
+                option.selected = true;
+            }
+        }
+
+    } catch (error) {
+        console.error("Error fetching country data:", error);
+    }
+   
+    $("#country").select2({
+        width: "100%",
+        placeholder: "Select your country",
+        allowClear: true
+    });
+   const addressCountryOnChange = $("#country");
+   const addressStateFieldContainer = document.getElementById("addressStateFormField"); // Entire div
+   const addressStateInput = document.getElementById("stateCounty"); // Input field
+
+    function toggleAddressStateField() {
+        if (addressCountryOnChange.val() === "US") {
+            addressStateFieldContainer.style.display = "block"; // Show state field
+            addressStateInput.setAttribute("required", "required"); // Make required
+        } else {
+            addressStateFieldContainer.style.display = "none"; // Hide state field
+            addressStateInput.removeAttribute("required"); // Remove required
+        }
+    }
+    // Attach Select2 event listener
+    addressCountryOnChange.on("select2:select", function () {
+        toggleAddressStateField();
+    });
+    // Run function once on page load
+    toggleAddressStateField();
+   
+     // Set Dropdown for USA States in Billing Detals
+     const addressUsaStatesDropdown = document.getElementById("stateCounty");
+     try {
+        // Fetch JSON from HubSpot
+        const usaStatesResponse = await fetch("https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/raw_assets/public/JAS2024/json/states-usa.json");
+        const usaStates = await usaStatesResponse.json();
+
+        // First, add the "Please Select State" default option
+        const defaultUsaStateOption = document.createElement("option");
+        defaultUsaStateOption.value = ""; // Empty value for default selection
+        defaultUsaStateOption.textContent = "Select State";
+        addressUsaStatesDropdown.appendChild(defaultUsaStateOption);
+
+        // Populate the dropdown with states
+        for (const [usaStateName, usaStateCode] of Object.entries(usaStates)) {
+            const usaStateOption = document.createElement("option");
+            usaStateOption.value = usaStateCode; // State abbreviation as value
+            usaStateOption.textContent = usaStateName; // Full state name as display text
+            addressUsaStatesDropdown.appendChild(usaStateOption);
+        }
+
+    } catch (error) {
+        console.error("Error fetching USA states:", error);
+    }
+
+    // Initialize Select2 with placeholder
+    $("#stateCounty").select2({
+        width: "100%",
+        placeholder: "Select State",
+        allowClear: true
+    });
+   
+     // Remove Alert Messages if Validation Fails
+     addressFormFields.forEach(field => {
+       field.addEventListener('focus', () => {
+         field.setCustomValidity(''); // Clear custom validity message
+         field.parentElement.classList.remove('invalid'); // Remove invalid class
+       });
+       field.addEventListener('click', () => {
+         field.setCustomValidity(''); // Clear custom validity message
+         field.parentElement.classList.remove('invalid'); // Remove invalid class
+       });
+     });
+     // Validate Address Form
+     addressForm.addEventListener('submit', validateAddressForm);
+     // If Validation is Successful, go to last step
+     addressForm.addEventListener('submit', (event) => {
+       event.preventDefault();
+       // Move to step 4
+       document.getElementById('oneTimeStep3').classList.remove('active');
+       document.getElementById('oneTimeStep4').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsContact').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsPayment').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "4";
+       document.getElementById('stepName').innerText = "Shipping Information";
+     });
+     function validateAddressForm(e) {
+       const validateAddressForm = e.target;
+       const addressFormFields = Array.from(validateAddressForm.elements);
+       // reset fields
+       addressFormFields.forEach(i => {
+         i.setCustomValidity('');
+         i.parentElement.classList.remove('invalid');
+       });
+       // email or tel set?
+       /*
+        const err = validateContactForm.email.value || validateContactForm.tel.value ? '' : 'error';
+        const err = validateContactForm.email.value ? '' : 'error';
+        validateContactForm.email.setCustomValidity(err);
+        validateContactForm.tel.setCustomValidity(err);
+      */
+       if (!validateAddressForm.checkValidity()) {
+         // form is invalid - cancel submit
+         e.preventDefault();
+         e.stopImmediatePropagation();
+         // apply invalid class
+         addressFormFields.forEach(i => {
+           if (!i.checkValidity()) {
+             // field is invalid - add class
+             i.parentElement.classList.add('invalid');
+           }
+         });     
+       }
+     }
+     // Handle back button 3
+     document.getElementById('step3ButtonBack').addEventListener('click', () => {
+       // Move back to step 2
+       document.getElementById('oneTimeStep3').classList.remove('active');
+       document.getElementById('oneTimeStep2').classList.add('active');
+       /*
+      document.getElementById('oneTimeStepsPayment').classList.remove('one-time-steps-active');
+      document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+      */
+       document.getElementById('currentStep').innerText = "2";
+       document.getElementById('stepName').innerText = "Personal Information";
+     });
+   
+     /* STEP 4 - Shipping */
+     const shippingForm = document.getElementById('oneTimeShippingForm');
+     const shippingFormFields = Array.from(shippingForm.elements);
+     shippingForm.noValidate = true;
+     let submittedShippingForm = false;
+     
+     // Remove Alert Messages if Validation Fails
+     shippingFormFields.forEach(field => {
+       field.addEventListener('focus', () => {
+         field.setCustomValidity(''); // Clear custom validity message
+         field.parentElement.classList.remove('invalid'); // Remove invalid class
+       });
+       field.addEventListener('click', () => {
+         field.setCustomValidity(''); // Clear custom validity message
+         field.parentElement.classList.remove('invalid'); // Remove invalid class
+       });
+     });
+     // Validate Shipping Form
+     shippingForm.addEventListener('submit', validateShippingForm);
+     // If Validation is Successful, go to last step
+     shippingForm.addEventListener('submit', (event) => {
+       event.preventDefault();
+       // Move to step 5
+       document.getElementById('oneTimeStep4').classList.remove('active');
+       document.getElementById('oneTimeStep5').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsContact').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsPayment').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "5";
+       document.getElementById('stepName').innerText = "Payment Information";
+     });
+   
+     let printShippingSameAsBilling = document.getElementById("getShippingSameAsBilling");
+     printShippingSameAsBilling.innerText = 'Yes';
+     document.getElementById("shippingAddressCheckbox").addEventListener("change", function () {
+       const shippingForm = document.getElementById("shippingFormInputs");
+       const shippingRequiredFields = ["shippingCountry", "shippingStreetAddress", "shippingTownCity", "shippingPostcode"];
+       if (this.checked) {
+         shippingForm.style.display = "none";
+         shippingRequiredFields.forEach(id => document.getElementById(id).removeAttribute("required"));
+         printShippingSameAsBilling.innerText = 'Yes';
+       } else {
+         shippingForm.style.display = "block";
+         printShippingSameAsBilling.innerText = 'No';
+         shippingRequiredFields.forEach(id => document.getElementById(id).setAttribute("required", "required"));
+       }
+     });
+     
+     const shippingCountryDropdown = document.getElementById("shippingCountry");
+   try {
+        // Fetch JSON from HubSpot (Replace URL with your HubSpot endpoint)
+        const shippingCountryResponse = await fetch("https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/raw_assets/public/JAS2024/json/countries.json");
+        const shippingCountries = await shippingCountryResponse.json();
+
+        // Populate the dropdown
+        for (const [shippingCountryName, shippingCountryCode] of Object.entries(shippingCountries)) {
+            const shippingCountryOption = document.createElement("option");
+            shippingCountryOption.value = shippingCountryCode; // Country code as value
+            shippingCountryOption.textContent = shippingCountryName; // Country name as display text
+            shippingCountryDropdown.appendChild(shippingCountryOption);
+            // Preselect "United States" (US)
+            if (shippingCountryCode === "US") {
+                shippingCountryOption.selected = true;
+            }
+        }
+
+    } catch (error) {
+        console.error("Error fetching country data:", error);
+    }
+   
+    $("#shippingCountry").select2({
+        width: "100%",
+        placeholder: "Select Shipping Country",
+        allowClear: true
+    });
+   const shippingCountryOnChange = $("#shippingCountry");
+   const shippingStateFieldContainer = document.getElementById("shippingStateFormField"); // Entire div
+   const shippingStateInput = document.getElementById("shippingStateCounty"); // Input field
+   const shippingSameAsBillingText = printShippingSameAsBilling ? printShippingSameAsBilling.innerText.trim() : '';
+
+    function toggleShippingStateField() {
+        if (printShippingSameAsBilling.innerText == 'No' && shippingCountryOnChange.val() === "US") {
+            shippingStateFieldContainer.style.display = "block"; // Show state field
+            shippingStateInput.setAttribute("required", "required"); // Make required
+          }else if(printShippingSameAsBilling.innerText == 'No' && shippingCountryOnChange.val() !== "US"){
+            shippingStateFieldContainer.style.display = "none"; // Hide state field
+            shippingStateInput.removeAttribute("required"); // Remove required
+        } else if(printShippingSameAsBilling.innerText == 'Yes') {
+            shippingStateFieldContainer.style.display = "none"; // Hide state field
+            shippingStateInput.removeAttribute("required"); // Remove required
+        }
+    }
+    // Attach Select2 event listener
+    shippingCountryOnChange.on("select2:select", function () {
+        toggleShippingStateField();
+    });
+    const shippingStateObserver = new MutationObserver(() => {
+        console.log("Billing Same As Shipping text changed!");
+        toggleShippingStateField();
+    });
+    if (printShippingSameAsBilling) {
+        shippingStateObserver.observe(printShippingSameAsBilling, { childList: true, subtree: true, characterData: true });
+    }
+   
+     // Set Dropdown for USA States in Shipping Detals
+     const shippingUsaStatesDropdown = document.getElementById("shippingStateCounty");
+     try {
+        // Fetch JSON from HubSpot
+        const usaShippingStatesResponse = await fetch("https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/raw_assets/public/JAS2024/json/states-usa.json");
+        const usaShippingStates = await usaShippingStatesResponse.json();
+
+        // First, add the "Please Select State" default option
+        const defaultUsaShippingStateOption = document.createElement("option");
+        defaultUsaShippingStateOption.value = ""; // Empty value for default selection
+        defaultUsaShippingStateOption.textContent = "Select State";
+        shippingUsaStatesDropdown.appendChild(defaultUsaShippingStateOption);
+
+        // Populate the dropdown with states
+        for (const [usaShippingStateName, usaShippingStateCode] of Object.entries(usaShippingStates)) {
+            const usaShippingStateOption = document.createElement("option");
+            usaShippingStateOption.value = usaShippingStateCode; // State abbreviation as value
+            usaShippingStateOption.textContent = usaShippingStateName; // Full state name as display text
+            shippingUsaStatesDropdown.appendChild(usaShippingStateOption);
+        }
+
+    } catch (error) {
+        console.error("Error fetching USA states:", error);
+    }
+
+    // Initialize Select2 with placeholder
+    $("#shippingStateCounty").select2({
+        width: "100%",
+        placeholder: "Select State",
+        allowClear: true
+    });
+   
+     function validateShippingForm(e) {
+       const validateShippingForm = e.target;
+       const shippingFormFields = Array.from(validateShippingForm.elements);
+       // reset fields
+       shippingFormFields.forEach(i => {
+         i.setCustomValidity('');
+         i.parentElement.classList.remove('invalid');
+       });
+       // email or tel set?
+       /*
+        const err = validateContactForm.email.value || validateContactForm.tel.value ? '' : 'error';
+        const err = validateContactForm.email.value ? '' : 'error';
+        validateContactForm.email.setCustomValidity(err);
+        validateContactForm.tel.setCustomValidity(err);
+      */
+       if (!validateShippingForm.checkValidity()) {
+         // form is invalid - cancel submit
+         e.preventDefault();
+         e.stopImmediatePropagation();
+         // apply invalid class
+         shippingFormFields.forEach(i => {
+           if (!i.checkValidity()) {
+             // field is invalid - add class
+             i.parentElement.classList.add('invalid');
+           }
+         });     
+       }
+     }
+     // Handle back button 4
+     document.getElementById('step4ButtonBack').addEventListener('click', () => {
+       // Move back to step 3
+       document.getElementById('oneTimeStep4').classList.remove('active');
+       document.getElementById('oneTimeStep3').classList.add('active');
+       /*
+      document.getElementById('oneTimeStepsPayment').classList.remove('one-time-steps-active');
+      document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+      */
+       document.getElementById('currentStep').innerText = "3";
+       document.getElementById('stepName').innerText = "Billing Details";
+     });
+   
+    // Handle back button 5
+     document.getElementById('step5ButtonBack').addEventListener('click', () => {
+       // Move back to step 4
+       document.getElementById('oneTimeStep5').classList.remove('active');
+       document.getElementById('oneTimeStep4').classList.add('active');
+       /*
+      document.getElementById('oneTimeStepsPayment').classList.remove('one-time-steps-active');
+      document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+      */
+       document.getElementById('currentStep').innerText = "4";
+       document.getElementById('stepName').innerText = "Billing Details";
+     });
+     
+     
+     const paymentForm = document.getElementById('oneTimePaymentForm');
+     paymentForm.noValidate = true;
+     let submittedPaymentForm = false;
+     paymentForm.addEventListener('submit', async (e) => {
+       e.preventDefault();
+       
+       /* VALIDATE CARD NUMBER */
+       var checkCardNumber = document.getElementById('card-element');
+       var errorCardNumber = document.getElementById('missing-card-number');
+       if(checkCardNumber.classList.contains('StripeElement--complete')){
+         errorCardNumber.style.display = "none";
+       }else if(checkCardNumber.classList.contains('StripeElement--invalid')){
+         errorCardNumber.style.display = "block";
+         errorCardNumber.textContent = "Insert valid credit card number.";
+         return;
+       }else if(checkCardNumber.classList.contains('StripeElement--empty')){
+         errorCardNumber.style.display = "block";
+         errorCardNumber.textContent = "Please insert credit card number.";
+         return;
+       }
+       /* VALIDATE CARD EXPIRATION DATE */
+       var checkCardExp = document.getElementById('card-expiry');
+       var errorExpElement = document.getElementById('missing-card-expire');
+       if(checkCardExp.classList.contains('StripeElement--complete')){
+         errorExpElement.style.display = "none";
+       }else if(checkCardExp.classList.contains('StripeElement--invalid')){
+         errorExpElement.style.display = "block";
+         errorExpElement.textContent = "Insert valid card's expiration date.";
+         return;
+       }else if(checkCardExp.classList.contains('StripeElement--empty')){
+         errorExpElement.style.display = "block";
+         errorExpElement.textContent = "Please insert card's expiration date.";
+         return;
+       }
+       /* VALIDATE CSV */
+       var checkCardCsv = document.getElementById('card-csv');
+       var errorCsvElement = document.getElementById('missing-card-csv');
+       if(checkCardCsv.classList.contains('StripeElement--complete')){
+         errorCsvElement.style.display = "none";
+       }else if(checkCardCsv.classList.contains('StripeElement--invalid')){
+         errorCsvElement.style.display = "block";
+         errorCsvElement.textContent = "Insert valid card's security code.";
+         return;
+       }else if(checkCardCsv.classList.contains('StripeElement--empty')){
+         errorCsvElement.style.display = "block";
+         errorCsvElement.textContent = "Please insert card's security code.";
+         return;
+       }
+       
+       const customerFirstName = document.getElementById('firstName').value;
+       const customerLastName = document.getElementById('lastName').value;
+       const customerFullName = customerFirstName + ' ' + customerLastName;
+       const customerEmail = document.getElementById('email').value;
+       const customerPhoneNumber = document.getElementById('phoneNumber').value;
+       const getAddress = {
+         street1: document.getElementById('streetAddress').value,
+         street2: "",
+         city: document.getElementById('townCity').value,
+         state: $("#stateCounty").val(),
+         zip: document.getElementById('postcode').value,
+         country: $("#country").val()
+       };
+       const setJsonAddresses = JSON.stringify(getAddress);
+       console.log(setJsonAddresses);
+       
+       function getAShippingddressData() {
+        // Get billing address values
+        const billingAddress = {
+            street1: document.getElementById('streetAddress').value,
+            street2: "",
+            city: document.getElementById('townCity').value,
+            state: $("#stateCounty").val(),
+            zip: document.getElementById('postcode').value,
+            country: $("#country").val()
+        };
+
+        // If "Same as Billing" is checked, return billing address
+        if (printShippingSameAsBilling.innerText == 'Yes') {
+            return billingAddress;
+        } else if(printShippingSameAsBilling.innerText == 'No') {
+            // Otherwise, get shipping address values
+            return {
+                street1: document.getElementById('shippingStreetAddress').value,
+                street2: "",
+                city: document.getElementById('shippingTownCity').value,
+                state: $("#shippingStateCounty").val(),
+                zip: document.getElementById('shippingPostcode').value,
+                country: $("#shippingCountry").val() // ✅ Get from Select2
+            };
+        }
+    }
+       const setShippingAddress = JSON.stringify(getAShippingddressData());
+       const getTotalAmount = document.getElementById('getTotal').innerText;
+       
+       // Create After Payment
+       let paymentBody = document.getElementById("jasFormPymentBody");
+       let afterPayment = document.getElementById("jasFormAfterPayment");
+       let loader = document.getElementById("jasAfterPaymentLoader");
+       let afterPaymentMessagesBody = document.getElementById("jasAfterPaymentMessages");
+       let setMainMessage = document.getElementById("mainMessage");
+       let setAdditionalMessage = document.getElementById("additionalMessage");
+       let tryAgainButton = document.getElementById("tryAgain");
+       function showAfterPayment() {
+         paymentBody.style.display = "none";
+         afterPayment.style.display = "flex";
+         loader.style.display = "block";
+       }
+       function hideLoader(mainMessage, additionalMessage, showRetry) {
+         setTimeout(() => {
+           loader.style.display = "none";
+           afterPaymentMessagesBody.style.display = "flex";
+           setMainMessage.innerText = mainMessage;
+           setAdditionalMessage.innerText = additionalMessage;
+           tryAgainButton.style.display = showRetry ? "flex" : "none";
+         }, 5000);
+       }
+       
+       /*** SUBMIT ONE-TIME DONATION ***/
+       if(getPaymentVersion == 'one-time'){
+       /*** FINALY - call the server, make payment intent and store client secret ***/
+       // Get ALL VALUES you want to pass to Stripe
+       const selectedProductId = "prod_Rr0jGElaPKxrAl";
+       const selectedProduct = getProductDetails(selectedProductId);
+       const oneTimeSku = [{
+         sku: "atriotd",
+         quantity: "1"
+       }];
+      const setOneTimeSku = JSON.stringify(oneTimeSku);
+       
+       const {error: backendError, clientSecret} = await fetch(
+         'https://jas.nenad-code.dev/create-payment-intent',
+         {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({
+             currency: 'usd',
+             paymentMethodType: 'card',
+             product: selectedProduct,
+             metadata: {
+               customer_email: customerEmail,
+               customer_first_name: customerFirstName,
+               customer_last_name: customerLastName,
+               customer_telephone: customerPhoneNumber,
+               billing_address: setJsonAddresses,
+               shipping_address: setShippingAddress,
+               order_items: setOneTimeSku,
+               order_shipping_amount: "0",
+               order_total_amount: getTotalAmount,
+             },
+           }),
+         }
+       ).then((r) => r.json());
+       
+       // Confirm the card payment given the clientSecret from the payment intent that was just created on he server.
+       const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(
+         clientSecret,
+         {
+           payment_method: {
+             type: 'card',
+             card: cardNumberElement,
+             billing_details: {
+               name: customerFullName,
+               email: customerEmail,
+             },
+           },
+         }
+       );
+       
+       function getProductDetails(productId) {
+         // Implement logic to retrieve product details based on productId
+         var getCustomAmount = document.getElementById('setAmount').value;
+         var setCustomAmount = parseFloat(getCustomAmount).toFixed(2);
+         const products = {
+           "prod_Rr0jGElaPKxrAl": { name: "One Time Donation", price: setCustomAmount },
+         };
+         return products[productId];
+         console.log(products[productId])
+       }
+         if (backendError) {
+           showAfterPayment();
+           hideLoader(
+             "We couldn’t process your donation.",
+             "Please try again or contact support.",
+             true
+           );
+           return;
+         } else if(stripeError) {
+           showAfterPayment();
+           hideLoader(
+             "Payment Failed.",
+             "Please check your card details and try again. If the issue persists, use another method or contact your bank.",
+             true
+           );
+           return;
+         } else {
+           showAfterPayment();
+           hideLoader(
+             "Thank You for Your Support!",
+             "Your donation helps defend the faith, support believers, and engage seekers. We appreciate your generosity.",
+             false
+           );
+         }
+    /*** SUBMIT MONTHLY DONATIONS ***/
+    } else if (getPaymentVersion == 'monthly'){
+      // Get ALL VALUES you want to pass to Stripe
+      const selectedSubscriptionPriceId = document.getElementById('subscriptionPriceId').value;
+      if (!selectedSubscriptionPriceId) {
+        return;
+      }
+      const subscriptionAmount = document.getElementById('setAmount').value;
+      const subscriptionFirstName = document.getElementById('firstName').value;
+      const subscriptionLastName = document.getElementById('lastName').value;
+      const subscriptionFullName = subscriptionFirstName + ' ' + subscriptionLastName;
+      const subscriptionEmail = document.getElementById('email').value;
+      
+      // First, check if the customer already exists and has an active subscription
+      const response = await fetch('https://monthlyjas.nenad-code.dev/check-customer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ subscriptionEmail }),
+      });
+      
+      const result = await response.json();
+      console.log(result.subscriptionExists);
+      if (result.subscriptionExists == true) {
+        showAfterPayment();
+        hideLoader(
+          "Customer already exists with an active subscription.",
+          "",
+          false
+        );
+      } else {
+      // Create a PaymentMethod
+      const { paymentMethod, error } = await stripe.createPaymentMethod({
+        type: 'card',
+        card: cardNumberElement,
+        billing_details: {
+          name: subscriptionFullName,
+          email: subscriptionEmail,
+        },
+      });
+      
+      if (error) {
+        showAfterPayment();
+        hideLoader(
+          "We couldn’t process your donation.",
+          "Please try again or contact support.",
+          true
+        );
+      } else {
+      // Pass amount and paymentMethod.id to the server
+      const createCustomerResponse = await fetch('https://monthlyjas.nenad-code.dev/create-customer', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ 
+          paymentMethodId: paymentMethod.id, 
+          subscriptionPriceId: selectedSubscriptionPriceId,
+          subscriptionAmount, 
+          subscriptionFullName, 
+          subscriptionEmail,
+          metadata: {
+            customer_email: customerEmail,
+            customer_first_name: customerFirstName,
+            customer_last_name: customerLastName,
+            customer_telephone: customerPhoneNumber,
+            billing_address: setJsonAddresses,
+            shipping_address: setShippingAddress,
+            order_shipping_amount: "0",
+            order_total_amount: getTotalAmount,
+             },
+        }),
+      });
+        
+        const createCustomerResult = await createCustomerResponse.json();
+        console.log('Server response:', createCustomerResult); // Log server response for debugging
+        
+        if (createCustomerResult.success) {
+          const clientSecret = createCustomerResult.clientSecret;
+          // Confirm the payment on the client side using the clientSecret
+          const { paymentIntent, error } = await stripe.confirmCardPayment(clientSecret);
+          if (error) {
+            showAfterPayment();
+            hideLoader(
+              "Payment Failed.",
+              "Please check your card details and try again. If the issue persists, use another method or contact your bank.",
+              true
+            );
+          } else {
+            showAfterPayment();
+            hideLoader(
+              "Thank You for Your Support!",
+              "Your donation helps defend the faith, support believers, and engage seekers. We appreciate your generosity.",
+              false
+            );
+          }         
+        } else {
+          showAfterPayment();
+          hideLoader(
+            "We couldn’t process your donation.",
+            "Please try again or contact support.",
+            true
+          );
+        }
+      }
+      }
+    }
+     });
+ }
+                                                      
+  // Get the element that we want to observe
+  const targetPaymentVersion = document.getElementById('getPaymentVersion');
+  // Variable to store the updated innerHTML, declared in outer scope
+  let getPaymentVersion = targetPaymentVersion.innerHTML;
+  // Create a MutationObserver instance
+  const paymentVersionObserver = new MutationObserver((mutationsList) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        // Update the variable with the new innerHTML
+        getPaymentVersion = targetPaymentVersion.innerHTML;
+        checkPaymentVersion();
+      }
+    }
+  });
+  
+  // Start observing the target node for changes in its child elements (which affects innerHTML)
+  paymentVersionObserver.observe(targetPaymentVersion, {
+    childList: true, // Detects changes in child elements (if innerHTML is updated)
+    subtree: true     // Watches the entire subtree of the element
+  });
+  
+  // Call the checkPaymentVersion function on initial load
+  checkPaymentVersion(); // Check the payment version on page load
+</script>

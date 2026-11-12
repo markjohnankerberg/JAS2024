@@ -1,0 +1,872 @@
+{
+  "default_text.current_page_aria_label.default" : {
+    "message" : "Trang hiện tại",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.current_page_aria_label.label" : {
+    "message" : "Nhãn aria của trang hiện tại",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.default" : {
+    "message" : "Hình ảnh nổi bật",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.label" : {
+    "message" : "Hình ảnh nổi bật",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.default" : {
+    "message" : "Trang đầu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.label" : {
+    "message" : "Văn bản của liên kết đến trang đầu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.label" : {
+    "message" : "Văn bản mặc định",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.default" : {
+    "message" : "Trang cuối",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.label" : {
+    "message" : "Văn bản của liên kết đến trang cuối",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.default" : {
+    "message" : "Điều hướng phân trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.label" : {
+    "message" : "Nhãn aria cho điều hướng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.default" : {
+    "message" : "Tiếp theo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.label" : {
+    "message" : "Văn bản của liên kết đến trang tiếp theo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.default" : {
+    "message" : "<p>Rất tiếc. Không có kết quả nào cho [[search_term]].</p><p>Hãy thử diễn đạt lại truy vấn của bạn, hoặc duyệt qua site của chúng tôi.</p>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.label" : {
+    "message" : "Thông báo không có kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.default" : {
+    "message" : "Trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.label" : {
+    "message" : "Nhãn aria của số trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.default" : {
+    "message" : "Trước",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.label" : {
+    "message" : "Văn bản của liên kết đến trang trước",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.default" : {
+    "message" : "Đang hiển thị [[offset]] – [[limit]] / [[total]] kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.label" : {
+    "message" : "Số lượng kết quả tìm kiếm",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.placeholder" : {
+    "message" : "Đang hiển thị [[offset]] – [[limit]] / [[total]] kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.default" : {
+    "message" : "Kết quả tìm kiếm cho “{{ searched_term|escape }}”",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.help_text" : {
+    "message" : "Nhập tiêu đề mà bạn muốn hiển thị phía trên kết quả tìm kiếm.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.label" : {
+    "message" : "Tiêu đề kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.placeholder" : {
+    "message" : "Kết quả tìm kiếm cho “{{ searched_term|escape }}”",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.default" : {
+    "message" : "Đoạn nội dung xem trước dạng văn bản từ mỗi trang sẽ hiển thị ở đây để giúp khách truy cập duyệt nhanh qua các kết quả tìm kiếm và tìm được trang họ cần.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.label" : {
+    "message" : "Mô tả bài viết trong kết quả tìm kiếm.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.default" : {
+    "message" : "Tiêu đề bài viết trong kết quả tìm kiếm",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.label" : {
+    "message" : "Tiêu đề bài viết trong kết quả tìm kiếm",
+    "description" : "",
+    "placeholders" : null
+  },
+  "inline_help_text" : {
+    "message" : "Mô-đun này được sử dụng với mô-đun đầu vào tìm kiếm. Khi khách truy cập của bạn tìm kiếm một cụm từ trong mô-đun đầu vào tìm kiếm, mọi trang có mô-đun này đều có thể hiển thị kết quả của chúng. <a href=\"https://knowledge.hubspot.com/design-manager/set-up-a-results-page-to-use-a-search-field-on-your-site\">Tìm hiểu thêm.</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_arrows" : {
+    "message" : "Hiển thị mũi tên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_labels" : {
+    "message" : "Hiển thị nhãn",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.label" : {
+    "message" : "Đầu tiên và cuối cùng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.default" : {
+    "message" : "Đầu tiên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.label" : {
+    "message" : "Nhãn đầu tiên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.inline_help_text" : {
+    "message" : "Việc phân trang sẽ sắp xếp danh sách kết quả dài thành các trang, giúp người dùng duyệt dễ hơn.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.label" : {
+    "message" : "Phân trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.default" : {
+    "message" : "Cuối",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.label" : {
+    "message" : "Nhãn cuối cùng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.default" : {
+    "message" : "Tiếp theo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.label" : {
+    "message" : "Nhãn tiếp theo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.choices.show_numbers" : {
+    "message" : "Hiển thị số",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.label" : {
+    "message" : "Số",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_arrows" : {
+    "message" : "Hiển thị mũi tên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_labels" : {
+    "message" : "Hiển thị nhãn",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.label" : {
+    "message" : "Trước và sau",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.default" : {
+    "message" : "Trước",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.label" : {
+    "message" : "Nhãn trước đó",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.display_for_each_result.choices.image" : {
+    "message" : "Hiển thị bản xem trước hình ảnh cho mỗi kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.label" : {
+    "message" : "Kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.label" : {
+    "message" : "Bộ chứa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Kiểu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.background_color.label" : {
+    "message" : "Màu nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.border_color.label" : {
+    "message" : "Màu viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.label" : {
+    "message" : "Di chuột",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.text_color.label" : {
+    "message" : "Màu văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.label" : {
+    "message" : "Biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.size.label" : {
+    "message" : "Kích cỡ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.label" : {
+    "message" : "Đầu tiên và cuối cùng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Khoảng cách giữa văn bản và biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Phân trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.background_color.label" : {
+    "message" : "Màu nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.border_color.label" : {
+    "message" : "Màu viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.help_text" : {
+    "message" : "Tạo kiểu cho liên kết được đánh số phù hợp với trang bạn hiện đang truy cập.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.label" : {
+    "message" : "Đang hoạt động",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.text_color.label" : {
+    "message" : "Màu văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.background_color.label" : {
+    "message" : "Màu nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.border_color.label" : {
+    "message" : "Màu viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.label" : {
+    "message" : "Di chuột",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.text_color.label" : {
+    "message" : "Màu văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.label" : {
+    "message" : "Số",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.background_color.label" : {
+    "message" : "Màu nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.border_color.label" : {
+    "message" : "Màu viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.label" : {
+    "message" : "Di chuột",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.text_color.label" : {
+    "message" : "Màu văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.label" : {
+    "message" : "Biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.size.label" : {
+    "message" : "Kích cỡ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.label" : {
+    "message" : "Trước và sau",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Khoảng cách giữa văn bản và biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Khoảng cách giữa các liên kết",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.author.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.label" : {
+    "message" : "Font",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.label" : {
+    "message" : "Title copy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.description.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.description.label" : {
+    "message" : "Văn bản xem trước",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.label" : {
+    "message" : "Hình ảnh",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.1/1" : {
+    "message" : "1:1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.16/9" : {
+    "message" : "16:9",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.2/3" : {
+    "message" : "2:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/2" : {
+    "message" : "3:2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/4" : {
+    "message" : "3:4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.4/3" : {
+    "message" : "4:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.label" : {
+    "message" : "Tỷ lệ khung hình",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.label" : {
+    "message" : "Kích cỡ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.width.label" : {
+    "message" : "Chiều rộng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.between_image_and_content.label" : {
+    "message" : "Giữa hình ảnh và nội dung",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.label" : {
+    "message" : "Kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.spacing.space_between_results.label" : {
+    "message" : "Khoảng cách giữa các kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.label" : {
+    "message" : "Tiêu đề",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.label" : {
+    "message" : "Thông báo về số lượng kết quả",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.capitalize" : {
+    "message" : "Viết hoa chữ cái đầu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.lowercase" : {
+    "message" : "Viết thường",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.none" : {
+    "message" : "Không có",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.uppercase" : {
+    "message" : "Viết hoa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.label" : {
+    "message" : "Chuyển đổi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.label" : {
+    "message" : "Tiêu đề",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.capitalize" : {
+    "message" : "Viết hoa chữ cái đầu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.lowercase" : {
+    "message" : "Viết thường",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.none" : {
+    "message" : "Không có",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.uppercase" : {
+    "message" : "Viết hoa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.label" : {
+    "message" : "Chuyển đổi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h1" : {
+    "message" : "H1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h2" : {
+    "message" : "H2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h3" : {
+    "message" : "H3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h4" : {
+    "message" : "H4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h5" : {
+    "message" : "H5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h6" : {
+    "message" : "H6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.help_text" : {
+    "message" : "Chọn mức đầu đề. H1 là lớn nhất, sau đó là H2, v.v.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.label" : {
+    "message" : "Thẻ đánh dấu đầu đề",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.placeholder" : {
+    "message" : "Chọn loại đầu đề",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.label" : {
+    "message" : "Tiêu đề",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.show_title.label" : {
+    "message" : "Hiển thị tiêu đề",
+    "description" : "",
+    "placeholders" : null
+  }
+}

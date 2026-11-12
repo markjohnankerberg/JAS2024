@@ -1,0 +1,97 @@
+[ {
+  "id" : "3747d976-b995-e424-dfd6-126b99a47d51",
+  "name" : "text_color",
+  "label" : "Text color",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#C6C5B9",
+    "opacity" : 100
+  }
+}, {
+  "id" : "77577f93-7134-8739-3543-aa9fb0d418e1",
+  "name" : "title",
+  "label" : "Title",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Ankerberg Theological Research Institute"
+}, {
+  "id" : "d6b268ed-d412-abe0-3f43-e09a0611a3dc",
+  "name" : "info_item",
+  "label" : "Info item",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "f8dbb4a1-4b27-a139-2f79-b8f4c905e57e",
+    "name" : "icon",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/location_pin.svg",
+      "alt" : "location_pin",
+      "loading" : "lazy",
+      "width" : 20,
+      "height" : 20,
+      "max_width" : 20,
+      "max_height" : 20
+    }
+  }, {
+    "id" : "f630f764-25ea-1bda-ace9-20dd58ad40e1",
+    "name" : "info_text",
+    "label" : "Info text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "PO Box 8977 - Chattanooga, TN 37414 USA"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/location_pin.svg",
+      "alt" : "location_pin",
+      "loading" : "lazy",
+      "width" : 20,
+      "height" : 20,
+      "max_width" : 20,
+      "max_height" : 20
+    },
+    "info_text" : "PO Box 8977 - Chattanooga, TN 37414 USA"
+  }, {
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/location_pin.svg",
+      "alt" : "location_pin",
+      "loading" : "lazy",
+      "width" : 20,
+      "height" : 20,
+      "max_width" : 20,
+      "max_height" : 20
+    },
+    "info_text" : "PO Box 8977 - Chattanooga, TN 37414 USA"
+  } ]
+} ]

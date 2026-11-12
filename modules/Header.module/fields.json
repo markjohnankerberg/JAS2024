@@ -1,0 +1,1343 @@
+[ {
+  "id" : "b073f977-3947-396c-e36f-4f261bc2cc84",
+  "name" : "logo_field",
+  "label" : "Logo",
+  "required" : false,
+  "locked" : false,
+  "show_loading" : false,
+  "type" : "logo",
+  "display_width" : null,
+  "default" : {
+    "override_inherited_src" : true,
+    "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Logo/atri_logo_png_2x.png",
+    "alt" : "ATRI logo",
+    "suppress_company_name" : true,
+    "width" : 200,
+    "height" : 101
+  }
+}, {
+  "id" : "66c243ff-4c91-f681-4210-1dd759c801ea",
+  "name" : "buttons",
+  "label" : "Buttons",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 2,
+    "sorting_label_field" : null,
+    "default" : 1
+  },
+  "children" : [ {
+    "id" : "625b0d3b-f699-ee80-83d3-bf105abd0881",
+    "name" : "button_type",
+    "label" : "Button type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "regular", "Button" ], [ "cta", "CTA" ], [ "image", "Image" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "regular"
+  }, {
+    "id" : "7ce91fc1-b0fd-0962-6761-efb590aa4104",
+    "name" : "button",
+    "label" : "Button",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "buttons.button_type",
+      "controlling_value_regex" : "regular",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "1e0e696b-6eaf-3f06-d5f3-c33c881cf588",
+      "name" : "button_style",
+      "label" : "Button style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ], [ "btn-custom", "Custom" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "btn-white-solid"
+    }, {
+      "id" : "67cd6d18-8413-7c1c-eab8-fa1638c43436",
+      "name" : "corner_radius",
+      "label" : "Corner radius",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "radius-s"
+    }, {
+      "id" : "44067fea-cc3f-c694-bead-f0977c17b5f4",
+      "name" : "button_text",
+      "label" : "Button text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Donate"
+    }, {
+      "id" : "5ae97481-3e3d-aedc-9d6a-0895b3d20e58",
+      "name" : "button_url",
+      "label" : "Button URL",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "button_style" : "btn-white-solid",
+      "corner_radius" : "radius-s",
+      "button_text" : "Donate",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }, {
+    "id" : "745cea72-e1d5-ea43-6c28-6f6c6d8a0413",
+    "name" : "cta_field",
+    "label" : "CTA",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "buttons.button_type",
+      "controlling_value_regex" : "cta",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "cta",
+    "display_width" : null
+  }, {
+    "id" : "b1d2ecd5-6dda-1bd7-411b-6dcc35390828",
+    "name" : "image",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "buttons.button_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "f214961f-5737-5fa8-40e3-9504f168b1de",
+      "name" : "image_field",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : true,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      }
+    }, {
+      "id" : "8c7e6398-91a6-c421-9a41-148d5d155a97",
+      "name" : "image_url",
+      "label" : "Image URL",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      },
+      "image_url" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "button_type" : "regular",
+    "button" : {
+      "button_style" : "btn-white-solid",
+      "corner_radius" : "radius-s",
+      "button_text" : "Donate",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    },
+    "image" : {
+      "image_field" : {
+        "size_type" : "auto",
+        "src" : "",
+        "alt" : null,
+        "loading" : "lazy"
+      },
+      "image_url" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ]
+}, {
+  "id" : "5e009ba5-61aa-4c95-22b1-ebb6cb948dfc",
+  "name" : "style",
+  "label" : "Style",
+  "inline_help_text" : "",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "b6982537-d4f4-45a7-512d-e2f8707d21d9",
+    "name" : "header",
+    "label" : "Header",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "0b362b8f-0e9a-712e-9f30-f5e1e7aeefce",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "f76d4a6c-fcde-0736-4f44-b622301f7135",
+      "name" : "maximum_width",
+      "label" : "Maximum width",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 200,
+      "max" : 1440,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 1200
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "maximum_width" : 1200
+    }
+  }, {
+    "id" : "8e3bcae4-85fa-5d0c-28da-c0a69b74eebe",
+    "name" : "button",
+    "label" : "Button",
+    "inline_help_text" : "Active only if Button style: Custom is selected",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "c8aa4ff6-eeea-549a-728e-69aa93949ff3",
+      "name" : "spacing",
+      "label" : "Spacing",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 12,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 12,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 30,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "975bb939-b7f7-115a-c0aa-00843f55f464",
+      "name" : "text_color",
+      "label" : "Text color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#62929E",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "d7316d9a-477c-bdaf-1b0f-4aa55a0d1970",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#fff",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "d7e401c1-d354-d473-8635-1a534810c1f9",
+      "name" : "border_radius",
+      "label" : "Border radius",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 200,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 5
+    }, {
+      "id" : "629bc405-b70c-36db-5802-01e4d7377f15",
+      "name" : "border_field",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "allow_custom_border_sides" : false,
+      "type" : "border",
+      "display_width" : null,
+      "default" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "2aa9211e-a13c-c9ef-d3c5-da3124442af1",
+      "name" : "text_color_hover",
+      "label" : "Text color - hover",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "4ca96559-3e2c-8490-fe7c-62056631b8af",
+      "name" : "background_color_hover",
+      "label" : "Background color - hover",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#62929E",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "4d070156-5fa5-d91c-40c0-30428c39ed1a",
+      "name" : "border_hover",
+      "label" : "Border - hover",
+      "required" : false,
+      "locked" : false,
+      "allow_custom_border_sides" : false,
+      "type" : "border",
+      "display_width" : null,
+      "default" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "spacing" : {
+        "padding" : {
+          "top" : {
+            "value" : 12,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 12,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 30,
+            "units" : "px"
+          }
+        }
+      },
+      "text_color" : {
+        "color" : "#62929E",
+        "opacity" : 100
+      },
+      "background_color" : {
+        "color" : "#fff",
+        "opacity" : 100
+      },
+      "border_radius" : 5,
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      },
+      "text_color_hover" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      },
+      "background_color_hover" : {
+        "color" : "#62929E",
+        "opacity" : 100
+      },
+      "border_hover" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "header" : {
+      "background_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "maximum_width" : 1200
+    },
+    "button" : {
+      "spacing" : {
+        "padding" : {
+          "top" : {
+            "value" : 12,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 12,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 30,
+            "units" : "px"
+          }
+        }
+      },
+      "text_color" : {
+        "color" : "#62929E",
+        "opacity" : 100
+      },
+      "background_color" : {
+        "color" : "#fff",
+        "opacity" : 100
+      },
+      "border_radius" : 5,
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      },
+      "text_color_hover" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      },
+      "background_color_hover" : {
+        "color" : "#62929E",
+        "opacity" : 100
+      },
+      "border_hover" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#62929E",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    }
+  }
+}, {
+  "id" : "9a185ab8-84d3-ada3-08b4-8b5a9a6160ba",
+  "name" : "show_top_navigation",
+  "label" : "Show top navigation",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "336da3c5-2087-be55-90ff-8a3788a52422",
+  "name" : "top_navigation",
+  "label" : "Top navigation",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "show_top_navigation",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "388e431c-3f81-1108-781b-3c23dc4b9557",
+    "name" : "text_field",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "How to become a christian"
+  }, {
+    "id" : "f6049954-6c56-7a67-bdcb-ad637b76f4c6",
+    "name" : "link_field",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/how-to-become-a-christian/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "c55dbea7-e7cf-3b70-76ea-aa89067a0fff",
+    "name" : "has_submenu",
+    "label" : "Has submenu",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "5f8d244f-126a-5885-4206-e4f177c6ed9e",
+    "name" : "submenu",
+    "label" : "Submenu items",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 2
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "top_navigation.has_submenu",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "a5e84bca-ae0e-b896-86d3-c6d494e1c1e4",
+      "name" : "submenu_item",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Chinese"
+    }, {
+      "id" : "c7ffc54f-b834-e586-bb95-c4127bcdf0d5",
+      "name" : "link_field_1",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "submenu_item" : "Chinese",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "submenu_item" : "Chinese",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "text_field" : "How to become a christian",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/how-to-become-a-christian/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "has_submenu" : false,
+    "submenu" : [ {
+      "submenu_item" : "Chinese",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "submenu_item" : "Chinese",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "text_field" : "How to become a christian",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/how-to-become-a-christian/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "has_submenu" : false,
+    "submenu" : [ {
+      "submenu_item" : "Chinese",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "submenu_item" : "Chinese",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://zh.jashow.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ]
+  } ]
+}, {
+  "id" : "e775c5b4-45ba-0c70-b301-d0213eb93710",
+  "name" : "main_navigation",
+  "label" : "Main navigation",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "49a1528d-f367-c565-12ed-2adf2bb5a068",
+    "name" : "text_field",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Watch"
+  }, {
+    "id" : "8f88c8bc-378d-d853-5de1-af6b2f2ffd0d",
+    "name" : "link_field",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/watch/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "532aab64-9acc-b370-9a37-f93f8927674b",
+    "name" : "has_submenu",
+    "label" : "Has submenu",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "6e42a8c8-cde1-a784-87c5-0560b0b3013f",
+    "name" : "submenu",
+    "label" : "Submenu items",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 2
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "main_navigation.has_submenu",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "282d379d-a943-7311-e309-b17ea8741270",
+      "name" : "submenu_item",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "The John Ankerberg Show"
+    }, {
+      "id" : "65e1088c-f9da-4a2b-3492-0cb081cdf980",
+      "name" : "link_field_1",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }, {
+      "id" : "95db3e84-9a1f-25e1-4091-65c2975dd0a7",
+      "name" : "has_submenu",
+      "label" : "Has submenu",
+      "required" : false,
+      "locked" : false,
+      "display" : "toggle",
+      "type" : "boolean",
+      "display_width" : null,
+      "default" : false
+    }, {
+      "id" : "7b1f66e0-f034-d103-0647-30475a89fa3e",
+      "name" : "submenu_level_3",
+      "label" : "Submenu level 3",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : 1,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 1
+      },
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "main_navigation.submenu.has_submenu",
+        "controlling_value_regex" : "true",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "164df346-4b1f-3f30-3001-12b77eafc5e8",
+        "name" : "submenu_lvl3_item",
+        "label" : "Text",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Lorem ipsum"
+      }, {
+        "id" : "e0ca92ca-cb4b-27e3-57c1-653c41599cdb",
+        "name" : "link_field_2",
+        "label" : "Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "submenu_item" : "The John Ankerberg Show",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "has_submenu" : false,
+      "submenu_level_3" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    }, {
+      "submenu_item" : "The John Ankerberg Show",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "has_submenu" : false,
+      "submenu_level_3" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "text_field" : "Watch",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/watch/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "has_submenu" : false,
+    "submenu" : [ {
+      "submenu_item" : "The John Ankerberg Show",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "has_submenu" : false,
+      "submenu_level_3" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    }, {
+      "submenu_item" : "The John Ankerberg Show",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "has_submenu" : false,
+      "submenu_level_3" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  }, {
+    "text_field" : "Watch",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/watch/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "has_submenu" : false,
+    "submenu" : [ {
+      "submenu_item" : "The John Ankerberg Show",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "has_submenu" : false,
+      "submenu_level_3" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    }, {
+      "submenu_item" : "The John Ankerberg Show",
+      "link_field_1" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/the-john-ankerberg-show/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      },
+      "has_submenu" : false,
+      "submenu_level_3" : [ {
+        "submenu_lvl3_item" : "Lorem ipsum",
+        "link_field_2" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  } ]
+} ]

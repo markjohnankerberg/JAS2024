@@ -1,0 +1,156 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "content.logo_text",
+    "name" : "logo_text",
+    "label" : "Logo text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "ATRI"
+  }, {
+    "id" : "content.tagline",
+    "name" : "tagline",
+    "label" : "Tagline (below logo)",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "ANKERBERG THEOLOGICAL\nRESEARCH INSTITUTE"
+  }, {
+    "id" : "content.description",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Give. Share. Equip.\nSharing biblical truth through evangelism, discipleship, and education. Made possible by viewers like you."
+  }, {
+    "id" : "content.footnote",
+    "name" : "footnote",
+    "label" : "Footnote",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "© 2026 Ankerberg Theological Research Institute"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "columns",
+  "name" : "columns",
+  "label" : "Link columns",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 4,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "columns.title",
+    "name" : "title",
+    "label" : "Column title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Explore"
+  }, {
+    "id" : "columns.links",
+    "name" : "links",
+    "label" : "Links",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : 8,
+      "sorting_label_field" : null,
+      "default" : 3
+    },
+    "children" : [ {
+      "id" : "columns.links.link_text",
+      "name" : "link_text",
+      "label" : "Label",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Audio Bibles"
+    }, {
+      "id" : "columns.links.url",
+      "name" : "url",
+      "label" : "URL",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "#audio"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "title" : "Explore",
+    "links" : [ {
+      "link_text" : "Audio Bibles",
+      "url" : "#audio"
+    }, {
+      "link_text" : "Books & Resources",
+      "url" : "#resources"
+    }, {
+      "link_text" : "ATRI Gifts",
+      "url" : "#merch"
+    } ]
+  }, {
+    "title" : "Our Ministry",
+    "links" : [ {
+      "link_text" : "Discipleship",
+      "url" : "#equip"
+    }, {
+      "link_text" : "About ATRI",
+      "url" : "#intro"
+    }, {
+      "link_text" : "Study Resources",
+      "url" : "#resources"
+    } ]
+  }, {
+    "title" : "Partner With Us",
+    "links" : [ {
+      "link_text" : "Give to ATRI",
+      "url" : "#giving"
+    }, {
+      "link_text" : "Monthly Giving",
+      "url" : "#giving"
+    }, {
+      "link_text" : "Audio Bible Outreach",
+      "url" : "#audio"
+    } ]
+  } ]
+} ]

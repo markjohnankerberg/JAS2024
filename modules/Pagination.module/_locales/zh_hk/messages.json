@@ -1,0 +1,462 @@
+{
+  "default_text.go_to_page.default" : {
+    "message" : "前往第 {{ this_page }} 頁",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.pagination_navigation.default" : {
+    "message" : "分頁導覽",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_arrows" : {
+    "message" : "顯示箭咀",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_labels" : {
+    "message" : "顯示標籤",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.label" : {
+    "message" : "首個和最後",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.default" : {
+    "message" : "第一",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.label" : {
+    "message" : "首個標籤",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.default" : {
+    "message" : "上次",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.label" : {
+    "message" : "最後的標籤",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "網誌頁碼",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.default" : {
+    "message" : "下一步",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.label" : {
+    "message" : "下一個標籤",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.choices.show_numbers" : {
+    "message" : "顯示號碼",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.label" : {
+    "message" : "號碼",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_arrows" : {
+    "message" : "顯示箭咀",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_labels" : {
+    "message" : "顯示標籤",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.label" : {
+    "message" : "上一頁和下一頁",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.default" : {
+    "message" : "上一頁",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.label" : {
+    "message" : "上一個標籤",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.label" : {
+    "message" : "邊角",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.radius.label" : {
+    "message" : "半徑",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.label" : {
+    "message" : "暫留",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.label" : {
+    "message" : "圖示",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.size.label" : {
+    "message" : "大小",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.label" : {
+    "message" : "首個和最後",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "文字和圖示之間的間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.font.label" : {
+    "message" : "字體",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "樣式",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.help_text" : {
+    "message" : "將號碼連結設為符合你目前所在頁面的相同樣式。",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.label" : {
+    "message" : "啟用中",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.label" : {
+    "message" : "邊角",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.radius.label" : {
+    "message" : "半徑",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.label" : {
+    "message" : "暫留",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.label" : {
+    "message" : "號碼",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.font.label" : {
+    "message" : "字體",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "頁碼",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "連結之間的間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.label" : {
+    "message" : "邊角",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.radius.label" : {
+    "message" : "半徑",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.label" : {
+    "message" : "背景",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.label" : {
+    "message" : "邊界",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.label" : {
+    "message" : "暫留",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.color.label" : {
+    "message" : "顏色",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.label" : {
+    "message" : "圖示",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.size.label" : {
+    "message" : "大小",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.label" : {
+    "message" : "上一頁和下一頁",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "文字和圖示之間的間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.spacing.label" : {
+    "message" : "間距",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.font.label" : {
+    "message" : "字體",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.label" : {
+    "message" : "文字",
+    "description" : "",
+    "placeholders" : null
+  }
+}

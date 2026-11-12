@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "LANDING_PAGE", "SITE_PAGE", "CUSTOMER_PORTAL" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 188525097396,
+  "label" : "Recent blog posts and podcast cards",
+  "icon" : "fontawesome-5.14.0:Audio%20File",
+  "is_available_for_new_content" : true
+}

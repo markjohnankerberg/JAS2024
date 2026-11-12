@@ -1,0 +1,58 @@
+[ {
+  "id" : "links",
+  "name" : "links",
+  "label" : "Links",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 10,
+    "sorting_label_field" : null,
+    "default" : 6
+  },
+  "children" : [ {
+    "id" : "links.link_text",
+    "name" : "link_text",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "audio bibles"
+  }, {
+    "id" : "links.url",
+    "name" : "url",
+    "label" : "URL",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#audio"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "link_text" : "audio bibles",
+    "url" : "#audio"
+  }, {
+    "link_text" : "books",
+    "url" : "#resources"
+  }, {
+    "link_text" : "gifts",
+    "url" : "#merch"
+  }, {
+    "link_text" : "discipleship",
+    "url" : "#equip"
+  }, {
+    "link_text" : "study resources",
+    "url" : "#resources"
+  }, {
+    "link_text" : "tv collections",
+    "url" : "#resources"
+  } ]
+} ]

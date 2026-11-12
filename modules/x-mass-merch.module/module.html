@@ -1,0 +1,150 @@
+{#
+Christmas Merch Strip: centred intro plus side-by-side merch cards (reference: .merch-intro + .feature-strip).
+Empty card images fall back to the theme's mug/tote photos so the module looks right as soon as it's dropped in.
+Links open the mug and tote in the products section (#product-<SKU>).
+#}
+{% set i = module.intro %}
+{% set s = module.style %}
+{% set fallback_images = [
+  [get_asset_url("/JAS2024/images/christmas-2026/atri-mug.jpg"), "ATRI mug in a warm Christmas setting"],
+  [get_asset_url("/JAS2024/images/christmas-2026/atri-tote.jpg"), "ATRI tote bag filled with books"]
+] %}
+{# Card 1 opens the mug, card 2 the tote (products section handles #product-<SKU>).
+   Used when a card's link is empty or still the old "#gifts" default. #}
+{% set fallback_links = ["#product-ATRI-WHT-MUG", "#product-ATRI-TOTE-DTF"] %}
+
+{% require_css %}
+<style>
+  .xmas-merch {
+    --xm-ink: #21372d;
+    --xm-muted: #59655c;
+    --xm-kicker: #927748;
+    --xm-sage: #64765b;
+    --xm-serif: Georgia, 'Times New Roman', serif;
+    --xm-sans: Arial, Helvetica, sans-serif;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 56px max(2rem, calc(50vw - 568px)) 80px;
+    background: var(--xm-bg, #eaece5);
+    color: var(--xm-ink);
+    font: 16px/1.65 var(--xm-sans);
+  }
+  .xmas-merch *, .xmas-merch *::before, .xmas-merch *::after { box-sizing: border-box; }
+
+  .xmas-merch .xmas-merch__kicker {
+    margin: 0;
+    font: 700 11px/1.6 var(--xm-sans);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--xm-kicker);
+  }
+
+  /* Intro */
+  .xmas-merch__intro { padding-bottom: 12px; text-align: center; }
+  .xmas-merch .xmas-merch__intro h2.xmas-merch__title {
+    margin: 12px 0;
+    font: 400 clamp(34px, 4vw, 54px)/1.12 var(--xm-serif);
+    letter-spacing: -.035em;
+    color: var(--xm-ink) !important;
+  }
+  .xmas-merch__title em { font-style: italic; color: var(--xm-sage); }
+  .xmas-merch__intro-text { max-width: 560px; margin: 0 auto; font-size: 16px; color: var(--xm-muted); }
+
+  /* Cards */
+  .xmas-merch__strip {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 35px;
+  }
+  .xmas-merch__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    min-height: 245px;
+    border-radius: 6px;
+    overflow: hidden;
+    background: var(--xm-card, #f7f2e9);
+  }
+  .xmas-merch__media { position: relative; min-height: 245px; }
+  .xmas-merch__media img {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    max-width: none;
+    object-fit: cover;
+  }
+  .xmas-merch__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: 25px;
+  }
+  .xmas-merch .xmas-merch__copy h3.xmas-merch__heading {
+    margin: 10px 0 12px;
+    font: 400 32px/1.12 var(--xm-serif);
+    letter-spacing: -.035em;
+    color: var(--xm-ink) !important;
+  }
+  .xmas-merch__heading em { font-style: italic; }
+  .xmas-merch__text { margin: 0 0 16px; font-size: 13px; line-height: 1.65; color: var(--xm-muted); }
+  .xmas-merch .xmas-merch__copy a.xmas-merch__link {
+    align-self: flex-start;
+    padding: 0 0 7px;
+    border-bottom: 1px solid #8b9a8d;
+    color: #18392f;
+    font: 700 13px/1.5 var(--xm-sans);
+    text-decoration: none;
+  }
+  .xmas-merch .xmas-merch__copy a.xmas-merch__link:hover { border-bottom-color: currentColor; color: #57704b; }
+  .xmas-merch .xmas-merch__copy a.xmas-merch__link:focus-visible { outline: 2px solid #18392f; outline-offset: 3px; }
+
+  @media (max-width: 900px) {
+    .xmas-merch { padding-top: 40px; padding-bottom: 50px; }
+    .xmas-merch__strip { grid-template-columns: 1fr; margin-top: 25px; }
+  }
+  @media (max-width: 600px) {
+    .xmas-merch { padding-left: 16px; padding-right: 16px; }
+    .xmas-merch__media { min-height: 220px; }
+    .xmas-merch__copy { padding: 20px 18px; }
+    .xmas-merch .xmas-merch__copy h3.xmas-merch__heading { font-size: 26px; }
+  }
+</style>
+{% end_require_css %}
+
+<section class="xmas-merch" id="merch"
+         style="--xm-bg: {{ s.bg_color.color or '#eaece5' }}; --xm-card: {{ s.card_color.color or '#f7f2e9' }};"
+         {% if i.enabled and i.heading %}aria-labelledby="xm-{{ name }}-title"{% else %}aria-label="ATRI gifts"{% endif %}>
+  {% if i.enabled and (i.kicker or i.heading or i.body_text) %}
+  <div class="xmas-merch__intro">
+    {% if i.kicker %}<p class="xmas-merch__kicker">{{ i.kicker }}</p>{% endif %}
+    {% if i.heading %}
+    <h2 class="xmas-merch__title" id="xm-{{ name }}-title">{{ i.heading }}{% if i.heading_em %} <em>{{ i.heading_em }}</em>{% endif %}</h2>
+    {% endif %}
+    {% if i.body_text %}<p class="xmas-merch__intro-text">{{ i.body_text }}</p>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="xmas-merch__strip">
+    {% for card in module.cards %}
+    {% set fb = fallback_images[loop.index0] if loop.index0 < fallback_images|length else ["", ""] %}
+    {% set img_src = card.image.src or fb[0] %}
+    {% set img_alt = card.image.alt if card.image.src else fb[1] %}
+    {% set fb_link = fallback_links[loop.index0] if loop.index0 < fallback_links|length else "#gifts" %}
+    {% set link = fb_link if (not card.link_url or card.link_url == "#gifts") else card.link_url %}
+    <article class="xmas-merch__card">
+      <div class="xmas-merch__media">
+        {% if img_src %}<img src="{{ img_src|escape_attr }}" alt="{{ img_alt|escape_attr }}" loading="lazy">{% endif %}
+      </div>
+      <div class="xmas-merch__copy">
+        {% if card.kicker %}<p class="xmas-merch__kicker">{{ card.kicker }}</p>{% endif %}
+        <h3 class="xmas-merch__heading">{{ card.heading }}{% if card.heading_em %} <em>{{ card.heading_em }}</em>{% endif %}</h3>
+        {% if card.body_text %}<p class="xmas-merch__text">{{ card.body_text }}</p>{% endif %}
+        {% if card.link_text and link %}
+        <a class="xmas-merch__link" href="{{ link|escape_attr }}">{{ card.link_text }} <span aria-hidden="true">&#8599;</span></a>
+        {% endif %}
+      </div>
+    </article>
+    {% endfor %}
+  </div>
+</section>

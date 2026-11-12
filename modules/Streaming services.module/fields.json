@@ -1,0 +1,282 @@
+[ {
+  "id" : "e14c75b3-f935-70ac-3375-533a94811f20",
+  "name" : "card",
+  "label" : "Card",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "9429b5c0-caf1-7945-6ea1-8847d971ab1b",
+    "name" : "icon_type",
+    "label" : "Icon type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "hs-icons", "HubSpot icons" ], [ "img", "Image" ], [ "svg", "SVG code" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "img"
+  }, {
+    "id" : "bfd08225-6613-ecfc-7e2f-18aefbe0195e",
+    "name" : "icon_field",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "card.icon_type",
+      "controlling_value_regex" : "hs-icons",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "icon_set" : "fontawesome-5.14.0",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "Alternate Fire",
+      "unicode" : "f7e4",
+      "type" : "SOLID"
+    }
+  }, {
+    "id" : "347fdfa9-63a8-167c-0de5-bf3a6a99fc6e",
+    "name" : "image_field",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "card.icon_type",
+      "controlling_value_regex" : "img",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/youtube_logo_2x.png",
+      "alt" : "youtube_logo_2x",
+      "loading" : "lazy",
+      "width" : 200,
+      "height" : 201,
+      "max_width" : 200,
+      "max_height" : 201
+    }
+  }, {
+    "id" : "609328e8-93a1-a6c6-1ac5-b841daf4536c",
+    "name" : "svg_code",
+    "label" : "SVG code",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "card.icon_type",
+      "controlling_value_regex" : "svg",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "placeholder" : "Paste your code",
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "cf5846d0-6186-977a-9a59-2af0381866cb",
+    "name" : "text_label",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Subscribe on Youtube"
+  }, {
+    "id" : "a29de87c-f0ef-1416-5ee7-3dccd2975426",
+    "name" : "link_field",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.youtube.com/channel/UCzkg2V5lfGU46g-SZ1KPVJQ",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "id" : "c8d0e70b-ea72-1431-0517-993f4ab20fa6",
+    "name" : "fill_or_stroke_color",
+    "label" : "Fill or Stroke color",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "fill", "Fill" ], [ "stroke", "Stroke" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "fill"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "icon_type" : "img",
+    "icon_field" : {
+      "name" : "Alternate Fire",
+      "unicode" : "f7e4",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/youtube_logo_2x.png",
+      "alt" : "youtube_logo_2x",
+      "loading" : "lazy",
+      "width" : 200,
+      "height" : 201,
+      "max_width" : 200,
+      "max_height" : 201
+    },
+    "text_label" : "Subscribe on Youtube",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.youtube.com/channel/UCzkg2V5lfGU46g-SZ1KPVJQ",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "fill_or_stroke_color" : "fill"
+  }, {
+    "icon_type" : "img",
+    "icon_field" : {
+      "name" : "Alternate Fire",
+      "unicode" : "f7e4",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/youtube_logo_2x.png",
+      "alt" : "youtube_logo_2x",
+      "loading" : "lazy",
+      "width" : 200,
+      "height" : 201,
+      "max_width" : 200,
+      "max_height" : 201
+    },
+    "text_label" : "Subscribe on Youtube",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.youtube.com/channel/UCzkg2V5lfGU46g-SZ1KPVJQ",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "fill_or_stroke_color" : "fill"
+  }, {
+    "icon_type" : "img",
+    "icon_field" : {
+      "name" : "Alternate Fire",
+      "unicode" : "f7e4",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/youtube_logo_2x.png",
+      "alt" : "youtube_logo_2x",
+      "loading" : "lazy",
+      "width" : 200,
+      "height" : 201,
+      "max_width" : 200,
+      "max_height" : 201
+    },
+    "text_label" : "Subscribe on Youtube",
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://www.youtube.com/channel/UCzkg2V5lfGU46g-SZ1KPVJQ",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    },
+    "fill_or_stroke_color" : "fill"
+  } ]
+}, {
+  "id" : "3d8d4d63-c1a5-595f-ad82-145a783e1a47",
+  "name" : "text_color",
+  "label" : "Text color",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#393D3F",
+    "opacity" : 100
+  }
+}, {
+  "id" : "c540957a-b6f6-3c37-6347-5402031c9064",
+  "name" : "text_color_hover",
+  "label" : "Text color - hover",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#000",
+    "opacity" : 100
+  }
+}, {
+  "id" : "be5c34a3-248a-ef60-0ab6-1083e7b018ad",
+  "name" : "gap_desktop",
+  "label" : "Gap - Desktop",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 20,
+  "max" : 200,
+  "step" : 1,
+  "suffix" : "px",
+  "type" : "number",
+  "display_width" : null,
+  "default" : 60
+}, {
+  "id" : "49619ae1-1004-1f2e-496d-58f6c08f7f70",
+  "name" : "gap_mobile",
+  "label" : "Gap - Mobile",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 20,
+  "max" : 200,
+  "step" : 1,
+  "suffix" : "px",
+  "type" : "number",
+  "display_width" : null,
+  "default" : 60
+} ]

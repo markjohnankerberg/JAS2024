@@ -1,0 +1,158 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "content.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "FEATURED RESOURCE · THE FACTS ON SERIES"
+  }, {
+    "id" : "content.heading",
+    "name" : "heading",
+    "label" : "Heading (first line)",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Little books."
+  }, {
+    "id" : "content.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic line",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Big questions."
+  }, {
+    "id" : "content.body_text",
+    "name" : "body_text",
+    "label" : "Body text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Explore concise biblical answers to questions about faith, the Bible, and world religions. Easy to read, give, and share."
+  }, {
+    "id" : "content.price",
+    "name" : "price",
+    "label" : "Price",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "$5 each"
+  }, {
+    "id" : "content.price_sub",
+    "name" : "price_sub",
+    "label" : "Price offer (smaller)",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "or 3 for $12"
+  }, {
+    "id" : "content.notice",
+    "name" : "notice",
+    "label" : "Small print",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "The three-for-$12 offer is applied automatically to eligible Facts On booklets."
+  }, {
+    "id" : "content.button_text",
+    "name" : "button_text",
+    "label" : "Button text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Browse the Series"
+  }, {
+    "id" : "content.button_url",
+    "name" : "button_url",
+    "label" : "Button link",
+    "help_text" : "#facts-on scrolls to the products section filtered to The Facts On Series.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#facts-on"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "image",
+  "name" : "image",
+  "label" : "Image",
+  "help_text" : "Leave empty to use the Facts On stocking photo from the theme.",
+  "required" : false,
+  "locked" : false,
+  "responsive" : true,
+  "resizable" : true,
+  "show_loading" : false,
+  "type" : "image",
+  "display_width" : null,
+  "default" : {
+    "src" : "",
+    "alt" : ""
+  }
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.bg_color",
+    "name" : "bg_color",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#f7f3ea",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.image_side",
+    "name" : "image_side",
+    "label" : "Image position",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "right", "Image right" ], [ "left", "Image left" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "right"
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

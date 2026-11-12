@@ -1,0 +1,142 @@
+{#
+Audio Bibles Matching Gift — section head, photo panel, and gift picker.
+Gift choices are fetched client-side from module.data.api_url (see module.js).
+The custom-gift choice is rendered server-side from module fields.
+#}
+{% set c = module.content %}
+{% set p = module.photo %}
+{% set f = module.form %}
+{% set g = module.custom_gift %}
+{# The custom gift's SKU is FR16-C (Audio Bible family). Pages saved with the old
+   AUDIO-BIBLE-CUSTOM value, or none, use FR16-C too. #}
+{% set custom_sku = "FR16-C" if (not g.sku or g.sku == "AUDIO-BIBLE-CUSTOM") else g.sku %}
+{% set s = module.style %}
+
+{# Video panel: holly illustration behind the video (theme image unless one is picked), and
+   "side" (default) keeps it left of the gift picker in a slightly wider column; "wide" puts a
+   large video on its own row above the gift picker. #}
+{% set video_wide = p.video and p.video_layout == "wide" %}
+{% set video_side = p.video and not video_wide %}
+{% set video_bg = p.video_bg.src or get_asset_url("/JAS2024/images/audio-bible-video-bg.jpg") %}
+<section
+        class="abb{% if video_wide %} abb--video-wide{% endif %}{% if video_side %} abb--video-side{% endif %}"
+        id="audio"
+        data-api-url="{{ module.data.api_url|escape_attr }}"
+        data-multiplier="{{ module.data.multiplier or 3 }}"
+        data-max="{{ module.data.max_products or 4 }}"
+        data-allowed-skus="{{ module.data.allowed_skus|escape_attr }}"
+        data-cache-minutes="{{ module.data.cache_minutes or 0 }}"
+        data-button-text="{{ f.button_text|escape_attr }}"
+        style="--abb-bg: {{ s.bg_color.color }}; --abb-panel: {{ s.panel_color.color }}; --abb-accent: {{ s.accent_color.color }}; --abb-gold: {{ s.gold_color.color }};{% if p.image.src %} --abb-photo: url('{{ p.image.src }}');{% endif %}{% if p.video %} --abb-video-bg: url('{{ video_bg }}');{% endif %}"
+        aria-labelledby="abb-{{ name }}-title"
+>
+    <div class="abb__container">
+        {# The section number ("01 / GIVE") is pinned to the upper far-left corner of the banner (see
+           .abb__kicker--section in module.css), above the head row. #}
+        {# "01 / GIVE" now lives in the top campaign banner (x-mass-campaign-bar). #}
+        <header class="abb__head">
+            <div>
+                <h2 class="abb__title" id="abb-{{ name }}-title">
+                    {{ c.heading }}{% if c.heading_em %} <em>{{ c.heading_em }}</em>{% endif %}
+                </h2>
+            </div>
+            {% if c.intro %}<p class="abb__intro">{{ c.intro }}</p>{% endif %}
+        </header>
+
+        <div class="abb__grid">
+            {% set video_mode = p.video_mode or "background" %}
+            {% if p.video %}
+            <div class="abb__photo abb__photo--video abb__photo--{{ video_mode }}" data-abb-video-panel>
+                {% if video_mode == "player" %}
+                {# Gold play button over the video; module.js hides it while playing and brings it
+                   back on pause/end. The native controls stay for scrubbing and volume. #}
+                <div class="abb__player" data-abb-player>
+                    <video class="abb__video" controls playsinline preload="metadata"
+                           {% if p.image.src %}poster="{{ p.image.src|escape_attr }}"{% endif %}
+                           aria-label="{{ (p.video_label or p.image.alt or p.heading)|escape_attr }}">
+                        <source src="{{ p.video|escape_attr }}" type="video/mp4">
+                    </video>
+                    <button type="button" class="abb__play" data-abb-play aria-label="Play video">
+                        <svg viewBox="0 0 24 24" width="30" height="30" aria-hidden="true" focusable="false"><path d="M8 5.5v13l10.5-6.5z" fill="currentColor"/></svg>
+                    </button>
+                </div>
+                {% else %}
+                {# Muted loop. No autoplay attribute: module.js starts it unless the
+                   visitor prefers reduced motion, so the poster is the fallback. #}
+                <video class="abb__video" muted loop playsinline preload="metadata" data-abb-bg-video
+                       {% if p.image.src %}poster="{{ p.image.src|escape_attr }}"{% endif %}
+                       {% if p.video_label %}aria-label="{{ p.video_label|escape_attr }}"{% else %}aria-hidden="true"{% endif %}>
+                    <source src="{{ p.video|escape_attr }}" type="video/mp4">
+                </video>
+                <button type="button" class="abb__video-toggle" data-abb-video-toggle aria-pressed="false" hidden>
+                    <span data-abb-video-toggle-label>Pause video</span>
+                </button>
+                {% endif %}
+                {% if p.kicker or p.heading or p.text %}
+                <div class="abb__photo-copy">
+                    {% if p.kicker %}<p class="abb__kicker abb__kicker--gold">{{ p.kicker }}</p>{% endif %}
+                    {% if p.heading %}<h3 class="abb__photo-title">{{ p.heading }}</h3>{% endif %}
+                    {% if p.text %}<span class="abb__photo-text">{{ p.text }}</span>{% endif %}
+                </div>
+                {% endif %}
+            </div>
+            {% else %}
+            <div class="abb__photo"{% if p.image.alt %} role="img" aria-label="{{ p.image.alt|escape_attr }}"{% endif %}>
+                <div>
+                    {% if p.kicker %}<p class="abb__kicker abb__kicker--gold">{{ p.kicker }}</p>{% endif %}
+                    {% if p.heading %}<h3 class="abb__photo-title">{{ p.heading }}</h3>{% endif %}
+                    {% if p.text %}<span class="abb__photo-text">{{ p.text }}</span>{% endif %}
+                </div>
+            </div>
+            {% endif %}
+
+            <div class="abb__form">
+                {% if f.kicker %}<p class="abb__kicker">{{ f.kicker }}</p>{% endif %}
+                <h3 class="abb__form-title">{{ f.heading }}</h3>
+                {% if f.text %}<p class="abb__form-text">{{ f.text }}</p>{% endif %}
+
+                <ul class="abb__choices" role="list" aria-label="Audio Bible gift options">
+                    {# Skeletons, replaced by module.js #}
+                    {% for i in range(module.data.max_products or 4) %}
+                    <li class="abb-choice abb-choice--skeleton" data-abb-skeleton aria-hidden="true">
+                        <span class="abb-sk abb-sk--title"></span>
+                        <span class="abb-sk abb-sk--text"></span>
+                    </li>
+                    {% endfor %}
+
+                    {% if g.enabled %}
+                    <li data-abb-custom-item>
+                        <button type="button" class="abb-choice" data-abb-choice="custom" aria-pressed="false">
+                            <strong>{{ g.title }} · {{ g.tagline }}</strong>
+                            <small>{{ g.match_text }}</small>
+                        </button>
+                    </li>
+                    {% endif %}
+                </ul>
+
+                {% if g.enabled %}
+                {# Custom amount: type it, or tick it up/down by the step amount. #}
+                <div class="abb__amount" data-abb-custom data-sku="{{ custom_sku|escape_attr }}" data-min="{{ g.min_amount or 5 }}" data-step="{{ g.step_amount or 5 }}" hidden>
+                    <button type="button" class="abb__step" data-abb-amount-step="-1" aria-label="Decrease gift amount by ${{ g.step_amount or 5 }}">&minus;</button>
+                    <label class="abb__amount-field">
+                        <span class="abb-visually-hidden">Gift amount in US dollars</span>
+                        <span class="abb__amount-prefix" aria-hidden="true">$</span>
+                        <input type="number" inputmode="decimal" min="{{ g.min_amount or 5 }}" step="1" placeholder="Enter gift amount" data-abb-amount>
+                    </label>
+                    <button type="button" class="abb__step" data-abb-amount-step="1" aria-label="Increase gift amount by ${{ g.step_amount or 5 }}">+</button>
+                </div>
+                {% endif %}
+
+                <p class="abb__error" data-abb-error hidden>
+                    We couldn't load gift options right now. Please refresh the page or try again shortly.
+                </p>
+
+                <div class="abb__actions">
+                    <button type="button" class="abb__btn" data-abb-add>{{ f.button_text }}</button>
+                </div>
+                {% if f.notice %}<p class="abb__notice">{{ f.notice }}</p>{% endif %}
+            </div>
+        </div>
+    </div>
+    <div class="abb-visually-hidden" aria-live="polite" data-abb-live></div>
+</section>

@@ -1,0 +1,872 @@
+{
+  "default_text.current_page_aria_label.default" : {
+    "message" : "Mevcut Sayfa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.current_page_aria_label.label" : {
+    "message" : "Mevcut sayfa aria etiketi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.default" : {
+    "message" : "Öne çıkarılan Görüntü",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.label" : {
+    "message" : "Öne çıkarılan Görüntü",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.default" : {
+    "message" : "İlk Sayfa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.label" : {
+    "message" : "İlk sayfa bağlantı metni",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.label" : {
+    "message" : "Varsayılan metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.default" : {
+    "message" : "Son Sayfa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.label" : {
+    "message" : "Son sayfa bağlantı metni",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.default" : {
+    "message" : "Sayfa numaralandırma navigasyonu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.label" : {
+    "message" : "Navigasyon aria etiketi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.default" : {
+    "message" : "Sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.label" : {
+    "message" : "Sonraki sayfa bağlantı metni",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.default" : {
+    "message" : "<p>Üzgünüz. [[search_term]] için sonuç bulunamadı.</p><p>Sorgunuzu yeniden ifade etmeyi deneyin veya sitemize göz atın.</p>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.label" : {
+    "message" : "Sonuç yok mesajı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.default" : {
+    "message" : "Sayfa",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.label" : {
+    "message" : "Sayfa numarası aria etiketi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.default" : {
+    "message" : "Önceki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.label" : {
+    "message" : "Önceki sayfa bağlantı metni",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.default" : {
+    "message" : "[[offset]] Görüntüleniyor – [[limit]] / [[total]] sonuç",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.label" : {
+    "message" : "Arama sonuçları sayısı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.placeholder" : {
+    "message" : "[[offset]] Görüntüleniyor – [[limit]] / [[total]] sonuç",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.default" : {
+    "message" : "\"{{ searched_term|escape }}\" için arama sonuçları",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.help_text" : {
+    "message" : "Arama sonuçlarının üzerinde görüntülemek istediğiniz başlığı girin.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.label" : {
+    "message" : "Sonuçlar başlığı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.placeholder" : {
+    "message" : "\"{{ searched_term|escape }}\" için arama sonuçları",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.default" : {
+    "message" : "Her sayfadan bazı önizleme metinleri, ziyaretçilerinizin arama sonuçlarına hızla göz atmalarına ve ihtiyaç duydukları sayfayı bulmalarına yardımcı olmak için, burada görüntülenecektir.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.label" : {
+    "message" : "Arama sonucu makale açıklaması.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.default" : {
+    "message" : "Arama Sonuçları Makale Başlığı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.label" : {
+    "message" : "Arama Sonuçları Makale Başlığı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "inline_help_text" : {
+    "message" : "Bu modül arama giriş modülüyle birlikte kullanılır. Ziyaretçileriniz arama giriş modülünde bir terim aradıklarında, bu modülün bulunduğu herhangi bir sayfa sonuçlarını gösterebilir. <a href=\"https://knowledge.hubspot.com/design-manager/set-up-a-results-page-to-use-a-search-field-on-your-site\">Daha fazla bilgi edin.</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_arrows" : {
+    "message" : "Okları göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_labels" : {
+    "message" : "Etiketleri göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.label" : {
+    "message" : "İlk ve son",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.default" : {
+    "message" : "İlk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.label" : {
+    "message" : "İlk etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.inline_help_text" : {
+    "message" : "Sayfalandırma, kullanıcıların uzun sonuç listelerini sayfalar halinde düzenleyerek, göz atmalarına yardımcı olur.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.label" : {
+    "message" : "Sayfalandırma",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.default" : {
+    "message" : "Sonuncu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.label" : {
+    "message" : "Son etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.default" : {
+    "message" : "Sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.label" : {
+    "message" : "Sonraki etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.choices.show_numbers" : {
+    "message" : "Numaraları göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.label" : {
+    "message" : "Numaralar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_arrows" : {
+    "message" : "Okları göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_labels" : {
+    "message" : "Etiketleri göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.label" : {
+    "message" : "Önceki ve sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.default" : {
+    "message" : "Önceki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.label" : {
+    "message" : "Önceki etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.display_for_each_result.choices.image" : {
+    "message" : "Her sonuç için bir resim önizlemesi göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.label" : {
+    "message" : "Sonuçlar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.label" : {
+    "message" : "Kapsayıcı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Stiller",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.background_color.label" : {
+    "message" : "Arka plan rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.border_color.label" : {
+    "message" : "Sınır rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.label" : {
+    "message" : "Üzerine gel",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.text_color.label" : {
+    "message" : "Metin rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.label" : {
+    "message" : "Simge",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.size.label" : {
+    "message" : "Boyut",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.label" : {
+    "message" : "İlk ve son",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Metin ve simge arasındaki boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Sayfalandırma",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.background_color.label" : {
+    "message" : "Arka plan rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.border_color.label" : {
+    "message" : "Sınır rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.help_text" : {
+    "message" : "Şu anda bulunduğunuz sayfayla eşleşen numaralandırılmış bağlantının stilini belirler.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.label" : {
+    "message" : "Aktif",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.text_color.label" : {
+    "message" : "Metin rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.background_color.label" : {
+    "message" : "Arka plan rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.border_color.label" : {
+    "message" : "Sınır rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.label" : {
+    "message" : "Üzerine gel",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.text_color.label" : {
+    "message" : "Metin rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.label" : {
+    "message" : "Numaralar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.background_color.label" : {
+    "message" : "Arka plan rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.border_color.label" : {
+    "message" : "Sınır rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.label" : {
+    "message" : "Üzerine gel",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.text_color.label" : {
+    "message" : "Metin rengi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.label" : {
+    "message" : "Simge",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.size.label" : {
+    "message" : "Boyut",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.label" : {
+    "message" : "Önceki ve sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Metin ve simge arasındaki boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Bağlantılar arası boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.author.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.label" : {
+    "message" : "Font",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.label" : {
+    "message" : "Title copy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.description.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.description.label" : {
+    "message" : "Önizleme metni",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.label" : {
+    "message" : "Görüntü",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.1/1" : {
+    "message" : "1:1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.16/9" : {
+    "message" : "16:9",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.2/3" : {
+    "message" : "2:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/2" : {
+    "message" : "3:2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/4" : {
+    "message" : "3:4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.4/3" : {
+    "message" : "4:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.label" : {
+    "message" : "En-boy oranı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.label" : {
+    "message" : "Boyut",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.width.label" : {
+    "message" : "Genişlik",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.between_image_and_content.label" : {
+    "message" : "Görüntü ve içerik arasında",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.label" : {
+    "message" : "Sonuçlar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.spacing.space_between_results.label" : {
+    "message" : "Sonuçlar arasındaki boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.label" : {
+    "message" : "Başlık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.label" : {
+    "message" : "Sonuç sayı mesajı",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.capitalize" : {
+    "message" : "Büyük harfe çevir",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.lowercase" : {
+    "message" : "Küçük harf",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.none" : {
+    "message" : "Hiçbiri",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.uppercase" : {
+    "message" : "Büyük harf",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.label" : {
+    "message" : "Dönüştür",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.label" : {
+    "message" : "Başlık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.capitalize" : {
+    "message" : "Büyük harfe çevir",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.lowercase" : {
+    "message" : "Küçük harf",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.none" : {
+    "message" : "Hiçbiri",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.uppercase" : {
+    "message" : "Büyük harf",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.label" : {
+    "message" : "Dönüştür",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h1" : {
+    "message" : "H1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h2" : {
+    "message" : "H2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h3" : {
+    "message" : "H3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h4" : {
+    "message" : "H4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h5" : {
+    "message" : "H5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h6" : {
+    "message" : "H6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.help_text" : {
+    "message" : "Başlık seviyesi seçin. H1 en büyüğüdür, onu H2 takip eder vs.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.label" : {
+    "message" : "Başlık etiketi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.placeholder" : {
+    "message" : "Bir başlık türü seçin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.label" : {
+    "message" : "Başlık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.show_title.label" : {
+    "message" : "Başlığı göster",
+    "description" : "",
+    "placeholders" : null
+  }
+}

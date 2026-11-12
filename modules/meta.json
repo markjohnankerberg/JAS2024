@@ -1,0 +1,14 @@
+{
+  "label": "Donation Checkout",
+  "host_template_types": [
+    "PAGE",
+    "BLOG_POST",
+    "BLOG_LISTING"
+  ],
+  "content_types": [
+    "SITE_PAGE",
+    "BLOG_POST",
+    "BLOG_LISTING"
+  ],
+  "is_available_for_new_content": true
+}

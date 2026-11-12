@@ -1,0 +1,462 @@
+{
+  "default_text.go_to_page.default" : {
+    "message" : "{{ this_page }} numaralı sayfaya gidin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.pagination_navigation.default" : {
+    "message" : "Sayfalandırma navigasyonu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_arrows" : {
+    "message" : "Okları göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_labels" : {
+    "message" : "Etiketleri göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.label" : {
+    "message" : "İlk ve son",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.default" : {
+    "message" : "İlk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.label" : {
+    "message" : "İlk etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.default" : {
+    "message" : "Sonuncu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.label" : {
+    "message" : "Son etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "Blog sayfalandırma",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.default" : {
+    "message" : "Sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.label" : {
+    "message" : "Sonraki etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.choices.show_numbers" : {
+    "message" : "Numaraları göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.label" : {
+    "message" : "Numaralar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_arrows" : {
+    "message" : "Okları göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_labels" : {
+    "message" : "Etiketleri göster",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.label" : {
+    "message" : "Önceki ve sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.default" : {
+    "message" : "Önceki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.label" : {
+    "message" : "Önceki etiket",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.label" : {
+    "message" : "Üzerine gel",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.label" : {
+    "message" : "Simge",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.size.label" : {
+    "message" : "Boyut",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.label" : {
+    "message" : "İlk ve son",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Metin ve simge arasındaki boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Stiller",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.help_text" : {
+    "message" : "Şu anda bulunduğunuz sayfayla eşleşen numaralandırılmış bağlantının stilini belirler.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.label" : {
+    "message" : "Aktif",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.label" : {
+    "message" : "Üzerine gel",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.label" : {
+    "message" : "Numaralar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Sayfalandırma",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Bağlantılar arası boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.label" : {
+    "message" : "Köşe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.radius.label" : {
+    "message" : "Yarıçap",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.label" : {
+    "message" : "Arka plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.label" : {
+    "message" : "Sınır",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.label" : {
+    "message" : "Üzerine gel",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.color.label" : {
+    "message" : "Renk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.label" : {
+    "message" : "Simge",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.size.label" : {
+    "message" : "Boyut",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.label" : {
+    "message" : "Önceki ve sonraki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Metin ve simge arasındaki boşluk",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.spacing.label" : {
+    "message" : "Aralık",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.font.label" : {
+    "message" : "Yazı tipi",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.label" : {
+    "message" : "Metin",
+    "description" : "",
+    "placeholders" : null
+  }
+}

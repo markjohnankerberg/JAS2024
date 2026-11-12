@@ -1,0 +1,2460 @@
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script charset="utf-8" type="text/javascript" src="//js.hsforms.net/forms/embed/v2.js"></script>
+{% if module.donation_type == 'General' %}
+{% set donation_type = 'One-time donation' %}
+{% else %}
+{% set donation_type = module.donation_type + ' donation' %}
+{% endif %}
+<style>
+  @media (min-width: 768px) {
+    .dnd-section:has(.section-{{name}}) {
+      min-height: 100px;
+    }
+
+    .dnd-column:has(.section-{{name}}) {
+      /*
+      position: sticky;
+      top: 140px;
+      */
+      position: relative;
+      height: fit-content;
+      max-height: 100vh;
+      overflow-y: auto;
+    }
+  }
+  
+  .section-{{name}}{
+    position: relative;
+    display: block;
+    width: {{ module.style.section.width }}%;
+    background-color: rgba({{ module.style.section.background_color.color|convert_rgb }}, {{ module.style.section.background_color.opacity/100 }});
+    padding: 0;
+    margin: 0;
+  }
+  .inner-section-{{name}}{
+    position: relative;
+    display: block;
+    width: {{ module.style.section.width }}%;
+    max-width: {{ module.style.section.max_width }}px;
+    padding: 0;
+    margin: 0 auto;
+  }
+  .form-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    max-width: {{ module.style.section.max_width }}px;
+    font-family: Lato, sans-serif;
+    background-color: rgba({{ module.style.form_body.background_color.color|convert_rgb }}, {{ module.style.form_body.background_color.opacity/100 }});
+    {{ module.style.form_body.border.css }};
+    border-radius: {{ module.style.form_body.border_radius }}px;
+    {{ module.style.form_body.spacing.css }};
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .payment-form-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  .one-time-main-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  .monthly-main-{{name}}{
+    position: relative;
+    display: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  .one-time-steps-body-{{name}}{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: space-around;
+    align-items: center;
+    gap: 5px;
+  }
+  .one-time-steps-{{name}},
+  .one-time-steps-divider-{{name}}{
+    font-size: {{ module.style.steps.font_size }}px;
+    font-weight: 600;
+    line-height: 1.2;
+    letter-spacing: -0.45px;
+    color: #39577B;
+    margin: 0;
+  }
+  .one-time-steps-{{name}}.one-time-steps-active{
+     color: #ffffff;
+  }
+  .onetime-or-monthly-{{name}}{
+    position: relative;
+    display: grid;
+    grid-template-columns: repeat(2, 1Fr);
+    grid-column-gap: 0px;
+    {{ module.style.one_time_monthly.section.borde.css }};
+    border-radius: {{ module.style.one_time_monthly.section.border_radius }}px;
+    {{ module.style.one_time_monthly.section.spacing.css }};
+  }
+  .onetime-or-monthly-{{name}} button#oneTimePaymentVersionButton.payment-version-{{name}},
+  .onetime-or-monthly-{{name}} button#monthlyPaymentVersionButton.payment-version-{{name}}{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: {{ module.style.one_time_monthly.button.width }}% !important;
+    height: {{ module.style.one_time_monthly.button.height }}px !important;
+    font-size: {{ module.style.one_time_monthly.button.font_size }}px !important;
+    font-weight: {{ module.style.one_time_monthly.button.font_weight }} !important;
+    font-style: {{ module.style.one_time_monthly.button.font_style }} !important;
+    line-height: calc({{ module.style.one_time_monthly.button.line_height }}px / 100);
+    letter-spacing: {{ module.style.one_time_monthly.button.letter_spacing }}px !important;
+    text-transform: {{ module.style.one_time_monthly.button.font_case }} !important;
+    text-decoration: {{ module.style.one_time_monthly.button.text_decoration }} !important;
+    color: rgba({{ module.style.one_time_monthly.button.text_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button.text_color.opacity/100 }}) !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    background-color: rgba({{ module.style.one_time_monthly.button.background_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button.background_color.opacity/100 }}) !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .onetime-or-monthly-{{name}} button#oneTimePaymentVersionButton.payment-version-{{name}}.active-payment-version{
+    color: rgba({{ module.style.one_time_monthly.button_hover_active.text_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.text_color.opacity/100 }}) !important;
+    border: none !important;
+    background-color: rgba({{ module.style.one_time_monthly.button_hover_active.background_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.background_color.opacity/100 }}) !important;
+    border-radius: calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) 0 0 calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .onetime-or-monthly-{{name}} button#oneTimePaymentVersionButton.payment-version-{{name}}:hover{
+    color: rgba({{ module.style.one_time_monthly.button_hover_active.text_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.text_color.opacity/100 }}) !important;
+    border: none !important;
+    background-color: rgba({{ module.style.one_time_monthly.button_hover_active.background_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.background_color.opacity/100 }}) !important;
+    border-radius: calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) 0 0 calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .onetime-or-monthly-{{name}} button#monthlyPaymentVersionButton.payment-version-{{name}}.active-payment-version{
+    color: rgba({{ module.style.one_time_monthly.button_hover_active.text_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.text_color.opacity/100 }}) !important;
+    border: none !important;
+    background-color: rgba({{ module.style.one_time_monthly.button_hover_active.background_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.background_color.opacity/100 }}) !important;
+    border-radius: 0 calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) 0 !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .onetime-or-monthly-{{name}} button#monthlyPaymentVersionButton.payment-version-{{name}}:hover{
+    color: rgba({{ module.style.one_time_monthly.button_hover_active.text_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.text_color.opacity/100 }}) !important;
+    border: none !important;
+    background-color: rgba({{ module.style.one_time_monthly.button_hover_active.background_color.color|convert_rgb }}, {{ module.style.one_time_monthly.button_hover_active.background_color.opacity/100 }}) !important;
+    border-radius: 0 calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) calc({{ module.style.one_time_monthly.section.border_radius }}px - 1px) 0 !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  #hubspotDonationForm .hs_submit.hs-submit{
+    display: none;
+  }
+  /*
+  .onetime-or-monthly-{{name}} a.monthly-donations-button-{{name}}{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 38px;
+    font-size: 18px !important;
+    font-weight: 400 !important;
+    font-style: normal !important;
+    letter-spacing: -0.02px !important;
+    text-decoration: none !important;
+    color: #ffffff !important;
+    text-transform: none !important;
+    text-align: center !important;
+    cursor: pointer !important;
+    background-color: transparent !important;
+    border: none !important;
+    padding: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+
+  .onetime-or-monthly-{{name}} a.monthly-donations-button-{{name}}:hover{
+    color: #1B314B !important;
+    border: none !important;
+    background-color: #ffffff !important;
+    border-radius: 4px 0 0 4px !important;
+    transition: all 0.3s ease-in-out;
+  }
+  */
+  .step {
+    display: none;
+  }
+  .step.active {
+    display: block;
+  }
+  /* Monthly Predefined Amounts */
+  .monthly-amounts-{{name}}{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(1, 1Fr);
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 0;
+    margin: 32px 0 32px 0;
+  }
+  #monthlyAmounts button.monthly-amount-btn{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: {{ module.style.monthly_buttons.width }}%;
+    height: {{ module.style.monthly_buttons.height }}px !important;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.monthly_buttons.font_size }}px !important;
+    font-weight: {{ module.style.monthly_buttons.font_weight }} !important;
+    font-style: {{ module.style.monthly_buttons.font_style }} !important;
+    line-height: calc({{ module.style.monthly_buttons.line_height }} / 100);
+    letter-spacing: {{ module.style.monthly_buttons.letter_spacing }}px !important;
+    text-transform: {{ module.style.monthly_buttons.font_case }} !important;
+    text-decoration: {{ module.style.monthly_buttons.text_decoration }} !important;
+    color: rgba({{ module.style.monthly_buttons.text_color.color|convert_rgb }}, {{ module.style.monthly_buttons.text_color.opacity/100 }}) !important;
+    text-align: center;
+    background-color: rgba({{ module.style.monthly_buttons.background_color.color|convert_rgb }}, {{ module.style.monthly_buttons.background_color.opacity/100 }}) !important;
+    {{ module.style.monthly_buttons.border.css }} !important;
+    border-radius: {{ module.style.monthly_buttons.border_radius }}px !important;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+  #monthlyAmounts button.monthly-amount-btn:hover{
+    color: rgba({{ module.style.monthly_buttons.hover_active.text_color.color|convert_rgb }}, {{ module.style.monthly_buttons.hover_active.text_color.opacity/100 }}) !important;
+    text-align: center;
+    background-color: rgba({{ module.style.monthly_buttons.hover_active.background_color_copy.color|convert_rgb }}, {{ module.style.monthly_buttons.hover_active.background_color_copy.opacity/100 }}) !important;
+    {{ module.style.monthly_buttons.hover_active.border_copy.css }} !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  #monthlyAmounts button.monthly-amount-btn.selected-amount-btn{
+    color: rgba({{ module.style.monthly_buttons.hover_active.text_color.color|convert_rgb }}, {{ module.style.monthly_buttons.hover_active.text_color.opacity/100 }}) !important;
+    text-align: center;
+    background-color: rgba({{ module.style.monthly_buttons.hover_active.background_color_copy.color|convert_rgb }}, {{ module.style.monthly_buttons.hover_active.background_color_copy.opacity/100 }}) !important;
+    {{ module.style.monthly_buttons.hover_active.border_copy.css }} !important;
+    transition: all 0.3s ease-in-out !important;
+  }
+  .monthly-bottom-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+  }
+  /* One Time */
+  #oneTimeStep1 form,
+  #oneTimeStep2 form,
+  #oneTimeStep3 form,
+  #oneTimeStep4 form,
+  #oneTimeStep5 form{
+    background-color: transparent;
+    border: none;
+    border-radius: 0px;
+    padding: 0;
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}}{
+    position: relative;
+    width: 100%;
+    display: grid;
+    {% if module.predefined_buttons_per_row_desktop == "three" %}
+    grid-template-columns: repeat(3, 1Fr);
+    {% elif module.predefined_buttons_per_row_desktop == "two" %}
+    grid-template-columns: repeat(2, 1Fr);
+    {% elif module.predefined_buttons_per_row_desktop == "one" %}
+    grid-template-columns: repeat(1, 1Fr);
+    {% endif %}
+    grid-column-gap: 20px;
+    grid-row-gap: 20px;
+    padding: 0;
+    margin: 32px 0 32px 0;
+  }
+   {% if module.predefined_buttons_per_row_desktop == "three" or module.predefined_buttons_per_row_desktop == "two" %}
+  @media (max-width: 900px) {
+    #oneTimeStep1 .predefined-amounts-{{name}}{
+      grid-template-columns: repeat(2, 1Fr);
+    }
+  }
+  {% endif %}
+  #oneTimeStep1 .predefined-amounts-{{name}} button.amount-btn{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: {{ module.style.amount_buttons.width }}%;
+    height: {{ module.style.amount_buttons.height }}px;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.amount_buttons.font_size }}px !important;
+    font-weight: {{ module.style.amount_buttons.font_weight }} !important;
+    font-style: {{ module.style.amount_buttons.font_style }};
+    letter-spacing: {{ module.style.amount_buttons.letter_spacing }}px !important;
+    line-height: calc({{ module.style.amount_buttons.line_height }}px /100) !important;
+    text-transform: {{ module.style.amount_buttons.font_case }} !important;
+    text-decoration: {{ module.style.amount_buttons.text_decoration }} !important;
+    color: rgba({{ module.style.amount_buttons.text_color.color|convert_rgb }}, {{ module.style.amount_buttons.text_color.opacity/100 }});
+    text-align: center;
+    background-color: rgba({{ module.style.amount_buttons.background_color.color|convert_rgb }}, {{ module.style.amount_buttons.background_color.opacity/100 }});
+    {{ module.style.amount_buttons.border.css }};
+    border-radius: {{ module.style.amount_buttons.border_radius }}px;
+    cursor: pointer !important;
+    padding: 0 !important;
+    margin: 0;
+    transition: all 0.3s ease-in-out !important;
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}} button.amount-btn:hover{
+    color: rgba({{ module.style.amount_buttons.hover_active.text_color.color|convert_rgb }}, {{ module.style.amount_buttons.hover_active.text_color.opacity/100 }});
+    text-align: center;
+    background-color: rgba({{ module.style.amount_buttons.hover_active.background_color_copy.color|convert_rgb }}, {{ module.style.amount_buttons.hover_active.background_color_copy.opacity/100 }});
+    {{ module.style.amount_buttons.hover_active.border_copy.css }};
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep1 .predefined-amounts-{{name}} button.amount-btn.selected-amount-btn{
+    color: rgba({{ module.style.amount_buttons.hover_active.text_color.color|convert_rgb }}, {{ module.style.amount_buttons.hover_active.text_color.opacity/100 }});
+    text-align: center;
+    background-color: rgba({{ module.style.amount_buttons.hover_active.background_color_copy.color|convert_rgb }}, {{ module.style.amount_buttons.hover_active.background_color_copy.opacity/100 }});
+    {{ module.style.amount_buttons.hover_active.border_copy.css }};
+    transition: all 0.3s ease-in-out;
+  }
+  .custom-amount-body-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    padding: 0;
+    margin: 0;
+    }
+  #oneTimeStep1 form label,
+  #oneTimeStep2 form label,
+  #oneTimeStep3 form label,
+  #oneTimeStep4 form label,
+  #oneTimeStep5 form label{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 4px;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_lables.font_size }}px;
+    font-weight: {{ module.style.form_lables.font_weight }};
+    font-style: {{ module.style.form_lables.font_style }};
+    line-height: calc({{ module.style.form_lables.line_height }} / 100);
+    letter-spacing: {{ module.style.form_lables.letter_spacing }}px;
+    text-decoration: {{ module.style.form_lables.font_case }};
+    color: rgba({{ module.style.form_lables.text_color.color|convert_rgb }}, {{ module.style.form_lables.text_color.opacity/100 }});
+    {{ module.style.form_lables.spacing.css }};
+  }
+  #oneTimeStep1 form label span,
+  #oneTimeStep2 form label span,
+  #oneTimeStep3 form label span,
+  #oneTimeStep4 form label span,
+  #oneTimeStep5 form label span{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_lables.font_size }}px;
+    font-weight: {{ module.style.form_lables.font_weight }};
+    font-style: {{ module.style.form_lables.font_style }};
+    line-height: calc({{ module.style.form_lables.line_height }} / 100);
+    letter-spacing: {{ module.style.form_lables.letter_spacing }}px;
+    text-decoration: {{ module.style.form_lables.font_case }};
+    color: rgba({{ module.style.form_lables.text_color.color|convert_rgb }}, {{ module.style.form_lables.text_color.opacity/100 }});
+    {{ module.style.form_lables.spacing.css }};
+  }
+  #oneTimeStep1 form label span.required-asterisk,
+  #oneTimeStep2 form label span.required-asterisk,
+  #oneTimeStep3 form label span.required-asterisk,
+  #oneTimeStep4 form label span.required-asterisk,
+  #oneTimeStep5 form label span.required-asterisk,
+  #oneTimeStep1 form label span.hs-form-required,
+  #oneTimeStep2 form label span.hs-form-required,
+  #oneTimeStep3 form label span.hs-form-required,
+  #oneTimeStep4 form label span.hs-form-required,
+  #oneTimeStep5 form label span.hs-form-required{
+    display: inline-block;
+    width: auto;
+    text-align: left;
+    color: rgba({{ module.style.form_lables.required_asterisk.color|convert_rgb }}, {{ module.style.form_lables.required_asterisk.opacity/100 }});
+    padding: 0;
+    margin: 0;
+  }
+  #oneTimeStep1 form input,
+  #oneTimeStep2 form input,
+  #oneTimeStep3 form input,
+  #oneTimeStep3 form select,
+  #oneTimeStep4 form input,
+  #oneTimeStep1 form select,
+  #oneTimeStep4 form select,
+  #oneTimeStep5 form input{
+    position: relative;
+    display: block;
+    width: 100%;
+    height: {{ module.style.form_input_select.height }}px;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_input_select.font_size }}px;
+    font-weight: {{ module.style.form_input_select.font_weight }};
+    font-style: {{ module.style.form_input_select.font_style }};
+    line-height: calc({{ module.style.form_input_select.line_height }} / 100);
+    letter-spacing: {{ module.style.form_input_select.letter_spacing }}px;
+    text-transform: {{ module.style.form_input_select.font_case }};
+    text-decoration: {{ module.style.form_input_select.font_case }};
+    color: rgba({{ module.style.form_input_select.text_color.color|convert_rgb }}, {{ module.style.form_input_select.text_color.opacity/100 }});
+    background-color: rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }});
+    {{ module.style.form_input_select.border.css }};
+    border-radius: {{ module.style.form_input_select.border_radius }}px;
+    {{ module.style.form_input_select.spacing.css }};
+  }
+  #oneTimeStep1 form select option,
+  #oneTimeStep2 form select option,
+  #oneTimeStep3 form select option,
+  #oneTimeStep4 form select option,
+  #oneTimeStep5 form select option{
+    background-color: #fff; 
+    color: #1B314B;
+  }
+  #oneTimeStep1 form textarea,
+  #oneTimeStep2 form textarea,
+  #oneTimeStep3 form textarea,
+  #oneTimeStep4 form textarea,
+  #oneTimeStep5 form textarea{
+    position: relative;
+    display: block;
+    width: 100%;
+    min-height: {{ module.style.form_input_select.textarea_min_height }}px;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_input_select.font_size }}px;
+    font-weight: {{ module.style.form_input_select.font_weight }};
+    font-style: {{ module.style.form_input_select.font_style }};
+    line-height: calc({{ module.style.form_input_select.line_height }} / 100);
+    letter-spacing: {{ module.style.form_input_select.letter_spacing }}px;
+    text-transform: {{ module.style.form_input_select.font_case }};
+    text-decoration: {{ module.style.form_input_select.font_case }};
+    color: rgba({{ module.style.form_input_select.text_color.color|convert_rgb }}, {{ module.style.form_input_select.text_color.opacity/100 }});
+    background-color: rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }});
+    {{ module.style.form_input_select.border.css }};
+    border-radius: {{ module.style.form_input_select.border_radius }}px;
+    {{ module.style.form_input_select.spacing.css }};
+  }
+  .hs-fieldtype-select .input:after {
+    color: #ffffff;
+  }
+  #oneTimeStep1 form input::placeholder,
+  #oneTimeStep2 form input::placeholder,
+  #oneTimeStep3 form input::placeholder,
+  #oneTimeStep4 form input::placeholder,
+  #oneTimeStep5 form input::placeholder{
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_placeholders.font_size }}px;
+    font-weight: {{ module.style.form_placeholders.font_weight }};
+    font-style: {{ module.style.form_placeholders.font_style }};
+    line-height: calc({{ module.style.form_placeholders.line_height }} / 100);
+    letter-spacing: {{ module.style.form_placeholders.letter_spacing }}px;
+    text-transform: {{ module.style.form_placeholders.font_case }};
+    text-decoration: {{ module.style.form_placeholders.font_case }};
+    color: rgba({{ module.style.form_placeholders.text_color.color|convert_rgb }}, {{ module.style.form_placeholders.text_color.opacity/100 }});
+  }
+  #oneTimeStep1 form input:focus-visible,
+  #oneTimeStep2 form input:focus-visible,
+  #oneTimeStep3 form input:focus-visible,
+  #oneTimeStep4 form input:focus-visible,
+  #oneTimeStep5 form input:focus-visible{
+    outline: none;
+  }
+  #oneTimeStep1 form select:focus-visible,
+  #oneTimeStep2 form select:focus-visible,
+  #oneTimeStep3 form select:focus-visible,
+  #oneTimeStep4 form select:focus-visible,
+  #oneTimeStep5 form select:focus-visible{
+    outline: none;
+  }
+  #oneTimeStep1 form textarea:focus-visible,
+  #oneTimeStep2 form textarea:focus-visible,
+  #oneTimeStep3 form textarea:focus-visible,
+  #oneTimeStep4 form textarea:focus-visible,
+  #oneTimeStep5 form textarea:focus-visible{
+    outline: none;
+  }
+  #oneTimeStep1 form input:-webkit-autofill,
+  #oneTimeStep2 form input:-webkit-autofill,
+  #oneTimeStep3 form input:-webkit-autofill,
+  #oneTimeStep4 form input:-webkit-autofill,
+  #oneTimeStep5 form input:-webkit-autofill,
+  #oneTimeStep1 form textarea:-webkit-autofill,
+  #oneTimeStep2 form textarea:-webkit-autofill,
+  #oneTimeStep3 form textarea:-webkit-autofill,
+  #oneTimeStep4 form textarea:-webkit-autofill,
+  #oneTimeStep5 form textarea:-webkit-autofill{
+    background-color: rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }}) !important;
+    color: rgba({{ module.style.form_input_select.text_color.color|convert_rgb }}, {{ module.style.form_input_select.text_color.opacity/100 }}) !important;  /* Set the text color to white */
+    {{ module.style.form_input_select.border.css }};
+    box-shadow: 0 0 0px 1000px rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }}) inset !important;
+    -webkit-text-fill-color: rgba({{ module.style.form_input_select.text_color.color|convert_rgb }}, {{ module.style.form_input_select.text_color.opacity/100 }}) !important;  /* Ensures white autofill text */
+  }
+  #oneTimeStep1 form input:-webkit-autofill:focus,
+  #oneTimeStep2 form input:-webkit-autofill:focus,
+  #oneTimeStep3 form input:-webkit-autofill:focus,
+  #oneTimeStep4 form input:-webkit-autofill:focus,
+  #oneTimeStep5 form input:-webkit-autofill:focus,
+  #oneTimeStep1 form select:-webkit-autofill:focus,
+  #oneTimeStep2 form select:-webkit-autofill:focus,
+  #oneTimeStep3 form select:-webkit-autofill:focus,
+  #oneTimeStep4 form select:-webkit-autofill:focus,
+  #oneTimeStep5 form select:-webkit-autofill:focus,
+  #oneTimeStep1 form textarea:-webkit-autofill:focus,
+  #oneTimeStep2 form textarea:-webkit-autofill:focus,
+  #oneTimeStep3 form textarea:-webkit-autofill:focus,
+  #oneTimeStep4 form textarea:-webkit-autofill:focus,
+  #oneTimeStep5 form textarea:-webkit-autofill:focus{
+    background-color: rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }}) !important;
+    color: rgba({{ module.style.form_input_select.text_color.color|convert_rgb }}, {{ module.style.form_input_select.text_color.opacity/100 }}) !important;  /* Set the text color to white */
+    {{ module.style.form_input_select.border.css }};
+    box-shadow: 0 0 0px 1000px rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }}) inset !important;
+    -webkit-text-fill-color: rgba({{ module.style.form_input_select.text_color.color|convert_rgb }}, {{ module.style.form_input_select.text_color.opacity/100 }}) !important;  /* Ensures white autofill text */
+  }
+  #oneTimeStep1 .get-total-{{name}}{
+    position: relative;
+    display: block;
+    width: 100%;
+    text-align: left;
+    {{ module.style.total.spacing.css }};
+  }
+  #oneTimeStep1 .get-total-{{name}} p{
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.total.font_size }}px;
+    font-weight: {{ module.style.total.font_weight }};
+    font-style: {{ module.style.total.font_style }};
+    line-height: calc({{ module.style.total.line_height }} / 100);
+    letter-spacing: {{ module.style.total.letter_spacing }}px;
+    text-transform: {{ module.style.total.font_case }};
+    text-decoration: {{ module.style.total.font_case }};
+    color: rgba({{ module.style.total.text_color.color|convert_rgb }}, {{ module.style.total.text_color.opacity/100 }});
+    padding: 0;
+    margin: 0;
+  }
+  #oneTimeStep1 button#step1ButtonNext,
+  #monthlyBottomBody button.monthly-next-button-{{name}}{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: {{ module.style.back_next_buttons.width }}%;
+    height: {{ module.style.back_next_buttons.height }}px;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.back_next_buttons.font_size }}px !important;
+    font-weight: {{ module.style.back_next_buttons.font_weight }} !important;
+    font-style: {{ module.style.back_next_buttons.font_style }};
+    letter-spacing: {{ module.style.back_next_buttons.letter_spacing }}px !important;
+    line-height: calc({{ module.style.back_next_buttons.line_height }} / 100) !important;
+    text-transform: {{ module.style.back_next_buttons.font_case }} !important;
+    text-decoration: {{ module.style.back_next_buttons.text_decoration }} !important;
+    text-align: center;
+    color: rgba({{ module.style.back_next_buttons.next_button.text_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.text_color.opacity/100 }}) !important;
+    background-color: rgba({{ module.style.back_next_buttons.next_button.background_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.background_color.opacity/100 }}) !important;
+    {{ module.style.back_next_buttons.next_button.border.css }} !important;
+    border-radius: {{ module.style.back_next_buttons.border_radius }}px !important;
+    cursor: pointer;
+    {{ module.style.back_next_buttons.spacing.css }} !important;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep1 button#step1ButtonNext:hover,
+  #monthlyBottomBody button.monthly-next-button-{{name}}:hover{
+    color: rgba({{ module.style.back_next_buttons.next_button.text_hover_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.text_hover_color.opacity/100 }}) !important;
+    background-color: rgba({{ module.style.back_next_buttons.next_button.background_hover_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.background_hover_color.opacity/100 }}) !important;
+    {{ module.style.back_next_buttons.next_button.hover_border.css }} !important;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 .back-next-buttons-body-{{name}},
+  #oneTimeStep3 .back-next-buttons-body-{{name}},
+  #oneTimeStep4 .back-next-buttons-body-{{name}},
+  #oneTimeStep5 .back-next-buttons-body-{{name}}{
+    position: relative;
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(2, 1Fr);
+    grid-column-gap: 32px;
+    padding: 0;
+    margin: 16px 0 0 0;
+  }
+  #oneTimeStep2 button#step2ButtonNext,
+  #oneTimeStep2 button#step2ButtonBack,
+  #oneTimeStep3 button#step3ButtonNext,
+  #oneTimeStep3 button#step3ButtonBack,
+  #oneTimeStep4 button#step4ButtonNext,
+  #oneTimeStep4 button#step4ButtonBack,
+  #oneTimeStep5 button#step5ButtonNext,
+  #oneTimeStep5 button#step5ButtonBack{
+    position: relative;
+    display: inline-flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: {{ module.style.back_next_buttons.width }}%;
+    height: {{ module.style.back_next_buttons.height }}px;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.back_next_buttons.font_size }}px !important;
+    font-weight: {{ module.style.back_next_buttons.font_weight }} !important;
+    font-style: {{ module.style.back_next_buttons.font_style }};
+    letter-spacing: {{ module.style.back_next_buttons.letter_spacing }}px !important;
+    line-height: calc({{ module.style.back_next_buttons.line_height }} / 100) !important;
+    text-transform: {{ module.style.back_next_buttons.font_case }} !important;
+    text-decoration: {{ module.style.back_next_buttons.text_decoration }} !important;
+    text-align: center;
+    border-radius: {{ module.style.back_next_buttons.border_radius }}px !important;
+    cursor: pointer;
+    {{ module.style.back_next_buttons.spacing.css }} !important;
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonBack,
+  #oneTimeStep3 button#step3ButtonBack,
+  #oneTimeStep4 button#step4ButtonBack,
+  #oneTimeStep5 button#step5ButtonBack{
+    color: rgba({{ module.style.back_next_buttons.back_button.text_color.color|convert_rgb }}, {{ module.style.back_next_buttons.back_button.text_color.opacity/100 }});
+    background-color: rgba({{ module.style.back_next_buttons.back_button.background_color.color|convert_rgb }}, {{ module.style.back_next_buttons.back_button.background_color.opacity/100 }});
+    {{ module.style.back_next_buttons.back_button.border.css }};
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonBack:hover,
+  #oneTimeStep3 button#step3ButtonBack:hover,
+  #oneTimeStep4 button#step4ButtonBack:hover,
+  #oneTimeStep5 button#step5ButtonBack:hover{
+    color: rgba({{ module.style.back_next_buttons.back_button.text_hover_color.color|convert_rgb }}, {{ module.style.back_next_buttons.back_button.text_hover_color.opacity/100 }});
+    background-color: rgba({{ module.style.back_next_buttons.back_button.background_hover_color.color|convert_rgb }}, {{ module.style.back_next_buttons.back_button.background_hover_color.opacity/100 }});
+    {{ module.style.back_next_buttons.back_button.hover_border.css }};
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonNext,
+  #oneTimeStep3 button#step3ButtonNext,
+  #oneTimeStep4 button#step4ButtonNext,
+  #oneTimeStep5 button#step5ButtonNext{
+    color: rgba({{ module.style.back_next_buttons.next_button.text_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.text_color.opacity/100 }});
+    background-color: rgba({{ module.style.back_next_buttons.next_button.background_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.background_color.opacity/100 }});
+    {{ module.style.back_next_buttons.next_button.border.css }};
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep2 button#step2ButtonNext:hover,
+  #oneTimeStep3 button#step3ButtonNext:hover,
+  #oneTimeStep4 button#step4ButtonNext:hover,
+  #oneTimeStep5 button#step5ButtonNext:hover{
+    color: rgba({{ module.style.back_next_buttons.next_button.text_hover_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.text_hover_color.opacity/100 }});
+    background-color: rgba({{ module.style.back_next_buttons.next_button.background_hover_color.color|convert_rgb }}, {{ module.style.back_next_buttons.next_button.background_hover_color.opacity/100 }});
+    {{ module.style.back_next_buttons.next_button.hover_border.css }};
+    transition: all 0.3s ease-in-out;
+  }
+  #oneTimeStep4 #shippingFormInputs{
+    position: relative;
+    display: none;
+    width: 100%;
+    padding: 0;
+    margin: 0;
+    }
+  #oneTimeStep5 ul.inputs-list{
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  #oneTimeStep5 ul.inputs-list li.hs-form-booleancheckbox{
+    display: block;
+    margin: 0;
+    padding: 0;
+    width: 100%;
+  }
+  #oneTimeStep5 ul.inputs-list li.hs-form-booleancheckbox label{
+    position: relative;
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-start;
+    align-items: flex-start;
+    gap: 16px;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_lables.font_size }}px;
+    font-weight: {{ module.style.form_lables.font_weight }};
+    font-style: {{ module.style.form_lables.font_style }};
+    line-height: calc({{ module.style.form_lables.line_height }} / 100);
+    letter-spacing: {{ module.style.form_lables.letter_spacing }}px;
+    text-transform: {{ module.style.form_lables.font_case }}px;
+    text-decoration: {{ module.style.form_lables.text_decoration }};
+    color: rgba({{ module.style.form_lables.text_color.color|convert_rgb }}, {{ module.style.form_lables.text_color.opacity/100 }});
+    padding: 0;
+    margin: 0;
+  }
+  #oneTimeStep5 ul.inputs-list li.hs-form-booleancheckbox label input{
+    position: relative;
+    display: block;
+    width: 21px;
+    height: 21px;
+    background-color: rgba({{ module.style.form_lables.text_color.color|convert_rgb }}, {{ module.style.form_lables.text_color.opacity/100 }});
+    {{ module.style.form_input_select.border.css }};
+    border-radius: {{ module.style.form_input_select.border_radius }}px;
+    float: none;
+    padding: 0;
+    margin: 0 0 0 0;
+  }
+  #oneTimeStep5 ul.inputs-list li.hs-form-booleancheckbox label span{
+    position: relative;
+    display: inline-block;
+    width: auto;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.form_lables.font_size }}px;
+    font-weight: {{ module.style.form_lables.font_weight }};
+    font-style: {{ module.style.form_lables.font_style }};
+    line-height: calc({{ module.style.form_lables.line_height }} / 100);
+    letter-spacing: {{ module.style.form_lables.letter_spacing }}px;
+    text-transform: {{ module.style.form_lables.font_case }}px;
+    text-decoration: {{ module.style.form_lables.text_decoration }};
+    color: rgba({{ module.style.form_lables.text_color.color|convert_rgb }}, {{ module.style.form_lables.text_color.opacity/100 }});
+    padding: 0;
+    margin: 0 0 0 0 !important;
+  }
+  #card-element,
+  #card-expiry,
+  #card-csv {
+    display: block;
+    width: 100%;
+    height: {{ module.style.form_input_select.height }}px;
+    padding: 9px 12px !important;
+    background-color: rgba({{ module.style.form_input_select.background_color.color|convert_rgb }}, {{ module.style.form_input_select.background_color.opacity/100 }}) !important;
+    border-radius: {{ module.style.form_input_select.border_radius }}px !important;
+    transition: background 0.15s ease, border 0.15s ease, box-shadow 0.15s ease, color 0.15s ease !important;
+    {{ module.style.form_input_select.border.css }} !important;
+    box-shadow: 0px 1px 1px rgba(0, 0, 0, 0.03), 0px 3px 6px rgba(0, 0, 0, 0.02) !important;
+    margin: 0 0 24px 0 !important;
+  }
+  /* FORM VALIDATION */
+  .help {
+    position: relative;
+    display: none;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.error_messages.font_size }}px;
+    font-weight: {{ module.style.error_messages.font_weight }};
+    font-style: {{ module.style.error_messages.font_style }};
+    line-height: calc({{ module.style.error_messages.line_height }} / 100);
+    letter-spacing: {{ module.style.error_messages.letter_spacing }}px;
+    text-transform: {{ module.style.error_messages.font_case }};
+    text-decoration: {{ module.style.error_messages.text_decoration }};
+    color: rgba({{ module.style.error_messages.text_color.color|convert_rgb }}, {{ module.style.error_messages.text_color.opacity/100 }});
+    text-align: left;
+    {{ module.style.error_messages.spacing.css }};
+  }
+  .invalid .help {
+    display: block;
+  }
+  #oneTimeStep1 ul.hs-error-msgs,
+  #oneTimeStep2 ul.hs-error-msgs,
+  #oneTimeStep3 ul.hs-error-msgs,
+  #oneTimeStep4 ul.hs-error-msgs,
+  #oneTimeStep5 ul.hs-error-msgs{
+    list-style: none;
+    {{ module.style.error_messages.spacing.css }};
+  }
+  #oneTimeStep1 ul.hs-error-msgs li,
+  #oneTimeStep2 ul.hs-error-msgs li,
+  #oneTimeStep3 ul.hs-error-msgs li,
+  #oneTimeStep4 ul.hs-error-msgs li,
+  #oneTimeStep5 ul.hs-error-msgs li{
+    margin: 0;
+  }
+  #oneTimeStep1 ul.hs-error-msgs li label.hs-error-msg,
+  #oneTimeStep2 ul.hs-error-msgs li label.hs-error-msg,
+  #oneTimeStep3 ul.hs-error-msgs li label.hs-error-msg,
+  #oneTimeStep4 ul.hs-error-msgs li label.hs-error-msg,
+  #oneTimeStep5 ul.hs-error-msgs li label.hs-error-msg{
+    position: relative;
+    display: block;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.error_messages.font_size }}px;
+    font-weight: {{ module.style.error_messages.font_weight }};
+    font-style: {{ module.style.error_messages.font_style }};
+    line-height: calc({{ module.style.error_messages.line_height }} / 100);
+    letter-spacing: {{ module.style.error_messages.letter_spacing }}px;
+    text-transform: {{ module.style.error_messages.font_case }};
+    text-decoration: {{ module.style.error_messages.text_decoration }};
+    color: rgba({{ module.style.error_messages.text_color.color|convert_rgb }}, {{ module.style.error_messages.text_color.opacity/100 }});
+    text-align: left;
+  }
+ .hs-form-field legend.hs-field-desc {
+  display: none !important;
+}
+  #missing-card-number,
+  #missing-card-expire,
+  #missing-card-csv{
+    position: relative;
+    display: none;
+    width: 100%;
+    font-family: Lato, sans-serif;
+    font-size: {{ module.style.error_messages.font_size }}px;
+    font-weight: {{ module.style.error_messages.font_weight }};
+    font-style: {{ module.style.error_messages.font_style }};
+    line-height: calc({{ module.style.error_messages.line_height }} / 100);
+    letter-spacing: {{ module.style.error_messages.letter_spacing }}px;
+    text-transform: {{ module.style.error_messages.font_case }};
+    text-decoration: {{ module.style.error_messages.text_decoration }};
+    color: rgba({{ module.style.error_messages.text_color.color|convert_rgb }}, {{ module.style.error_messages.text_color.opacity/100 }});
+    text-align: left;
+    {{ module.style.error_messages.spacing.css }};
+  }
+  #oneTimeStep5 input:-internal-autofill-selected {
+    appearance: menulist-button;
+    background-image: none !important;
+    background-color: transparent !important;
+    color: fieldtext !important;
+}
+  #oneTimeStep5 .hs-richtext,
+  #oneTimeStep5 .hs-richtext p,
+  #oneTimeStep5 .hs-richtext p span{
+    font-family: Lato, sans-serif !important;
+    font-size: {{ module.style.custom_text_richtext.font_size }}px !important;
+    font-weight: {{ module.style.custom_text_richtext.font_weight }} !important;
+    font-style: {{ module.style.custom_text_richtext.font_style }} !important;
+    line-height: calc({{ module.style.custom_text_richtext.line_height }} / 100) !important;
+    letter-spacing: {{ module.style.custom_text_richtext.letter_spacing }}px !important;
+    text-transform: {{ module.style.custom_text_richtext.font_case }} !important;
+    text-decoration: {{ module.style.custom_text_richtext.text_decoration }} !important;
+    color: rgba({{ module.style.custom_text_richtext.text_color.color|convert_rgb }}, {{ module.style.custom_text_richtext.text_color.opacity/100 }}) !important;
+    margin: 16px 0 16px 0 !important;
+  }
+  #oneTimeStep5 .hubspot-fields-placeholder a,
+  #oneTimeStep5 .hubspot-fields-placeholder p a{
+    font-family: Lato, sans-serif !important;
+    font-size: {{ module.style.custom_link_rich_text_link }}px !important;
+    font-weight: {{ module.style.custom_link_rich_text_link.font_weight }} !important;
+    font-style: {{ module.style.custom_link_rich_text_link.font_style }} !important;
+    line-height: calc({{ module.style.custom_link_rich_text_link.line_height }} / 100) !important;
+    letter-spacing: {{ module.style.custom_link_rich_text_link.letter_spacing }}px !important;
+    text-transform: {{ module.style.custom_link_rich_text_link.font_case }} !important;
+    text-decoration:{{ module.style.custom_link_rich_text_link.text_decoration }} !important;
+    color: rgba({{ module.style.custom_link_rich_text_link.text_color.color|convert_rgb }}, {{ module.style.custom_link_rich_text_link.text_color.opacity/100 }}) !important;
+    margin: 16px 0 16px 0 !important;
+    }
+  .hubspot-fields-placeholder
+  /* MODALS */
+  .popup-container-{{name}}{
+    position: relative;
+    }
+  .popup-container-inner-{{name}}{
+    position: relative;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    }
+  .popup-{{name}} {
+    position: relative;
+    width: 450px;
+    height: auto;
+    font-weight: 700;
+    text-align: center;
+    background: #ffffff;
+    border-radius: 10px;
+    box-shadow: 5px 5px 5px #000;
+    padding: 30px 20px;
+    z-index: 10001;
+  }
+  .popup-{{name}} p{
+    font-family: Lato, sans-serif;
+    font-size: 18px;
+    font-weight: 400;
+    font-style: normal;
+    line-height: 1.5;
+    letter-spacing: -0.35px;
+    text-transform: none;
+    text-decoration: none;
+    color: #1B314B;
+    padding: 0;
+    margin: 0;
+  }
+@media (max-width: 490px){
+  .popup-{{name}} {
+    width: calc(100% - 40px);
+  }
+}
+  .overlay-{{name}} {
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 10000;
+    display: none;
+  }
+  .buttons-body-{{name}}{
+    display: block;
+    text-align: center;
+    }
+  button.button-false-{{name}} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #a1611c;
+    border: 1px solid #a1611c;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 16px auto 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  button.button-false-{{name}}:hover {
+    color: #a1611c;
+    background-color: transparent;
+    border: 1px solid #a1611c;
+  }
+  button.button-true-{{name}} {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 170px;
+    height: 50px;
+    font-size: 14px;
+    font-weight: 600;
+    font-style: normal;
+    line-height: 1.4;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    background-color: #1B314B;
+    border: 1px solid #1B314B;
+    border-radius: 5px;
+    padding: 6px;
+    margin: 16px auto 0 auto;
+    cursor: pointer;
+    transition: all 0.3s ease-in-out;
+  }
+  button.button-true-{{name}}:hover {
+    color: #1B314B;
+    background-color: transparent;
+    border: 1px solid #1B314B;
+  }
+  .after-payment-body-{{name}}{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    height: 300px;
+    padding: 0;
+    margin: 0;
+    }
+  .loader {
+    position: relative;
+    display: none;
+    width: 200px;
+    height: 200px;
+  }
+  .loader svg {
+    position: absolute;
+    top: 0;
+    left: 0;
+  }
+  .loader svg circle {
+    fill: none;
+    stroke: {{ module.style.after_submit.loader.main_circle_color.color }};
+    stroke-width: 10px;
+    stroke-linecap: round;
+    animation: animate 2s linear infinite;
+  }
+  .loader svg:nth-child(1) circle {
+    filter: blur(10px);
+    stroke: {{ module.style.after_submit.loader.second_circle_color.color }};
+  }
+  .loader svg:nth-child(2) circle {
+    filter: blur(20px);
+    stroke: {{ module.style.after_submit.loader.third_circle_color.color }};
+  }
+  @keyframes animate {
+    0% {
+      stroke-dasharray: 295;
+      stroke-dashoffset: 295;
+    }
+    50% {
+      stroke-dasharray: 295;
+      stroke-dashoffset: 0;
+    }
+    100% {
+      stroke-dasharray: 295;
+      stroke-dashoffset: -295;
+    }
+  }
+  .after-payment-messages-{{name}}{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    gap: 24px;
+    padding: 0;
+    margin: 0;
+    }
+  .after-payment-messages-{{name}} p.after-payment-main-message-{{name}}{
+    position: relative;
+    display: block;
+    font-size: {{ module.style.after_submit.subtitle_message.font_size }}px;
+    font-weight: {{ module.style.after_submit.subtitle_message.font_weight }};
+    font-style: {{ module.style.after_submit.subtitle_message.font_style }};
+    line-height: calc({{ module.style.after_submit.subtitle_message.line_height }} / 100);
+    letter-spacing: {{ module.style.after_submit.subtitle_message.letter_spacing }}px;
+    text-transform: {{ module.style.after_submit.subtitle_message.font_case }};
+    text-decoration: {{ module.style.after_submit.subtitle_message.text_decoration }};
+    color: rgba({{ module.style.after_submit.subtitle_message.text_color.color|convert_rgb }}, {{ module.style.after_submit.subtitle_message.text_color.opacity/100 }});
+    padding: 0;
+    margin: 0;
+    }
+  .after-payment-messages-{{name}} p.after-payment-additional-message-{{name}}{
+    position: relative;
+    display: block;
+    font-size: {{ module.style.after_submit.text_message.font_size }}px;
+    font-weight: {{ module.style.after_submit.text_message.font_weight }};
+    font-style: {{ module.style.after_submit.text_message.font_style }};
+    line-height: calc({{ module.style.after_submit.text_message.line_height }} / 100);
+    letter-spacing: {{ module.style.after_submit.text_message.letter_spacing }}px;
+    text-transform: {{ module.style.after_submit.text_message.font_case }};
+    text-decoration: {{ module.style.after_submit.text_message.text_decoration }};
+    color: rgba({{ module.style.after_submit.text_message.text_color.color|convert_rgb }}, {{ module.style.after_submit.text_message.text_color.opacity/100 }});
+    padding: 0;
+    margin: 0;
+    }
+  a.after-payment-try-again-{{name}}{
+    position: relative;
+    display: none;
+    flex-direction: column;
+    align-content: center;
+    justify-content: center;
+    align-items: center;
+    width: 210px;
+    height: 38px;
+    font-family: Lato, sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    font-style: normal;
+    letter-spacing: 0px;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: #ffffff;
+    text-align: center;
+    background-color: transparent;
+    border: 1px solid #ffffff;
+    border-radius: 5px;
+    cursor: pointer;
+    padding: 0;
+    margin: 16px 0 0 0;
+    transition: all 0.3s ease-in-out;
+    }
+  a.after-payment-try-again-{{name}}:hover{
+    color: #1B314B;
+    background-color: #ffffff;
+    border: 1px solid #ffffff;
+    }
+    /* Payment method section styling */
+  .payment-method-choice p {
+    color: #fff;              /* White text for "Payment Method:" */
+    font-size: 16px;
+    margin: 0 0 8px 0;
+  }
+
+  /* Fix Payment Method labels */
+  .payment-method-choice label {
+    display: inline-flex;        /* side-by-side with input */
+    align-items: center;         /* vertical center */
+    gap: 20px;                   /* space between radio and text */
+    width: auto !important;      /* don't stretch full width */
+    font-size: 18px;             /* slightly larger */
+    margin-right: 24px;          /* spacing between choices */
+  }
+
+  .payment-method-choice p {
+    color: #fff;                 /* make "Payment Method:" white */
+    font-size: 18px;
+    margin-bottom: 8px;
+  }
+
+  .payment-method-choice input[type="radio"] {
+    width: 25px !important;
+    height: 25px !important;
+  }
+</style>
+<div {% if module.bookmark_section %}id="{{ module.unique_section_id }}"{% endif %} class="section-{{name}}">
+  <div class="inner-section-{{name}}">
+    <div style="display: none;">
+      <p id="getPaymentVersion"></p>
+      <p id="getShippingSameAsBilling"></p>
+    </div>
+    <div id="jasFormBody" class="form-body-{{name}}">
+      <div id="jasFormAfterPayment" class="after-payment-body-{{name}}">
+        <div id="jasAfterPaymentLoader" class="loader">
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="50"></circle>
+          </svg>
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="50"></circle>
+          </svg>
+          <svg viewBox="0 0 200 200">
+            <circle cx="100" cy="100" r="50"></circle>
+          </svg>
+        </div>
+        <div id="jasAfterPaymentMessages" class="after-payment-messages-{{name}}">
+          <p id="mainMessage" class="after-payment-main-message-{{name}}"></p>
+          <p id="additionalMessage" class="after-payment-additional-message-{{name}}"></p>
+          <a id="tryAgain" class="after-payment-try-again-{{name}}" href="/donate">Try Agaian</a>
+        </div>
+      </div>
+      <!--- Pyment Body --->
+      <div id="jasFormPymentBody" class="payment-form-body-{{name}}">
+      <!-- One Time Steps -->
+      <div id="oneTimeSteps" class="one-time-steps-body-{{name}}" style="display: none;">
+        <div id="oneTimeStepsAmount" class="one-time-steps-{{name}} one-time-steps-active">Donation Amount</div>
+        <div class="one-time-steps-divider-{{name}}">/</div>
+        <div id="oneTimeStepsContact" class="one-time-steps-{{name}}">Personal Information</div>
+        <div class="one-time-steps-divider-{{name}}">/</div>
+        <div id="oneTimeStepsPayment" class="one-time-steps-{{name}}">Payment Information</div>
+      </div>
+      <style>
+        .form-steps-body-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 12px;
+          padding: 0;
+          margin: 0;
+          }
+        .form-step-counter-block-{{name}}{
+          position: relative;
+          display: block;
+          text-align: left;
+          padding: 0;
+          margin: 0;
+          }
+        .form-step-counter-body-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 6px;
+          padding: 0;
+          margin: 0;
+          }
+        .current-step-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: {{ module.style.steps.current_step.box_width }}px;
+          height: {{ module.style.steps.current_step.box_height }}px;
+          background-color: rgba({{ module.style.steps.current_step.background_color.color|convert_rgb }}, {{ module.style.steps.current_step.background_color.opacity/100 }});
+          {{ module.style.steps.current_step.borde.css }};
+          border-radius: {{ module.style.steps.current_step.border_radius }}px;
+         {{ module.style.steps.current_step.spacing.css }};
+          }
+        .current-step-{{name}} p{
+          font-size: {{ module.style.steps.font_size }}px;
+          font-weight: {{ module.style.steps.font_weight }};
+          font-style: {{ module.style.steps.font_style }};
+          line-height: calc({{ module.style.steps.line_height }} / 100);
+          letter-spacing: {{ module.style.steps.letter_spacing }}px;
+          color: rgba({{ module.style.steps.current_step.text_color.color|convert_rgb }}, {{ module.style.steps.current_step.text_color.opacity/100 }});
+          margin: 0;
+          }
+        p.surrent-step-of-{{name}}{
+          font-size: {{ module.style.steps.font_size }}px;
+          font-weight: {{ module.style.steps.font_weight }};
+          font-style: {{ module.style.steps.font_style }};
+          line-height: calc({{ module.style.steps.line_height }} / 100);
+          letter-spacing: {{ module.style.steps.letter_spacing }}px;
+          color: rgba({{ module.style.steps.step_name.text_color.color|convert_rgb }}, {{ module.style.steps.step_name.text_color.opacity/100 }});
+          margin: 0;
+          }
+        .total-steps-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: column;
+          justify-content: center;
+          align-items: center;
+          width: {{ module.style.steps.total_steps.box_width }}px;
+          height: {{ module.style.steps.total_steps.box_height }}px;
+          background-color: rgba({{ module.style.steps.total_steps.background_color.color|convert_rgb }}, {{ module.style.steps.total_steps.background_color.opacity/100 }});
+          {{ module.style.steps.total_steps.borde.css }};
+          border-radius: {{ module.style.steps.total_steps.border_radius }}px;
+          {{ module.style.steps.total_steps.spacing.css }};
+          }
+        .total-steps-{{name}} p{
+          font-size: {{ module.style.steps.font_size }}px;
+          font-weight: {{ module.style.steps.font_weight }};
+          font-style: {{ module.style.steps.font_style }};
+          line-height: calc({{ module.style.steps.line_height }} / 100);
+          letter-spacing: {{ module.style.steps.letter_spacing }}px;
+          color: rgba({{ module.style.steps.total_steps.text_color.color|convert_rgb }}, {{ module.style.steps.total_steps.text_color.opacity/100 }});
+          margin: 0;
+          }
+        .form-step-name-{{name}}{
+          position: relative;
+          display: block;
+          text-align: left;
+          padding: 0;
+          margin: 0;
+          }
+        .form-step-name-{{name}} p{
+          font-size: {{ module.style.steps.font_size }}px;
+          font-weight: {{ module.style.steps.font_weight }};
+          font-style: {{ module.style.steps.font_style }};
+          line-height: calc({{ module.style.steps.line_height }} / 100);
+          letter-spacing: {{ module.style.steps.letter_spacing }}px;
+          color: rgba({{ module.style.steps.step_name.text_color.color|convert_rgb }}, {{ module.style.steps.step_name.text_color.opacity/100 }});
+          margin: 0;
+          }
+        .monthly-steps-body-{{name}}{
+          position: relative;
+          display: flex;
+          flex-direction: row;
+          justify-content: flex-start;
+          align-items: center;
+          gap: 12px;
+          padding: 0;
+          margin: 0;
+          }
+        .monthly-step-name-{{name}}{
+          position: relative;
+          display: block;
+          text-align: left;
+          padding: 0;
+          margin: 0;
+          }
+        .monthly-step-name-{{name}} p{
+          font-size: {{ module.style.steps.font_size }}px;
+          font-weight: {{ module.style.steps.font_weight }};
+          font-style: {{ module.style.steps.font_style }};
+          line-height: calc({{ module.style.steps.line_height }} / 100);
+          letter-spacing: {{ module.style.steps.letter_spacing }}px;
+          color: rgba({{ module.style.steps.step_name.text_color.color|convert_rgb }}, {{ module.style.steps.step_name.text_color.opacity/100 }});
+          margin: 0;
+          }
+      </style>
+        <div id="oneTimeMain1" class="one-time-main-{{name}}">
+          <div id="formStep1" class="form-steps-body-{{name}}">
+             <div class="form-step-counter-block-{{name}}">
+                <div class="form-step-counter-body-{{name}}">
+                  <div class="current-step-{{name}}">
+                    <p id="currentStep">1</p>
+                  </div>
+                  <p class="surrent-step-of-{{name}}">of</p>
+                  <div class="total-steps-{{name}}">
+                    <p>5</p>
+                  </div>
+               </div>
+             </div>
+             <div class="form-step-name-{{name}}">
+               <p id="stepName">Donation Amount</p>
+             </div>
+          </div>
+        </div>
+      <div id="monthlyMain1" class="monthly-main-{{name}}">
+      <div id="monthlyStep1" class="monthly-steps-body-{{name}}">
+         <div class="monthly-step-name-{{name}}">
+           <p id="monthlyStepName">Select Monthly Donation Amount</p>
+         </div>
+      </div>
+      </div>
+      
+      <!-- One Time Payment or Subscription -->
+      <div class="onetime-or-monthly-{{name}}">
+        <button type="button" id="oneTimePaymentVersionButton" class="payment-version-{{name}} active-payment-version">One-time</button>
+        <button type="button" id="monthlyPaymentVersionButton" class="payment-version-{{name}}">Monthly</button>
+      </div>
+        
+      <!-- Monthly Amounts -->
+      <div id="monthlyMain2" class="monthly-main-{{name}}">
+      <div id="monthlyAmounts" class="monthly-amounts-{{name}}">
+        {% for item in module.monthly_donation_buttons %}
+        <button type="button" class="monthly-amount-btn" data-url="{{ item.button_link.url.href|escape_url }}" data-open={% if item.button_link.open_in_new_tab %}"new-tab"{% else %}"this-window"{% endif %}>{{ item.button_text }}</button>
+        {% endfor %}
+      </div>
+      <div id="monthlyBottomBody" class="monthly-bottom-body-{{name}}">
+        <button type="button" id="monthlyNextButton" class="monthly-next-button-{{name}}">Next</button>
+      </div>
+      </div>
+      <!-- Step 1: Amount and Description -->
+      <div id="oneTimeMain2" class="one-time-main-{{name}}">
+      <!-- This is required for HubSpot to inject the form -->
+      <div id="hubspotDonationForm" style="display: none;"></div>
+      <div id="oneTimeStep1" class="step active">
+        <form id="oneTimeAmountForm">
+          <div id="predefinedAmounts" class="predefined-amounts-{{name}}">
+            {% for item in module.predefined_amounts_buttons %}
+            <button type="button" class="amount-btn" data-amount="{{ item.amount }}" data-product-id="{{ item.product_id }}" data-sku="{{item.sku}}">{{ item.price_to_show_on_button }}</button>
+            {% endfor %}
+          </div>
+          <div id="customAmountBody" class="custom-amount-body-{{name}}">
+            <label for="custom-amount">Custom Amount:</label>
+            <input type="number" id="customAmount" name="custom-amount" placeholder="Custom Amount (in USD)">
+          </div>
+          <!-- HubSpot Fields will be inserted here -->
+          <div class="hubspot-fields-placeholder" data-step="1"></div>
+          <div class="get-total-{{name}}">
+            <p>Total: $<span id="getTotal">0.00</span></p>
+          </div>
+          <input type="hidden" id="setAmount" name="set-amount">
+          <input type="hidden" id="donationProductId" name="donation-product-id">
+          <input type="hidden" id="donationSku" name="donation-sku">
+          <input type="hidden" id="isCustomDonation" name="is-custom donation">
+          <button type="submit" id="step1ButtonNext">Next</button>
+        </form>
+      </div>
+      <!-- Step 2: Contact Info -->
+      <div id="oneTimeStep2" class="step">
+        <form id="oneTimeContactForm">
+          <!-- HubSpot Fields will be inserted here -->
+          <div class="hubspot-fields-placeholder" data-step="2"></div>
+          <div class="back-next-buttons-body-{{name}}">
+            <button type="button" id="step2ButtonBack">Back</button>
+            <button type="submit" id="step2ButtonNext">Next</button>
+          </div>
+        </form>
+      </div>
+      <!-- Step 3: Address Info -->
+      <div id="oneTimeStep3" class="step">
+        <form id="oneTimeAddressForm">
+          <!-- HubSpot Fields will be inserted here -->
+          <div class="hubspot-fields-placeholder" data-step="3"></div>
+          <div class="back-next-buttons-body-{{name}}">
+            <button type="button" id="step3ButtonBack">Back</button>
+            <button type="submit" id="step3ButtonNext">Next</button>
+          </div>
+        </form>
+      </div>
+      <style>
+        #oneTimeStep4 form label.shipping-address-checkbox__label {
+          position: relative;
+          display: flex;
+          align-items: center;
+          justify-content: flex-start;
+          height: 21px;
+          font-family: Lato, sans-serif;
+          font-size: {{ module.style.form_lables.font_size }}px;
+          font-weight: {{ module.style.form_lables.font_weight }};
+          font-style: {{ module.style.form_lables.font_style }};
+          line-height: calc({{ module.style.form_lables.line_height }} / 100);
+          letter-spacing: {{ module.style.form_lables.letter_spacing }}px;
+          text-transform: {{ module.style.form_lables.font_case }};
+          text-decoration: {{ module.style.form_lables.text_decoration }};
+          color: rgba({{ module.style.form_lables.text_color.color|convert_rgb }}, {{ module.style.form_lables.text_color.opacity/100 }});
+          -webkit-user-select: none;
+          -moz-user-select: none;
+          -ms-user-select: none;
+          user-select: none;
+          cursor: pointer;
+          padding: 0 0 0 35px;
+          margin: 0 0 24px 0;
+        }
+        #oneTimeStep4 form label.shipping-address-checkbox__label input {
+          position: absolute;
+          opacity: 0;
+          cursor: pointer;
+          height: 0;
+          width: 0;
+        }
+        #oneTimeStep4 form span.shipping-address__custom-checkmark {
+          position: absolute;
+          top: 0;
+          left: 0;
+          height: 25px;
+          width: 25px;
+          background-color: transparent;
+          border: 1px solid #ffffff;
+          border-radius: 5px;
+        }
+        #oneTimeStep4 form label.shipping-address-checkbox__label:hover input ~ .shipping-address__custom-checkmark {
+          background-color: rgba(255, 255, 255, 0.3);
+        }
+        #oneTimeStep4 form label.shipping-address-checkbox__label input:checked ~ .shipping-address__custom-checkmark {
+          background-color: #ffffff;
+        }
+        #oneTimeStep4 .shipping-address__custom-checkmark:after {
+          content: "";
+          position: absolute;
+          display: none;
+        }
+        #oneTimeStep4 .shipping-address-checkbox__label input:checked ~ .shipping-address__custom-checkmark:after {
+          display: block;
+        }
+       .shipping-address-checkbox__label .shipping-address__custom-checkmark:after {
+          left: 8px;
+          top: 4px;
+          width: 7px;
+          height: 12px;
+          border: solid #1B314B;
+          border-width: 0 3px 3px 0;
+          -webkit-transform: rotate(45deg);
+          -ms-transform: rotate(45deg);
+          transform: rotate(45deg);
+        }
+      </style>
+      <!-- Step 4: Shipping Address -->
+      <div id="oneTimeStep4" class="step">
+        <form id="oneTimeShippingForm">
+          <div id="customFormField">
+            <label class="shipping-address-checkbox__label">Same as Billing Address
+              <input id="shippingAddressCheckbox" type="checkbox" checked="checked">
+              <span class="shipping-address__custom-checkmark"></span>
+            </label>
+          </div>
+          <!-- HubSpot Fields will be inserted here -->
+          <div class="hubspot-fields-placeholder" data-step="4"></div>
+          <div class="back-next-buttons-body-{{name}}">
+              <button type="button" id="step4ButtonBack">Back</button>
+              <button type="submit" id="step4ButtonNext">Next</button>
+            </div>
+        </form>
+      </div>
+      <!-- Step 5: Payment -->
+      <div id="oneTimeStep5" class="step">
+        <form id="oneTimePaymentForm">
+          <!-- Payment Method -->
+          <div class="payment-method-choice" style="margin: 0 0 16px 0;">
+            <p style="margin:0 0 8px 0;">Payment Method:</p>
+            <label style="margin-right:16px;">
+              <input type="radio" name="payment_method" value="stripe" checked> Credit Card
+            </label>
+            <label>
+              <input type="radio" name="payment_method" value="paypal"> PayPal
+            </label>
+          </div>
+          <!-- END Payment Method -->
+          <!-- START STRIPE WRAP -->
+          <div id="stripe-section">
+            <label for="card-element">Card number<span class="required-asterisk">*</span></label>
+            <div id="card-element"></div>
+            <div id="missing-card-number" role="alert"></div>
+
+            <div style="display: flex; flex-direction: row; gap: 32px;">
+              <div style="position: relative; display: block; width: 100%;">
+                <label for="card-expiry">Expiration<span class="required-asterisk">*</span></label>
+                <div id="card-expiry"></div>
+                <div id="missing-card-expire" role="alert"></div>
+              </div>
+              <div style="position: relative; display: block; width: 100%;">
+                <label for="card-csv">CVC<span class="required-asterisk">*</span></label>
+                <div id="card-csv"></div>
+                <div id="missing-card-csv" role="alert"></div>
+              </div>
+            </div>
+
+            <!-- keep FINAL placeholder outside or inside per your preference -->
+            <!-- <div class="hubspot-fields-placeholder" data-step="FINAL"></div> -->
+
+            <div class="back-next-buttons-body-{{name}}">
+              <button type="button" id="step5ButtonBack">Back</button>
+              <button type="submit" id="step5ButtonNext">Donate Now</button>
+            </div>
+          </div>
+          <!-- END STRIPE WRAP -->
+          <div id="paypal-section" style="display:none;">
+            <div id="paypal-button-container"></div>
+          </div>
+          </form>
+          </div>
+
+          <!-- Add PayPal SDK -->
+          <script src="https://www.paypal.com/sdk/js?client-id=AYP0WJPTRSVqu4Mgn9uj7PjhpcehGyyUnIW0Mlo43ZZsD1ira6mKUB2Td8YjH5zWxN6tLrWxH8uwD2ij&currency=USD&intent=capture"></script>
+
+          <!-- Init PayPal Buttons -->
+          <script>
+          (function () {
+            function getAmount() {
+              const setAmount = document.getElementById('setAmount')?.value;
+              const totalText = document.getElementById('getTotal')?.innerText;
+              const val = setAmount || totalText || '0';
+              const num = parseFloat(String(val).replace(/[^0-9.]/g, ''));
+              return isNaN(num) ? '0.00' : num.toFixed(2);
+            }
+            function getEmail() {
+              const el = document.querySelector('input[name="email"], input[type="email"]');
+              return el && el.value ? el.value : undefined;
+            }
+
+            const donateBtn = document.getElementById('step5ButtonNext');
+            function disableDonate(disabled) { if (donateBtn) donateBtn.disabled = !!disabled; }
+
+            if (window.paypal && document.getElementById('paypal-button-container')) {
+              paypal.Buttons({
+                fundingSource: paypal.FUNDING.PAYPAL,
+                style: { layout: 'horizontal', label: 'paypal' },
+
+                onClick: function () {
+                  const amt = getAmount();
+                  if (parseFloat(amt) <= 0) {
+                    alert('Please set a valid donation amount first.');
+                    return false;
+                  }
+                  disableDonate(true);
+                  return true;
+                },
+
+                createOrder: function (data, actions) {
+                  return actions.order.create({
+                    intent: 'CAPTURE',
+                    purchase_units: [{
+                      description: 'One-time donation',
+                      amount: { currency_code: 'USD', value: getAmount() }
+                    }],
+                    payer: { email_address: getEmail() }
+                  });
+                },
+
+                onApprove: function (data, actions) {
+                  return actions.order.capture().then(function (order) {
+                    console.log('PayPal capture:', order);
+                    window.location.href = '/thank-you/?paypal=1&order=' + encodeURIComponent(order.id);
+                  }).finally(function () {
+                    disableDonate(false);
+                  });
+                },
+
+                onCancel: function () { disableDonate(false); },
+                onError: function (err) {
+                  console.error('PayPal error:', err);
+                  alert('PayPal could not complete the payment. Please try again or use Credit Card.');
+                  disableDonate(false);
+                }
+              }).render('#paypal-button-container');
+            }
+          })();
+          </script>
+          <!-- Init PayPal End -->
+      </div>
+      </div>
+      <!--- Payment Body END --->
+    </div>
+  </div>
+  <!-- Alert If There Is No Amount -->
+  <div class="popup-container-{{name}}">
+    <div class="overlay-{{name}}" id="noAmount">
+      <div class="popup-container-inner-{{name}}">
+        <div class="popup-{{name}}">
+          <p>To proceed, please select a predefined amount (e.g., $50, $100) or enter your own custom amount in USD.</p>
+          <div class="buttons-body-{{name}}">
+            <button type="button" class="button-true-{{name}}" id="okNoAmount">OK</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  hbspt.forms.create({
+    portalId: "23773134",
+    formId: "{{ module.select_hubspot_form.form_id }}",
+    target: "#hubspotDonationForm",
+    css: '',
+    onFormReady: function($form) {
+    $form.attr('id', 'hsAutoForm');
+    // Add this block below:
+    $('#hsAutoForm .hs-form-field').each(function () {
+  const $wrapper = $(this);
+  const helpText = $wrapper.find('.hs-field-desc').text().trim();
+
+  const stepMatch = helpText.match(/step\s*=\s*(\d+)/i);
+  if (stepMatch) {
+    const stepNumber = parseInt(stepMatch[1]);
+    const $targetPlaceholder = $(`.hubspot-fields-placeholder[data-step="${stepNumber}"]`);
+
+    if ($targetPlaceholder.length) {
+      $targetPlaceholder.append($wrapper);
+    }
+  }
+});
+    // Move legal consent section to step FINAL
+const $legalConsent = $('#hsAutoForm .legal-consent-container');
+const $finalPlaceholder = $('.hubspot-fields-placeholder[data-step="FINAL"]');
+
+if ($legalConsent.length && $finalPlaceholder.length) {
+  $finalPlaceholder.append($legalConsent);
+}
+const $richText = $('.hs-richtext').detach();
+if ($richText.length) {
+  $finalPlaceholder.append($richText);
+}
+   $('#hubspotDonationForm form').css({ display: 'none' });
+    $('#hsAutoForm .hs-field-desc').hide();
+    // Hide certain fields by input name
+    const hiddenFields = ['donation_amount', 'donation_type', 'new_donation', 'last_donation_date'];
+hiddenFields.forEach(name => {
+  const field = $(`[name="${name}"]`).closest('.hs-form-field');
+  if (field.length) field.hide();
+});
+  }
+  });
+  
+  
+  // Remove errors on focus
+$(document).on('focus', '.step.active [required]', function () {
+  const $field = $(this);
+  const $wrapper = $field.closest('.hs-form-field');
+  if ($wrapper.length) {
+    $wrapper.removeClass('error');
+    $wrapper.find('.hs-error-msgs').remove();
+  }
+});
+
+// Remove errors on input (when typing)
+$(document).on('input', '.step.active [required]', function () {
+  const $field = $(this);
+  const $wrapper = $field.closest('.hs-form-field');
+  if ($wrapper.length && $field.val().trim() !== '') {
+    $wrapper.removeClass('error');
+    $wrapper.find('.hs-error-msgs').remove();
+  }
+});
+</script>
+<script src="https://js.stripe.com/v3/"></script>
+<script>
+  let selectedPaymentVersion = 'one-time';
+  document.getElementById('getPaymentVersion').innerHTML = selectedPaymentVersion;
+  
+  const oneTimeBtn = document.getElementById('oneTimePaymentVersionButton');
+  const monthlyBtn = document.getElementById('monthlyPaymentVersionButton');
+  const oneTimeMain1 = document.getElementById('oneTimeMain1');
+  const monthlyMain1 = document.getElementById('monthlyMain1');
+  const oneTimeMain2 = document.getElementById('oneTimeMain2');
+  const monthlyMain2 = document.getElementById('monthlyMain2');
+  
+  // Handle click for the one-time button
+  oneTimeBtn.addEventListener('click', () => {
+    monthlyMain1.style.display = 'none';
+    oneTimeMain1.style.display = 'block';
+    monthlyMain2.style.display = 'none';
+    oneTimeMain2.style.display = 'block';
+    if (!oneTimeBtn.classList.contains('active-payment-version')) {
+      // Update the buttons' active class
+      oneTimeBtn.classList.add('active-payment-version');
+      monthlyBtn.classList.remove('active-payment-version');    
+      // Update the selected payment version based on the button class
+      selectedPaymentVersion = 'one-time';
+      document.getElementById('getPaymentVersion').innerHTML = selectedPaymentVersion;
+    }
+  });
+  // Handle click for the monthly button
+  monthlyBtn.addEventListener('click', () => {
+    monthlyMain1.style.display = 'block';
+    oneTimeMain1.style.display = 'none';
+    monthlyMain2.style.display = 'block';
+    oneTimeMain2.style.display = 'none';
+    if (!monthlyBtn.classList.contains('active-payment-version')) {
+      // Update the buttons' active class
+      monthlyBtn.classList.add('active-payment-version');
+      oneTimeBtn.classList.remove('active-payment-version');
+      // Update the selected payment version based on the button class
+      selectedPaymentVersion = 'monthly';
+      document.getElementById('getPaymentVersion').innerHTML = selectedPaymentVersion;
+    }
+  });
+  
+  /*** VALIDATE HUBSPOT FORM FIELDS ***/
+  function validateAllRequiredHubSpotFields() {
+  const $currentStep = $('.step.active');
+  let isHsValid = true;
+
+  $currentStep.find('[required]:visible').each(function () {
+    const $field = $(this);
+    const value = $field.val();
+    const $wrapper = $field.closest('.hs-form-field');
+
+    $wrapper.removeClass('error');
+    $wrapper.find('.hs-error-msgs').remove();
+
+    if (!value || value.trim() === '') {
+      $wrapper.addClass('error');
+      $wrapper.append(`
+        <ul class="hs-error-msgs">
+          <li><label class="hs-error-msg">Please complete this required field</label></li>
+        </ul>
+      `);
+      isHsValid = false;
+    }
+  });
+
+  return isHsValid;
+}
+
+  
+  /*** START WITH MAIN CODE ***/
+ const checkPaymentVersion = async () => {
+   if(getPaymentVersion == 'one-time'){
+   // Swich End Points depending if it is One-time or Monthly
+   let setEndPoint = 'https://one-time-donations-53e8fb8377dd.herokuapp.com/';
+   console.log(setEndPoint);
+   const {publishableKey} = await fetch(setEndPoint).then((r) => r.json());
+   if (!publishableKey) {
+     addMessage(
+       'No publishable key returned from the server. Please check `.env` and try again'
+     );
+     alert('Please set your Stripe publishable API key in the .env file');
+   }
+   const stripe = Stripe(publishableKey);
+   const elements = stripe.elements();
+   let cardNumberElement;
+   let cardExpiryElement;
+   let cardCvcElement;
+   
+   // Prepare Stripe Elelents
+       cardNumberElement = elements.create('cardNumber',{
+         showIcon: true,
+         style: {
+           base: {
+             iconColor: '{{ module.style.form_input_select.text_color.color }}',
+            color: '{{ module.style.form_input_select.text_color.color }}',
+            fontWeight: '{{ module.style.form_input_select.font_weight }}',
+            fontFamily: 'Lato',
+            fontSize: '{{ module.style.form_input_select.font_size }}px',
+            fontSmoothing: 'antialiased',
+             ':-webkit-autofill': {
+               color: '{{ module.style.form_input_select.text_color.color }}',
+             },
+             '::placeholder': {
+               fontWeight: '{{ module.style.form_placeholders.font_weight }}',
+               color: '{{ module.style.form_placeholders.text_color.color }}',
+             },
+           },
+           invalid: {
+             iconColor: '#c20000',
+             color: '#c20000',
+           },
+         },
+       });
+       cardNumberElement.mount('#card-element');
+       // Remove warning on focus if there are Creadit Card Number Issues
+       cardNumberElement.on('focus', function(event) {
+         document.getElementById('missing-card-number').style.display = "none";
+       });
+       cardExpiryElement = elements.create('cardExpiry',{
+         style: {
+           base: {
+             iconColor: '{{ module.style.form_input_select.text_color.color }}',
+             color: '{{ module.style.form_input_select.text_color.color }}',
+             fontWeight: '{{ module.style.form_input_select.font_weight }}',
+             fontFamily: 'Lato',
+             fontSize: '{{ module.style.form_input_select.font_size }}px',
+             fontSmoothing: 'antialiased',
+             ':-webkit-autofill': {
+               color: '{{ module.style.form_input_select.text_color.color }}',
+             },
+             '::placeholder': {
+               fontWeight: '{{ module.style.form_placeholders.font_weight }}',
+               color: '{{ module.style.form_placeholders.text_color.color }}',
+             },
+           },
+           invalid: {
+             color: '#c20000',
+           },
+         },
+       });
+       cardExpiryElement.mount('#card-expiry');
+       // Remove warning on focus if there are Creadit Card Expiration Date Issues 
+       cardExpiryElement.on('focus', function(event) {
+         document.getElementById('missing-card-expire').style.display = "none";
+       });
+       cardCvcElement = elements.create('cardCvc',{
+         style: {
+           base: {
+             color: '{{ module.style.form_input_select.text_color.color }}',
+            fontWeight: '{{ module.style.form_input_select.font_weight }}',
+            fontFamily: 'Lato',
+            fontSize: '{{ module.style.form_input_select.font_size }}px',
+            fontSmoothing: 'antialiased',
+             ':-webkit-autofill': {
+               color: '{{ module.style.form_input_select.text_color.color }}',
+             },
+             '::placeholder': {
+               fontWeight: '{{ module.style.form_placeholders.font_weight }}',
+               color: '{{ module.style.form_placeholders.text_color.color }}',
+             },
+           },
+           invalid: {
+             color: '#c20000',
+           },
+         },
+       });
+       cardCvcElement.mount('#card-csv');
+       // Remove warning on focus if there are Creadit Card CVC Issues
+       cardCvcElement.on('focus', function(event) {
+         document.getElementById('missing-card-csv').style.display = "none";
+       });
+   
+     // Select all the predefined amount buttons
+     const amountButtons = document.querySelectorAll('.amount-btn');
+     const amountInput = document.getElementById('customAmount');
+     const donationProductIdInput = document.getElementById('donationProductId');
+     const donationSkuInput = document.getElementById('donationSku');
+     const donationIsCustomDonation = document.getElementById('isCustomDonation');
+     const setAmount = document.getElementById('setAmount');
+     // Add event listener for each button
+     amountButtons.forEach(button => {
+       button.addEventListener('click', function() {
+         var predefinedAmount = parseFloat(this.getAttribute('data-amount')).toFixed(2);
+         document.getElementById('getTotal').innerHTML = predefinedAmount;
+         setAmount.value = predefinedAmount;
+         donationProductIdInput.value = this.getAttribute('data-product-id');
+         donationSkuInput.value = this.getAttribute('data-sku');
+         // Remove 'selected' class from all buttons first
+         amountButtons.forEach(btn => btn.classList.remove('selected-amount-btn'));
+         // Add 'selected' class to the clicked button
+         this.classList.add('selected-amount-btn');
+         donationIsCustomDonation.value = 'No';
+         amountInput.value = null;
+       });
+     });
+     // Add event listener to the amount input to deselect buttons on manual input
+     amountInput.addEventListener('input', function() {
+       // If a custom amount is entered, remove the 'selected' class from all buttons
+       if (this.value) {
+         var customAmount = parseFloat(this.value).toFixed(2);
+         document.getElementById('getTotal').innerHTML = customAmount;
+         setAmount.value = customAmount;
+         donationProductIdInput.value = "{{ module.custom_amount.product_id }}";
+         donationSkuInput.value = "{{ module.custom_amount.sku }}";
+         amountButtons.forEach(button => button.classList.remove('selected-amount-btn'));
+         donationIsCustomDonation.value = 'Yes';
+       }
+     });
+     
+   /* STEP 1 - Donation Amount */
+   const amountForm = document.getElementById('oneTimeAmountForm');
+   amountForm.noValidate = true;
+     document.getElementById('oneTimeAmountForm').addEventListener('submit', (event) => {
+       event.preventDefault();
+        let isValid = true;
+       if(setAmount.value <= 0){
+         {showNoAmount()};
+         function showNoAmount() {
+           document.getElementById("noAmount").style.display = "block";
+         }
+         document.getElementById("okNoAmount").onclick = function(){okNoAmount()};
+         function okNoAmount() {
+           document.getElementById("noAmount").style.display = "none";
+         }
+         isValid = false;
+       }
+       if (!isValid) return;
+       
+       const hsValid = validateAllRequiredHubSpotFields();
+       if (!hsValid) return;
+       
+       // Move to step 2
+       document.getElementById('oneTimeStep1').classList.remove('active');
+       document.getElementById('oneTimeStep2').classList.add('active');
+       document.getElementById('currentStep').innerText = "2";
+       document.getElementById('stepName').innerText = "Personal Information";
+     });
+     /* STEP 2 - Personal Info */
+     const contactForm = document.getElementById('oneTimeContactForm');
+     contactForm.noValidate = true;
+     contactForm.addEventListener('submit', (event) => {
+       event.preventDefault();
+       const hsPersonalValid = validateAllRequiredHubSpotFields();
+       if (!hsPersonalValid) return;
+       // Move to step 3
+       document.getElementById('oneTimeStep2').classList.remove('active');
+       document.getElementById('oneTimeStep3').classList.add('active');
+
+       document.getElementById('currentStep').innerText = "3";
+       document.getElementById('stepName').innerText = "Billing Details";
+     });
+     // Handle back button to step 1
+     document.getElementById('step2ButtonBack').addEventListener('click', () => {
+       // Move back to step 1
+       document.getElementById('oneTimeStep2').classList.remove('active');
+       document.getElementById('oneTimeStep1').classList.add('active');
+       document.getElementById('currentStep').innerText = "1";
+       document.getElementById('stepName').innerText = "Donation Amount";
+     });
+   
+     /* STEP 3 - Billing Info */
+     const addressForm = document.getElementById('oneTimeAddressForm');
+     addressForm.noValidate = true;
+     
+     function toggleBillingStateRequirement() {
+      const $countryField = $('[name="donation_billing_country"]');
+      const $stateFieldWrapper = $('[name="donation_billing_state"]').closest('.hs-form-field');
+      const $stateField = $('[name="donation_billing_state"]');
+      const $stateLabel = $stateFieldWrapper.find('label');
+      const selectedCountry = $countryField.val();
+
+      if (selectedCountry === 'US') {
+        $stateFieldWrapper.show();
+        $stateField.prop('required', true);
+        $stateLabel.append('<span class="hs-form-required">*</span>');
+      } else {
+        $stateFieldWrapper.hide();
+        $stateField.prop('required', false);
+        $stateFieldWrapper.removeClass('error');
+        $stateFieldWrapper.find('.hs-error-msgs').remove();
+        $stateLabel.find('.hs-form-required').remove();
+      }
+    }
+
+  // 👂 On document ready and on change
+  $(document).ready(function () {
+    toggleBillingStateRequirement();
+    $(document).on('change', '[name="donation_billing_country"]', toggleBillingStateRequirement);
+  });
+     addressForm.addEventListener('submit', (event) => {
+       event.preventDefault();
+       const hsBillingValid = validateAllRequiredHubSpotFields();
+       if (!hsBillingValid) return;
+       // Move to step 4
+       document.getElementById('oneTimeStep3').classList.remove('active');
+       document.getElementById('oneTimeStep4').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsContact').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsPayment').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "4";
+       document.getElementById('stepName').innerText = "Shipping Information";
+     });
+     // Handle back button 3
+     document.getElementById('step3ButtonBack').addEventListener('click', () => {
+       // Move back to step 2
+       document.getElementById('oneTimeStep3').classList.remove('active');
+       document.getElementById('oneTimeStep2').classList.add('active');
+       /*
+      document.getElementById('oneTimeStepsPayment').classList.remove('one-time-steps-active');
+      document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+      */
+       document.getElementById('currentStep').innerText = "2";
+       document.getElementById('stepName').innerText = "Personal Information";
+     });
+   
+     /* STEP 4 - Shipping */
+     const shippingForm = document.getElementById('oneTimeShippingForm');
+     shippingForm.noValidate = true;
+     
+     const shippingSameAsBillingCheckbox = document.getElementById("shippingAddressCheckbox");
+     const printShippingSameAsBilling = document.getElementById("getShippingSameAsBilling");
+     printShippingSameAsBilling.innerText = 'Yes';
+
+     // Cache step 4 container
+     const $step4Placeholder = $('.hubspot-fields-placeholder[data-step="4"]');
+
+     // Dynamically select all HubSpot fields in step 4
+     const $allStep4Fields = $step4Placeholder.find('.hs-form-field');
+     const $shippingStateField = $allStep4Fields.filter(function () {
+       return $(this).find('[name="donation_shipping_state"]').length > 0;
+     });
+     const $shippingCountryField = $allStep4Fields.filter(function () {
+       return $(this).find('[name="donation_shipping_country"]').length > 0;
+     });
+     const $otherShippingFields = $allStep4Fields.not($shippingStateField);
+
+     function toggleShippingFields(checked) {
+       if (checked) {
+         $step4Placeholder.hide();
+         $otherShippingFields.hide().find('[name]').removeAttr('required');
+         $shippingStateField.hide().find('[name]').removeAttr('required');
+         printShippingSameAsBilling.innerText = 'Yes';
+       } else {
+         $step4Placeholder.show();
+         $otherShippingFields.show().find('[name]').attr('required', 'required');
+         printShippingSameAsBilling.innerText = 'No';
+         toggleShippingState(); // handles conditional state visibility
+       }
+     }
+
+     function toggleShippingState() {
+       const selectedCountry = $shippingCountryField.find('select').val();
+       const $stateInput = $shippingStateField.find('[name]');
+       const $stateLabel = $shippingStateField.find('label');
+       if (selectedCountry === 'US') {
+         $shippingStateField.show();
+         $stateInput.attr('required', 'required');
+         // ✅ Only add if not already there
+        if ( $stateLabel.find('.hs-form-required').length === 0) {
+           $stateLabel.append('<span class="hs-form-required">*</span>');
+        }
+       } else {
+         $shippingStateField.hide();
+         $stateInput.removeAttr('required');
+         $stateLabel.find('.hs-form-required').remove();
+       }
+     }
+     
+     // Listen to checkbox change
+     shippingSameAsBillingCheckbox.addEventListener('change', () => {
+       toggleShippingFields(shippingSameAsBillingCheckbox.checked);
+     });
+
+     // React to country change
+     $shippingCountryField.find('select').on('change', () => {
+       toggleShippingState();
+     });
+
+     // Run initial state
+     toggleShippingFields(shippingSameAsBillingCheckbox.checked);
+
+     // If Validation is Successful, go to last step
+     shippingForm.addEventListener('submit', (event) => {
+       event.preventDefault();
+       const hsShippingValid = validateAllRequiredHubSpotFields();
+       if (!hsShippingValid) return;
+       // Move to step 5
+       document.getElementById('oneTimeStep4').classList.remove('active');
+       document.getElementById('oneTimeStep5').classList.add('active');
+       /*
+       document.getElementById('oneTimeStepsContact').classList.remove('one-time-steps-active');
+       document.getElementById('oneTimeStepsPayment').classList.add('one-time-steps-active');
+       */
+       document.getElementById('currentStep').innerText = "5";
+       document.getElementById('stepName').innerText = "Payment Information";
+     });
+     
+     // Handle back button 4
+     document.getElementById('step4ButtonBack').addEventListener('click', () => {
+       // Move back to step 3
+       document.getElementById('oneTimeStep4').classList.remove('active');
+       document.getElementById('oneTimeStep3').classList.add('active');
+       /*
+      document.getElementById('oneTimeStepsPayment').classList.remove('one-time-steps-active');
+      document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+      */
+       document.getElementById('currentStep').innerText = "3";
+       document.getElementById('stepName').innerText = "Billing Details";
+     });
+   
+    // Handle back button 5
+     document.getElementById('step5ButtonBack').addEventListener('click', () => {
+       // Move back to step 4
+       document.getElementById('oneTimeStep5').classList.remove('active');
+       document.getElementById('oneTimeStep4').classList.add('active');
+       /*
+      document.getElementById('oneTimeStepsPayment').classList.remove('one-time-steps-active');
+      document.getElementById('oneTimeStepsContact').classList.add('one-time-steps-active');
+      */
+       document.getElementById('currentStep').innerText = "4";
+       document.getElementById('stepName').innerText = "Billing Details";
+     });
+     
+     
+     const paymentForm = document.getElementById('oneTimePaymentForm');
+     paymentForm.noValidate = true;
+     let submittedPaymentForm = false;
+     paymentForm.addEventListener('submit', async (e) => {
+       // Create After Payment
+       let paymentBody = document.getElementById("jasFormPymentBody");
+       let afterPayment = document.getElementById("jasFormAfterPayment");
+       let loader = document.getElementById("jasAfterPaymentLoader");
+       let afterPaymentMessagesBody = document.getElementById("jasAfterPaymentMessages");
+       let setMainMessage = document.getElementById("mainMessage");
+       let setAdditionalMessage = document.getElementById("additionalMessage");
+       let tryAgainButton = document.getElementById("tryAgain");
+
+       function showAfterPayment() {
+         paymentBody.style.display = "none";
+         afterPayment.style.display = "flex";
+         loader.style.display = "block";
+       }
+       function hideLoader(mainMessage, additionalMessage, showRetry) {
+         setTimeout(() => {
+           loader.style.display = "none";
+           afterPaymentMessagesBody.style.display = "flex";
+           setMainMessage.innerText = mainMessage;
+           setAdditionalMessage.innerText = additionalMessage;
+           tryAgainButton.style.display = showRetry ? "flex" : "none";
+         }, 7000);
+       }
+       e.preventDefault();
+       // 🚦 If PayPal is selected, do NOT run Stripe flow
+        const selectedMethod = document.querySelector('input[name="payment_method"]:checked')?.value;
+        if (selectedMethod === 'paypal') {
+          // Just guide the user to the PayPal button
+          document.getElementById('paypal-button-container')?.scrollIntoView({ behavior: 'smooth', block: 'center' });
+          return; // Let the PayPal button handle the payment
+        }
+        // ... keep the rest of your existing Stripe flow (showAfterPayment, card validations, etc.)
+       showAfterPayment();
+       
+       /* VALIDATE CARD NUMBER */
+       var checkCardNumber = document.getElementById('card-element');
+       var errorCardNumber = document.getElementById('missing-card-number');
+       if(checkCardNumber.classList.contains('StripeElement--complete')){
+         errorCardNumber.style.display = "none";
+       }else if(checkCardNumber.classList.contains('StripeElement--invalid')){
+         errorCardNumber.style.display = "block";
+         errorCardNumber.textContent = "Insert valid credit card number.";
+         return;
+       }else if(checkCardNumber.classList.contains('StripeElement--empty')){
+         errorCardNumber.style.display = "block";
+         errorCardNumber.textContent = "Please insert credit card number.";
+         return;
+       }
+       /* VALIDATE CARD EXPIRATION DATE */
+       var checkCardExp = document.getElementById('card-expiry');
+       var errorExpElement = document.getElementById('missing-card-expire');
+       if(checkCardExp.classList.contains('StripeElement--complete')){
+         errorExpElement.style.display = "none";
+       }else if(checkCardExp.classList.contains('StripeElement--invalid')){
+         errorExpElement.style.display = "block";
+         errorExpElement.textContent = "Insert valid card's expiration date.";
+         return;
+       }else if(checkCardExp.classList.contains('StripeElement--empty')){
+         errorExpElement.style.display = "block";
+         errorExpElement.textContent = "Please insert card's expiration date.";
+         return;
+       }
+       /* VALIDATE CSV */
+       var checkCardCsv = document.getElementById('card-csv');
+       var errorCsvElement = document.getElementById('missing-card-csv');
+       if(checkCardCsv.classList.contains('StripeElement--complete')){
+         errorCsvElement.style.display = "none";
+       }else if(checkCardCsv.classList.contains('StripeElement--invalid')){
+         errorCsvElement.style.display = "block";
+         errorCsvElement.textContent = "Insert valid card's security code.";
+         return;
+       }else if(checkCardCsv.classList.contains('StripeElement--empty')){
+         errorCsvElement.style.display = "block";
+         errorCsvElement.textContent = "Please insert card's security code.";
+         return;
+       }
+       
+       function getFieldValue(selector) {
+         const $field = $(selector);
+         // Handle checkboxes/radios
+         if ($field.is(':checkbox') || $field.is(':radio')) {
+           const $checked = $field.filter(':checked');
+           return $checked.length ? $checked.val().trim() : "";
+         }
+         // Default case for input/select/textarea
+         return $field.length ? ($field.val() || "").trim() : "";
+       }
+       
+       const customerFirstName = getFieldValue('[name="firstname"]');
+       const customerLastName = getFieldValue('[name="lastname"]');
+       const customerFullName = customerFirstName + ' ' + customerLastName;
+       const customerEmail = getFieldValue('[name="email"]');
+       const customerPhoneNumber = getFieldValue('[name="phone"]');
+       const getAddress = {
+         street1: getFieldValue('[name="donation_billing_street_address"]'),
+         street2: "",
+         city: getFieldValue('[name="donation_billing_town_city"]'),
+         state: getFieldValue('[name="donation_billing_state"]'),
+         zip: getFieldValue('[name="donation_billing_zip"]'),
+         country: getFieldValue('[name="donation_billing_country"]')
+       };
+       const setJsonAddresses = JSON.stringify(getAddress);
+       console.log(setJsonAddresses);
+       
+       function getAShippingddressData() {
+        // Get billing address values
+        const billingAddress = {
+            street1: getFieldValue('[name="donation_billing_street_address"]'),
+            street2: "",
+            city: getFieldValue('[name="donation_billing_town_city"]'),
+            state: getFieldValue('[name="donation_billing_state"]'),
+            zip: getFieldValue('[name="donation_billing_zip"]'),
+            country: getFieldValue('[name="donation_billing_country"]')
+        };
+
+        // If "Same as Billing" is checked, return billing address
+        if (printShippingSameAsBilling.innerText == 'Yes') {
+            return billingAddress;
+        } else if(printShippingSameAsBilling.innerText == 'No') {
+            // Otherwise, get shipping address values
+            return {
+                street1: getFieldValue('[name="donation_shipping_street_address"]'),
+                street2: "",
+                city: getFieldValue('[name="donation_shipping_town_city"]'),
+                state: getFieldValue('[name="donation_shipping_state"]'),
+                zip: getFieldValue('[name="donation_shipping_zip"]'),
+                country: getFieldValue('[name="donation_shipping_country"]')
+            };
+        }
+    }
+       const setShippingAddress = JSON.stringify(getAShippingddressData());
+       const getTotalAmount = document.getElementById('getTotal').innerText;
+       
+       
+       /*** SUBMIT ONE-TIME DONATION ***/
+       /*** FINALY - call the server, make payment intent and store client secret ***/
+       // Get ALL VALUES you want to pass to Stripe
+       const getDonationType = "{{ donation_type }}"
+       const selectedProductId = document.getElementById('donationProductId').value;
+       const selectedSku = document.getElementById('donationSku').value;
+       const selectedAmount = document.getElementById('setAmount').value;
+       const selectedIsCustomDonation = document.getElementById('isCustomDonation').value;
+       const selectedHearAboutUs = getFieldValue('[name="how_did_you_hear_about_us_"]').toUpperCase();
+       
+      const getOrderItems = [
+        {
+          sku: selectedSku,
+          quantity: "1"
+        }
+      ];
+       const setJsonOrderItems = JSON.stringify(getOrderItems);
+       
+       const {error: backendError, clientSecret} = await fetch(
+         'https://one-time-donations-53e8fb8377dd.herokuapp.com/create-payment-intent',
+         {
+           method: 'POST',
+           headers: {
+             'Content-Type': 'application/json',
+           },
+           body: JSON.stringify({
+             currency: 'usd',
+             paymentMethodType: 'card',
+             donationType: getDonationType,
+             isCustomAmount: selectedIsCustomDonation,
+             product: selectedProductId,
+             amount: selectedAmount,
+             metadata: {
+               customer_email: customerEmail,
+               customer_first_name: customerFirstName,
+               customer_last_name: customerLastName,
+               customer_telephone: customerPhoneNumber,
+               billing_address: setJsonAddresses,
+               shipping_address: setShippingAddress,
+               order_shipping_amount: "0",
+               order_total_amount: getTotalAmount,
+               media_code: selectedHearAboutUs,
+               order_items: setJsonOrderItems
+             },
+           }),
+         }
+       ).then((r) => r.json());
+       
+       // Confirm the card payment given the clientSecret from the payment intent that was just created on he server.
+       const {error: stripeError, paymentIntent} = await stripe.confirmCardPayment(
+         clientSecret,
+         {
+           payment_method: {
+             type: 'card',
+             card: cardNumberElement,
+             billing_details: {
+               name: customerFullName,
+               email: customerEmail,
+             },
+           },
+         }
+       );
+       
+       function getProductDetails(productId) {
+         // Implement logic to retrieve product details based on productId
+         var getCustomAmount = document.getElementById('setAmount').value;
+         var setCustomAmount = parseFloat(getCustomAmount).toFixed(2);
+         const products = {
+           "prod_Rr0jGElaPKxrAl": { name: "One Time Donation", price: setCustomAmount },
+         };
+         return products[productId];
+         console.log(products[productId])
+       }
+         if (backendError) {
+           hideLoader(
+             "{{ module.after_submit_messages.backend_error.button_text }}",
+             "{{ module.after_submit_messages.backend_error.text }}",
+             true
+           );
+           return;
+         } else if(stripeError) {
+           hideLoader(
+             "{{ module.after_submit_messages.stripe_error.button_text }}",
+             "{{ module.after_submit_messages.stripe_error.text }}",
+             true
+           );
+           return;
+         } else {
+           hideLoader(
+             "{{ module.after_submit_messages.success.button_text }}",
+             "{{ module.after_submit_messages.success.text }}",
+             false
+           );
+           
+           const today = new Date().toISOString().split('T')[0];
+           const $placeholders = $('.hubspot-fields-placeholder');
+           const formDataObj = {};
+
+           // 🔁 Loop through all HubSpot fields inside placeholders
+           $placeholders.find('input, select, textarea').each(function () {
+             const $field = $(this);
+             const name = $field.attr('name');
+             const type = $field.attr('type');
+
+             if (!name || type === 'submit') return;
+
+             let value;
+             if (type === 'checkbox') {
+               // Group checkboxes by name and get all checked values
+               if (formDataObj[name]) return; // Skip duplicates
+               const $group = $placeholders.find(`input[type="checkbox"][name="${name}"]:checked`);
+               value = $group.map(function () {
+                 return this.value;
+               }).get().join(';'); // Use ; or , as needed
+             } else if (type === 'radio') {
+               const $checked = $placeholders.find(`input[type="radio"][name="${name}"]:checked`);
+               value = $checked.val() || "";
+             } else {
+               value = $field.val() || "";
+             }
+             formDataObj[name] = value;
+           });
+           
+           // Custom field override
+           formDataObj['donation_type'] = "{{ module.donation_type }}";
+           formDataObj['donation_amount'] = getTotalAmount;
+           formDataObj['last_donation_date'] = today;
+           
+           //Add HubSpot tracking context
+          formDataObj.hs_context = JSON.stringify({
+            hutk: document.cookie.match(/hubspotutk=([^;]+)/)?.[1] || '',
+            pageUrl: window.location.href,
+            pageName: document.title
+          });
+           
+           // Manual HubSpot Submission
+          const formId = '{{ module.select_hubspot_form.form_id }}';
+          const portalId = '23773134';
+          const submitUrl = `https://forms.hubspot.com/uploads/form/v2/${portalId}/${formId}`;
+
+          fetch(submitUrl, {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/x-www-form-urlencoded'
+            },
+            body: new URLSearchParams(formDataObj).toString()
+          }).then(res => {
+            if (res.ok) {
+              console.log('✅ HubSpot form submitted successfully!');
+            } else {
+              console.error('❌ HubSpot form submission failed:', res);
+            }
+          }).catch(err => {
+            console.error('❌ Fetch error submitting HubSpot form:', err);
+          });
+         }
+     });
+       }else if(getPaymentVersion == 'monthly'){
+         let selectedMonthlyURL = null;
+         let openIn = null;
+         const monthlyButtons = document.querySelectorAll('.monthly-amount-btn');
+         monthlyButtons.forEach(button => {
+           button.addEventListener('click', () => {
+             // Remove 'selected-amount-btn' from all buttons
+             monthlyButtons.forEach(btn => btn.classList.remove('selected-amount-btn'));
+             // Add 'selected-amount-btn' to clicked button
+             button.classList.add('selected-amount-btn');
+             // Store the selected URL
+             selectedMonthlyURL = button.getAttribute('data-url');
+             openIn = button.getAttribute('data-open');
+           });
+         });
+         console.log(selectedMonthlyURL);
+         // On NEXT button click, redirect
+         document.getElementById('monthlyNextButton').addEventListener('click', () => {
+           if (selectedMonthlyURL && openIn == "new-tab") {
+             window.open(selectedMonthlyURL, '_blank');
+             location.reload();
+             }else if(selectedMonthlyURL && openIn == "this-window"){
+               window.location.href = selectedMonthlyURL;
+           } else {
+             alert('Please select a monthly donation amount before proceeding.');
+           }
+         });
+       }
+ }
+                                                      
+  // Get the element that we want to observe
+  const targetPaymentVersion = document.getElementById('getPaymentVersion');
+  // Variable to store the updated innerHTML, declared in outer scope
+  let getPaymentVersion = targetPaymentVersion.innerHTML;
+  // Create a MutationObserver instance
+  const paymentVersionObserver = new MutationObserver((mutationsList) => {
+    for (let mutation of mutationsList) {
+      if (mutation.type === 'childList') {
+        // Update the variable with the new innerHTML
+        getPaymentVersion = targetPaymentVersion.innerHTML;
+        checkPaymentVersion();
+      }
+    }
+  });
+  
+  // Start observing the target node for changes in its child elements (which affects innerHTML)
+  paymentVersionObserver.observe(targetPaymentVersion, {
+    childList: true, // Detects changes in child elements (if innerHTML is updated)
+    subtree: true     // Watches the entire subtree of the element
+  });
+  
+  // Call the checkPaymentVersion function on initial load
+    checkPaymentVersion(); // Check the payment version on page load
+
+    // === Payment method toggle (Stripe vs PayPal) ===
+    (function () {
+      const stripeSection = document.getElementById("stripe-section");
+      const paypalSection = document.getElementById("paypal-section");
+      const radios = document.querySelectorAll("input[name='payment_method']");
+
+      // Guard in case DOM isn’t ready
+      if (!stripeSection || !paypalSection || !radios.length) return;
+
+      function updateVisibility() {
+        const val = document.querySelector("input[name='payment_method']:checked")?.value;
+        if (val === "paypal") {
+          stripeSection.style.display = "none";
+          paypalSection.style.display = "block";
+        } else {
+          stripeSection.style.display = "block";
+          paypalSection.style.display = "none";
+        }
+      }
+
+      radios.forEach(r => r.addEventListener("change", updateVisibility));
+      updateVisibility(); // keep Credit Card visible by default
+    })();
+</script>

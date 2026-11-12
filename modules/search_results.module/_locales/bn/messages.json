@@ -1,0 +1,872 @@
+{
+  "default_text.current_page_aria_label.default" : {
+    "message" : "বর্তমান পেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.current_page_aria_label.label" : {
+    "message" : "বর্তমান পেজ আরিয়া লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.default" : {
+    "message" : "ফিচার করা ইমেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.label" : {
+    "message" : "ফিচার করা ইমেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.default" : {
+    "message" : "প্রথম পেজ ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.label" : {
+    "message" : "প্রথম পেজ লিঙ্কের টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.label" : {
+    "message" : "ডিফল্ট টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.default" : {
+    "message" : "শেষ পেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.label" : {
+    "message" : "শেষ পেজের লিঙ্ক টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.default" : {
+    "message" : "পেজিং নেভিগেশন",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.label" : {
+    "message" : "নেভিগেশন আরিয়া লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.default" : {
+    "message" : "পরবর্তী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.label" : {
+    "message" : "পরবর্তী পেজের লিঙ্ক-এর টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.default" : {
+    "message" : "<p>দুঃখিত। [[search_term]]-এর জন্য কোনো ফলাফল পাওয়া যায়নি।</p><p> আপনার প্রশ্ন পুনরায় লেখার চেষ্টা করুন, অথবা আমাদের সাইটে ব্রাউজ করুন।</p>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.label" : {
+    "message" : "কোনো ফলাফলের মেসেজ নেই",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.default" : {
+    "message" : "পেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.label" : {
+    "message" : "পেজের নম্বর আরিয়া লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.default" : {
+    "message" : "পূর্ববর্তী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.label" : {
+    "message" : "পূর্ববর্তী পেজের লিঙ্ক-এর টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.default" : {
+    "message" : "[[অফসেট]] – [[মোট]] ফলাফলের [[সীমা]] প্রদর্শন করা হচ্ছে",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.label" : {
+    "message" : "অনুসন্ধান ফলাফল গণনা",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.placeholder" : {
+    "message" : "[[অফসেট]] – [[মোট]] ফলাফলের [[সীমা]] প্রদর্শন করা হচ্ছে",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.default" : {
+    "message" : "\"{{ searched_term|escape }}\" এর জন্য অনুসন্ধান ফলাফল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.help_text" : {
+    "message" : "অনুসন্ধান ফলাফলের উপরে আপনি যে শিরোনামটি প্রদর্শন করতে চান তা লিখুন।",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.label" : {
+    "message" : "ফলাফল শিরোনাম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.placeholder" : {
+    "message" : "\"{{ searched_term|escape }}\" এর জন্য অনুসন্ধান ফলাফল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.default" : {
+    "message" : "আপনার দর্শকদের দ্রুত অনুসন্ধান ফলাফল ব্রাউজ করতে এবং তাদের প্রয়োজনীয় পৃষ্ঠা খুঁজে পেতে সহায়তা করার জন্য প্রতিটি পৃষ্ঠার কিছু পূর্বরূপ পাঠ্য এখানে প্রদর্শিত হবে৷",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.label" : {
+    "message" : "অনুসন্ধান ফলাফলে প্রাপ্ত নিবন্ধ বিবরণ।",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.default" : {
+    "message" : "অনুসন্ধান ফলাফলে প্রাপ্ত নিবন্ধের শিরোনাম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.label" : {
+    "message" : "অনুসন্ধান ফলাফলে প্রাপ্ত নিবন্ধের শিরোনাম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "inline_help_text" : {
+    "message" : "এই মডিউলটি অনুসন্ধান ইনপুট মডিউলের সাথে ব্যবহার করা হয়। যখন আপনার দর্শকরা অনুসন্ধান ইনপুট মডিউলে একটি শব্দ অনুসন্ধান করে, তখন এই মডিউল সহ যেকোনো পেজ তাদের ফলাফল দেখাতে পারে। <a href=\"https://knowledge.hubspot.com/design-manager/set-up-a-results-page-to-use-a-search-field-on-your-site\">আরও জানুন।</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_arrows" : {
+    "message" : "অ্যারো দেখান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_labels" : {
+    "message" : "লেবেল দেখান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.label" : {
+    "message" : "প্রথম এবং শেষ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.default" : {
+    "message" : "প্রথম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.label" : {
+    "message" : "প্রথম লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.inline_help_text" : {
+    "message" : "পৃষ্ঠা সংখ্যাকরণ ব্যবহারকারীদের পৃষ্ঠাগুলিতে সংগঠিত করে ফলাফলের দীর্ঘ তালিকা ব্রাউজ করতে সহায়তা করে।",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.label" : {
+    "message" : "পেজিনেশন",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.default" : {
+    "message" : "শেষ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.label" : {
+    "message" : "শেষ লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.default" : {
+    "message" : "পরবর্তী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.label" : {
+    "message" : "পরবর্তী লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.choices.show_numbers" : {
+    "message" : "নম্বর দেখান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.label" : {
+    "message" : "নম্বর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_arrows" : {
+    "message" : "অ্যারো দেখান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_labels" : {
+    "message" : "লেবেল দেখান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.label" : {
+    "message" : "পূর্ববর্তী এবং পরবর্তী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.default" : {
+    "message" : "পূর্ববর্তী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.label" : {
+    "message" : "আগের লেবেল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.display_for_each_result.choices.image" : {
+    "message" : "প্রতিটি ফলাফলের জন্য একটি ইমেজ প্রিভিউ দেখান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.label" : {
+    "message" : "ফলাফল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.label" : {
+    "message" : "ধারক",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "শৈলী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.color.label" : {
+    "message" : "রঙ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.label" : {
+    "message" : "ব্যাকগ্রাউন্ড ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.border.label" : {
+    "message" : "বর্ডার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.label" : {
+    "message" : "বর্ডার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.label" : {
+    "message" : "কোণ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.radius.label" : {
+    "message" : "ব্যাসার্ধ ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.background_color.label" : {
+    "message" : "ব্যাকগ্রাউন্ডের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.border_color.label" : {
+    "message" : "বর্ডারের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.label" : {
+    "message" : "হোভার করুন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.text_color.label" : {
+    "message" : "টেক্সেটের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.label" : {
+    "message" : "আইকন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.size.label" : {
+    "message" : "আকার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.label" : {
+    "message" : "প্রথম এবং শেষ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "টেক্সট এবং আইকনের মধ্যে স্থান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.label" : {
+    "message" : "টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "পেজিনেশন",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.background_color.label" : {
+    "message" : "ব্যাকগ্রাউন্ডের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.border_color.label" : {
+    "message" : "বর্ডারের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.help_text" : {
+    "message" : "আপনি বর্তমানে যে পেজে আছেন তার সাথে মিলে যাওয়া নম্বরযুক্ত লিঙ্কের স্টাইলসমূহ।",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.label" : {
+    "message" : "সক্রিয়",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.text_color.label" : {
+    "message" : "টেক্সেটের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.color.label" : {
+    "message" : "রঙ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.label" : {
+    "message" : "ব্যাকগ্রাউন্ড ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.border.label" : {
+    "message" : "বর্ডার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.label" : {
+    "message" : "বর্ডার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.label" : {
+    "message" : "কোণ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.radius.label" : {
+    "message" : "ব্যাসার্ধ ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.background_color.label" : {
+    "message" : "ব্যাকগ্রাউন্ডের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.border_color.label" : {
+    "message" : "বর্ডারের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.label" : {
+    "message" : "হোভার করুন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.text_color.label" : {
+    "message" : "টেক্সেটের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.label" : {
+    "message" : "নম্বর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.label" : {
+    "message" : "টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.color.label" : {
+    "message" : "রঙ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.label" : {
+    "message" : "ব্যাকগ্রাউন্ড ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.border.label" : {
+    "message" : "বর্ডার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.label" : {
+    "message" : "বর্ডার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.label" : {
+    "message" : "কোণ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.radius.label" : {
+    "message" : "ব্যাসার্ধ ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.background_color.label" : {
+    "message" : "ব্যাকগ্রাউন্ডের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.border_color.label" : {
+    "message" : "বর্ডারের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.label" : {
+    "message" : "হোভার করুন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.text_color.label" : {
+    "message" : "টেক্সটের রং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.label" : {
+    "message" : "আইকন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.size.label" : {
+    "message" : "আকার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.label" : {
+    "message" : "পূর্ববর্তী এবং পরবর্তী",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "টেক্সট এবং আইকনের মধ্যে স্থান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.label" : {
+    "message" : "টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "লিঙ্কগুলির মধ্যে স্পেস",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.author.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.label" : {
+    "message" : "Font",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.label" : {
+    "message" : "Title copy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.description.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.description.label" : {
+    "message" : "প্রিভিউ টেক্সট",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.label" : {
+    "message" : "কোণ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.radius.label" : {
+    "message" : "ব্যাসার্ধ ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.label" : {
+    "message" : "ইমেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.1/1" : {
+    "message" : "1:1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.16/9" : {
+    "message" : "16:9",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.2/3" : {
+    "message" : "2:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/2" : {
+    "message" : "3:2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/4" : {
+    "message" : "3:4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.4/3" : {
+    "message" : "4:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.label" : {
+    "message" : "আনুমানিক অনুপাত",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.label" : {
+    "message" : "আকার ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.width.label" : {
+    "message" : "প্রস্থ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.between_image_and_content.label" : {
+    "message" : "ইমেজ এবং কনটেন্টের মধ্যে",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.label" : {
+    "message" : "ফলাফল",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.spacing.label" : {
+    "message" : "স্পেসিং",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.spacing.space_between_results.label" : {
+    "message" : "ফলাফলের মধ্যে স্থান",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.label" : {
+    "message" : "শিরোনাম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.label" : {
+    "message" : "ফলাফলের সংখ্যার মেসেজ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.capitalize" : {
+    "message" : "বড় হাতের অক্ষর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.lowercase" : {
+    "message" : "ছোট হাতের অক্ষর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.none" : {
+    "message" : "কোনটাই না",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.uppercase" : {
+    "message" : "বড় হাতের অক্ষর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.label" : {
+    "message" : "রূপান্তর করুন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.font.label" : {
+    "message" : "ফন্ট ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.label" : {
+    "message" : "শিরোনাম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.capitalize" : {
+    "message" : "বড় হাতের অক্ষর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.lowercase" : {
+    "message" : "ছোট হাতের অক্ষর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.none" : {
+    "message" : "কোনটাই না",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.uppercase" : {
+    "message" : "বড় হাতের অক্ষর",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.label" : {
+    "message" : "রূপান্তর করুন ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h1" : {
+    "message" : "H1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h2" : {
+    "message" : "H2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h3" : {
+    "message" : "H3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h4" : {
+    "message" : "H4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h5" : {
+    "message" : "H5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h6" : {
+    "message" : "H6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.help_text" : {
+    "message" : "একটি শিরোনাম স্তর নির্বাচন করুন। H1 সবচেয়ে বড়, তারপর H2, ইত্যাদি।",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.label" : {
+    "message" : "শিরোনাম ট্যাগ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.placeholder" : {
+    "message" : "একটি শিরোনাম প্রকার নির্বাচন করুন",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.label" : {
+    "message" : "শিরোনাম",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.show_title.label" : {
+    "message" : "শিরোনাম দেখান",
+    "description" : "",
+    "placeholders" : null
+  }
+}

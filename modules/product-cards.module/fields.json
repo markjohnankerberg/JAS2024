@@ -1,0 +1,759 @@
+[ {
+  "id" : "2eb1c1da-8b60-e758-7d03-31f445fc135a",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "f1007529-a625-9b2b-7942-94fbbeb1afc5",
+    "name" : "module",
+    "label" : "Module",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f38d4e15-ca44-7b7e-acd8-b2e910da8968",
+      "name" : "spacing_desktop",
+      "label" : "Spacing - desktop",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "0976a8f5-b32b-002c-7214-fc0893af56df",
+      "name" : "spacing_mobile",
+      "label" : "Spacing - mobile",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "b957d874-c134-08ed-6c67-8882fdcec944",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "f1f06731-51e7-3105-efec-1e2685ee32da",
+      "name" : "heading_color",
+      "label" : "Heading color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "spacing_desktop" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "spacing_mobile" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "background_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      },
+      "heading_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "7abc668a-496d-4b72-7ee5-33d4c7500085",
+    "name" : "cards",
+    "label" : "Cards",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "3c041986-6067-9c42-b74e-9fedc7999ffb",
+      "name" : "card_row_gap",
+      "label" : "Row gap",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 20
+    }, {
+      "id" : "28b1e214-c5b7-74b4-687f-0dbc25d0e860",
+      "name" : "card_column_gap",
+      "label" : "Column gap",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 30
+    }, {
+      "id" : "3e210f1d-c759-b36c-c207-67ee86803376",
+      "name" : "border_field",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "allow_custom_border_sides" : false,
+      "type" : "border",
+      "display_width" : null,
+      "default" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "9a330057-578a-e389-7cb2-c215dce55910",
+      "name" : "padding",
+      "label" : "Padding",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "f2554416-bba8-3dd4-f8f6-eef7cb60261e",
+      "name" : "corner_radius",
+      "label" : "Corner radius",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 5
+    }, {
+      "id" : "082d5f32-ae3f-fcba-ab11-686e9f832c0b",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#FAF9F8",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "bb32cf4f-9e68-7776-c3dc-4b2af59c0955",
+      "name" : "text_color",
+      "label" : "Text color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "ce9bb4d6-e443-87f6-644c-4863b8535c45",
+      "name" : "button_style",
+      "label" : "Button style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "btn-primary"
+    }, {
+      "id" : "1cb5fa8c-040b-9227-b1b2-e228aafe5271",
+      "name" : "button_corner_radius",
+      "label" : "Button corner radius",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "radius-s"
+    }, {
+      "id" : "cdc68f78-0ecf-2901-4830-757ce2f5e7c6",
+      "name" : "button_horizontal_padding",
+      "label" : "Button horizontal padding",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "padd-small", "Small" ], [ "padd-normal", "Normal" ], [ "padd-large", "Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "padd-normal"
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "card_row_gap" : 20,
+      "card_column_gap" : 30,
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      },
+      "padding" : {
+        "padding" : {
+          "top" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      },
+      "corner_radius" : 5,
+      "background_color" : {
+        "color" : "#FAF9F8",
+        "opacity" : 100
+      },
+      "text_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "button_style" : "btn-primary",
+      "button_corner_radius" : "radius-s",
+      "button_horizontal_padding" : "padd-normal"
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "module" : {
+      "spacing_desktop" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "spacing_mobile" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "background_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      },
+      "heading_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    },
+    "cards" : {
+      "card_row_gap" : 20,
+      "card_column_gap" : 30,
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      },
+      "padding" : {
+        "padding" : {
+          "top" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      },
+      "corner_radius" : 5,
+      "background_color" : {
+        "color" : "#FAF9F8",
+        "opacity" : 100
+      },
+      "text_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "button_style" : "btn-primary",
+      "button_corner_radius" : "radius-s",
+      "button_horizontal_padding" : "padd-normal"
+    }
+  }
+}, {
+  "id" : "ff9098f7-3e94-ee0b-0538-a34bc20dbf5c",
+  "name" : "module_heading",
+  "label" : "Heading",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Products"
+}, {
+  "id" : "5000f885-ebe3-422c-64bf-b089d0bcf17f",
+  "name" : "cards",
+  "label" : "Card",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 2,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 4
+  },
+  "children" : [ {
+    "id" : "43fbe6b8-6e78-c8d4-cdc4-f7599ea67d1b",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Proclaimer"
+  }, {
+    "id" : "8663005e-c49b-caff-51b2-251379854685",
+    "name" : "text_field",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "The Proclaimer is a solar-powered digital player, preloaded with an Audio Bible in the local heart language. Used in church services, villages, and listening groups, the Proclaimer provides thousands of hours of Bible listening, discussion, and discipleship, allowing people to become saturated with God’s Word and learn what it is to follow Jesus."
+  }, {
+    "id" : "9f3d602f-22d9-8016-2e58-be678a1cc273",
+    "name" : "product_image",
+    "label" : "Product image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_1_2x.png",
+      "alt" : "proclaimer",
+      "loading" : "lazy",
+      "width" : 441,
+      "height" : 440,
+      "max_width" : 441,
+      "max_height" : 440
+    }
+  }, {
+    "id" : "94486713-c175-1d79-9843-d395a30ebd26",
+    "name" : "show_button",
+    "label" : "Show button",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "072ba1ab-4c51-8e0c-cd21-871481b802b1",
+    "name" : "button",
+    "label" : "Button",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cards.show_button",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "d8c070ee-c8ac-7a06-c62d-84fec2b1de78",
+      "name" : "button_text",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Donate now"
+    }, {
+      "id" : "9c594bbc-914d-f4a8-dc92-ed27d1179acd",
+      "name" : "button_link",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "button_text" : "Donate now",
+      "button_link" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "title" : "Proclaimer",
+    "text_field" : "The Proclaimer is a solar-powered digital player, preloaded with an Audio Bible in the local heart language. Used in church services, villages, and listening groups, the Proclaimer provides thousands of hours of Bible listening, discussion, and discipleship, allowing people to become saturated with God’s Word and learn what it is to follow Jesus.",
+    "product_image" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_1_2x.png",
+      "alt" : "proclaimer",
+      "loading" : "lazy",
+      "width" : 441,
+      "height" : 440,
+      "max_width" : 441,
+      "max_height" : 440
+    },
+    "button" : {
+      "button_text" : "Donate now"
+    },
+    "show_button" : true
+  }, {
+    "title" : "Proclaimer",
+    "text_field" : "The Proclaimer is a solar-powered digital player, preloaded with an Audio Bible in the local heart language. Used in church services, villages, and listening groups, the Proclaimer provides thousands of hours of Bible listening, discussion, and discipleship, allowing people to become saturated with God’s Word and learn what it is to follow Jesus.",
+    "product_image" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_1_2x.png",
+      "alt" : "proclaimer",
+      "loading" : "lazy",
+      "width" : 441,
+      "height" : 440,
+      "max_width" : 441,
+      "max_height" : 440
+    },
+    "button" : {
+      "button_text" : "Donate now"
+    },
+    "show_button" : true
+  }, {
+    "title" : "Proclaimer",
+    "text_field" : "The Proclaimer is a solar-powered digital player, preloaded with an Audio Bible in the local heart language. Used in church services, villages, and listening groups, the Proclaimer provides thousands of hours of Bible listening, discussion, and discipleship, allowing people to become saturated with God’s Word and learn what it is to follow Jesus.",
+    "product_image" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_1_2x.png",
+      "alt" : "proclaimer",
+      "loading" : "lazy",
+      "width" : 441,
+      "height" : 440,
+      "max_width" : 441,
+      "max_height" : 440
+    },
+    "button" : {
+      "button_text" : "Donate now"
+    },
+    "show_button" : true
+  }, {
+    "title" : "Proclaimer",
+    "text_field" : "The Proclaimer is a solar-powered digital player, preloaded with an Audio Bible in the local heart language. Used in church services, villages, and listening groups, the Proclaimer provides thousands of hours of Bible listening, discussion, and discipleship, allowing people to become saturated with God’s Word and learn what it is to follow Jesus.",
+    "product_image" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Products/ab_product_1_2x.png",
+      "alt" : "proclaimer",
+      "loading" : "lazy",
+      "width" : 441,
+      "height" : 440,
+      "max_width" : 441,
+      "max_height" : 440
+    },
+    "button" : {
+      "button_text" : "Donate now"
+    },
+    "show_button" : true
+  } ]
+} ]

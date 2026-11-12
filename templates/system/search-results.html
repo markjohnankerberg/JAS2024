@@ -1,0 +1,195 @@
+<!--
+  templateType: search_results_page
+  isAvailableForNewContent: true
+  label: JAS - Search results
+-->
+
+{% set template_css = "../../css/templates/system.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Search results" %}
+
+{% block body %}
+
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div>
+
+    <div class="search-module-wrapper">
+        {% module "site_search_module" path="/JAS2024/modules/search_input", label="Search site"
+          heading="Looking for something specific?",
+          button={
+          "button_label" : "SEARCH"
+          },
+          results={
+            "content_types" : {
+              "blog_posts" : true,
+              "website_pages" : true
+            }
+          },
+          show_subheading=false,
+          topics=[ {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 188995461965,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Apologetics"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190834648153,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Biblical Prophecy"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190838999573,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Discipleship"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190839665426,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Heaven, Hell & the Afterlife"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190930599504,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Salvation"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190934917675,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Science"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190933887806,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Study of Scripture"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190933891237,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Theology - Study of God"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190940267553,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "Worldview & Culture"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "content_id" : 190941088413,
+                "type" : "CONTENT"
+              }
+            },
+            "button_text" : "World Religions"
+          } ]
+        %}
+        
+      </div>
+
+  <section class="content-wrapper">
+    <div class="systems-page systems-page--search-results">
+      
+      <div class="back-link-wrapper">
+        <a href="https://atriresearch.org/">
+          <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24">
+            <path fill="currentColor" d="m6.921 12.5l5.439 5.439q.146.146.153.344q.006.198-.16.363q-.164.16-.353.163q-.188.002-.354-.163l-6.08-6.08q-.131-.132-.184-.268T5.329 12t.053-.298t.184-.267l6.08-6.081q.14-.14.341-.15q.202-.01.367.15q.165.165.165.356q0 .192-.165.357L6.92 11.5H18.5q.214 0 .357.143T19 12t-.143.357t-.357.143z"/>
+          </svg>
+          Back to Home</a>
+      </div>    
+      
+      {%- if (get_asset_version("@hubspot/search_results") == 0) -%}
+        {% if request.query_dict.term %}
+          {% set search_query = request.query_dict.term %}
+        {% elif request.query_dict.q %}
+          {# v3 search api support #}
+          {% set search_query = request.query_dict.q %}
+        {% endif %}
+
+        {% module_block module 'search_results_content'
+          label='Search results heading',
+          path='@hubspot/rich_text'
+        %}
+          {% module_attribute 'html' %}
+            <h1>Results for &ldquo;{{ search_query|escape_html }}&rdquo;</h1>
+          {% end_module_attribute %}
+        {% end_module_block %}
+
+          {# v1 #}
+          {#
+          {% module "search_results"
+            path="@hubspot/search_results"
+          %} #}
+      
+          {# v2 #}
+          {% module "site_search_results" path="/JAS2024/modules/search_results", label="Search results" %}
+
+        {%- else -%}
+
+      {# v1 #}
+      {#
+          {% module "search_results"
+            path="@hubspot/search_results",
+            title={
+              "show_title": "true"
+            }
+          %}
+      #}
+      
+        {# v2 #}
+          {% module "search_results" path="/JAS2024/modules/search_results", label="Search results" title={
+              "show_title": "true"
+            } %}
+
+      {%- endif -%}
+    </div>
+  </section>
+{% endblock body %}

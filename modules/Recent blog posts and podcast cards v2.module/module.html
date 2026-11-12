@@ -1,0 +1,988 @@
+{% if module.select_blog is number %}
+  {% set rec_posts = blog_recent_posts(module.select_blog, module.number_of_posts_to_fetch) %}
+{% else %}
+  {% set rec_posts = blog_recent_posts("default", module.number_of_posts_to_fetch) %}
+{% endif %}
+
+<section class="listing-{{name}} section-{{name}}" role="region">
+  <div class="listing-limiter page-{{current_page_num}}">
+    
+    <div class="resources-container">
+      
+      <div class="resource-tabs" role="tablist">
+        <div class="resource-tab active" data-id="card-1" role="tab">
+          <h4>{{ module.labels.blog_tab }}</h4>
+        </div>
+        
+        {% if module.show_store_tab %}
+          <div class="resource-tab" data-id="card-2" role="tab">
+            <h4>{{ module.labels.store_tab }}</h4>
+          </div>
+        {% endif %}
+
+        <div class="resource-tab" data-id="card-3" role="tab">
+          <h4>{{ module.labels.podcasts_tab }}</h4>
+        </div>
+      </div>
+
+      <div class="resource-cards">
+        <div class="resource-card active" data-id="card-1" role="tabpanel">
+          <div class="post-grid cols-{{ module.number_of_columns }}">       
+
+            {# {% set counter = 1 %} #}
+            {% for content in rec_posts %}
+
+              {# <article class="post-card{% if current_page_num == 1 %}{% if counter < 3 %} featured-card featured-card-{{counter}}{% endif %}{% endif %}"> #}
+              <article class="post-card">
+                <div class="feat-img-wrapper">
+                  <a class="post-link" href="{{ content.absolute_url }}">
+                    <img class="post-img" src="{{ content.featured_image }}" loading="lazy" alt="{{ content.featured_image_alt_text }}">
+                  </a>
+                </div>
+
+                <div class="card-content">
+                  <div class="post-info">
+                    <span class="post-author">
+                      {# <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}"> #} {# v1 #}
+                      <a href="{{ blog_author_url(module.select_blog, content.blog_post_author.slug) }}"> {# v2 #}
+                        {{ content.blog_post_author.display_name }}
+                      </a>
+                    </span>
+                    <span class="info-divider">|</span>
+                    <span class="published-date">{{ content.publish_date|datetimeformat('%B %e, %Y') }} </span>
+                  </div>
+
+                  <h4 class="post-heading"><a class="post-link" href="{{ content.absolute_url }}">{{content.name}}</a></h4>
+
+                  <div class="card-tags">
+                    {% for tag in content.tag_list %}
+                    <span class="card-tag">
+                      {# <a class="card-tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a> #} {# v1 #}
+                      <a class="card-tag-link" href="{{ blog_tag_url(module.select_blog, tag.slug) }}">{{ tag.name }}</a> {# v2 #}
+                    </span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </article>
+              {# {% set counter = counter + 1 %} #}
+            {% endfor %}
+          </div>
+          
+          {% if module.see_all_articles_button %}
+            <div class="btn-wrapper-{{name}}">
+              {% set href = module.button.button_url.url.href %}
+              {% if module.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+              {% endif %}
+              <a aria-label="{{ module.button.button_text }}" class="btn-{{name}} button {{ module.button.button_style }} {{ module.button.corner_radius }} {{ module.button.horizontal_padding }}"
+                {% if module.button.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                  href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                {% else %}
+                  href="{{ href|escape_url }}"
+                {% endif %}
+                {% if module.button.button_url.open_in_new_tab %}
+                  target="_blank"
+                {% endif %}
+                {% if module.button.button_url.rel %}
+                  rel="{{ module.button.button_url.rel|escape_attr }}"
+                {% endif %}
+                >
+                {{ module.button.button_text }}
+              </a>
+            </div>
+          {% endif %}
+        </div>
+        
+        {% if module.show_store_tab %}
+          <div class="resource-card" data-id="card-2" role="tabpanel" style="display: none">
+            <div class="product-grid products-{{name}} products-grid">
+              {% for item in module.products.product_card %}
+                <div class="product-card">
+                  <div class="product-card-top">
+
+                    {# Product image #}
+                    <div class="product-image">
+                      {% set href = item.button_url.url.href %}
+                      {% if item.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      
+                      <a class="product-image-link"
+                        {% if item.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                        {% else %}
+                          href="{{ href|escape_url }}"
+                        {% endif %}
+                         
+                        {% if item.button_url.open_in_new_tab %}
+                          target="_blank"
+                        {% endif %}
+                         
+                        {% if item.button_url.rel %}
+                          rel="{{ item.button_url.rel|escape_attr }}"
+                        {% endif %}
+                      >                        
+                        {% if item.product_image.src %}
+                          {% set sizeAttrs = 'width="{{ item.product_image.width|escape_attr }}" height="{{ item.product_image.height|escape_attr }}"' %}
+                          {% if item.product_image.size_type == 'auto' %}
+                            {% set sizeAttrs = 'width="{{ item.product_image.width|escape_attr }}" height="{{ item.product_image.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                          {% elif item.product_image.size_type == 'auto_custom_max' %}
+                            {% set sizeAttrs = 'width="{{ item.product_image.max_width|escape_attr }}" height="{{ item.product_image.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                          {% endif %}
+                           {% set loadingAttr = item.product_image.loading != 'disabled' ? 'loading="{{ item.product_image.loading|escape_attr }}"' : '' %}
+                          <img src="{{ item.product_image.src|escape_url }}" class="attachment-full size-full" alt="{{ item.product_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                        {% endif %}
+                      </a>
+                    </div>
+
+                    {# Product name #}
+                    <div class="product-title">
+                      {% set href = item.button_url.url.href %}
+                      {% if item.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      
+                      <a class="product-title-link"
+                        {% if item.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                          href="{{ href }}" 
+                        {% else %}
+                          href="{{ href|escape_url }}"
+                        {% endif %}
+                        {% if item.button_url.open_in_new_tab %}
+                          target="_blank"
+                        {% endif %}
+                        {% if item.button_url.rel %}
+                          rel="{{ item.button_url.rel|escape_attr }}"
+                        {% endif %}
+                      >{{ item.title }}</a>
+                    </div>
+
+                    {# Product SKU #}
+                    <div class="product-sku">
+                      <p>SKU: {{ item.sku }}</p>
+                    </div>
+
+                    {# Product price #}
+                    <div class="product-price">
+                      <p class="product-price-value">{{ item.price }}</p>
+                    </div>
+                  </div>
+
+                  {# Product button #}
+                  <div class="product-card-bottom">
+                    <div class="product-button">
+                      {% set href = item.button_url.url.href %}
+                      {% if item.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      
+                      <a class="product-button-link btn-{{name}} button {{ module.products.card_button_style.button_style }} {{ module.products.card_button_style.corner_radius }} {{ module.products.card_button_style.horizontal_padding }}"
+                        {% if item.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                          href="{{ href }}"
+                        {% else %}
+                          href="{{ href|escape_url }}"
+                        {% endif %}
+                        {% if item.button_url.open_in_new_tab %}
+                          target="_blank"
+                        {% endif %}
+                        {% if item.button_url.rel %}
+                          rel="{{ item.button_url.rel|escape_attr }}"
+                        {% endif %}
+                        >
+                        {{ item.button_text }}
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              {% endfor %}
+            </div>
+            
+            {% if module.products.see_all_products_button %}
+              <div class="btn-wrapper-{{name}}">
+                {% set href = module.products.button.button_url.url.href %}
+                {% if module.products.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                  {% set href = "mailto:" + href %}
+                {% endif %}
+
+                <a aria-label="{{ module.products.button.button_text }}" class="btn-{{name}} button {{ module.products.button.button_style }} {{ module.products.button.corner_radius }} {{ module.products.button.horizontal_padding }}"
+                  {% if module.products.button.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                    href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                  {% else %}
+                    href="{{ href|escape_url }}"
+                  {% endif %}
+                  {% if module.products.button.button_url.open_in_new_tab %}
+                    target="_blank"
+                  {% endif %}
+                  {% if module.products.button.button_url.rel %}
+                    rel="{{ module.products.button.button_url.rel|escape_attr }}"
+                  {% endif %}
+                  >
+                  {{ module.products.button.button_text }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endif %}
+
+        <div class="resource-card" data-id="card-3" role="tabpanel" style="display: none">
+          <div class="podcast-cards podcast-{{name}}">
+            {% for item in module.podcast_cards %}
+              <div class="card-content">
+                <div class="img-wrapper">
+                  {% set href = item.button.button_url.url.href %}
+                  {% if item.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                    {% set href = "mailto:" + href %}
+                  {% endif %}
+                  
+                  <a class="img-link"
+                    {% if item.button.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                      href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                    {% else %}
+                      href="{{ href|escape_url }}"
+                    {% endif %}
+                    {% if item.button.button_url.open_in_new_tab %}
+                      target="_blank"
+                    {% endif %}
+                    {% if item.button.button_url.rel %}
+                      rel="{{ item.button.button_url.rel|escape_attr }}"
+                    {% endif %}
+                  >
+                  
+                    {% if item.podcast_image.src %}
+                      {% set sizeAttrs = 'width="{{ item.podcast_image.width|escape_attr }}" height="{{ item.podcast_image.height|escape_attr }}"' %}
+                      {% if item.podcast_image.size_type == 'auto' %}
+                        {% set sizeAttrs = 'width="{{ item.podcast_image.width|escape_attr }}" height="{{ item.podcast_image.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                      {% elif item.podcast_image.size_type == 'auto_custom_max' %}
+                        {% set sizeAttrs = 'width="{{ item.podcast_image.max_width|escape_attr }}" height="{{ item.podcast_image.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                      {% endif %}
+                       {% set loadingAttr = item.podcast_image.loading != 'disabled' ? 'loading="{{ item.podcast_image.loading|escape_attr }}"' : '' %}
+                      <img src="{{ item.podcast_image.src|escape_url }}" alt="{{ item.podcast_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                    {% endif %}
+                  </a>
+                </div>
+                
+                {% if item.show_heading %}
+                  <h2 class="card-heading">{{ item.heading }}</h2>
+                {% endif %}
+                
+                <div class="text-wrapper">
+                  {{ item.supporting_text }}
+                </div>
+                
+                <h5 class="subscribe-text">{{ item.subscribe_text }}</h5>
+                
+                <div class="podcasts">
+                  {% for item2 in item.podcast_link %}
+                    <div class="podcast">
+                      {% set href = item2.link_field.url.href %}
+                      {% if item2.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      <a
+                        {% if item2.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+                          href="{{ href }}"
+                        {% else %}
+                          href="{{ href|escape_url }}"
+                        {% endif %}
+                        {% if item2.link_field.open_in_new_tab %}
+                          target="_blank"
+                        {% endif %}
+                        {% if item2.link_field.rel %}
+                          rel="{{ item2.link_field.rel|escape_attr }}"
+                        {% endif %}
+                      >
+                        {% if item2.podcast_icon.src %}
+                          {% set sizeAttrs = 'width="{{ item2.podcast_icon.width|escape_attr }}" height="{{ item2.podcast_icon.height|escape_attr }}"' %}
+                          {% if item2.podcast_icon.size_type == 'auto' %}
+                            {% set sizeAttrs = 'width="{{ item2.podcast_icon.width|escape_attr }}" height="{{ item2.podcast_icon.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                          {% elif item2.podcast_icon.size_type == 'auto_custom_max' %}
+                            {% set sizeAttrs = 'width="{{ item2.podcast_icon.max_width|escape_attr }}" height="{{ item2.podcast_icon.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                          {% endif %}
+                           {% set loadingAttr = item2.podcast_icon.loading != 'disabled' ? 'loading="{{ item2.podcast_icon.loading|escape_attr }}"' : '' %}
+                          <img src="{{ item2.podcast_icon.src|escape_url }}" alt="{{ item2.podcast_icon.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                        {% endif %}
+                      </a>
+                    </div>
+                  {% endfor %}
+                </div>
+
+                <div class="custom__btn-{{name}}">
+                  {% set href = item.button.button_url.url.href %}
+                  {% if item.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                    {% set href = "mailto:" + href %}
+                  {% endif %}
+                  <a aria-label="{{ item.button.button_text }}" class="btn-{{name}} button {{ item.button.button_style }} {{ item.button.corner_radius }} {{ item.button.horizontal_padding }}"
+                    {% if item.button.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+                      href="{{ href }}" 
+                    {% else %}
+                      href="{{ href|escape_url }}"
+                    {% endif %}
+                    {% if item.button.button_url.open_in_new_tab %}
+                      target="_blank"
+                    {% endif %}
+                    {% if item.button.button_url.rel %}
+                      rel="{{ item.button.button_url.rel|escape_attr }}"
+                    {% endif %}
+                    >
+                    {{ item.button.button_text }}
+	                </a>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .listing-{{name}} *,
+    .listing-{{name}} *::before,
+    .listing-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .listing-{{name}} .listing-limiter {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+        
+    .listing-{{name}} .listing-limiter .post-grid {
+      width: 100%;
+      display: grid;
+      /* grid-template-columns: repeat(6, 1fr); */
+      gap: 30px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-grid,
+    .listing-{{name}} .listing-limiter .post-grid.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-grid.cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-grid.cols-1 {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card {
+      list-style: none;
+      overflow: hidden;
+      border-radius: 5px 5px 8px 8px;
+      background: var(--clr-light-grey);
+      /* grid-column: span 2; */ /* dz */
+    }
+    
+    {#
+    .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+      grid-column: span 3;
+    }
+    #}
+
+    .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper,
+    .listing-{{name}} .listing-limiter .post-grid.cols-1 .feat-img-wrapper,
+    .listing-{{name}} .listing-limiter .post-grid.cols-2 .feat-img-wrapper,
+    .listing-{{name}} .listing-limiter .post-grid.cols-3 .feat-img-wrapper {
+      width: 100%;
+      overflow: hidden;
+      aspect-ratio: {{ module.featured_image_aspect_ratio }};
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      /* height: 220px; */
+      /* min-height: 220px; */
+      /* max-height: 220px; */
+    }
+    
+    {#
+    .listing-{{name}} .listing-limiter .post-grid.cols-1 .feat-img-wrapper {
+      height: 660px;
+      min-height: 660px;
+      max-height: 660px;
+    }
+    #}
+    
+    {#
+    .listing-{{name}} .listing-limiter .post-grid.cols-2 .feat-img-wrapper {
+      height: 440px;
+      min-height: 440px;
+      max-height: 440px;
+    }
+    #}
+    
+    {#
+    .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+      width: 100%;
+      height: 332px;
+      min-height: 332px;
+      max-height: 332px;
+      overflow: hidden;
+    }
+    #}
+
+    .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+      min-height: 100%;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-info {
+      margin: 0;
+      padding: 0;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a,
+    .listing-{{name}} .listing-limiter .post-card .card-content .info-divider,
+    .listing-{{name}} .listing-limiter .post-card .card-content .published-date {
+      color: var(--clr-dark-beige);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a {
+      cursor: pointer;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a:hover {
+      color: var(--clr-dark);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .info-divider {
+      display: inline-block;
+      padding: 0 4px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags a,
+    .listing-{{name}} .listing-limiter .post-card .card-content .more-tags {
+      display: block;
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--clr-dark-beige);
+      border-radius: 30px;
+      transition: var(--transition);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--clr-dark-beige);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags a:hover {
+      background: var(--clr-dark-beige);
+      color: #fff;
+    }    
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--clr-grey);
+      transition: var(--transition);    
+      margin: 0;
+      padding: 0;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading:hover {
+      color: var(--clr-dark);
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading a {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      font-weight: inherit;
+    }
+    
+    .listing-{{name}} .listing-limiter .resource-card .btn-wrapper-{{name}} {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-top: 60px;
+    }
+    
+    /* Resources */
+    
+    .section-{{name}} .resources-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .section-{{name}} .resources-container .resource-tabs {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      border-bottom: var(--tabs-border-bottom);
+    }
+    
+    .section-{{name}} .resources-container .resource-tab {
+      position: relative;
+      cursor: pointer;
+      padding-bottom: 16px;
+    }
+    
+    .section-{{name}} .resources-container .resource-tab::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 1px;
+      background: transparent;
+      transition: var(--transition);
+    }
+    
+    .section-{{name}} .resources-container .resource-tab.active::before {
+      background: var(--clr-tabs-active);
+    }
+
+    .section-{{name}} .resources-container .resource-tab h4 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--clr-tabs);
+      /* opacity: 0.7; */
+      transition: var(--transition);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .section-{{name}} .resources-container .resource-tab:hover h4 {
+      color: var(--clr-tabs-hover);
+    } 
+    
+    .section-{{name}} .resources-container .resource-tab.active h4 {
+      color: var(--clr-tabs-active);
+      opacity: 1;
+    }
+    
+    .section-{{name}} .resources-container .resource-cards,
+    .section-{{name}} .resources-container .resource-cards .resource-card {
+      width: 100%;
+    }
+
+    .section-{{name}} .resources-container .resource-cards .resource-card {
+      display: none;
+    }
+    
+    .section-{{name}} .resources-container .resource-cards .resource-card.active {
+      display: block;
+    }
+    
+    /* Products */
+    
+    .listing-{{name}} .listing-limiter .products-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 30px;
+    }
+    
+    .products-{{name}} .product-card {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: space-between;
+      background-color: var(--clr-light-grey);
+      border: none;
+      border-radius: 5px;
+      padding: 20px;
+      margin: 0;
+      overflow: hidden;
+    }
+    
+    .products-{{name}} .product-card-top {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .products-{{name}} .product-image {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0 0 30px 0;
+    }
+    
+    .products-{{name}} .product-image-link {
+      position: relative;
+      height: 100%;
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      align-items: center;
+      padding: 0;
+      margin: 0;
+      overflow: hidden;
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .products-{{name}} .product-image img {
+      max-width: 100%;
+      display: block;
+      border-radius: 3px;
+      width: auto;
+      height: 300px;
+      object-fit: cover;
+      opacity: 1;
+      -webkit-transition: .3s ease-in-out;
+      transition: .3s ease-in-out;
+    }
+    
+    .products-{{name}} .product-image-link:hover img {
+      opacity: 0.5;
+    }
+    
+    .products-{{name}} .product-title {
+      position: relative;
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      margin: 0 0 5px 0;
+    }
+    
+    .products-{{name}} .product-title-link {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.3;
+      text-transform: capitalize;
+      color: var(--clr-grey);
+      margin: 0;
+      transition: all 0.3s ease-in-out;
+      text-decoration: none;
+    }
+    
+    .products-{{name}} .product-title-link:hover {
+      color: #88817B;
+    }
+    
+    .products-{{name}} .product-sku {
+      position: relative;
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      margin: 0 0 15px 0;
+    }
+    
+    .products-{{name}} .product-sku p {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--clr-dark-beige);
+      margin: 0;
+    }
+    
+    .products-{{name}} .product-price {
+      position: relative;
+      display: block;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      margin: 0 0 15px 0;
+    }
+    
+    .products-{{name}} .product-price-value {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-content: flex-start;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 5px;
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--clr-grey);
+      margin: 0;
+    }
+    
+    .products-{{name}} .product-card-bottom {
+      position: relative;
+      display: block;
+      width: 100%;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .products-{{name}} .product-button {
+      position: relative;
+      display: flex;
+      flex-direction: row;
+      justify-content: flex-start;
+      align-items: center;
+      gap: 20px;
+      width: 100%;
+      text-align: left;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .products-{{name}} .product-button-link {}
+    
+    /* Podcasts */
+    
+    .podcast-{{name}} {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    
+    @media (max-width: 767px) {
+      .podcast-{{name}} {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .podcast-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }
+    
+    .podcast-{{name}} .card-content {
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .podcast-{{name}} .card-content .img-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    .podcast-{{name}} .card-content .img-wrapper img {
+      display: flex;
+      max-width: 100%;
+      object-fit: cover;
+    }
+        
+    .podcast-{{name}} .card-heading {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.style.heading.alignment }};
+      margin-bottom: {{ module.style.heading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.style.heading.color_field.color|convert_rgb }}, {{ module.style.heading.color_field.opacity/100 }});
+      font-size: {{ module.style.heading.font_size ~ 'px' }};
+      font-weight: {{ module.style.heading.font_weight }};
+      font-style: {{ module.style.heading.font_style }};
+      text-transform: {{ module.style.heading.text_transform }};
+      letter-spacing: {{ module.style.heading.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.heading.line_height }};
+    }
+    
+    .podcast-{{name}} .subscribe-text {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.style.subheading.alignment }};
+      margin-bottom: {{ module.style.subheading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.style.subheading.color_field.color|convert_rgb }}, {{ module.style.subheading.color_field.opacity/100 }});
+      font-size: {{ module.style.subheading.font_size ~ 'px' }};
+      font-weight: {{ module.style.subheading.font_weight }};
+      font-style: {{ module.style.subheading.font_style }};
+      text-transform: {{ module.style.subheading.text_transform }};
+      letter-spacing: {{ module.style.subheading.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.subheading.line_height }};
+    }
+    
+    .podcast-{{name}} .text-wrapper > *:last-child {
+      margin-bottom: 0;
+    }
+    
+    .podcast-{{name}} .podcasts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .podcast-{{name}} .podcasts .podcast {
+      height: 40px !important;
+      width: 40px !important;
+      min-height: 40px !important;
+      max-height: 40px !important;
+      min-width: 40px !important;
+      max-height: 40px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .podcast-{{name}} .podcasts .podcast img {
+      display: block;
+      max-width: 40px;
+      object-fit: contain;
+    }
+    
+    /* Media queries */
+    
+    {#
+    @media (min-width: 961px) {
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+        margin-bottom: 20px;
+      }
+      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card.featured-card-1 {
+        margin-right: 10px;
+      }
+      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card.featured-card-2 {
+        margin-left: 10px;
+      }
+    }
+    #}
+    
+    @media (max-width: 960px) {
+      .listing-{{name}} .listing-limiter .post-grid,
+      .listing-{{name}} .listing-limiter .post-grid.cols-3,
+      .listing-{{name}} .listing-limiter .products-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      {#
+      .listing-{{name}} .listing-limiter .post-card,
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+        grid-column: span 1;
+      }
+
+      .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper,
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+        height: 250px;
+        min-height: 250px;
+        max-height: 250px;
+      }      
+      #}
+    }
+    
+    @media (max-width: 767px) {
+      {#
+      .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper,
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+        height: 220px;
+        min-height: 220px;
+        max-height: 220px;
+      }
+      #}
+      
+      .section-{{name}} .resources-container .resource-tabs {
+        overflow-x: scroll;
+        max-width: 100%;
+      }
+      
+      .section-{{name}} .resources-container .resource-tab {
+        padding-bottom: 12px;
+      }
+      
+      .section-{{name}} .resources-container .resource-tab h4 {
+        width: max-content;
+        font-size: 18px;
+      }
+      
+      .section-{{name}} .resources-container .resource-tab::before {
+        bottom: 0px;
+      }
+    }
+    
+    @media (max-width: 620px) {
+      .listing-{{name}} .listing-limiter .post-grid,
+      .listing-{{name}} .listing-limiter .post-grid.cols-3,
+      .listing-{{name}} .listing-limiter .post-grid.cols-2,
+      .listing-{{name}} .listing-limiter .post-grid.cols-1,
+      .listing-{{name}} .listing-limiter .products-grid {
+        grid-template-columns: 1fr;
+      }
+    }   
+    
+    @media (max-width: 480px) {
+      .section-{{name}} .resources-container .resource-tabs {
+        gap: 20px;
+      }
+    }
+  </style>
+{% end_require_css %}
+
+{% require_js %}
+  <script>
+    $(document).ready(function() {
+      $('.section-{{name}} .resource-tab').click(function() {
+        // Remove 'active' class from all tabs and resource cards
+        $('.section-{{name}} .resource-tab').removeClass('active');
+        $('.section-{{name}} .resource-card').removeClass('active').hide();
+
+        // Add 'active' class to the clicked tab
+        $(this).addClass('active');
+
+        // Get the data-id of the clicked tab
+        var dataId = $(this).data('id');
+
+        // Find the resource card with the same data-id and add 'active' class to it, then fade it in
+        $('.section-{{name}} .resource-card[data-id="' + dataId + '"]').addClass('active').fadeIn();
+      });
+
+      // Initially hide all resource cards except the active one
+      $('.section-{{name}} .resource-card:not(.active)').hide();
+      
+      // Tags on blog post cards
+      $('.listing-{{name}} .card-tags').each(function() {
+        const $tags = $(this).find('.card-tag');
+        const totalTags = $tags.length;
+
+        if (totalTags > 2) {
+          // Hide all tags except the first two
+          $tags.slice(2).hide();
+
+          // Create the "+X" element
+          const remainingCount = totalTags - 2;
+          const $moreTags = $('<span class="card-tag more-tags">+' + remainingCount + '</span>');
+
+          // Append the "+X" element after the second tag
+          $(this).append($moreTags);
+
+          // Click event to show the remaining tags
+          $moreTags.click(function() {
+            $tags.slice(2).show();
+            $(this).remove(); // Remove the "+X" element after showing all tags
+          });
+        }
+      });
+    });
+  </script>
+{% end_require_js %}

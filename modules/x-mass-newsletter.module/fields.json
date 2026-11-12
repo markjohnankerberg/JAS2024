@@ -1,0 +1,67 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "content.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "STAY CONNECTED"
+  }, {
+    "id" : "content.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Get the Latest."
+  }, {
+    "id" : "content.body_text",
+    "name" : "body_text",
+    "label" : "Body text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Receive biblical teaching, new resources, and ministry updates."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "form",
+  "name" : "form",
+  "label" : "Form",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "form.form_id",
+    "name" : "form_id",
+    "label" : "HubSpot form",
+    "required" : false,
+    "locked" : false,
+    "type" : "form",
+    "display_width" : null,
+    "default" : {
+      "response_type" : "inline",
+      "message" : "Thank you for subscribing!"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

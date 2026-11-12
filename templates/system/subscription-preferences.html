@@ -1,0 +1,28 @@
+<!--
+  templateType: email_subscription_preferences_page
+  isAvailableForNewContent: true
+  label: JAS - Еmail subscription preferences
+-->
+
+{% set template_css = "../../css/templates/system.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Subscription preferences" %}
+
+{% block body %}
+
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div>
+
+  <section class="content-wrapper">
+    <div class="systems-page">
+      {% module "subscription_preferences"
+        path="@hubspot/email_subscriptions"
+      %}
+    </div>
+  </section>
+
+{% endblock body %}

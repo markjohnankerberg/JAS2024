@@ -1,0 +1,26 @@
+<!--
+  templateType: global_partial
+  label: Website header
+-->
+
+<header id="jas-header" class="header">
+<!--   <a href="#main-content" class="header__skip">Skip to content</a> -->
+  {% module "atri_header" path="/JAS2024/modules/Header", label="Header" %}
+</header>
+
+{% require_js %}
+  <script>
+    var navbar = document.getElementById("jas-header");
+    function stickyHeader() {
+      if (window.pageYOffset >= 20) {
+        navbar.classList.add("sticky");
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+    
+    window.onscroll = function() {
+      stickyHeader();
+    };
+  </script>
+{% end_require_js %}

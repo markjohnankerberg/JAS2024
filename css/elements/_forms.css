@@ -1,0 +1,417 @@
+/* Fields */
+
+.hs-form-field {
+  margin-bottom: 1.4rem;
+}
+
+/* Labels */
+
+form label {
+  display: block;
+  font-size: 0.875rem;
+  margin-bottom: 0.35rem;
+}
+
+/* Form Title */
+.form-title {
+  margin-bottom: 0;
+}
+
+/* Help text */
+
+form legend {
+  font-size: 0.875rem;
+}
+
+/* Inputs */
+
+form input[type=text],
+form input[type=search],
+form input[type=email],
+form input[type=password],
+form input[type=tel],
+form input[type=number],
+form input[type=file],
+form select,
+form textarea {
+  display: inline-block;
+  font-size: 0.875rem;
+  padding: 0.7rem;
+  width: 100%;
+}
+
+form textarea {
+  resize: vertical;
+}
+
+form fieldset {
+  max-width: 100% !important;
+}
+
+/* Inputs - checkbox/radio */
+
+form .inputs-list {
+  margin: 0;
+  padding: 0;
+  list-style: none;
+}
+
+form .inputs-list > li {
+  display: block;
+  margin: 0.7rem 0;
+}
+
+form .inputs-list input,
+form .inputs-list span {
+  vertical-align: middle;
+}
+
+form input[type=checkbox],
+form input[type=radio] {
+  cursor: pointer;
+  margin-right: 0.35rem;
+}
+
+/* Inputs - date picker */
+
+.hs-dateinput {
+  position: relative;
+}
+
+.hs-dateinput:before {
+  content:'\01F4C5';
+  position: absolute;
+  right: 10%;
+  top: 50%;
+  transform: translateY(-50%);
+}
+
+.fn-date-picker .pika-table thead th {
+  color: #FFF;
+}
+
+.fn-date-picker td.is-selected .pika-button {
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.fn-date-picker td .pika-button:hover,
+.fn-date-picker td .pika-button:focus {
+  border-radius: 0 !important;
+  color: #FFF;
+}
+
+/* Inputs - file picker */
+
+form input[type=file] {
+  background-color: transparent;
+  border: initial;
+  padding: initial;
+}
+
+/* Headings and text */
+
+form .hs-richtext,
+form .hs-richtext p {
+  font-size: 0.875rem;
+  margin: 0 0 1.4rem;
+}
+
+form .hs-richtext img {
+  max-width: 100% !important;
+}
+
+/* GDPR */
+
+.legal-consent-container .hs-form-booleancheckbox-display > span,
+.legal-consent-container .hs-form-booleancheckbox-display > span p {
+  margin-left: 1rem !important;
+}
+
+/* Validation */
+
+/* .hs-form-required {
+  color: #EF6B51;
+} */
+
+.hs-input.invalid.error {
+  border-color: #EF6B51;
+}
+
+.hs-error-msg {
+  color: #EF6B51;
+  margin-top: 0.35rem;
+}
+
+/* Submit button */
+
+form input[type=submit],
+form .hs-button {
+  cursor: pointer;
+  display: inline-block;
+  text-align: center;
+  transition: all 0.15s linear;
+  white-space: normal;
+}
+
+/* Captcha */
+
+.grecaptcha-badge {
+  margin: 0 auto;
+}
+
+{% if ( get_asset_version("@hubspot/search_input") == "1" ) %}
+  /* Search button input field and suggestions */
+  .body-container-wrapper .hs-search-field__button {
+    padding: 15px;
+  }
+
+  .body-container-wrapper .hs-search-field__bar--button-inline .hs-search-field__button {
+    margin-left: 6px;
+    margin-bottom: 0;
+  }
+
+  .body-container-wrapper .hs-search-field__button svg {
+    height: 15px;
+    fill: #fff;
+  }
+
+  .body-container-wrapper .hs-search-field__bar > form > .hs-search-field__input {
+    padding: 10px;
+  }
+
+  .body-container-wrapper .hs-search-field__suggestions li a {
+    color: #494A52;
+    padding: 0.35rem 0.7rem;
+    text-decoration: none;
+    transition: background-color 0.3s;
+  }
+{% endif %}
+
+/* ======================== */
+/* ===== Form styling ===== */
+/* ======================== */
+
+.hs-form textarea,
+.hs-form select,
+.hs-form input[type="text"],
+.hs-form input[type="password"],
+.hs-form input[type="datetime"],
+.hs-form input[type="datetime-local"],
+.hs-form input[type="date"],
+.hs-form input[type="file"],
+.hs-form input[type="month"],
+.hs-form input[type="time"],
+.hs-form input[type="week"],
+.hs-form input[type="number"],
+.hs-form input[type="email"],
+.hs-form input[type="text"],
+.hs-form input[type="url"],
+.hs-form input[type="search"],
+.hs-form input[type="tel"],
+.hs-form input[type="color"],
+form textarea,
+form select,
+form input[type="text"],
+form input[type="password"],
+form input[type="datetime"],
+form input[type="datetime-local"],
+form input[type="date"],
+form input[type="file"],
+form input[type="month"],
+form input[type="time"],
+form input[type="week"],
+form input[type="number"],
+form input[type="email"],
+form input[type="text"],
+form input[type="url"],
+form input[type="search"],
+form input[type="tel"],
+form input[type="color"] {
+    font-family: Lato, sans-serif;
+    border-radius: 5px;
+    border: 1px solid var(--clr-light-beige);
+/*     padding: 13px 18px; */
+    padding: 10px 12px;
+/*     margin: 5px 0 16px 0; */
+    font-size: 16px;
+    font-weight: 500;
+    width: 100%;
+    color: var(--clr-grey);
+    line-height: 1.2;
+}
+
+form select,
+.hs-form select {
+  color: var(--clr-dark-beige);
+}
+
+form select option,
+.hs-form select option {
+  font-weight: 500;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  transition: var(--transition);
+}
+
+form select option:hover,
+.hs-form select option:hover {
+  background: var(--clr-light-beige);
+  color: var(--clr-grey);
+}
+
+/* .hs-form .hs-form-field > label span.hs-form-required {
+    display: none;
+}
+
+.hs-form .hs-form-field > label span:not(:empty) + span.hs-form-required {
+    display: inherit;
+}
+
+.hs-form .hs-form-field .input {
+    margin: 0;
+}
+
+.hs-form fieldset.form-columns-2 {
+    margin: 0 -6px;
+}
+
+.hs-form fieldset.form-columns-2 .hs-form-field {
+    width: calc(50% - 12px);
+    margin: 0 6px;
+}
+
+.hs-form fieldset.form-columns-3 {
+    margin: 0 -6px;
+}
+
+.hs-form fieldset.form-columns-3 .hs-form-field {
+    width: calc(33.33% - 12px);
+    margin: 0 6px;
+}
+
+@media (max-width: 767px) {
+    .hs-form fieldset.form-columns-2,
+    .hs-form fieldset.form-columns-3 {
+        margin: 0;
+    }
+    .hs-form fieldset.form-columns-2 .hs-form-field,
+    .hs-form fieldset.form-columns-3 .hs-form-field {
+        width: 100%;
+        margin: 0;
+    }
+    .hs-form fieldset .input .hs-input,
+    .hs-form fieldset.form-columns-2 .input .hs-input,
+    .hs-form fieldset.form-columns-3 .input .hs-input {
+        width: 100%;
+    }
+} */
+
+/* .hs-form ul li {
+    padding-left: 0px !important;
+    position: relative;
+}
+
+.hs-form ul li::before {
+    display: none !important;
+} */
+
+/* .hs-form fieldset.form-columns-2 .hs-form-field {
+    width: 100% !important;
+} */
+
+.hs-form h1 span,
+.hs-form h2 span,
+.hs-form h3 span,
+form h1 span,
+form h2 span,
+form h3 span {
+  color: inherit;
+  font-size: inherit;
+}
+
+.hs-form .field.hs-form-field > label,
+form .field.hs-form-field > label {
+    font-size: 18px;
+}
+
+.hs-form .hs-button,
+form .hs-button {
+/*   display: inline-block; */
+/*   background-color: var(--clr-dark-beige); */
+  background-color: var(--clr-light-beige);
+  border: 1px solid var(--clr-light-beige);
+  color: var(--clr-light);
+/*   padding: 12px 20px; */
+  padding: 12px 54px;
+  font-size: 14px;
+  font-weight: 700;
+  line-height: 1.2;
+  border-radius: 5px;
+}
+
+.hs-form .hs-button:hover,
+.hs-form .hs-button:focus,
+form .hs-button:hover,
+form .hs-button:focus {
+/*   background-color: var(--clr-beige); */
+  background: var(--clr-dark-beige);
+  border: 1px solid var(--clr-dark-beige);
+  color: var(--clr-light);
+}
+
+form label,
+form label span {
+  font-weight: 600;
+  font-size: 16px;
+  line-height: 1.2;
+}
+
+form label.hs-error-msg,
+form label.hs-error-msg span {
+  font-size: 14px;
+  font-weight: 500;
+}
+
+.hs-form ul[role="checkbox"] li,
+form ul[role="checkbox"] li {
+  margin-bottom: 4px;
+}
+
+.hs-form .actions,
+form .actions {
+  text-align: center;
+}
+
+.hs-form fieldset.form-columns-1 div.input,
+form fieldset.form-columns-1 div.input,
+.hs-form fieldset.form-columns-2 div.input,
+form fieldset.form-columns-2 div.input {
+  margin-right: 0;
+}
+
+.hs-form fieldset.form-columns-1 .input .hs-input,
+form fieldset.form-columns-1 .input .hs-input {
+  width: 100%;
+}
+
+form .form-columns-2 {
+  display: flex;
+  gap: 20px;
+}
+
+@media (max-width: 480px) {
+  form .form-columns-2 {
+    flex-direction: column;
+    gap: 0px;
+  }
+  
+  form .form-columns-2 .hs-form-field {
+    width: 100% !important;
+  }
+}
+
+/* .hs-form .actions input[type="submit"] {
+  width: 100%;
+  max-width: 320px;
+} */

@@ -1,0 +1,872 @@
+{
+  "default_text.current_page_aria_label.default" : {
+    "message" : "Jelenlegi oldal",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.current_page_aria_label.label" : {
+    "message" : "Jelenlegi oldal akadálymentességi címkéje",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.default" : {
+    "message" : "Kiemelt kép",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.label" : {
+    "message" : "Kiemelt kép",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.default" : {
+    "message" : "Első oldal",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.label" : {
+    "message" : "Első oldal hivatkozásának szövege",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.label" : {
+    "message" : "Alapértelmezett szöveg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.default" : {
+    "message" : "Utolsó oldal",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.label" : {
+    "message" : "Utolsó oldal hivatkozásának szövege",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.default" : {
+    "message" : "Lapozási navigálás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.label" : {
+    "message" : "Navigálás akadálymentességi címkéje",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.default" : {
+    "message" : "Következő",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.label" : {
+    "message" : "Következő oldal hivatkozásának szövege",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.default" : {
+    "message" : "<p>Sajnos nincs találat a(z) [[search_term]] kifejezésre.</p><p>Próbálja meg átfogalmazni a kérdést, vagy böngésszen a honlapon.</p>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.label" : {
+    "message" : "Nincs találat üzenet",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.default" : {
+    "message" : "Oldal",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.label" : {
+    "message" : "Oldalszám akadálymentességi címkéje",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.default" : {
+    "message" : "Előző",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.label" : {
+    "message" : "Előző oldal hivatkozásának szövege",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.default" : {
+    "message" : "[[offset]]–[[limit]] megjelenítése [[total]] találatból",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.label" : {
+    "message" : "Keresési eredmények száma",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.placeholder" : {
+    "message" : "[[offset]]–[[limit]] megjelenítése [[total]] találatból",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.default" : {
+    "message" : "Keresési eredmények a(z) „{{ searched_term|escape }}” kifejezésre",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.help_text" : {
+    "message" : "Írja be a keresési eredmények felett megjeleníteni kívánt címet.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.label" : {
+    "message" : "Eredmények címe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.placeholder" : {
+    "message" : "Keresési eredmények a(z) „{{ searched_term|escape }}” kifejezésre",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.default" : {
+    "message" : "Itt mindegyik oldalról megjelenik előnézetben egy kis szöveg, így a látogatók gyorsan tallózhatnak a keresési eredmények között, és könnyen megtalálhatják a keresett oldalt.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.label" : {
+    "message" : "Keresés során talált cikk leírása.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.default" : {
+    "message" : "Keresés során talált cikk címe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.label" : {
+    "message" : "Keresés során talált cikk címe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "inline_help_text" : {
+    "message" : "Ez a modul a keresési beviteli modullal használható. Amikor a látogatók rákeresnek egy kifejezésre a keresési beviteli modulban, az ezzel a modullal rendelkező bármely oldalon megjeleníthetők a találataik. <a href=\"https://knowledge.hubspot.com/design-manager/set-up-a-results-page-to-use-a-search-field-on-your-site\">1További információ.</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_arrows" : {
+    "message" : "Nyilak megjelenítése",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_labels" : {
+    "message" : "Címkék megjelenítése",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.label" : {
+    "message" : "Első és utolsó",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.default" : {
+    "message" : "Első",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.label" : {
+    "message" : "Első címke",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.inline_help_text" : {
+    "message" : "A tördelés segítségével a felhasználók oldalakra bontva böngészhetik a hosszú találati listákat.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.label" : {
+    "message" : "Lapszámozás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.default" : {
+    "message" : "Utolsó",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.label" : {
+    "message" : "Utolsó címke",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.default" : {
+    "message" : "Következő",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.label" : {
+    "message" : "Következő címke",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.choices.show_numbers" : {
+    "message" : "Számok megjelenítése",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.label" : {
+    "message" : "Számok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_arrows" : {
+    "message" : "Nyilak megjelenítése",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_labels" : {
+    "message" : "Címkék megjelenítése",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.label" : {
+    "message" : "Előző és következő",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.default" : {
+    "message" : "Előző",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.label" : {
+    "message" : "Előző címke",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.display_for_each_result.choices.image" : {
+    "message" : "Előnézeti kép megjelenítése mindegyik találathoz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.label" : {
+    "message" : "Eredmények",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.label" : {
+    "message" : "Tároló",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Stílusok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.color.label" : {
+    "message" : "Szín",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.label" : {
+    "message" : "Háttér",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.border.label" : {
+    "message" : "Szegély",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.label" : {
+    "message" : "Szegély",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.label" : {
+    "message" : "Sarok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.radius.label" : {
+    "message" : "Sugár",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.background_color.label" : {
+    "message" : "Háttér színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.border_color.label" : {
+    "message" : "Szegély színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.label" : {
+    "message" : "Rámutatás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.text_color.label" : {
+    "message" : "Szöveg színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.label" : {
+    "message" : "Ikon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.size.label" : {
+    "message" : "Méret",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.label" : {
+    "message" : "Első és utolsó",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Szöveg és ikon közötti térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.label" : {
+    "message" : "Szöveg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Lapszámozás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.background_color.label" : {
+    "message" : "Háttér színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.border_color.label" : {
+    "message" : "Szegély színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.help_text" : {
+    "message" : "A számozott hivatkozás stílusát adja meg, ahhoz az oldalhoz igazodva, amelyen Ön jelenleg tartózkodik.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.label" : {
+    "message" : "Aktív",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.text_color.label" : {
+    "message" : "Szöveg színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.color.label" : {
+    "message" : "Szín",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.label" : {
+    "message" : "Háttér",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.border.label" : {
+    "message" : "Szegély",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.label" : {
+    "message" : "Szegély",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.label" : {
+    "message" : "Sarok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.radius.label" : {
+    "message" : "Sugár",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.background_color.label" : {
+    "message" : "Háttér színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.border_color.label" : {
+    "message" : "Szegély színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.label" : {
+    "message" : "Rámutatás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.text_color.label" : {
+    "message" : "Szöveg színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.label" : {
+    "message" : "Számok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.label" : {
+    "message" : "Szöveg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.color.label" : {
+    "message" : "Szín",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.label" : {
+    "message" : "Háttér",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.border.label" : {
+    "message" : "Szegély",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.label" : {
+    "message" : "Szegély",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.label" : {
+    "message" : "Sarok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.radius.label" : {
+    "message" : "Sugár",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.background_color.label" : {
+    "message" : "Háttér színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.border_color.label" : {
+    "message" : "Szegély színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.label" : {
+    "message" : "Rámutatás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.text_color.label" : {
+    "message" : "Szöveg színe",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.label" : {
+    "message" : "Ikon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.size.label" : {
+    "message" : "Méret",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.label" : {
+    "message" : "Előző és következő",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Szöveg és ikon közötti térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.label" : {
+    "message" : "Szöveg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Hivatkozások közötti térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.author.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.label" : {
+    "message" : "Font",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.label" : {
+    "message" : "Title copy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.description.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.description.label" : {
+    "message" : "Szöveg előnézete",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.label" : {
+    "message" : "Sarok",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.radius.label" : {
+    "message" : "Sugár",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.label" : {
+    "message" : "Kép",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.1/1" : {
+    "message" : "1:1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.16/9" : {
+    "message" : "16:9",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.2/3" : {
+    "message" : "2:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/2" : {
+    "message" : "3:2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/4" : {
+    "message" : "3:4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.4/3" : {
+    "message" : "4:3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.label" : {
+    "message" : "Méretarány",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.label" : {
+    "message" : "Méret",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.width.label" : {
+    "message" : "Szélesség",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.between_image_and_content.label" : {
+    "message" : "A kép és a tartalom között",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.label" : {
+    "message" : "Eredmények",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.spacing.label" : {
+    "message" : "Térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.spacing.space_between_results.label" : {
+    "message" : "Eredmények közötti térköz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.label" : {
+    "message" : "Cím",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.label" : {
+    "message" : "Eredmények számát jelző üzenet",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.capitalize" : {
+    "message" : "Nagy kezdőbetű használata",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.lowercase" : {
+    "message" : "Kisbetűs",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.none" : {
+    "message" : "Nincs",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.uppercase" : {
+    "message" : "Nagybetűs",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.label" : {
+    "message" : "Átalakítás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.font.label" : {
+    "message" : "Betűtípus",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.label" : {
+    "message" : "Cím",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.capitalize" : {
+    "message" : "Nagy kezdőbetű használata",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.lowercase" : {
+    "message" : "Kisbetűs",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.none" : {
+    "message" : "Nincs",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.uppercase" : {
+    "message" : "Nagybetűs",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.label" : {
+    "message" : "Átalakítás",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h1" : {
+    "message" : "H1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h2" : {
+    "message" : "H2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h3" : {
+    "message" : "H3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h4" : {
+    "message" : "H4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h5" : {
+    "message" : "H5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h6" : {
+    "message" : "H6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.help_text" : {
+    "message" : "Válassza ki a fejléc szintjét. A H1 a legnagyobb, ezt követi a H2, és így tovább.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.label" : {
+    "message" : "Címsor címkéje",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.placeholder" : {
+    "message" : "Fejléc típusának kiválasztása",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.label" : {
+    "message" : "Cím",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.show_title.label" : {
+    "message" : "Cím megjelenítése",
+    "description" : "",
+    "placeholders" : null
+  }
+}

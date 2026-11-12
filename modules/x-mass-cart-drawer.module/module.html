@@ -1,0 +1,737 @@
+{#
+Cart & Favorites Drawer — slide-out panel from the right.
+Reads cart from window.ATRICart (cart.js) and favorites from localStorage.
+The header module opens this via window.ATRIDrawer.open('cart') / .open('favorites').
+Layout follows a familiar shopping-cart pattern: subtotal up top, large product image,
+name / price / match note, quantity stepper and Delete per line, checkout pinned at the bottom.
+Cart | Saved tabs: saved picks come from x-mass-products-section (ids + details in localStorage).
+#}
+{% set l = module.labels %}
+
+{% require_css %}
+<style>
+  /* Sits above the site header (#jas-header is z-index 1000). */
+  .drawer-shade {
+    position: fixed;
+    inset: 0;
+    z-index: 10000;
+    background: rgba(9,30,25,.5);
+    backdrop-filter: blur(2px);
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity .25s ease;
+  }
+  .drawer-shade.is-open {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  .drawer-panel {
+    --dw-bg: #f8f5ee;
+    --dw-card: #fff;
+    --dw-ink: #21372d;
+    --dw-muted: #626b63;
+    --dw-line: #d9d1c2;
+    --dw-forest: #18392f;
+    --dw-gold: #e7d4a4;
+    --dw-burgundy: #7d2025;
+    --dw-serif: Georgia, 'Times New Roman', serif;
+    --dw-sans: Arial, Helvetica, sans-serif;
+
+    position: fixed;
+    top: 0;
+    right: 0;
+    z-index: 10001;
+    width: min(420px, 92vw);
+    height: 100vh;
+    height: 100dvh;
+    background: var(--dw-bg);
+    color: var(--dw-ink);
+    font-family: var(--dw-sans);
+    display: flex;
+    flex-direction: column;
+    transform: translateX(100%);
+    visibility: hidden;
+    transition: transform .3s ease, visibility 0s linear .3s;
+    box-shadow: -4px 0 20px rgba(0,0,0,.12);
+  }
+  .drawer-panel.is-open {
+    transform: translateX(0);
+    visibility: visible;
+    transition: transform .3s ease, visibility 0s;
+  }
+  .drawer-panel *, .drawer-panel *::before, .drawer-panel *::after { box-sizing: border-box; }
+  html.drawer-lock, html.drawer-lock body { overflow: hidden; }
+
+  /* Hide the site nav while the drawer is open: #jas-header (HeaderV2) and .sitehead (Christmas header).
+     It slides back when the drawer closes. */
+  #jas-header, .sitehead { transition: transform .25s ease; }
+  html.drawer-lock #jas-header,
+  html.drawer-lock .sitehead { transform: translateY(-100%); }
+
+  /* Header */
+  .drawer-panel__header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 16px 20px;
+    border-bottom: 1px solid var(--dw-line);
+    flex: none;
+  }
+  .drawer-panel__title {
+    margin: 0;
+    font-family: var(--dw-serif);
+    font-size: 22px;
+    font-weight: 400;
+  }
+  .drawer-panel__count {
+    font-family: var(--dw-sans);
+    font-size: 13px;
+    color: var(--dw-muted);
+  }
+  .drawer-panel__close {
+    width: 36px;
+    height: 36px;
+    border: 1px solid var(--dw-line);
+    border-radius: 50%;
+    background: none;
+    color: var(--dw-ink);
+    font-size: 20px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0;
+    line-height: 1;
+  }
+  .drawer-panel__close:hover { background: #eee9df; }
+  .drawer-panel__close:focus-visible { outline: 2px solid var(--dw-forest); outline-offset: 2px; }
+
+  /* Subtotal summary at the top */
+  .drawer-panel__summary {
+    flex: none;
+    padding: 12px 20px;
+    border-bottom: 1px solid var(--dw-line);
+    font-size: 14px;
+  }
+  .drawer-panel__summary strong {
+    font-family: var(--dw-serif);
+    font-size: 18px;
+  }
+
+  /* Body */
+  .drawer-panel__body {
+    flex: 1;
+    overflow-y: auto;
+    padding: 12px 16px;
+  }
+  .drawer-panel__empty {
+    font-size: 13px;
+    color: var(--dw-muted);
+    line-height: 1.65;
+    padding: 20px 4px;
+  }
+
+  /* Line item card */
+  .drawer-item {
+    display: flex;
+    gap: 14px;
+    padding: 14px;
+    background: var(--dw-card);
+    border: 1px solid var(--dw-line);
+    border-radius: 4px;
+  }
+  .drawer-item + .drawer-item { margin-top: 10px; }
+
+  .drawer-item__thumb {
+    flex: none;
+    width: 96px;
+    height: 96px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+    color: var(--dw-burgundy);
+  }
+  .drawer-item__thumb img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+  }
+  .drawer-item__thumb svg { width: 44px; height: 44px; }
+
+  .drawer-item__info {
+    flex: 1;
+    min-width: 0;
+    font-size: 14px;
+    line-height: 1.4;
+  }
+  .drawer-item__name {
+    display: -webkit-box;
+    -webkit-line-clamp: 2;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    font-size: 15px;
+    font-weight: 700;
+  }
+  .drawer-item__price {
+    display: block;
+    margin-top: 4px;
+    font-family: var(--dw-serif);
+    font-size: 18px;
+    color: var(--dw-forest);
+  }
+  .drawer-item__each {
+    font-family: var(--dw-sans);
+    font-size: 12px;
+    color: var(--dw-muted);
+  }
+  .drawer-item__meta {
+    display: block;
+    margin-top: 2px;
+    font-size: 12px;
+    color: var(--dw-muted);
+  }
+  .drawer-item__note {
+    display: block;
+    margin-top: 4px;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dw-burgundy);
+  }
+
+  /* Quantity stepper + delete */
+  .drawer-item__actions {
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 10px;
+  }
+  .drawer-qty {
+    display: inline-flex;
+    align-items: center;
+    border: 1px solid var(--dw-line);
+    border-radius: 999px;
+    overflow: hidden;
+    background: #fff;
+  }
+  .drawer-qty button {
+    width: 32px;
+    height: 30px;
+    border: 0;
+    background: none;
+    color: var(--dw-ink);
+    font-size: 16px;
+    line-height: 1;
+    cursor: pointer;
+    padding: 0;
+  }
+  .drawer-qty button:hover:not([disabled]) { background: #eee9df; }
+  .drawer-qty button[disabled] { color: #b8b2a6; cursor: not-allowed; }
+  .drawer-qty button:focus-visible { outline: 2px solid var(--dw-forest); outline-offset: -2px; }
+  .drawer-qty output {
+    min-width: 28px;
+    text-align: center;
+    font-size: 14px;
+    font-weight: 700;
+  }
+  .drawer-item__remove {
+    border: 0;
+    background: none;
+    font-size: 12px;
+    font-weight: 700;
+    color: var(--dw-muted);
+    text-decoration: underline;
+    cursor: pointer;
+    padding: 4px 0;
+  }
+  .drawer-item__remove:hover { color: var(--dw-burgundy); }
+  .drawer-item__remove:focus-visible { outline: 2px solid var(--dw-forest); outline-offset: 2px; }
+
+  /* Footer */
+  .drawer-panel__footer {
+    flex: none;
+    padding: 16px 20px;
+    border-top: 1px solid var(--dw-line);
+    background: var(--dw-bg);
+  }
+  .drawer-panel__total {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    font-size: 14px;
+    font-weight: 700;
+    margin-bottom: 14px;
+  }
+  .drawer-panel__total span:last-child {
+    font-family: var(--dw-serif);
+    font-size: 20px;
+  }
+  .drawer-panel__checkout {
+    display: block;
+    width: 100%;
+    padding: 14px 20px;
+    border: 0;
+    border-radius: 3px;
+    background: var(--dw-forest);
+    color: #fff;
+    font: 700 13px/1.5 var(--dw-sans);
+    text-align: center;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s;
+  }
+  .drawer-panel__checkout:hover { background: #1f4a3d; color: #fff; }
+  .drawer-panel__checkout:focus-visible { outline: 2px solid var(--dw-gold); outline-offset: 2px; }
+  .drawer-panel__error {
+    margin: 10px 0 0;
+    font-size: 13px;
+    color: var(--dw-burgundy);
+  }
+  .drawer-panel__error:empty { display: none; }
+
+  .drawer-panel__continue {
+    display: block;
+    width: 100%;
+    margin-top: 10px;
+    border: 0;
+    background: none;
+    color: var(--dw-forest);
+    font: 700 12px/1.5 var(--dw-sans);
+    text-decoration: underline;
+    cursor: pointer;
+  }
+
+  /* Cart | Saved tabs */
+  .drawer-tabs {
+    flex: none;
+    display: flex;
+    gap: 4px;
+    padding: 0 16px;
+    border-bottom: 1px solid var(--dw-line);
+  }
+  .drawer-tab {
+    position: relative;
+    padding: 12px 10px;
+    border: 0;
+    background: none;
+    color: var(--dw-muted);
+    font: 700 13px/1.4 var(--dw-sans);
+    cursor: pointer;
+  }
+  .drawer-tab[aria-selected="true"] { color: var(--dw-ink); }
+  .drawer-tab[aria-selected="true"]::after {
+    content: "";
+    position: absolute;
+    left: 10px;
+    right: 10px;
+    bottom: -1px;
+    height: 3px;
+    background: var(--dw-forest);
+    border-radius: 3px 3px 0 0;
+  }
+  .drawer-tab:focus-visible { outline: 2px solid var(--dw-forest); outline-offset: -2px; }
+  .drawer-tab__n {
+    display: inline-block;
+    min-width: 20px;
+    margin-left: 4px;
+    padding: 0 6px;
+    border-radius: 10px;
+    background: #eee9df;
+    font-size: 11px;
+    line-height: 18px;
+    text-align: center;
+  }
+
+  /* Saved item: Move to cart */
+  .drawer-item__move {
+    padding: 6px 14px;
+    border: 1px solid var(--dw-forest);
+    border-radius: 999px;
+    background: var(--dw-forest);
+    color: #fff;
+    font: 700 12px/1.4 var(--dw-sans);
+    cursor: pointer;
+  }
+  .drawer-item__move:hover { background: #1f4a3d; }
+  .drawer-item__move[disabled] { opacity: .5; cursor: not-allowed; }
+  .drawer-item__move:focus-visible { outline: 2px solid var(--dw-gold); outline-offset: 2px; }
+
+  @media (max-width: 420px) {
+    .drawer-item__thumb { width: 76px; height: 76px; }
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .drawer-shade, .drawer-panel, .drawer-panel.is-open, #jas-header, .sitehead { transition: none; }
+  }
+</style>
+{% end_require_css %}
+
+<div class="drawer-shade" id="drawer-shade"></div>
+<aside class="drawer-panel" id="drawer-panel" aria-labelledby="drawer-title" role="dialog" aria-modal="true">
+  <div class="drawer-panel__header">
+    <h3 class="drawer-panel__title">
+      <span id="drawer-title">{{ l.cart_title }}</span>
+      <span class="drawer-panel__count" id="drawer-count"></span>
+    </h3>
+    <button class="drawer-panel__close" id="drawer-close" type="button" aria-label="Close">
+      <span aria-hidden="true">&times;</span>
+    </button>
+  </div>
+  <div class="drawer-tabs" role="tablist" aria-label="Cart and saved items">
+    <button type="button" class="drawer-tab" role="tab" id="drawer-tab-cart" data-drawer-tab="cart" aria-selected="true" aria-controls="drawer-body">
+      Cart<span class="drawer-tab__n" id="drawer-tab-cart-n">0</span>
+    </button>
+    <button type="button" class="drawer-tab" role="tab" id="drawer-tab-favorites" data-drawer-tab="favorites" aria-selected="false" aria-controls="drawer-body" tabindex="-1">
+      Saved<span class="drawer-tab__n" id="drawer-tab-favorites-n">0</span>
+    </button>
+  </div>
+  <div class="drawer-panel__summary" id="drawer-summary" hidden></div>
+  <div class="drawer-panel__body" id="drawer-body" role="tabpanel"></div>
+  <div class="drawer-panel__footer" id="drawer-footer" hidden></div>
+</aside>
+
+{% require_js position="footer" %}
+<script>
+  (function () {
+    'use strict';
+    var PICKS_KEY = 'atri-christmas-2026-picks';
+    var PICKS_DETAILS_KEY = 'atri-christmas-2026-picks-details'; // written by x-mass-products-section
+    var PICKS_EVENT = 'atri:picks';
+    var MAX_QTY = 99;
+    var shade = document.getElementById('drawer-shade');
+    var panel = document.getElementById('drawer-panel');
+    var title = document.getElementById('drawer-title');
+    var countEl = document.getElementById('drawer-count');
+    var summary = document.getElementById('drawer-summary');
+    var body = document.getElementById('drawer-body');
+    var footer = document.getElementById('drawer-footer');
+    var closeBtn = document.getElementById('drawer-close');
+    if (!shade || !panel) return;
+
+    var mode = 'cart';
+    var lastFocus = null;
+    var labels = {
+      cartTitle: {{ l.cart_title|tojson }},
+      favTitle: {{ l.favorites_title|tojson }},
+      emptyCart: {{ l.empty_cart|tojson }},
+      emptyFav: {{ l.empty_favorites|tojson }},
+      checkoutText: {{ l.checkout_text|tojson }},
+      checkoutUrl: {{ l.checkout_url|tojson }}
+    };
+
+    function esc(s) {
+      return String(s == null ? '' : s)
+        .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+        .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+    }
+
+    function money(cents) {
+      return '$' + ((cents || 0) / 100).toLocaleString('en-US', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+    }
+
+    var GIFT_ICON = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" aria-hidden="true" focusable="false">' +
+      '<rect x="3" y="9" width="18" height="4"></rect>' +
+      '<path d="M5 13v8h14v-8M12 9v12M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"></path></svg>';
+
+    function thumb(item) {
+      var src = typeof item.image === 'string' ? item.image : (item.image && item.image.url) || '';
+      if (/^https?:\/\//i.test(src)) {
+        return '<img src="' + esc(src) + '" alt="" width="96" height="96" decoding="async">';
+      }
+      return GIFT_ICON;
+    }
+
+    function loadPicks() {
+      try {
+        var ids = JSON.parse(localStorage.getItem(PICKS_KEY) || '[]');
+        return Array.isArray(ids) ? ids : [];
+      } catch (e) { return []; }
+    }
+
+    function loadPickDetails() {
+      try { return JSON.parse(localStorage.getItem(PICKS_DETAILS_KEY) || '{}') || {}; } catch (e) { return {}; }
+    }
+
+    function writePicks(ids) {
+      try { localStorage.setItem(PICKS_KEY, JSON.stringify(ids)); } catch (e) {}
+      window.dispatchEvent(new CustomEvent(PICKS_EVENT, { detail: { ids: ids, source: panel } }));
+    }
+
+    var tabs = {
+      cart: { btn: document.getElementById('drawer-tab-cart'), n: document.getElementById('drawer-tab-cart-n') },
+      favorites: { btn: document.getElementById('drawer-tab-favorites'), n: document.getElementById('drawer-tab-favorites-n') }
+    };
+
+    function updateTabs() {
+      var cartN = window.ATRICart ? units(window.ATRICart.items()) : 0;
+      tabs.cart.n.textContent = cartN;
+      tabs.favorites.n.textContent = loadPicks().length;
+      Object.keys(tabs).forEach(function (k) {
+        var on = k === mode;
+        tabs[k].btn.setAttribute('aria-selected', String(on));
+        tabs[k].btn.tabIndex = on ? 0 : -1;
+      });
+      body.setAttribute('aria-labelledby', tabs[mode].btn.id);
+    }
+
+    function render() {
+      if (mode === 'cart') renderCart();
+      else renderFavorites();
+      updateTabs();
+    }
+
+    function matchNote(item) {
+      var mult = Number(item.matchMultiplier) || 0;
+      if (mult < 2) return '';
+      return 'Your gift is ' + (mult === 2 ? 'doubled' : mult === 3 ? 'tripled' : 'multiplied ' + mult + '×') + ' by the match';
+    }
+
+    function itemHTML(item, canSetQty) {
+      var isGift = item.type === 'gift';
+      var name = item.name || (isGift ? 'Gift to ATRI' : item.sku) || 'Item';
+      var qty = Math.max(1, Number(item.quantity) || 1);
+      var lineCents = isGift ? item.amount_cents : (item.unit_cents || 0) * qty;
+      var meta = isGift ? (item.frequency === 'monthly' ? 'Monthly gift' : 'One-time gift') : '';
+      var note = matchNote(item);
+      var id = esc(item.id);
+
+      var stepper = '';
+      if (!isGift && canSetQty) {
+        stepper = '<div class="drawer-qty" role="group" aria-label="Quantity for ' + esc(name) + '">' +
+          '<button type="button" data-qty-step="-1" data-id="' + id + '" aria-label="Decrease quantity"' + (qty <= 1 ? ' disabled' : '') + '>&minus;</button>' +
+          '<output aria-live="polite">' + qty + '</output>' +
+          '<button type="button" data-qty-step="1" data-id="' + id + '" aria-label="Increase quantity"' + (qty >= MAX_QTY ? ' disabled' : '') + '>+</button>' +
+          '</div>';
+      } else if (!isGift) {
+        meta = 'Qty ' + qty;
+      }
+
+      return '<div class="drawer-item">' +
+        '<div class="drawer-item__thumb">' + thumb(item) + '</div>' +
+        '<div class="drawer-item__info">' +
+          '<span class="drawer-item__name">' + esc(name) + '</span>' +
+          '<span class="drawer-item__price">' + money(lineCents) +
+            (!isGift && qty > 1 ? ' <span class="drawer-item__each">(' + money(item.unit_cents) + ' each)</span>' : '') +
+          '</span>' +
+          (meta ? '<span class="drawer-item__meta">' + esc(meta) + '</span>' : '') +
+          (note ? '<span class="drawer-item__note">' + esc(note) + '</span>' : '') +
+          '<div class="drawer-item__actions">' + stepper +
+            '<button type="button" class="drawer-item__remove" data-remove="' + id + '" aria-label="Delete ' + esc(name) + '">Delete</button>' +
+          '</div>' +
+        '</div>' +
+      '</div>';
+    }
+
+    function units(items) {
+      return items.reduce(function (n, it) { return n + (it.type === 'gift' ? 1 : Math.max(1, Number(it.quantity) || 1)); }, 0);
+    }
+
+    function renderCart() {
+      title.textContent = labels.cartTitle;
+      var Cart = window.ATRICart;
+      var items = Cart ? Cart.items() : [];
+      var n = units(items);
+      countEl.textContent = ''; // counts live on the tabs
+
+      if (!items.length) {
+        body.innerHTML = '<p class="drawer-panel__empty">' + esc(labels.emptyCart) + '</p>';
+        summary.hidden = true;
+        footer.hidden = true;
+        return;
+      }
+
+      var canSetQty = !!(Cart && typeof Cart.setQuantity === 'function');
+      body.innerHTML = items.map(function (it) { return itemHTML(it, canSetQty); }).join('');
+
+      var subtotal = money(Cart.subtotalCents());
+      summary.hidden = false;
+      summary.innerHTML = 'Subtotal (' + n + ' item' + (n === 1 ? '' : 's') + '): <strong>' + subtotal + '</strong>';
+
+      footer.hidden = false;
+      footer.innerHTML = '<div class="drawer-panel__total"><span>Subtotal</span><span>' + subtotal + '</span></div>' +
+        '<a class="drawer-panel__checkout" data-drawer-checkout href="' + esc(labels.checkoutUrl) + '">' + esc(labels.checkoutText) + '</a>' +
+        '<p class="drawer-panel__error" data-drawer-error role="alert"></p>' +
+        '<button type="button" class="drawer-panel__continue" data-drawer-close>Continue shopping</button>';
+    }
+
+    function renderFavorites() {
+      title.textContent = labels.favTitle;
+      var picks = loadPicks();
+      countEl.textContent = '';
+      summary.hidden = true;
+      footer.hidden = true;
+
+      if (!picks.length) {
+        body.innerHTML = '<p class="drawer-panel__empty">' + esc(labels.emptyFav) + '</p>';
+        return;
+      }
+
+      var details = loadPickDetails();
+      body.innerHTML = picks.map(function (id) {
+        var d = details[id] || {};
+        var name = d.name || id;
+        var priced = d.unit_cents != null && isFinite(d.unit_cents);
+        return '<div class="drawer-item">' +
+          '<div class="drawer-item__thumb">' + thumb(d) + '</div>' +
+          '<div class="drawer-item__info">' +
+            '<span class="drawer-item__name">' + esc(name) + '</span>' +
+            (priced ? '<span class="drawer-item__price">' + money(d.unit_cents) + '</span>' : '') +
+            '<div class="drawer-item__actions">' +
+              '<button type="button" class="drawer-item__move" data-move-fav="' + esc(id) + '"' +
+                (priced && window.ATRICart ? '' : ' disabled') + ' aria-label="Move ' + esc(name) + ' to cart">Move to cart</button>' +
+              '<button type="button" class="drawer-item__remove" data-remove-fav="' + esc(id) + '" aria-label="Remove ' + esc(name) + ' from saved">Remove</button>' +
+            '</div>' +
+          '</div>' +
+        '</div>';
+      }).join('');
+    }
+
+    // Adds the saved product to the cart (same item shape as the Resource Library) and un-saves it.
+    function moveToCart(id) {
+      var d = loadPickDetails()[id];
+      if (!d || d.unit_cents == null || !window.ATRICart) return;
+      window.ATRICart.add({
+        type: 'product', sku: d.sku || id, name: d.name || id, unit_cents: d.unit_cents,
+        quantity: 1, image: d.image || '', shippable: d.shippable, campaign: 'saved-picks'
+      });
+      writePicks(loadPicks().filter(function (x) { return x !== id; }));
+      render();
+    }
+
+    function open(m) {
+      mode = m || 'cart';
+      lastFocus = document.activeElement;
+      render();
+      shade.classList.add('is-open');
+      panel.classList.add('is-open');
+      document.documentElement.classList.add('drawer-lock');
+      closeBtn.focus();
+    }
+
+    function close() {
+      shade.classList.remove('is-open');
+      panel.classList.remove('is-open');
+      document.documentElement.classList.remove('drawer-lock');
+      if (lastFocus && typeof lastFocus.focus === 'function') lastFocus.focus();
+    }
+
+    panel.addEventListener('click', function (e) {
+      var Cart = window.ATRICart;
+
+      var step = e.target.closest('[data-qty-step]');
+      if (step && Cart && Cart.setQuantity) {
+        var item = Cart.items().filter(function (it) { return it.id === step.dataset.id; })[0];
+        if (item) {
+          var next = Math.min(MAX_QTY, Math.max(1, (Number(item.quantity) || 1) + Number(step.dataset.qtyStep)));
+          Cart.setQuantity(item.id, next);
+        }
+        return;
+      }
+
+      var del = e.target.closest('[data-remove]');
+      if (del && Cart) {
+        Cart.remove(del.dataset.remove);
+        return;
+      }
+
+      var tabBtn = e.target.closest('[data-drawer-tab]');
+      if (tabBtn) {
+        mode = tabBtn.dataset.drawerTab;
+        render();
+        tabBtn.focus();
+        return;
+      }
+
+      var moveBtn = e.target.closest('[data-move-fav]');
+      if (moveBtn) {
+        moveToCart(moveBtn.dataset.moveFav);
+        return;
+      }
+
+      var favBtn = e.target.closest('[data-remove-fav]');
+      if (favBtn) {
+        writePicks(loadPicks().filter(function (id) { return id !== favBtn.dataset.removeFav; }));
+        render();
+        return;
+      }
+
+      if (e.target.closest('[data-drawer-checkout]')) {
+        startCheckout(e);
+        return;
+      }
+      if (e.target.closest('[data-drawer-close]')) close();
+    });
+
+    // Use the Give panel's checkout dialog (2026-x-mass-pop-up-form → window.ATRICheckout) when it is on the page;
+    // otherwise follow the Checkout URL field.
+    function startCheckout(e) {
+      var Checkout = window.ATRICheckout;
+      var errEl = footer.querySelector('[data-drawer-error]');
+      if (!Checkout || typeof Checkout.open !== 'function') { close(); return; }
+      e.preventDefault();
+      var message = '';
+      Checkout.open(function (m) { message = m || message; });
+      if (Checkout.isOpen && Checkout.isOpen()) {
+        if (errEl) errEl.textContent = '';
+        close();
+      } else if (errEl) {
+        errEl.textContent = message || 'Checkout could not be started. Please try again.';
+      }
+    }
+
+    closeBtn.addEventListener('click', close);
+    shade.addEventListener('click', close);
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && panel.classList.contains('is-open')) close();
+    });
+
+    // Arrow keys move between the Cart / Saved tabs.
+    panel.querySelector('.drawer-tabs').addEventListener('keydown', function (e) {
+      if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+      mode = mode === 'cart' ? 'favorites' : 'cart';
+      render();
+      tabs[mode].btn.focus();
+    });
+
+    function onPicksChange(e) {
+      if (e && e.detail && e.detail.source === panel) return;
+      if (panel.classList.contains('is-open')) render();
+    }
+    window.addEventListener(PICKS_EVENT, onPicksChange);
+    window.addEventListener('storage', function (e) {
+      if (e.key === PICKS_KEY || e.key === PICKS_DETAILS_KEY) onPicksChange();
+    });
+
+    window.addEventListener('atri:cart', function () {
+      if (panel.classList.contains('is-open')) {
+        var keep = document.activeElement && document.activeElement.dataset;
+        var refocus = keep && keep.qtyStep ? '[data-qty-step="' + keep.qtyStep + '"][data-id="' + keep.id + '"]' : null;
+        render();
+        var el = refocus && panel.querySelector(refocus);
+        if (el && !el.disabled) el.focus();
+        else if (refocus) closeBtn.focus();
+      }
+    });
+
+    window.ATRIDrawer = { open: open, close: close };
+
+    /* The nav's heart/cart icons link here as #saved / #cart from pages without the drawer.
+       Open the matching tab, then drop the hash so a refresh or Back doesn't reopen it. */
+    var DRAWER_HASHES = { '#cart': 'cart', '#saved': 'favorites', '#favorites': 'favorites' };
+    function openFromHash() {
+      var m = DRAWER_HASHES[(window.location.hash || '').toLowerCase()];
+      if (!m) return;
+      open(m);
+      if (window.history && history.replaceState) {
+        history.replaceState(null, '', window.location.pathname + window.location.search);
+      }
+    }
+    window.addEventListener('hashchange', openFromHash);
+    openFromHash();
+  })();
+</script>
+{% end_require_js %}

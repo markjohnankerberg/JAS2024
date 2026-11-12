@@ -1,0 +1,71 @@
+<section class="section-{{name}}">
+  <div class="card-wrapper-{{name}}">
+    {% for item in module.cards %}
+      <div class="color-card-{{name}} cc-{{loop.index}}">
+        <h3 class="color-code">{{ item.card_color.color|replace('#', '') }}</h3>
+        <p class="color-name">{{ item.color_name }}</p>
+      </div>
+    
+      {% require_css %}
+        <style>
+          .section-{{name}} .card-wrapper-{{name}} .cc-{{loop.index}} {
+            background: rgba({{ item.card_color.color|convert_rgb }}, {{ item.card_color.opacity/100 }});
+          }
+          
+          .section-{{name}} .card-wrapper-{{name}} .cc-{{loop.index}} :is(h3, p) {
+            color: rgba({{ item.text_color.color|convert_rgb }}, {{ item.text_color.opacity/100 }});
+          }
+        </style>
+      {% end_require_css %}
+    {% endfor %}
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .section-{{name}} {
+      display: flex;
+      justify-items: center;
+      align-items: center;
+      margin: 0 auto;
+      width: 100%;
+    }
+    
+    .section-{{name}} .card-wrapper-{{name}} {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(170px, 100%), 1fr));
+      width: 100%;
+    }
+    
+    .section-{{name}} .card-wrapper-{{name}} .color-card-{{name}} {
+      display: flex;
+      flex-direction: column;
+      justify-content: flex-end;
+      align-items: center;
+      min-height: 200px;
+      padding: 20px;
+    }
+    
+    .section-{{name}} .card-wrapper-{{name}} .color-code {
+      font-size: 24px;
+      font-weight: 400;
+      line-height: 1.4;
+      letter-spacing: 0;
+      margin: 0 auto;
+      text-align: center;
+      text-transform: uppercase;
+      font-style: normal;
+    }    
+    
+    .section-{{name}} .card-wrapper-{{name}} .color-name {
+      font-size: 16px;
+      font-weight: 400;
+      line-height: 1.5;
+      letter-spacing: 0;
+      margin: 0 auto;
+      text-align: center;
+      text-transform: capitalize;
+      font-style: normal;
+    }
+  </style>
+{% end_require_css %}

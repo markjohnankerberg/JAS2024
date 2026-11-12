@@ -1,0 +1,152 @@
+[ {
+  "id" : "api_base_url",
+  "name" : "api_base_url",
+  "label" : "Payments API base URL",
+  "help_text" : "ATRI Platform address, with no trailing slash. Use a staging URL while testing.",
+  "required" : true,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "https://admin.atriresearch.org"
+}, {
+  "id" : "public_key",
+  "name" : "public_key",
+  "label" : "Platform public key",
+  "help_text" : "From the platform admin: Accounts > Public keys. Starts with pk_. Its allowed origins must include this site's domain. Never paste any other key here; the Stripe key comes from the platform automatically.",
+  "required" : true,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : ""
+}, {
+  "id" : "fee_percent",
+  "name" : "fee_percent",
+  "label" : "Cover-fees percentage",
+  "help_text" : "Offers buyers the option to add this % (of items + gifts) as an extra donation to help cover processing fees. Set to 0 to hide the option.",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 0,
+  "max" : 10,
+  "step" : 0.1,
+  "type" : "number",
+  "display_width" : null,
+  "default" : 3
+}, {
+  "id" : "gift_sku",
+  "name" : "gift_sku",
+  "label" : "Give to ATRI gift SKU",
+  "help_text" : "Sent to Stripe (metadata \"skus\") with one-time gifts from this section, e.g. \"ATRI-GIVE $50.00\". Gifts from the Audio Bibles section use that section's custom gift SKU instead. Letters, numbers, dot, dash and underscore only.",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "ATRI-GIVE"
+}, {
+  "id" : "offer_monthly",
+  "name" : "offer_monthly",
+  "label" : "Offer monthly gifts",
+  "help_text" : "Shows the Monthly tab. Monthly gifts renew in WooCommerce under the subscription products ICF-30, ICF-100, ICF-500, ICF-1000 and ICF-Custom (any other amount); those SKUs must exist and be published.",
+  "required" : false,
+  "locked" : false,
+  "display" : "checkbox",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "legacy_giving_url",
+  "name" : "legacy_giving_url",
+  "label" : "Legacy giving page",
+  "help_text" : "Where the Legacy Giving tab sends visitors. Leave empty to hide the tab.",
+  "required" : false,
+  "locked" : false,
+  "supported_types" : [ "EXTERNAL", "CONTENT" ],
+  "type" : "url",
+  "display_width" : null,
+  "default" : {
+    "content_id" : null,
+    "href" : "",
+    "type" : "EXTERNAL"
+  }
+}, {
+  "id" : "recommendations",
+  "name" : "recommendations",
+  "label" : "You may also like",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "recommendations.enabled",
+    "name" : "enabled",
+    "label" : "Show product suggestions once the cart has items",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "recommendations.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "You may also like"
+  }, {
+    "id" : "recommendations.products_url",
+    "name" : "products_url",
+    "label" : "Products endpoint",
+    "help_text" : "ATRI Store API products endpoint. page_size=200 returns the whole catalog in one request.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "https://cms.atriresearch.org/api/v1/products/?page_size=200"
+  }, {
+    "id" : "recommendations.featured_skus",
+    "name" : "featured_skus",
+    "label" : "Featured SKUs (comma-separated)",
+    "help_text" : "Shown first, in this order. After these, products that share a topic with the cart are suggested.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "recommendations.exclude_skus",
+    "name" : "exclude_skus",
+    "label" : "Never suggest these SKUs (comma-separated)",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "recommendations.per_row",
+    "name" : "per_row",
+    "label" : "Cards per row",
+    "help_text" : "A second row is added when the cart has 4 or more items (it grows taller).",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 2,
+    "max" : 4,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 3
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

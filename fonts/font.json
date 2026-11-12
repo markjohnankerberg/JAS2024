@@ -1,0 +1,55 @@
+{
+    "name": "Lato",
+    "default": "Medium",
+    "fallback": "sans-serif",
+    "variants": [
+        {
+            "name": "Regular",
+            "files": [
+                {
+                    "file": "./lato-regular.ttf",
+                    "format": "truetype"
+                }
+            ],
+            "styles": {
+                "font-weight": "400"
+            }
+        },
+        {
+            "name": "Medium",
+            "files": [
+                {
+                    "file": "./lato-medium.ttf",
+                    "format": "truetype"
+                }
+            ],
+            "styles": {
+                "font-weight": "500"
+            }
+        },
+        {
+            "name": "Semibold",
+            "files": [
+                {
+                    "file": "./lato-semibold.ttf",
+                    "format": "truetype"
+                }
+            ],
+            "styles": {
+                "font-weight": "600"
+            }
+        },
+        {
+            "name": "Black",
+            "files": [
+                {
+                    "file": "./lato-black.ttf",
+                    "format": "truetype"
+                }
+            ],
+            "styles": {
+                "font-weight": "800"
+            }
+        }
+    ]
+}

@@ -1,0 +1,27 @@
+<!--
+  templateType: email_subscriptions_confirmation_page
+  isAvailableForNewContent: true
+  label: JAS - Email subscriptions confirmation
+-->
+
+{% set template_css = "../../css/templates/system.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Confirm subscriptions" %}
+
+{% block body %}
+
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div>
+
+  <section class="content-wrapper">
+    <div class="systems-page">
+      {% module "subscriptions_confirmation"
+        path="@hubspot/email_subscriptions_confirmation"
+      %}
+    </div>
+  </section>
+{% endblock body %}

@@ -1,0 +1,323 @@
+<!--
+  templateType: blog_listing
+  isAvailableForNewContent: true
+  label: Blog listing - John Ankerberg 2024
+-->
+{% set template_css = "../../css/templates/blog.css" %}
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container body-container--blog-post blog-listing-jas">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="bp-top-fill"></div>
+  </div> 
+   
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--blog-index"
+%}
+
+  {# Breadcrumbs #}
+  {% dnd_section
+    max_width=1200,
+    background_color="rgba(250, 249, 248, 1)",
+    padding={
+      "default" : {
+        "bottom" : "15px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "18px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Breadcrumbs",
+          offset=0,
+          width=12,
+          breadcrumbs=[ {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "",
+                "type" : "CONTENT"
+              }
+            },
+            "text_field" : "Home"
+          }, {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "",
+                "type" : "CONTENT"
+              }
+            },
+            "text_field" : "Read"
+          }, {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "",
+                "type" : "CONTENT"
+              }
+            },
+            "text_field" : "Blog"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/search_input",
+          offset=0,
+          width=12,
+          results={
+            "content_types" : {
+              "website_pages" : false
+            }
+          },
+          topics=[ {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Apologetics"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Biblical Prophecy"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Discipleship"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Salvation"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Heaven and Hell"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Science"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Study of Scripture"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Theology - Study of God"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "World Religions"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Worldview & Culture"
+          } ],
+          heading="Blog"
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Blog listings and pagination #}
+  {% dnd_section
+    max_width=1200,
+    padding={
+      "default" : {
+        "bottom" : "60px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Blog listing",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      {% dnd_row
+        padding={
+          "default" : {
+            "top" : "40px"
+          }
+        }
+      %}
+        {% dnd_module
+          path="/JAS2024/modules/Pagination",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

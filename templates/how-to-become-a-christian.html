@@ -1,0 +1,807 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: How to become a christian 2024
+  screenshotPath: ../images/template-previews/how-to-become-a-christian.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--htbac"
+%}
+  
+  {# Section #1 - Heading #}
+  {% dnd_section
+    max_width=600,
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0; font-size: 50px;"><span style="color: #000000;">How can you become a Christian?</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}  
+
+  {# Section #2 - Video section #}
+  {% dnd_section
+    background_color="rgba(57, 61, 63, 1)",
+    full_width=false,
+    max_width=878
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Video with info text",
+      offset=0,
+      width=12,
+      embed_field={
+        "height" : 240,
+        "max_height" : 240,
+        "max_width" : 426,
+        "oembed_response" : {
+          "author_name" : "John Ankerberg",
+          "author_url" : "https://vimeo.com/johnankerberg",
+          "height" : "240",
+          "html" : "<iframe src=\"https://player.vimeo.com/video/509891338?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"SALVATION BLURB JA\"></iframe>",
+          "provider_name" : "Vimeo",
+          "provider_url" : "https://vimeo.com/",
+          "thumbnail_height" : "166",
+          "thumbnail_url" : "https://i.vimeocdn.com/video/1055532925-090a59c8f129a8029c965eb55c67991cf6d8699c6f959a94ce3f36c8b8f3c07f-d_295x166",
+          "thumbnail_width" : "295",
+          "title" : "SALVATION BLURB JA",
+          "type" : "video",
+          "version" : "1.0",
+          "width" : "426"
+        },
+        "oembed_url" : "https://player.vimeo.com/video/509891338?color=636363&title=0&byline=0&portrait=0",
+        "size_type" : "auto_full_width",
+        "source_type" : "oembed",
+        "supported_oembed_types" : [ "video" ],
+        "width" : 426
+      }
+    %}
+      {% module_attribute "info_text" %}
+        <p style="text-align: center;"><span style="color: #ffffff;">A Christian is a person who is a follower of Jesus and believes in him. The Bible offers a clear answer so you can know you are a Christian. When a man asked Jesus how to have eternal life, he said, "God so loved the world that he gave his one and only Son, that whoever believes in him shall not perish but have eternal life" (<span style="color: #b7ab9f;"><a href="https://biblia.com/bible/niv/John%203.16" rel="noopener" target="_blank" style="color: #b7ab9f;">John 3:16</a></span>). Those who believe in Jesus will have eternal life.</span></p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}  
+
+  {# Section #3 - How can you believe in Jesus? #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Custom section header",
+      offset=0,
+      width=12,
+      button_group=[ ],
+      heading="How can you believe in Jesus?",
+      show_button=false,
+      show_heading=true,
+      show_subheading=false,
+      style={
+        "button" : {
+          "background_color" : {
+            "color" : "#1b314b",
+            "css" : "#1b314b",
+            "hex" : "#1b314b",
+            "opacity" : 100,
+            "rgb" : "rgb(27, 49, 75)",
+            "rgba" : "rgba(27, 49, 75, 1)"
+          },
+          "background_color_hover" : {
+            "color" : "#ffffff",
+            "css" : "#ffffff",
+            "hex" : "#ffffff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          },
+          "border_field" : {
+            "bottom" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "left" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "border_hover" : {
+            "bottom" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "left" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "spacing" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 12
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 12
+              }
+            }
+          },
+          "text_color" : {
+            "color" : "#ffffff",
+            "css" : "#ffffff",
+            "hex" : "#ffffff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          },
+          "text_color_hover" : {
+            "color" : "#1b314b",
+            "css" : "#1b314b",
+            "hex" : "#1b314b",
+            "opacity" : 100,
+            "rgb" : "rgb(27, 49, 75)",
+            "rgba" : "rgba(27, 49, 75, 1)"
+          }
+        },
+        "heading" : { },
+        "section" : {
+          "background" : {
+            "background_color" : {
+              "color" : "#ffffff",
+              "opacity" : 100
+            }
+          },
+          "content_maximum_width" : 720,
+          "spacing_desktop" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 60
+              }
+            }
+          },
+          "spacing_mobile" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 60
+              }
+            }
+          }
+        },
+        "subheading" : { }
+      },
+      subheading="",
+      text_maximum_width=720
+    %}
+      {% module_attribute "supporting_text" %}
+        <p style="text-align: left; margin-bottom: 0px; font-size: 16px; font-weight: 600;">The Bible also answers this question: "If you declare with your mouth, 'Jesus is Lord,' and believe in your heart that God raised him from the dead, you will be saved" (<span style="color: #b7ab9f;"><a href="https://biblia.com/bible/niv/Rom%2010.9" rel="noopener" target="_blank" style="color: #b7ab9f;">Romans 10:9</a></span>). To believe includes two parts. First, you accept that Jesus is Lord. He came from heaven to earth to die on the cross and offer a way for us to go to heaven.</p>
+        <p style="text-align: left; margin-bottom: 0px; font-size: 16px; font-weight: 600;">Second, you must believe Jesus rose from the dead. He died on a cross, but he did not stay dead. He came alive again, appeared to many people, and then returned to heaven.</p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #4 - You can pray to become a Christian right now. #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Custom section header",
+      offset=0,
+      width=12,
+      button_group=[ ],
+      heading="You can pray to become a Christian right now.",
+      show_button=false,
+      show_heading=true,
+      show_subheading=false,
+      style={
+        "button" : {
+          "background_color" : {
+            "color" : "#1b314b",
+            "css" : "#1b314b",
+            "hex" : "#1b314b",
+            "opacity" : 100,
+            "rgb" : "rgb(27, 49, 75)",
+            "rgba" : "rgba(27, 49, 75, 1)"
+          },
+          "background_color_hover" : {
+            "color" : "#ffffff",
+            "css" : "#ffffff",
+            "hex" : "#ffffff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          },
+          "border_field" : {
+            "bottom" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "css" : "border: 1px solid #1b314b;",
+            "left" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "border_hover" : {
+            "bottom" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "css" : "border: 1px solid #ffffff;",
+            "left" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "spacing" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 12
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 12
+              }
+            }
+          },
+          "text_color" : {
+            "color" : "#ffffff",
+            "css" : "#ffffff",
+            "hex" : "#ffffff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          },
+          "text_color_hover" : {
+            "color" : "#1b314b",
+            "css" : "#1b314b",
+            "hex" : "#1b314b",
+            "opacity" : 100,
+            "rgb" : "rgb(27, 49, 75)",
+            "rgba" : "rgba(27, 49, 75, 1)"
+          }
+        },
+        "heading" : { },
+        "section" : {
+          "background" : {
+            "background_color" : {
+              "color" : "#ffffff",
+              "opacity" : 100
+            }
+          },
+          "content_maximum_width" : 720,
+          "spacing_desktop" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 30
+              }
+            }
+          },
+          "spacing_mobile" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 30
+              }
+            }
+          }
+        },
+        "subheading" : { }
+      },
+      subheading="",
+      text_maximum_width=720
+    %}
+      {% module_attribute "supporting_text" %}
+        <p style="text-align: left; margin-bottom: 0px; font-size: 16px; font-weight: 600;">You can pray the following words and receive eternal life:</p>
+        <p style="text-align: left; margin-bottom: 0px; font-size: 16px; font-weight: 600;">"Dear Lord Jesus, I admit to you that I have sinned. I know that I cannot save myself. Thank you for dying on the cross for my sins. I believe that your death was for me, and I receive your sacrifice on my behalf. As best I can, I now transfer all of my trust from myself and anything that I would do, to you. I open the door of my life to you. By faith, I receive you as my Savior and Lord. Thank you for forgiving my sins and giving me eternal life. Amen."</p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+
+  {# Section #5 - Did you just pray to become a Christian? #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Custom section header",
+      offset=0,
+      width=12,
+      button_group=[ ],
+      heading="Did you just pray to become a Christian?",
+      show_button=false,
+      show_heading=true,
+      show_subheading=false,
+      style={
+        "button" : {
+          "background_color" : {
+            "color" : "#1b314b",
+            "css" : "#1b314b",
+            "hex" : "#1b314b",
+            "opacity" : 100,
+            "rgb" : "rgb(27, 49, 75)",
+            "rgba" : "rgba(27, 49, 75, 1)"
+          },
+          "background_color_hover" : {
+            "color" : "#ffffff",
+            "css" : "#ffffff",
+            "hex" : "#ffffff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          },
+          "border_field" : {
+            "bottom" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "css" : "border: 1px solid #1b314b;",
+            "left" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "border_hover" : {
+            "bottom" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "css" : "border: 1px solid #ffffff;",
+            "left" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "spacing" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 12
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 12
+              }
+            }
+          },
+          "text_color" : {
+            "color" : "#ffffff",
+            "css" : "#ffffff",
+            "hex" : "#ffffff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          },
+          "text_color_hover" : {
+            "color" : "#1b314b",
+            "css" : "#1b314b",
+            "hex" : "#1b314b",
+            "opacity" : 100,
+            "rgb" : "rgb(27, 49, 75)",
+            "rgba" : "rgba(27, 49, 75, 1)"
+          }
+        },
+        "heading" : { },
+        "section" : {
+          "background" : {
+            "background_color" : {
+              "color" : "#ffffff",
+              "opacity" : 100
+            }
+          },
+          "content_maximum_width" : 720,
+          "spacing_desktop" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 30
+              }
+            }
+          },
+          "spacing_mobile" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 30
+              }
+            }
+          }
+        },
+        "subheading" : { }
+      },
+      subheading="",
+      text_maximum_width=720
+    %}
+      {% module_attribute "supporting_text" %}
+        <p style="text-align: left; margin-bottom: 0px; font-size: 16px; font-weight: 600;">The Bible says you can know you have eternal life: "I write these things to you who believe in the name of the Son of God so that you may know that you have eternal life" (<span style="color: #b7ab9f;"><a href="https://biblia.com/bible/niv/1%20John%205.13" rel="noopener" target="_blank" style="color: #b7ab9f;">1 John 5:13</a></span>). Please click or tap the button below to let us know you have become a Christian today.</p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #6 - Subscribe form #}
+  {% dnd_section
+    max_width=500,
+    background_color="rgba(250, 249, 248, 1)"
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/form",
+          offset=0,
+          width=12,
+          form={
+            "form_id" : "b2e4731d-56a2-4e60-a863-013f16122996",
+            "form_type" : "HUBSPOT",
+            "message" : "Thanks for submitting the form.",
+            "response_type" : "inline"
+          },
+          title="Submit"
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #7 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

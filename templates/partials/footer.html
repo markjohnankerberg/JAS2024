@@ -1,0 +1,73 @@
+<!--
+  templateType: global_partial
+  label: Footer
+-->
+
+<footer class="footer">
+  <div class="footer__limiter">
+    <div class="footer__lists">
+      {% module "footer__lists__container" path="/JAS2024/modules/footer-lists", label="Footer lists" %}
+    </div>
+    
+    <div class="footer__divider">
+      {% module "footer__divider" path="/JAS2024/modules/divider", label="Divider" %}
+    </div>
+    
+    <div class="footer__bottom">
+      <div class="footer__bottom-left">
+        {% module "footer__info" path="/JAS2024/modules/company-info", label="Info" %}
+      </div>
+      
+      <div class="footer__bottom-right">
+        <div class="footer__socials">
+          {% module "footer__socnets" path="/JAS2024/modules/social-networks", label="Social networks" %}
+        </div>
+        
+        <div class="footer__legal">
+          {% module "footer__links" path="/JAS2024/modules/footer-links", label="Links" %}
+        </div>
+      </div>
+    </div>
+  </div>
+</footer>
+
+{# 
+
+  {% dnd_area "footer"
+    label="Footer",
+    class="footer__container content-wrapper"
+  %}
+
+    {% dnd_section %}
+      {% dnd_column %}
+        {% dnd_row %}
+          {% dnd_module path="../../modules/social-follow" %}
+            {% module_attribute "social_link" is_json=True %}
+              [
+                {"social_account": "facebook-f"},
+                {"social_account": "linkedin-in"},
+                {"social_account": "twitter"},
+                {"social_account": "instagram"}
+              ]
+            {% end_module_attribute %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+        {% dnd_row
+          margin={
+            "top": 12,
+            "bottom": 12
+          }
+        %}
+          {% dnd_module
+            path="@hubspot/rich_text",
+            html='<div style="text-align: center; font-size: 0.7rem;"><span>© {{ year }} All rights reserved.</span></div>'
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+
+  {% end_dnd_area %}
+
+
+#}

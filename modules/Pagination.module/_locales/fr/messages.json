@@ -1,0 +1,462 @@
+{
+  "default_text.go_to_page.default" : {
+    "message" : "Accéder à la page {{ this_page }}",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.pagination_navigation.default" : {
+    "message" : "Navigation de pagination",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_arrows" : {
+    "message" : "Afficher les flèches",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_labels" : {
+    "message" : "Afficher les libellés",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.label" : {
+    "message" : "Premier et dernier",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.default" : {
+    "message" : "Premier",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.label" : {
+    "message" : "Premier libellé",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.default" : {
+    "message" : "Dernier",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.label" : {
+    "message" : "Dernier libellé",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "Pagination de blog",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.default" : {
+    "message" : "Suivant",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.label" : {
+    "message" : "Libellé suivant",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.choices.show_numbers" : {
+    "message" : "Afficher les nombres",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.label" : {
+    "message" : "Nombres",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_arrows" : {
+    "message" : "Afficher les flèches",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_labels" : {
+    "message" : "Afficher les libellés",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.label" : {
+    "message" : "Précédent et suivant",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.default" : {
+    "message" : "Précédent",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.label" : {
+    "message" : "Libellé précédent",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.label" : {
+    "message" : "Angle",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.radius.label" : {
+    "message" : "Rayon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.label" : {
+    "message" : "Placer le curseur sur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.label" : {
+    "message" : "Icône",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.size.label" : {
+    "message" : "Taille",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.label" : {
+    "message" : "Premier et dernier",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Espace entre le texte et l'icône",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.font.label" : {
+    "message" : "Police",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Styles",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.help_text" : {
+    "message" : "Personnalise le lien numéroté correspondant à la page sur laquelle vous êtes actuellement.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.label" : {
+    "message" : "Actif",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.label" : {
+    "message" : "Angle",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.radius.label" : {
+    "message" : "Rayon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.label" : {
+    "message" : "Placer le curseur sur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.label" : {
+    "message" : "Nombres",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.font.label" : {
+    "message" : "Police",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Pagination",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Espace entre les liens",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.label" : {
+    "message" : "Angle",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.radius.label" : {
+    "message" : "Rayon",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.label" : {
+    "message" : "Arrière-plan",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.label" : {
+    "message" : "Bordure",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.label" : {
+    "message" : "Placer le curseur sur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.color.label" : {
+    "message" : "Couleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.label" : {
+    "message" : "Icône",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.size.label" : {
+    "message" : "Taille",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.label" : {
+    "message" : "Précédent et suivant",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Espace entre le texte et l'icône",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.spacing.label" : {
+    "message" : "Espacement",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.font.label" : {
+    "message" : "Police",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.label" : {
+    "message" : "Texte",
+    "description" : "",
+    "placeholders" : null
+  }
+}

@@ -1,0 +1,53 @@
+<div class="divider-{{name}}" aria-hidden="true">
+  {% if module.divider_type == "div-img" %}
+    {% if module.image_field.src %}
+      {% set sizeAttrs = 'width="{{ module.image_field.width|escape_attr }}" height="{{ module.image_field.height|escape_attr }}"' %}
+      {% if module.image_field.size_type == 'auto' %}
+        {% set sizeAttrs = 'width="{{ module.image_field.width|escape_attr }}" height="{{ module.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+      {% elif module.image_field.size_type == 'auto_custom_max' %}
+        {% set sizeAttrs = 'width="{{ module.image_field.max_width|escape_attr }}" height="{{ module.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+      {% endif %}
+       {% set loadingAttr = module.image_field.loading != 'disabled' ? 'loading="{{ module.image_field.loading|escape_attr }}"' : '' %}
+      <img src="{{ module.image_field.src|escape_url }}" alt="{{ module.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+    {% endif %}
+  {% endif %}
+  
+  {% if module.divider_type == "div-line" %}
+    <span class="divider-line"></span>
+  {% endif %}
+</div>
+
+{% require_css %}
+  <style>
+    .divider-{{name}} *,
+    .divider-{{name}} *::before,
+    .divider-{{name}} *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .divider-{{name}} {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      overflow: hidden;
+    }
+    
+    .divider-{{name}} img {
+      max-width: 100%;
+    }
+    
+    {% if module.divider_type == "div-line" %}
+      .divider-{{name}} .divider-line {
+        display: block;
+        height: {{ module.line_height ~ 'px' }};
+        background: rgba({{ module.color_field.color|convert_rgb }}, {{ module.color_field.opacity/100 }});
+        width: 100%;
+        max-width: 100%;
+      }
+    {% endif %}
+    
+  </style>
+{% end_require_css %}

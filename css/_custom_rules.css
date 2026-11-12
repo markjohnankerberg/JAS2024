@@ -1,0 +1,28 @@
+/*************************************/
+/*********** General rules ***********/
+/*************************************/
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 116px;
+}
+
+{# It serves to position the next section below the header #}
+.header-top-fill {
+  width: 100%;
+  height: 116px;
+}
+
+@media (max-width: 540px) {
+  .header-top-fill {
+    height: 96px;
+  }
+  
+  html {
+    scroll-padding-top: 96px;
+  }
+}
+
+/************************************/
+/******* End of General rules *******/
+/************************************/

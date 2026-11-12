@@ -1,0 +1,10 @@
+{
+  "global" : true,
+  "content_types" : [ "BLOG_LISTING", "BLOG_POST" ],
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 175472920583,
+  "label" : "Blog post breadcrumbs GLOBAL",
+  "icon" : "fontawesome-5.14.0:Angle%20Double%20Right:SOLID",
+  "is_available_for_new_content" : true
+}

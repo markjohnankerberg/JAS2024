@@ -1,0 +1,226 @@
+[ {
+  "id" : "logo",
+  "name" : "logo",
+  "label" : "Logo",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "logo.text",
+    "name" : "text",
+    "label" : "Logo text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "ATRI"
+  }, {
+    "id" : "logo.tagline",
+    "name" : "tagline",
+    "label" : "Tagline",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "ANKERBERG THEOLOGICAL\nRESEARCH INSTITUTE"
+  }, {
+    "id" : "logo.url",
+    "name" : "url",
+    "label" : "Logo link",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#hero"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "nav_links",
+  "name" : "nav_links",
+  "label" : "Navigation links",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 12,
+    "sorting_label_field" : null,
+    "default" : 9
+  },
+  "children" : [ {
+    "id" : "nav_links.icon",
+    "name" : "icon",
+    "label" : "Icon (text symbol)",
+    "help_text" : "Optional symbol shown before the label, e.g. a unicode character.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "nav_links.link_text",
+    "name" : "link_text",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "WATCH"
+  }, {
+    "id" : "nav_links.url",
+    "name" : "url",
+    "label" : "URL",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#resources"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "icon" : "▣",
+    "link_text" : "WATCH",
+    "url" : "#resources"
+  }, {
+    "icon" : "♪",
+    "link_text" : "LISTEN",
+    "url" : "#resources"
+  }, {
+    "icon" : "▤",
+    "link_text" : "READ",
+    "url" : "#resources"
+  }, {
+    "icon" : "♧",
+    "link_text" : "LEARN",
+    "url" : "#equip"
+  }, {
+    "icon" : "🛒",
+    "link_text" : "STORE",
+    "url" : "#resources"
+  }, {
+    "icon" : "◎",
+    "link_text" : "INTERNATIONAL",
+    "url" : "#equip"
+  }, {
+    "icon" : "♧",
+    "link_text" : "GUESTS",
+    "url" : "#resources"
+  }, {
+    "icon" : "ⓘ",
+    "link_text" : "ABOUT",
+    "url" : "#intro"
+  }, {
+    "icon" : "♧",
+    "link_text" : "MONTHLY GIVING",
+    "url" : "#giving"
+  } ]
+}, {
+  "id" : "mobile_links",
+  "name" : "mobile_links",
+  "label" : "Mobile menu links",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 8,
+    "sorting_label_field" : null,
+    "default" : 5
+  },
+  "children" : [ {
+    "id" : "mobile_links.link_text",
+    "name" : "link_text",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Audio Bibles"
+  }, {
+    "id" : "mobile_links.url",
+    "name" : "url",
+    "label" : "URL",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#audio"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "link_text" : "Audio Bibles",
+    "url" : "#audio"
+  }, {
+    "link_text" : "Resources",
+    "url" : "#resources"
+  }, {
+    "link_text" : "ATRI Gifts",
+    "url" : "#merch"
+  }, {
+    "link_text" : "Give to ATRI",
+    "url" : "#giving"
+  }, {
+    "link_text" : "Discipleship",
+    "url" : "#equip"
+  } ]
+}, {
+  "id" : "actions",
+  "name" : "actions",
+  "label" : "Header actions",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "actions.donate_text",
+    "name" : "donate_text",
+    "label" : "Donate button text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "DONATE"
+  }, {
+    "id" : "actions.donate_url",
+    "name" : "donate_url",
+    "label" : "Donate button link",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#giving"
+  }, {
+    "id" : "actions.search_target",
+    "name" : "search_target",
+    "label" : "Search scroll target",
+    "help_text" : "Where the search icon scrolls to (anchor ID).",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#resources"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

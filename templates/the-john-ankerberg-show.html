@@ -1,0 +1,597 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: The John Ankerberg Show 2024
+  screenshotPath: ../images/template-previews/the-john-ankerberg-show.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--tjas"
+%}
+
+  {# Section #1 - Breadcrumbs #}
+  {% dnd_section
+      max_width=1200,
+      background_color="rgba(250, 249, 248, 1)",
+      padding={
+        "default" : {
+          "bottom" : "15px",
+          "left" : "30px",
+          "right" : "30px",
+          "top" : "18px"
+        },
+        "mobile" : {
+          "left" : "20px",
+          "right" : "20px"
+        }
+      }
+    %}
+      {% dnd_column
+        offset=0,
+        width=12,
+        padding={
+          "default" : {
+            "bottom" : "0px",
+            "left" : "0px",
+            "right" : "0px",
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="/JAS2024/modules/Breadcrumbs",
+            offset=0,
+            width=12,
+            breadcrumbs=[ {
+              "page_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "",
+                  "type" : "CONTENT"
+                }
+              },
+              "text_field" : "Home"
+            }, {
+              "page_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "",
+                  "type" : "CONTENT"
+                }
+              },
+              "text_field" : "Watch"
+            }, {
+              "page_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "",
+                  "type" : "CONTENT"
+                }
+              },
+              "text_field" : "The John Ankerberg Show"
+            } ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+  
+  {# Section #2 - Heading #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0;"><span style="color: #000000;">The John Ankerberg Show</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Video section #}
+  {% dnd_section
+    background_color="rgba(27, 49, 75, 1)",
+    padding={
+      "default" : {
+        "bottom" : "20px"
+      }
+    },
+    max_width=878
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Video with info text",
+      offset=0,
+      width=12,
+      embed_field={
+        "height" : 240,
+        "max_height" : 240,
+        "max_width" : 426,
+        "oembed_response" : {
+          "author_name" : "John Ankerberg",
+          "author_url" : "https://vimeo.com/johnankerberg",
+          "height" : "240",
+          "html" : "<iframe src=\"https://player.vimeo.com/video/1026106925?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Ep. 5 - Is Israel Committing Genocide in their War Against Hamas? | A Christian Response to the Israeli War\"></iframe>",
+          "provider_name" : "Vimeo",
+          "provider_url" : "https://vimeo.com/",
+          "thumbnail_height" : "166",
+          "thumbnail_url" : "https://i.vimeocdn.com/video/1947237220-65c795604fc3767ddbdbda7ae845fd85bfc2d15f45ac78a8b9cb17445c47225a-d_295x166",
+          "thumbnail_width" : "295",
+          "title" : "Ep. 5 - Is Israel Committing Genocide in their War Against Hamas? | A Christian Response to the Israeli War",
+          "type" : "video",
+          "version" : "1.0",
+          "width" : "426"
+        },
+        "oembed_url" : "https://player.vimeo.com/video/1026106925?loop=0&title=0&portrait=0&byline=0&dnt=0&color&autopause=0&autoplay=1",
+        "size_type" : "auto_full_width",
+        "source_type" : "oembed",
+        "width" : 426
+      }
+    %}
+      {% module_attribute "info_text" %}
+        <p style="font-size: 15px;"><span style="color: #6e7579;">Content warning: This series contains descriptions of violence, death, and other unsettling aspects of war that may be upsetting for some viewers. Viewer discretion is advised.</span></p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Custom section heading module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Custom section header",
+      offset=0,
+      width=12,
+      heading="Israel in Wartime: A Firsthand Account",
+      show_heading=true,
+      style={
+        "heading" : {
+          "color_field" : {
+            "color" : "#fff",
+            "opacity" : 100
+          }
+        },
+        "section" : {
+          "background" : {
+            "background_color" : {
+              "color" : "#1b314b",
+              "opacity" : 100
+            }
+          },
+          "spacing_desktop" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 20
+              }
+            }
+          },
+          "spacing_mobile" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 20
+              }
+            }
+          }
+        },
+        "subheading" : {
+          "color_field" : {
+            "color" : "#fff",
+            "opacity" : 100
+          }
+        }
+      },
+      subheading="CURRENT SERIES"
+    %}
+      {% module_attribute "supporting_text" %}
+        <p style="text-align: center; margin-bottom: 0;"><span style="color: #b7ab9f;">featuring Dr. Jeff Myers</span></p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #5 - Tabs module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Tabs",
+          offset=0,
+          width=12,
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              }
+            }
+          },
+          tabs=[ {
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "Learn more about this series"
+              },
+              "content" : [ {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Dr. Myers joins Dr. Ankerberg to discuss how Christians should respond to the Israeli war. He shares compelling stories from his time in Israel shortly after October 7, 2023 and challenges viewers to discover the facts for themselves. Myers shares biblical evidence for support of Israel, as well as specific information regarding Hamas’ propaganda campaign that has led to the anti-Semitism we see in our culture today."
+              } ],
+              "image_field_1" : {
+                "alt" : "dvds",
+                "height" : 1000,
+                "loading" : "lazy",
+                "max_height" : 1000,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/about_this_week_series_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : true
+            } ],
+            "tab_name" : "About This Week Series"
+          }, {
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "More resources"
+              },
+              "content" : [ {
+                "content_type" : "con-h",
+                "heading" : "Dr. Ankerberg never set out to launch the world’s most-watched Christian apologetics television program...",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Lorem ipsum"
+              }, {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "As a speaker and evangelist, Dr. Ankerberg spoke on university campuses, at churches, conferences, and other events. While speaking at a Youth for Christ summer camp, he was first asked to host a Kansas City Christian television program. Structuring the program with a debate-format, the show quickly caught the attention of other networks. After moving to Chattanooga, Tennessee to serve another media ministry, The John Ankerberg Show was picked up on CBN, a new network that soon expanded nationwide. Within a short time, Dr. Ankerberg’s side project quickly became a full-time ministry in 1980, renting office space and studio time to produce additional programs."
+              } ],
+              "image_field_1" : {
+                "alt" : "Dr. John Ankerberg",
+                "height" : 1000,
+                "loading" : "lazy",
+                "max_height" : 1000,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/dr_ankerberg_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : false
+            } ],
+            "tab_name" : "Dr. Ankerberg"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #6 - Recent Episodes module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Video gallery",
+          offset=0,
+          width=12,
+          videos=[ {
+            "embed_field" : {
+              "height" : 240,
+              "max_height" : 240,
+              "max_width" : 426,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg",
+                "author_url" : "https://vimeo.com/johnankerberg",
+                "height" : "240",
+                "html" : '<iframe src=\"https://player.vimeo.com/video/1024339197?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Ep. 4 - Is Israel’s War against Hamas Just? | A Christian Response to the Israeli War\"></iframe>',
+                "provider_name" : "Vimeo",
+                "provider_url" : "https://vimeo.com/",
+                "thumbnail_height" : "166",
+                "thumbnail_url" : "https://i.vimeocdn.com/video/1944666347-8766dceefa84b7fa090c4bab130c947ddf9f0741caff177ee9f292e8b53e4ac2-d_295x166",
+                "thumbnail_width" : "295",
+                "title" : "Ep. 4 - Is Israel’s War against Hamas Just? | A Christian Response to the Israeli War",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "426"
+              },
+              "oembed_url" : "https://player.vimeo.com/video/1024339197?color&autopause=0&loop=0&muted=0&title=0&portrait=0&byline=0&h",
+              "size_type" : "auto_full_width",
+              "source_type" : "oembed",
+              "width" : 426
+            },
+            "info_text" : "",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_info_text" : false,
+            "show_video_title" : true,
+            "video_title" : "Is Israel’s War against Hamas Just?",
+            "video_type" : "embed"
+          }, {
+            "embed_field" : {
+              "height" : 240,
+              "max_height" : 240,
+              "max_width" : 426,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg",
+                "author_url" : "https://vimeo.com/johnankerberg",
+                "height" : "240",
+                "html" : '<iframe src=\"https://player.vimeo.com/video/1020648871?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Ep. 3 - A Christian Response to the Israeli War | Palestine, the Rise of Islam, and Hamas.\"></iframe>',
+                "provider_name" : "Vimeo",
+                "provider_url" : "https://vimeo.com/",
+                "thumbnail_height" : "166",
+                "thumbnail_url" : "https://i.vimeocdn.com/video/1941437362-403241710136cdb96c080553641fb7fbe5f1813bb8eb15fdae58c55bd192d56c-d_295x166",
+                "thumbnail_width" : "295",
+                "title" : "Ep. 3 - A Christian Response to the Israeli War | Palestine, the Rise of Islam, and Hamas.",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "426"
+              },
+              "oembed_url" : "https://player.vimeo.com/video/1020648871?color&autopause=0&loop=0&muted=0&title=0&portrait=0&byline=0&h",
+              "size_type" : "auto_full_width",
+              "source_type" : "oembed",
+              "width" : 426
+            },
+            "info_text" : "",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_info_text" : false,
+            "show_video_title" : true,
+            "video_title" : "Palestine, the Rise of Islam, and Hamas",
+            "video_type" : "embed"
+          }, {
+            "embed_field" : {
+              "height" : 240,
+              "max_height" : 240,
+              "max_width" : 426,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg",
+                "author_url" : "https://vimeo.com/johnankerberg",
+                "height" : "240",
+                "html" : '<iframe src=\"https://player.vimeo.com/video/1019410000?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Ep. 2 - A Christian Response to the Israeli War | The Israel You Haven’t Heard About\"></iframe>',
+                "provider_name" : "Vimeo",
+                "provider_url" : "https://vimeo.com/",
+                "thumbnail_height" : "166",
+                "thumbnail_url" : "https://i.vimeocdn.com/video/1939224175-03078b7dcfe238669d0d41b6e649917f216bfc9fe01222444ba1535f6e7aec7f-d_295x166",
+                "thumbnail_width" : "295",
+                "title" : "Ep. 2 - A Christian Response to the Israeli War | The Israel You Haven’t Heard About",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "426"
+              },
+              "oembed_url" : "https://player.vimeo.com/video/1019410000?color&autopause=0&loop=0&muted=0&title=0&portrait=0&byline=0&h",
+              "size_type" : "auto",
+              "source_type" : "oembed",
+              "width" : 426
+            },
+            "info_text" : "",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_info_text" : false,
+            "show_video_title" : true,
+            "video_title" : "The Israel You Haven’t Heard About",
+            "video_type" : "embed"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #7 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

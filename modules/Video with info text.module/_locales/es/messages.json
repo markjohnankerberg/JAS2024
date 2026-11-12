@@ -1,0 +1,82 @@
+{
+  "embed_field.label" : {
+    "message" : "Incrustar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "hubspot_video.label" : {
+    "message" : "Video de HubSpot",
+    "description" : "",
+    "placeholders" : null
+  },
+  "info_text.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.label" : {
+    "message" : "Rich text",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "Video with info text",
+    "description" : null,
+    "placeholders" : null
+  },
+  "oembed_thumbnail.label" : {
+    "message" : "Imagen miniatura personalizada",
+    "description" : "",
+    "placeholders" : null
+  },
+  "placeholder_fields.placeholder_description.default" : {
+    "message" : "Selecciona un tipo de video en la barra lateral.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "placeholder_fields.placeholder_title.default" : {
+    "message" : "No se seleccionó un video",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_options.label" : {
+    "message" : "Opciones de estilos",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_options.oembed_thumbnail_play_button_color.label" : {
+    "message" : "Color del botón de reproducir",
+    "description" : "",
+    "placeholders" : null
+  },
+  "video_type.choices.embed" : {
+    "message" : "Incrustar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "video_type.choices.hubspot_video" : {
+    "message" : "Video de HubSpot",
+    "description" : "",
+    "placeholders" : null
+  },
+  "video_type.label" : {
+    "message" : "Tipo de video",
+    "description" : "",
+    "placeholders" : null
+  }
+}

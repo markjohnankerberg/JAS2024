@@ -1,0 +1,1444 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Home 2024
+  screenshotPath: ../images/template-previews/home_jas.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--home"
+%}
+
+  {# Section #1 - Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Hero",
+          offset=0,
+          width=12,
+          show_decoration=false
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #2 - Our mission statement #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Custom section header",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: center; font-size: 36px;"><span style="color: #393d3f;">The Ankerberg Theological Research Institute (ATRI) exists to defend the Christian faith, encourage the believer, and challenge the skeptic through media, education, and outreach.</span></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Search #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/search_input",
+          offset=0,
+          width=12,
+          topics=[ {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Apologetics"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Biblical Prophecy"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Discipleship"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Salvation"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Heaven, Hell, & the Afterlife"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Science"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Study of Scripture"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Theology - Study of God"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "World Religions"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Worldview & Culture"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Advertising cards #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Advertising cards",
+          offset=0,
+          width=12,
+          cards=[ {
+            "add_link" : false,
+            "background" : {
+              "alt" : "cross",
+              "height" : 250,
+              "loading" : "lazy",
+              "max_height" : 250,
+              "max_width" : 570,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/yuriy-kovalev-nN1HSDtKdlw-unsplash%201.png",
+              "width" : 570
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "",
+                "href_with_scheme" : "",
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Advertising text goes here"
+          }, {
+            "add_link" : false,
+            "background" : {
+              "alt" : "cross",
+              "height" : 250,
+              "loading" : "lazy",
+              "max_height" : 250,
+              "max_width" : 570,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/akira-hojo-_86u_Y0oAaM-unsplash%202.png",
+              "width" : 570
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "",
+                "href_with_scheme" : "",
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Advertising text goes here"
+          } ],
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              }
+            }
+          },
+          text_background={
+            "color" : "#393d3f",
+            "opacity" : 80
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+
+  {# Section #5 - Latest articles & episodes #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Latest articles",
+          offset=0,
+          width=12,
+          article_tabs={
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "See more"
+              },
+              "number_of_latest_articles_to_display" : 12,
+              "select_blog" : 138943615368,
+              "show_button" : true,
+              "tab_name" : "Latest Articles"
+            }, {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "See more"
+              },
+              "number_of_latest_articles_to_display" : 6,
+              "select_blog" : 138943615368,
+              "show_button" : true,
+              "tab_name" : "Latest Episodes"
+            } ]
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #6 - Guests #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Guests",
+          offset=0,
+          width=12,
+          guests={
+            "guest" : [ {
+              "guest_name" : "Dr. Erwin Lutzer",
+              "headshot" : {
+                "alt" : "Headshot of Dr. Erwin Lutzer",
+                "height" : 340,
+                "loading" : "lazy",
+                "max_height" : 340,
+                "max_width" : 280,
+                "size_type" : "auto",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/erwin_lutzer.png",
+                "width" : 280
+              },
+              "link_field" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "show_link" : false
+            }, {
+              "guest_name" : "Dr. Hugh Ross",
+              "headshot" : {
+                "alt" : "Headshot of Dr. Hugh Ross",
+                "height" : 340,
+                "loading" : "lazy",
+                "max_height" : 340,
+                "max_width" : 280,
+                "size_type" : "auto",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/hugh_ross.png",
+                "width" : 280
+              },
+              "link_field" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "show_link" : false
+            }, {
+              "guest_name" : "Dr. Stephen Meyer",
+              "headshot" : {
+                "alt" : "Headshot of Dr. Stephen Meyer",
+                "height" : 340,
+                "loading" : "lazy",
+                "max_height" : 340,
+                "max_width" : 280,
+                "size_type" : "auto",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Guest%20Information/stephen_meyer.png",
+                "width" : 280
+              },
+              "link_field" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "show_link" : false
+            }, {
+              "guest_name" : "Gary Habermas",
+              "headshot" : {
+                "alt" : "Headshot of Gary Habermas",
+                "height" : 340,
+                "loading" : "lazy",
+                "max_height" : 340,
+                "max_width" : 280,
+                "size_type" : "auto",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Guest%20Information/gary_habermas.png",
+                "width" : 280
+              },
+              "link_field" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "show_link" : false
+            } ],
+            "text_background" : {
+              "color" : "#393d3f",
+              "opacity" : 80
+            },
+            "text_color" : {
+              "color" : "#ffffff",
+              "opacity" : 100
+            }
+          },
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 30
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 30
+                  }
+                }
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #7 - Advertising cards #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Advertising cards",
+          offset=0,
+          width=12,
+          cards=[ {
+            "add_link" : false,
+            "background" : {
+              "alt" : "card 1",
+              "height" : 250,
+              "loading" : "lazy",
+              "max_height" : 250,
+              "max_width" : 360,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/akira-hojo-_86u_Y0oAaM-unsplash%203.png",
+              "width" : 360
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Advertising text"
+          }, {
+            "add_link" : false,
+            "background" : {
+              "alt" : "card 2",
+              "height" : 250,
+              "loading" : "lazy",
+              "max_height" : 250,
+              "max_width" : 360,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/akira-hojo-_86u_Y0oAaM-unsplash%203%20(1).png",
+              "width" : 360
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Advertising text"
+          }, {
+            "add_link" : false,
+            "background" : {
+              "alt" : "card 3",
+              "height" : 250,
+              "loading" : "lazy",
+              "max_height" : 250,
+              "max_width" : 360,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/akira-hojo-_86u_Y0oAaM-unsplash%202%20(1).png",
+              "width" : 360
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "",
+                "href_with_scheme" : "",
+                "type" : "EXTERNAL"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Advertising text"
+          } ],
+          number_of_columns=3,
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "css" : "padding-top: 60px; padding-right: 30px; padding-bottom: 64px; padding-left: 30px;",
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 64
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 30
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "css" : "padding-top: 60px; padding-right: 20px; padding-bottom: 64px; padding-left: 20px;",
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 64
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 30
+                  }
+                }
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #8 - CTA banner #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/CTA Banner",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #9 - Icons #}
+  {% dnd_section
+    full_width=false
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Icon cards",
+          offset=0,
+          width=12,
+          card=[ {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : "<svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M8.00023 6V10H4V14H0V34H32V29.9992H35.9998V26H40V6H8.00023ZM30 32.0001H2V16H30V32.0001ZM33.9998 28H32V14H6.00023V12H33.9998V28H33.9998ZM37.9996 23.9992H35.9998V10H10V8H37.9996V23.9992ZM12 18V29.9992L20 23.9992L12 18ZM14 21.9992L16.668 23.9993L14 26V21.9992Z' fill='#393D3F'/></svg>",
+            "text_label" : "Episodes"
+          }, {
+            "fill_or_stroke_color" : "stroke",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : "<svg width='41' height='40' viewBox='0 0 41 40' fill='none' xmlns='http://www.w3.org/2000/svg'><g clip-path='url(#clip0_666_772)'><path d='M11.2813 7.70836L8.20828 1.5625H2.0625M11.2813 7.70836H38.9375V15.6543C38.9375 18.4368 37.8321 21.1054 35.8645 23.073C33.897 25.0405 31.2284 26.1459 28.4459 26.1459H16.527C15.1357 26.1459 13.8014 25.5932 12.8177 24.6094C11.8339 23.6256 11.2813 22.2913 11.2813 20.9001V7.70836ZM30.487 30.7552C28.3655 30.7552 26.6458 32.475 26.6458 34.5964C26.6458 36.7178 28.3655 38.4375 30.487 38.4375C32.6084 38.4375 34.3281 36.7178 34.3281 34.5964C34.3281 32.475 32.6084 30.7552 30.487 30.7552ZM16.638 30.7552C14.5166 30.7552 12.7969 32.475 12.7969 34.5964C12.7969 36.7178 14.5166 38.4375 16.638 38.4375C18.7595 38.4375 20.4791 36.7178 20.4791 34.5964C20.4791 32.475 18.7595 30.7552 16.638 30.7552Z' stroke='#393D3F' stroke-width='2.3' stroke-miterlimit='10' stroke-linecap='round' stroke-linejoin='round'/></g><defs><clipPath id='clip0_666_772'><rect width='40' height='40' fill='white' transform='translate(0.5)'/></clipPath></defs></svg>",
+            "text_label" : "Resources"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : "<svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><path d='M16.2941 30.5035C16.4529 30.5988 16.6435 30.6412 16.8235 30.6412C17.0035 30.6412 17.1941 30.5988 17.3529 30.5035L26.6176 25.1565C26.9459 24.9659 27.1471 24.6165 27.1471 24.2353C27.1471 23.8541 26.9459 23.5047 26.6176 23.3141L17.3529 17.9671C17.0247 17.7765 16.6224 17.7765 16.2941 17.9671C15.9659 18.1576 15.7647 18.5071 15.7647 18.8882V29.5824C15.7647 29.9635 15.9659 30.3129 16.2941 30.5035ZM17.8824 20.7306L23.9706 24.2459L17.8824 27.7612V20.7412V20.7306ZM34.8235 2H5.17647C3.42941 2 2 3.42941 2 5.17647V34.8235C2 36.5706 3.42941 38 5.17647 38H34.8235C36.5706 38 38 36.5706 38 34.8235V5.17647C38 3.42941 36.5706 2 34.8235 2ZM4.11765 5.17647C4.11765 4.59412 4.59412 4.11765 5.17647 4.11765H34.8235C35.4059 4.11765 35.8824 4.59412 35.8824 5.17647V11.5294H4.11765V5.17647ZM35.8824 34.8235C35.8824 35.4059 35.4059 35.8824 34.8235 35.8824H5.17647C4.59412 35.8824 4.11765 35.4059 4.11765 34.8235V13.6471H35.8824V34.8235ZM9.41177 7.82353C9.41177 8.70235 8.70235 9.41177 7.82353 9.41177C6.94471 9.41177 6.23529 8.70235 6.23529 7.82353C6.23529 6.94471 6.94471 6.23529 7.82353 6.23529C8.70235 6.23529 9.41177 6.94471 9.41177 7.82353ZM14.7059 7.82353C14.7059 8.70235 13.9965 9.41177 13.1176 9.41177C12.2388 9.41177 11.5294 8.70235 11.5294 7.82353C11.5294 6.94471 12.2388 6.23529 13.1176 6.23529C13.9965 6.23529 14.7059 6.94471 14.7059 7.82353Z' fill='#393D3F'/></svg>",
+            "text_label" : "Web Series"
+          }, {
+            "fill_or_stroke_color" : "stroke",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : "<svg width='40' height='40' viewBox='0 0 40 40' fill='none' xmlns='http://www.w3.org/2000/svg'><mask id='mask0_604_1625' style='mask-type:luminance' maskUnits='userSpaceOnUse' x='0' y='0' width='40' height='40'><path d='M0 3.8147e-06H40V40H0V3.8147e-06Z' fill='white'/></mask><g mask='url(#mask0_604_1625)'><path d='M31.7188 19.9219C31.7188 26.3832 26.4613 31.6406 20 31.6406C13.5387 31.6406 8.28125 26.3832 8.28125 19.9219' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M20 26.9531C16.1167 26.9531 12.9688 23.8052 12.9688 19.9219V8.20312C12.9688 4.31984 16.1167 1.17188 20 1.17188C23.8833 1.17188 27.0312 4.31984 27.0312 8.20312V19.9219C27.0312 23.8052 23.8833 26.9531 20 26.9531Z' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M20 31.6406V38.8281' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M10.625 38.8281H29.375' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M12.9688 8.20312H17.6562' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M12.9688 14.0625H17.6562' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M12.9688 19.9219H17.6562' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M22.3438 8.20312H27.0312' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M22.3438 14.0625H27.0312' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/><path d='M22.3438 19.9219H27.0312' stroke='#393D3F' stroke-width='2' stroke-miterlimit='10'/></g></svg>",
+            "text_label" : "Podcasts"
+          } ],
+          gap_desktop=120,
+          gap_mobile=60
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #10 - Monthly newsletter #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Resource tabs",
+          offset=0,
+          width=12,
+          resource_tabs={
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "See all monthly resources"
+              },
+              "resources" : [ {
+                "icon_type" : "podcast",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Podcast Series: The Mystery of the Missing Fossils - Part 1"
+              }, {
+                "icon_type" : "podcast",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Podcast Series: The Mystery of the Missing Fossils - Part 2"
+              }, {
+                "icon_type" : "podcast",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Podcast Series: The Mystery of the Missing Fossils - Part 3"
+              }, {
+                "icon_type" : "podcast",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Podcast Series: The Mystery of the Missing Fossils - Part 4"
+              } ],
+              "show_button" : true,
+              "tab_name" : "Podcasts"
+            }, {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "See all monthly resources - Books"
+              },
+              "resources" : [ {
+                "icon_type" : "book",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Book #1"
+              }, {
+                "icon_type" : "book",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Book #2"
+              }, {
+                "icon_type" : "book",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Book #3"
+              }, {
+                "icon_type" : "book",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "Book #4"
+              } ],
+              "show_button" : true,
+              "tab_name" : "Books"
+            }, {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "See all monthly resources - PDF's"
+              },
+              "resources" : [ {
+                "icon_type" : "pdf",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "PDF document #1"
+              }, {
+                "icon_type" : "pdf",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "PDF document #2"
+              }, {
+                "icon_type" : "pdf",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "PDF document #3"
+              }, {
+                "icon_type" : "pdf",
+                "link_field" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "resource_name" : "PDF document #4"
+              } ],
+              "show_button" : true,
+              "tab_name" : "PDF's"
+            } ]
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #11 - Donation to our own ministry #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Testimonials",
+          offset=0,
+          width=12,
+          testimonial_cards={
+            "card" : [ {
+              "content" : {
+                "button" : [ {
+                  "button_style" : "btn-primary",
+                  "corner_radius" : "radius-s",
+                  "link_field_1" : {
+                    "no_follow" : false,
+                    "open_in_new_tab" : false,
+                    "url" : {
+                      "href" : "https://jashow.org/donate/",
+                      "type" : "EXTERNAL"
+                    }
+                  },
+                  "text_field" : "See more"
+                }, {
+                  "button_style" : "small-btn",
+                  "corner_radius" : "radius-s",
+                  "link_field_1" : {
+                    "no_follow" : false,
+                    "open_in_new_tab" : false,
+                    "url" : {
+                      "href" : "https://jashow.org/",
+                      "type" : "EXTERNAL"
+                    }
+                  },
+                  "text_field" : "Read more"
+                } ],
+                "image_field_1" : [ {
+                  "alt" : "atri_bg",
+                  "height" : 440,
+                  "loading" : "lazy",
+                  "max_height" : 440,
+                  "max_width" : 680,
+                  "size_type" : "auto_custom_max",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                  "width" : 680
+                }, {
+                  "0" : {
+                    "alt" : "atri_bg",
+                    "height" : 440,
+                    "loading" : "lazy",
+                    "max_height" : 440,
+                    "max_width" : 680,
+                    "size_type" : "auto_custom_max",
+                    "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                    "width" : 680
+                  },
+                  "1" : {
+                    "alt" : "atri_bg",
+                    "height" : 440,
+                    "loading" : "lazy",
+                    "max_height" : 440,
+                    "max_width" : 680,
+                    "size_type" : "auto_custom_max",
+                    "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                    "width" : 680
+                  },
+                  "alt" : "church cross",
+                  "height" : 250,
+                  "max_height" : 250,
+                  "max_width" : 570,
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/akira-hojo-_86u_Y0oAaM-unsplash%202.png",
+                  "width" : 570
+                } ],
+                "show_button" : true,
+                "text" : "<p>No matter what has happened to you in the past or what is going on in your life right now, it has no power to keep you from having an amazingly good future if you will walk by faith in God. God loves you! He wants you to live with victory over sin so you can possess... No matter what has happened to you in the past or what is going on in your life right now, it has no power to keep you from having an amazingly good future if you will walk by faith in God. God loves you!</p>"
+              },
+              "tab_name" : "ATRI",
+              "testimonial_slides" : {
+                "button_link" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "button_text" : "More from our supporters",
+                "show_button" : true,
+                "slides" : [ {
+                  "person_name" : "Socorro (Philippines)",
+                  "quote" : "Thank you for sharing and giving tools regarding the Holy Scriptures. My heart is filled with joy whenever I received an email from you. Since your first email, I've been always visiting my account just to see ifyou have an email to me."
+                }, {
+                  "person_name" : "Akim (USA)",
+                  "quote" : "I really appreciate bottom of my heart for your wonderful ministry, everyday whenever I received some message I not only reading but learning new things... May God continues to bless your ministry to bear more fruits. Thank you once again!"
+                }, {
+                  "person_name" : "Marja (Finland)",
+                  "quote" : "There is now a burning fire in my soul to sing in the community and to tell to other people about the Good Shepherd of us, as there is still time left in the world. It is so fine to find true Bible word via your programs, messages and from the community. Praise Jesus! He is really alive."
+                } ]
+              }
+            }, {
+              "content" : {
+                "button" : [ {
+                  "button_style" : "btn-primary",
+                  "corner_radius" : "radius-s",
+                  "link_field_1" : {
+                    "no_follow" : false,
+                    "open_in_new_tab" : false,
+                    "url" : {
+                      "href" : "https://jashow.org/audio-bible-resources-2024/",
+                      "type" : "EXTERNAL"
+                    }
+                  },
+                  "text_field" : "See more"
+                } ],
+                "image_field_1" : [ {
+                  "alt" : "atri_bg",
+                  "height" : 440,
+                  "loading" : "lazy",
+                  "max_height" : 440,
+                  "max_width" : 680,
+                  "size_type" : "auto_custom_max",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                  "width" : 680
+                }, {
+                  "alt" : "atri_bg",
+                  "height" : 440,
+                  "loading" : "lazy",
+                  "max_height" : 440,
+                  "max_width" : 680,
+                  "size_type" : "auto_custom_max",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                  "width" : 680
+                } ],
+                "show_button" : true,
+                "text" : "<p>No matter what has happened to you in the past or what is going on in your life right now, it has no power to keep you from having an amazingly good future if you will walk by faith in God. God loves you! He wants you to live with victory over sin so you can possess... No matter what has happened to you in the past or what is going on in your life right now, it has no power to keep you from having an amazingly good future if you will walk by faith in God. God loves you!</p>"
+              },
+              "tab_name" : "Audio Bible",
+              "testimonial_slides" : {
+                "button_link" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "button_text" : "More from our supporters",
+                "show_button" : true,
+                "slides" : [ {
+                  "person_name" : "",
+                  "quote" : "My name is Debebe. I am married with ten children. We live in a remote area, and I work as a farmer to provide for them. Five of my children now have families of their own, and all of us, including me, are unable to read. We wanted desperately to know God’s Word, but there was no one in the family to read the Bible. Luckily, our pastor began a listening program close to our home. Now, we can hear the Word of God and learn more about Jesus Christ. We are very thankful for this Audio Bible."
+                }, {
+                  "person_name" : "",
+                  "quote" : "A pastor who came to visit us brought with him an Audio Bible. As we listened, we were surprised to hear God’s Word in our mother tongue. We live in the countryside isolated from other communities, and this makes it very hard to learn new things. But thanks to the Audio Bible, we listen to God’s Word daily and have accepted Christ as our Lord and Savior. We now understand how we should live our lives in Christ, and we have abandoned many of our customs that do not honor God. Our family life has changed dramatically, especially in the area of prayer and love towards those who are not in Christ. God’s Word has taught us to love others despite the potential threat of persecution."
+                }, {
+                  "person_name" : "Christine A.",
+                  "quote" : "Two months ago my husband left our home—he left me with my kids. During that time my sister and the pastor visited me and prayed for me. I received Christ in my heart and they invited me to their group to listen to God’s Word on the Proclaimer. Now, after praying a lot, my husband came back home and he wants to stay with us again."
+                } ]
+              }
+            }, {
+              "content" : {
+                "button" : [ {
+                  "button_style" : "btn-primary",
+                  "corner_radius" : "radius-s",
+                  "link_field_1" : {
+                    "no_follow" : false,
+                    "open_in_new_tab" : false,
+                    "url" : {
+                      "href" : "https://jashow.org/resources/innercircleoffriends/",
+                      "type" : "EXTERNAL"
+                    }
+                  },
+                  "text_field" : "See more"
+                } ],
+                "image_field_1" : [ {
+                  "alt" : "atri_bg",
+                  "height" : 440,
+                  "loading" : "lazy",
+                  "max_height" : 440,
+                  "max_width" : 680,
+                  "size_type" : "auto_custom_max",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                  "width" : 680
+                }, {
+                  "alt" : "atri_bg",
+                  "height" : 440,
+                  "loading" : "lazy",
+                  "max_height" : 440,
+                  "max_width" : 680,
+                  "size_type" : "auto_custom_max",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/atri_bg.png",
+                  "width" : 680
+                } ],
+                "show_button" : true,
+                "text" : "<p>No matter what has happened to you in the past or what is going on in your life right now, it has no power to keep you from having an amazingly good future if you will walk by faith in God. God loves you! He wants you to live with victory over sin so you can possess... No matter what has happened to you in the past or what is going on in your life right now, it has no power to keep you from having an amazingly good future if you will walk by faith in God. God loves you!</p>"
+              },
+              "tab_name" : "Monthly Giving",
+              "testimonial_slides" : {
+                "button_link" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "button_text" : "More from our supporters",
+                "show_button" : true,
+                "slides" : [ {
+                  "person_name" : "",
+                  "quote" : "Supporting A.T.R.I. with monthly donations means I am helping to spread the gospel and distribute valuable resources that aid people in growing their faith and finding answers to their spiritual questions. Millions of people around the world still lack access to the gospel in their native language, and the work of The John Ankerberg Show is addressing this need. This ministry provides resources like audio Bibles and discipleship courses and engages in global mission partnerships to reach those in need."
+                }, {
+                  "person_name" : "Bradley (USA)",
+                  "quote" : "By contributing to A.T.R.I., I am part of a mission that answers life’s toughest questions with biblical truth and extends the message of Christianity to the unreached."
+                } ]
+              }
+            } ]
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #12 - Subscription #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,1685 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Guests 2024
+  screenshotPath: ../images/template-previews/guests.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--guests"
+%}
+
+  {# Section #1 - Breadcrumbs #}
+  {% dnd_section
+    max_width=1200,
+    background_color="rgba(250, 249, 248, 1)",
+    padding={
+      "default" : {
+        "bottom" : "15px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "18px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    },
+    full_width=false
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Breadcrumbs",
+          offset=0,
+          width=12,
+          breadcrumbs=[ {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "content_id" : 173684607290,
+                "type" : "CONTENT"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Home"
+          }, {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "",
+                "href_with_scheme" : "",
+                "type" : "CONTENT"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Guests"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  
+  {# Section #2 - Heading #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0;"><span style="color: #000000;">Guests</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Guests module #}  
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Guest info",
+          offset=0,
+          width=12,
+          guests=[ {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "BIOGRAPHY",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Called “the best preacher in the family” by her father, Billy Graham, Anne Graham Lotz speaks around the globe with the wisdom and authority of years spent studying God’s Word.</p>\n<p>The New York Times named Anne one of the five most influential evangelists of her generation. She’s been profiled on 60 Minutes, and has appeared on TV programs such as Larry King Live, The Today Show, and Hannity Live. Her Just Give Me Jesus revivals have been held in more than 30 cities in 12 different countries, to hundreds of thousands of attendees.</p>\n<p>Anne is a best-selling and award-winning author. Her most recent releases are The Light of His Presence, Jesus in Me, The Daniel Prayer, Wounded by God’s People, Fixing My Eyes on Jesus, Expecting to See Jesus and her first children’s book, Heaven: God’s Promise for Me.</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "Lorem ipsum"
+            }, {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "SITE RESOURCES",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "heading" : "SERIES:",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/exploring-the-hope-of-jesus-in-the-book-of-revelation-collection/' rel='noopener' target='_blank'>https://jashow.org/resources/product/exploring-the-hope-of-jesus-in-the-book-of-revelation-collection/</a></li>\n<li><a href='https://jashow.org/resources/product/women-of-faith-collection/' rel='noopener' target='_blank'>https://jashow.org/resources/product/women-of-faith-collection/</a></li>\n<li><a href='https://jashow.org/resources/product/inspiring-faith-in-your-children-and-grandchildren-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/inspiring-faith-in-your-children-and-grandchildren-package-offer/</a></li>\n<li><a href='https://jashow.org/resources/product/relying-on-the-constant-companionship-of-the-holy-spirit-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/relying-on-the-constant-companionship-of-the-holy-spirit-package-offer/</a></li>\n</ul>",
+              "subheading" : "Lorem ipsum",
+              "text" : "Lorem ipsum"
+            }, {
+              "content_type" : "con-h",
+              "heading" : "BOOKS:",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/jesus-followers-book/' rel='noopener' target='_blank'>https://jashow.org/resources/product/jesus-followers-book/</a></li>\n<li><a href='https://jashow.org/resources/product/jesus-in-me-experiencing-the-holy-spirit-as-a-constant-companion-book/' rel='noopener' target='_blank'>https://jashow.org/resources/product/jesus-in-me-experiencing-the-holy-spirit-as-a-constant-companion-book/</a></li>\n</ul>",
+              "subheading" : "Lorem ipsum",
+              "text" : "Lorem ipsum"
+            } ],
+            "headshot" : {
+              "alt" : "anne_graham_lotz",
+              "height" : 311,
+              "loading" : "lazy",
+              "max_height" : 311,
+              "max_width" : 250,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/anne_graham_lotz.png",
+              "width" : 250
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "anne-graham-lotz",
+            "tab_name" : "Anne Graham Lotz",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>Darrell L. Bock is an American evangelical New Testament scholar. He is executive director of Cultural Engagement at The Hendricks Center and Senior Research Professor of New Testament studies at Dallas Theological Seminary in Dallas, Texas, United States. Bock received his PhD from Scotland's University of Aberdeen.&nbsp;</p>\n<p>Dr. Bock has earned recognition as a Humboldt Scholar (Tübingen University in Germany), is the author of over 40 books, including well-regarded commentaries on Luke and Acts and studies of the historical Jesus, and work in cultural engagement as host of the seminary's Table Podcasts. He is often an expert on NT issues for the media. Dr. Bock has been a New York Times best-selling author in nonfiction, serves as a staff consultant for Bent Tree Fellowship Church in Carrollton, TX, and is elder emeritus at Trinity Fellowship Church in Dallas.&nbsp;</p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li aria-level='1'><a href='https://jashow.org/resources/product/so-you-dont-fall-away-from-the-faith/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/so-you-dont-fall-away-from-the-faith/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/was-the-baby-in-the-manger-really-god/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/was-the-baby-in-the-manger-really-god/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/16-prophecies-that-prove-jesus-is-the-messiah-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/16-prophecies-that-prove-jesus-is-the-messiah-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/16-prophecies-that-prove-jesus-is-the-messiah-part-1/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/16-prophecies-that-prove-jesus-is-the-messiah-part-1/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/16-prophecies-that-prove-jesus-is-the-messiah-part-2/' rel='noopener' target='_blank'>https://jashow.org/resources/product/16-prophecies-that-prove-jesus-is-the-messiah-part-2/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Darrell Bock",
+              "height" : 237,
+              "loading" : "lazy",
+              "max_height" : 237,
+              "max_width" : 221,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/dr_darrell_bock.png",
+              "width" : 221
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-darell-bock",
+            "tab_name" : "Dr. Darrell Bock",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>The late Dr. Ed Hindson was an American Christian evangelist and host of The King Is Coming, a syndicated television broadcast shown across the United States. Hindson has written more than twenty books that deal with Bible prophecy and the imminent return of Jesus. He serfved as a professor of Old Testament studies and eschatology at Liberty University in Lynchburg, Virginia, and a frequent speaker on prophecy.</p>\n<p>Hindson graduated from William Tyndale College in Farmington Hills, Michigan. He completed a DPhil at the University of South Africa and also held a number of degrees such as an MA and ThD from Trinity Evangelical Divinity School, ThM from Grace Theological Seminary and D Min from</p>\n<p>Dr. Hindson was named Dean of Liberty University's School of Religion on November 20, 2013 where he served until his death July, 2022.</p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/the-last-words-of-jesus-the-book-of-revelation-2022-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-last-words-of-jesus-the-book-of-revelation-2022-package/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/can-we-still-believe-in-the-rapture-book/' rel='noopener' target='_blank'>https://jashow.org/resources/product/can-we-still-believe-in-the-rapture-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Ed Hindson",
+              "height" : 292,
+              "loading" : "lazy",
+              "max_height" : 292,
+              "max_width" : 286,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/dr_ed_hindson.png",
+              "width" : 286
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-ed-hindson",
+            "tab_name" : "Dr. Ed Hindson",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "Dr. Erwin Lutzer is Pastor Emeritus of The Moody Church in Chicago where he served as the Senior Pastor for 36 years. A renowned theologian, Dr. Lutzer earned his BTh from Winnipeg Bible College, a ThM from Dallas Theological Seminary, and an MA in philosophy from Loyola University. He is an award-winning author of many books including We Will Not Be Silenced, and the featured speaker on three radio programs that can be heard on more than 750 national and international outlets."
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li aria-level='1'><a href='https://jashow.org/resources/product/jesus-7-last-cries-from-the-cross-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/jesus-7-last-cries-from-the-cross-package-offer/</a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/christ-among-other-gods-2-dvds-and-book-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/christ-among-other-gods-2-dvds-and-book-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/how-you-can-be-sure-you-will-spend-eternity-with-god-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/how-you-can-be-sure-you-will-spend-eternity-with-god-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/pandemics-plagues-and-natural-disasters-2-dvds-1-book/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/pandemics-plagues-and-natural-disasters-2-dvds-1-book/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/seven-reasons-you-can-trust-the-bible/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/seven-reasons-you-can-trust-the-bible/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/what-will-happen-to-you-one-minute-after-you-die-package/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/what-will-happen-to-you-one-minute-after-you-die-package/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/faith-package-offer-2/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/faith-package-offer-2/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/answering-the-questions-raised-by-the-da-vinci-code-2/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/answering-the-questions-raised-by-the-da-vinci-code-2/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/the-false-gospel-of-oprah-and-her-friends/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/the-false-gospel-of-oprah-and-her-friends/</span></a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li aria-level='1'><a href='https://jashow.org/resources/product/how-you-can-be-sure-you-will-spend-eternity-with-god-print-book/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/how-you-can-be-sure-you-will-spend-eternity-with-god-print-book/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/cries-from-the-cross-book/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/cries-from-the-cross-book/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/christ-among-other-gods-book/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/christ-among-other-gods-book/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/pandemics-plagues-and-natural-disasters-book/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/pandemics-plagues-and-natural-disasters-book/</span></a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Erwin Lutzer",
+              "height" : 287,
+              "loading" : "lazy",
+              "max_height" : 287,
+              "max_width" : 253,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/dr_erwin_lutzer.png",
+              "width" : 253
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-erwin-lutzer",
+            "tab_name" : "Dr. Erwin Lutzer",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>Dr. Gary Habermas has dedicated his professional life to the examination of the relevant historical, philosophical, and theological issues surrounding the death and resurrection of Jesus. His extensive list of publications and debates provides a thorough account of the current state of the issue. He has also contributed over 60 chapters or articles to additional books and over 100 articles and reviews in journals and other publications. In recent years, he has been a visiting or adjunct professor at about 15 different graduate schools and seminaries in the United States and abroad.</p>\n<p>Dr. Habermas is a Distinguished Research Professor of Apologetics and Philosophy. He is married to Eileen, and they have seven children and 11 grandchildren.</p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li aria-level='1'><a href='https://jashow.org/resources/product/gary-habermas-2019-2-dvds-gh19-1-and-ehj-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/gary-habermas-2019-2-dvds-gh19-1-and-ehj-package-offer/</a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/gary-habermas-2018-3-dvd-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/gary-habermas-2018-3-dvd-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/the-evidence-for-the-historical-jesus-updated-edition/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/the-evidence-for-the-historical-jesus-updated-edition/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/the-historical-evidence-for-the-resurrection-even-the-skeptics-believe-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/the-historical-evidence-for-the-resurrection-even-the-skeptics-believe-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/a-response-to-bill-o-reilly-s-book-killing-jesus-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/a-response-to-bill-o-reilly-s-book-killing-jesus-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/was-the-baby-in-the-manger-really-god/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/was-the-baby-in-the-manger-really-god/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/dealing-with-doubt/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/dealing-with-doubt/</span></a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/taking-a-stand-for-the-bible-book/ ' rel='noopener' target='_blank'>https://jashow.org/resources/product/taking-a-stand-for-the-bible-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Gary Habermas",
+              "height" : 231,
+              "loading" : "lazy",
+              "max_height" : 231,
+              "max_width" : 172,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/dr_gary_habermas.png",
+              "width" : 172
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-gary-habermas",
+            "tab_name" : "Dr. Gary Habermas",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "BIOGRAPHY",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "heading" : "",
+              "richtext_field" : "<p>Hugh Ross is senior scholar and founder of <a href='https://jashow.org/hr22/#reasons-to-believe'><span>Reasons to Believe</span></a>, an organization dedicated to communicating the compatibility of science and the Christian faith.</p>\n<p>While in college, Hugh committed his life to Jesus Christ after his study of cosmology convinced him of the existence of a Creator, specifically the God of the Bible.</p>\n<p>Hugh holds a degree in physics from the University of British Columbia and a PhD in astronomy from the University of Toronto. After five years on the Caltech faculty, he transitioned to full-time ministry and still serves on the pastoral team at Christ Church Sierra Madre. His writings include journal and magazine articles, hundreds of blogs, and numerous books—The Creator and the Cosmos, Why the Universe Is the Way It Is, Improbable Planet and Designed to the Core, among others. He has spoken on hundreds of university campuses as well as at conferences and churches around the world and participates in the weekly Stars, Cells, and God podcast.</p>",
+              "subheading" : "",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "heading" : "",
+              "richtext_field" : "",
+              "subheading" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "heading" : "",
+              "richtext_field" : "",
+              "subheading" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li aria-level='1'><a href='https://jashow.org/resources/product/what-scientific-evidence-proves-god-package-offer-2/' rel='noopener' target='_blank'>https://jashow.org/resources/product/what-scientific-evidence-proves-god-package-offer-2/</a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/the-science-collection/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/the-science-collection/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/step-by-step-through-creation-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/step-by-step-through-creation-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/the-evidence-from-astronomy-that-points-to-an-all-powerful-creator-2-dvds-and-book-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/the-evidence-from-astronomy-that-points-to-an-all-powerful-creator-2-dvds-and-book-package-offer/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/ufos-and-alien-abductions-package-offer/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/ufos-and-alien-abductions-package-offer/</span></a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li aria-level='1'><a href='https://jashow.org/resources/product/creator-and-the-cosmos/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/creator-and-the-cosmos/</span></a></li>\n<li aria-level='1'><a href='https://jashow.org/resources/product/lights-in-the-sky-and-little-green-men/' rel='noopener' target='_blank'><span>https://jashow.org/resources/product/lights-in-the-sky-and-little-green-men/</span></a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Hugh Ross",
+              "height" : 223,
+              "loading" : "lazy",
+              "max_height" : 223,
+              "max_width" : 223,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/dr_hugh_ross.png",
+              "width" : 223
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-hugh-ross",
+            "tab_name" : "Dr. Hugh Ross",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "Dr. Jimmy DeYoung is an author, speaker, and journalist/host on Day of Discovery. Dr. DeYoung has his finger on the pulse of the world’s hot spot, the Middle East. He uncovers and evaluates the latest news with a unique blend of political, biblical, and prophetic insight heard daily on the internet and over 800 radio stations."
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/step-by-step-through-the-book-of-revelation-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/step-by-step-through-the-book-of-revelation-package/</a></li>\n<li><a href='https://jashow.org/resources/product/the-john-ankerberg-show-presents-through-the-book-of-revelation-with-dr-jimmy-deyoung-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-john-ankerberg-show-presents-through-the-book-of-revelation-with-dr-jimmy-deyoung-package-offer/</a></li>\n<li><a href='https://jashow.org/resources/product/headlines-of-the-end-times-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/headlines-of-the-end-times-package/</a></li>\n<li><a href='https://jashow.org/resources/product/ultimate-prophecy-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/ultimate-prophecy-package/</a></li>\n<li><a href='https://jashow.org/resources/product/step-by-step-through-the-rapture-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/step-by-step-through-the-rapture-package-offer/</a></li>\n<li><a href='https://jashow.org/resources/product/the-middle-east-and-the-last-days-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-middle-east-and-the-last-days-package/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Jimmy DeYoung",
+              "height" : 286,
+              "loading" : "lazy",
+              "max_height" : 286,
+              "max_width" : 285,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Dr._Jimmy_DeYoung.png",
+              "width" : 285
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-jimmy-deyoung",
+            "tab_name" : "Dr. Jimmy DeYoung",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "Dr. Mark Hitchcock earned his PhD from Dallas Theological Seminary in 2005, and now teaches there as an associate professor of Bible Exposition. He is also pastor of Faith Bible Church in Edmond, Oklahoma, where he has led a congregation of 2,700 members for over 30 years. He is the author of over 30 books focused on end-times Bible prophecy."
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/iran-israel-and-end-time-events-2-dvds-3-books-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/iran-israel-and-end-time-events-2-dvds-3-books-package-offer/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/can-we-still-believe-in-the-rapture-book/' rel='noopener' target='_blank'>https://jashow.org/resources/product/can-we-still-believe-in-the-rapture-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Mark Hitchcock",
+              "height" : 301,
+              "loading" : "lazy",
+              "max_height" : 301,
+              "max_width" : 224,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Dr._Mark_Hitchcock.png",
+              "width" : 224
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-mark-hitchcock",
+            "tab_name" : "Dr. Mark Hitchcock",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "Dr. Michael Easley is the president and host of 'Michael Easley inContext' a ministry designed to help listeners and readers 'understand God's word and apply it to your life'. He was the former president of the Moody Bible Institute  (MBI) in Chicago, Illinois.  He has served in churches in Texas, Northern VA/ Washington, DC, and Middle Tennessee."
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/where-is-god-when-life-hurts-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/where-is-god-when-life-hurts-package/</a></li>\n<li><a href='https://jashow.org/resources/product/how-god-helps-in-tough-times-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/how-god-helps-in-tough-times-package/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/god-s-comfort-when-you-are-discouraged-depressed-and-fear-the-future-study-guide/' rel='noopener' target='_blank'>https://jashow.org/resources/product/god-s-comfort-when-you-are-discouraged-depressed-and-fear-the-future-study-guide/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Michael Easley",
+              "height" : 238,
+              "loading" : "lazy",
+              "max_height" : 238,
+              "max_width" : 236,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Dr._Michael_Easley_2.png",
+              "width" : 236
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-michael-easley",
+            "tab_name" : "Dr. Michael Easley",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>Dr. Ron Rhodes received his Th.M. and Th.D. degrees in systematic theology from Dallas Theological Seminary, graduating with honors. He is currently the president of Reasoning from the Scriptures Ministries, an apologetics organization located in Texas.</p>\n<p>The author of more than 60 books, with millions of books in print, Dr. Rhodes is a keynote speaker at conferences across the United States and Canada. As time permits, he also teaches at a number of seminaries, including Dallas Theological Seminary and Veritas Evangelical Seminary. He has been a guest on many national and regional radio and television programs, including the John Ankerberg Show. He and his wife, Kerri, reside in Texas.</p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES: "
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/iran-israel-and-end-time-events-2-dvds-3-books-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/iran-israel-and-end-time-events-2-dvds-3-books-package-offer/</a></li>\n<li><a href='https://jashow.org/resources/product/the-last-words-of-jesus-the-book-of-revelation/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-last-words-of-jesus-the-book-of-revelation/</a></li>\n<li><a href='https://jashow.org/resources/product/5-great-debates-of-the-end-times/' rel='noopener' target='_blank'>https://jashow.org/resources/product/5-great-debates-of-the-end-times/</a></li>\n<li><a href='https://jashow.org/resources/product/the-biblical-case-for-the-rapture-of-all-christians/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-biblical-case-for-the-rapture-of-all-christians/</a></li>\n<li><a href='https://jashow.org/resources/product/5-great-debates-of-the-end-times/' rel='noopener' target='_blank'>https://jashow.org/resources/product/5-great-debates-of-the-end-times/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/northern-storm-rising-book/' rel='noopener' target='_blank'>https://jashow.org/resources/product/northern-storm-rising-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Ron Rhodes",
+              "height" : 413,
+              "loading" : "lazy",
+              "max_height" : 413,
+              "max_width" : 623,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Dr._Ron_Rhodes.png",
+              "width" : 623
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-ron-rhodes",
+            "tab_name" : "Dr. Ron Rhodes",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "BIOGRAPHY",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "heading" : "",
+              "richtext_field" : "<p><strong>Stephen C. Meyer</strong>received his Ph.D. in the philosophy of science from the University of Cambridge. A former geophysicist and college professor, he now directs Discovery Institute’s <a href='https://www.discovery.org/id/'><span>Center for Science and Culture</span></a> in Seattle. He has authored the <em>New York Times</em> best seller <a href='http://www.darwinsdoubt.com/'><em><span>Darwin’s Doubt: The Explosive Origin of Animal Life and the Case for Intelligent Design</span></em></a> (HarperOne, 2013), <a href='http://www.signatureinthecell.com/'><em><span>Signature in the Cell: DNA and the Evidence for Intelligent Design</span></em></a> (HarperOne, 2009), which was named a Book of the Year by the <em>Times </em>(of London) <em>Literary Supplement </em>in 2009, and now, <a href='https://returnofthegodhypothesis.com/'><em><span>The Return of the God Hypothesis</span></em></a><span> (HarperOne, 2021).</span></p>",
+              "subheading" : "",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "heading" : "",
+              "richtext_field" : "",
+              "subheading" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "heading" : "",
+              "richtext_field" : "",
+              "subheading" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/the-mystery-of-the-missing-fossils-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-mystery-of-the-missing-fossils-package/</a></li>\n<li><a href='https://jashow.org/resources/product/the-case-for-intelligent-design/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-case-for-intelligent-design/</a></li>\n<li><a href='https://jashow.org/resources/product/the-mystery-of-the-missing-fossils/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-mystery-of-the-missing-fossils/</a></li>\n<li><a href='https://jashow.org/resources/product/the-new-scientific-evidence-that-points-to-the-existence-of-god-plus-3-dvds-and-book-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-new-scientific-evidence-that-points-to-the-existence-of-god-plus-3-dvds-and-book-package-offer/</a></li>\n<li><a href='https://jashow.org/resources/product/the-new-scientific-evidence-that-points-to-the-existence-of-god/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-new-scientific-evidence-that-points-to-the-existence-of-god/</a></li>\n<li><a href='https://jashow.org/resources/product/intelligent-design-collection/' rel='noopener' target='_blank'>https://jashow.org/resources/product/intelligent-design-collection/</a></li>\n<li><a href='https://jashow.org/resources/product/does-the-new-scientific-evidence-about-the-origin-of-life-put-an-end-to-darwinian-evolution/' rel='noopener' target='_blank'>https://jashow.org/resources/product/does-the-new-scientific-evidence-about-the-origin-of-life-put-an-end-to-darwinian-evolution/</a></li>\n<li><a href='https://jashow.org/resources/product/the-four-great-discoveries-of-modern-science-that-prove-god-exists/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-four-great-discoveries-of-modern-science-that-prove-god-exists/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/the-return-of-the-god-hypothesis-compelling-scientific-evidence-for-the-existence-of-god-book/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-return-of-the-god-hypothesis-compelling-scientific-evidence-for-the-existence-of-god-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Stephen Meyer",
+              "height" : 325,
+              "loading" : "lazy",
+              "max_height" : 325,
+              "max_width" : 214,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Dr._Stephen_Meyer.png",
+              "width" : 214
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-stephen-meyer",
+            "tab_name" : "Dr. Stephen Meyer",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "Dr. Walter Ralston Martin (1928–1989), was a Christian apologist who foundedthe Christian Research Institute in 1960, specializing in information in both generalChristian and counter-cult apologetics. He is best known for his long-running radioprogram, The Bible Answer Man, and as the author of the definitive work on cults, The Kingdom of the Cults."
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/interview-with-dr-walter-martin-on-cults/' rel='noopener' target='_blank'>https://jashow.org/resources/product/interview-with-dr-walter-martin-on-cults/</a></li>\n<li><a href='https://jashow.org/resources/product/seventh-day-adventism-who-is-telling-the-truth-2/' rel='noopener' target='_blank'>https://jashow.org/resources/product/seventh-day-adventism-who-is-telling-the-truth-2/</a></li>\n<li><a href='https://jashow.org/resources/product/martin-spong-debate-on-sexual-ethics/' rel='noopener' target='_blank'>https://jashow.org/resources/product/martin-spong-debate-on-sexual-ethics/</a></li>\n<li><a href='https://jashow.org/resources/product/christianity-and-the-masonic-lodge-are-they-compatible/' rel='noopener' target='_blank'>https://jashow.org/resources/product/christianity-and-the-masonic-lodge-are-they-compatible/</a></li>\n<li><a href='https://jashow.org/resources/product/do-roman-catholics-and-protestants-agree-on-justification-papal-infallibility/' rel='noopener' target='_blank'>https://jashow.org/resources/product/do-roman-catholics-and-protestants-agree-on-justification-papal-infallibility/</a></li>\n<li><a href='https://jashow.org/resources/product/do-roman-catholics-and-protestants-agree-on-maryology-and-purgatory/' rel='noopener' target='_blank'>https://jashow.org/resources/product/do-roman-catholics-and-protestants-agree-on-maryology-and-purgatory/</a></li>\n<li><a href='https://jashow.org/resources/product/christianity-and-the-secret-teachings-of-the-masonic-lodge/' rel='noopener' target='_blank'>https://jashow.org/resources/product/christianity-and-the-secret-teachings-of-the-masonic-lodge/</a></li>\n<li><a href='https://jashow.org/resources/product/astrology-true-or-false/' rel='noopener' target='_blank'>https://jashow.org/resources/product/astrology-true-or-false/</a></li>\n<li><a href='https://jashow.org/resources/product/baha-i-faith/' rel='noopener' target='_blank'>https://jashow.org/resources/product/baha-i-faith/</a></li>\n<li><a href='https://jashow.org/resources/product/the-unification-church-moonies-their-teachings-in-light-of-the-bible/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-unification-church-moonies-their-teachings-in-light-of-the-bible/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Dr. Walter Martin",
+              "height" : 341,
+              "loading" : "lazy",
+              "max_height" : 341,
+              "max_width" : 249,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Dr._Walter_Martin.png",
+              "width" : 249
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "dr-walter-martin",
+            "tab_name" : "Dr. Walter Martin",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>Jeff Kinley is a former pastor and best-selling author of 40 books. He is a recognized expert and thought leader in Bible Prophecy, having authored 12 books on the subject. Jeff connects with this generation, engaging them with biblical truth in a fresh, practical way. He is a graduate of the University of Arkansas (BA) and Dallas Theological Seminary (ThM). Jeff’s weekly podcasts - &nbsp;The Vintage Truth Podcast and The Prophecy Pros Podcast (with Todd Hampson) are heard in over 120 countries. This Podcast now has over 1,000,000 downloads and ranks in America’s Top 1% of all podcasts.</p>\n<p>Jeff has been a featured guest on Fox&amp;Friends, The Glenn Beck Show, The Ben Shapiro Show, and hundreds of radio and television programs. His articles and interviews have also been featured in The Huffington Post, The Washington Post, and The Jerusalem Post.</p>\n<p>His Television Shows: Jeff Kinley Live, airs each week on HisChannel. This global Christian Network draws 70,000,000 viewers each month. He is also the host and teacher of The King is</p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/iran-israel-and-end-time-events-2-dvds-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/iran-israel-and-end-time-events-2-dvds-package-offer/</a></li>\n<li><a href='https://jashow.org/resources/product/iran-israel-and-end-time-events-download-m4v-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/iran-israel-and-end-time-events-download-m4v-package/</a></li>\n<li><a href='https://jashow.org/resources/product/iran-israel-and-end-time-events-part-1-dvd/' rel='noopener' target='_blank'>https://jashow.org/resources/product/iran-israel-and-end-time-events-part-1-dvd/</a></li>\n<li><a href='https://jashow.org/resources/product/iran-israel-and-end-time-events-part-2-dvd/' rel='noopener' target='_blank'>https://jashow.org/resources/product/iran-israel-and-end-time-events-part-2-dvd/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/the-end-of-america-book/ ' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-end-of-america-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Jeff Kinley",
+              "height" : 313,
+              "loading" : "lazy",
+              "max_height" : 313,
+              "max_width" : 271,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Jeff_Kinley.png",
+              "width" : 271
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "jeff-kinley",
+            "tab_name" : "Jeff Kinley",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "Joni Eareckson Tada is found of Joni and Friends, one of the world’s leading organizations devoted to those affected by disability.  Joni is the author of more than 50 books and has received many awards for her efforts on behalf of the disability community."
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/where-is-god-when-life-hurts-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/where-is-god-when-life-hurts-package/</a></li>\n<li><a href='https://jashow.org/resources/product/how-god-helps-in-tough-times-package/' rel='noopener' target='_blank'>https://jashow.org/resources/product/how-god-helps-in-tough-times-package/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/finding-god-in-hidden-places-his-presence-in-the-pieces-of-our-lives/' rel='noopener' target='_blank'>https://jashow.org/resources/product/finding-god-in-hidden-places-his-presence-in-the-pieces-of-our-lives/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Joni Eareckson Tada",
+              "height" : 211,
+              "loading" : "lazy",
+              "max_height" : 211,
+              "max_width" : 204,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Joni_Eareckson_Tada.png",
+              "width" : 204
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "joni-eareckson-tada",
+            "tab_name" : "Joni Eareckson Tada",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-t",
+              "richtext_field" : "",
+              "text" : "LEE STROBEL - Atheist-turned-Christian Lee Strobel, the former award-winning legal editor of the Chicago Tribune, is a New York Times best-selling author of more than 40 books and curricula that have sold 14 million copies in total. He currently serves as Founding Director of the Lee Strobel Center for Evangelism and Applied Apologetics at Colorado Christian University.  "
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/who-is-the-baby-in-the-manger/' rel='noopener' target='_blank'>https://jashow.org/resources/product/who-is-the-baby-in-the-manger/</a></li>\n<li><a href='https://jashow.org/resources/product/the-evidence-of-miracles-for-skeptics-package-offer/' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-evidence-of-miracles-for-skeptics-package-offer/</a></li>\n</ul>",
+              "text" : ""
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "BOOKS:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/the-case-for-miracles-book/ ' rel='noopener' target='_blank'>https://jashow.org/resources/product/the-case-for-miracles-book/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Lee Strobel",
+              "height" : 179,
+              "loading" : "lazy",
+              "max_height" : 179,
+              "max_width" : 227,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Lee_Strobel.png",
+              "width" : 227
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "lee-strobel",
+            "tab_name" : "Lee Strobel",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>Morgan Jackson is passionate about people hearing the Bible, working to ensure every language that needs it receives Audio Scripture by 2033. He has served Faith Comes By Hearing for over 40 years and is the ministry’s Senior Vice President.</p>\n<p>The son of Faith Comes By Hearing founders Jerry and Anet Jackson; Morgan has traveled to more than 80 countries to build lifelong relationships with Kingdom-minded ministry leaders and supporters.</p>\n<p>As a storyteller, Morgan transports listeners to villages, refugee camps, churches, and schools, demonstrating the personal impact of hearing God speak the language of the heart. He recently authored Enter the Story, a collection of these accounts of transformation worldwide.</p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/audio-bibles/' rel='noopener' target='_blank'>https://jashow.org/audio-bibles/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "Morgan Jackson",
+              "height" : 873,
+              "loading" : "lazy",
+              "max_height" : 437,
+              "max_width" : 312,
+              "size_type" : "auto_custom_max",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/Morgan_Jackson.png",
+              "width" : 624
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "morgan-jackson",
+            "tab_name" : "Morgan Jackson",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "content" : [ {
+              "content_type" : "con-sh",
+              "heading" : "Lorem ipsum",
+              "richtext_field" : "<p>Lorem ipsum</p>",
+              "subheading" : "Lorem ipsum",
+              "text" : "BIOGRAPHY"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<p>William Lane Craig is an American analytic philosopher, Christian apologist, author, and <a href='https://en.wikipedia.org/wiki/Wesleyan_theology'><span>Wesleyan theologian</span></a> who upholds the view of <a href='https://en.wikipedia.org/wiki/Molinism'><span>Molinism</span></a> and <a href='https://en.wikipedia.org/wiki/Apollinarism#Neo-Apollinarianism'><span>neo-Apollinarianism</span></a>.<a href='https://en.wikipedia.org/wiki/William_Lane_Craig#cite_note-2'><span><sup>[2]</sup></span></a><a href='https://en.wikipedia.org/wiki/William_Lane_Craig#cite_note-3'><span><sup>[3]</sup></span></a> He is a professor of philosophy at <a href='https://en.wikipedia.org/wiki/Houston_Christian_University'><span>Houston Christian University</span></a> and at the <a href='https://en.wikipedia.org/wiki/Talbot_School_of_Theology'><span>Talbot School of Theology</span></a> of <a href='https://en.wikipedia.org/wiki/Biola_University'><span>Biola University</span></a>.<a href='https://en.wikipedia.org/wiki/William_Lane_Craig#cite_note-christianpost-murashko-4'><span><sup>[4]</sup></span></a></p>\n<p>Craig has updated and defended the <a href='https://en.wikipedia.org/wiki/Kalam_cosmological_argument'><span>Kalam cosmological argument</span></a> for the <a href='https://en.wikipedia.org/wiki/Existence_of_God'><span>existence of God</span></a>. He has also published work where he argues in favor of the historical plausibility of the <a href='https://en.wikipedia.org/wiki/Resurrection_of_Jesus'><span>resurrection of Jesus</span></a>.<a href='https://en.wikipedia.org/wiki/William_Lane_Craig#cite_note-FOOTNOTEHabermas1988-10'><span><sup>[10]</sup></span></a> His study of <a href='https://en.wikipedia.org/wiki/Divine_aseity'><span>divine aseity</span></a> and <a href='https://en.wikipedia.org/wiki/Platonism'><span>Platonism</span></a> culminated with his book <em>God Over All.</em></p>",
+              "text" : ""
+            }, {
+              "content_type" : "con-sh",
+              "richtext_field" : "",
+              "text" : "SITE RESOURCES"
+            }, {
+              "content_type" : "con-h",
+              "richtext_field" : "",
+              "text" : "SERIES:"
+            }, {
+              "content_type" : "con-rt",
+              "richtext_field" : "<ul>\n<li><a href='https://jashow.org/resources/product/does-god-exist/' rel='noopener' target='_blank'>https://jashow.org/resources/product/does-god-exist/</a></li>\n<li><a href='https://jashow.org/resources/product/interview-with-dr-william-lane-craig-2/' rel='noopener' target='_blank'>https://jashow.org/resources/product/interview-with-dr-william-lane-craig-2/</a></li>\n<li><a href='https://jashow.org/resources/product/was-the-baby-in-the-manger-really-god/' rel='noopener' target='_blank'>https://jashow.org/resources/product/was-the-baby-in-the-manger-really-god/</a></li>\n<li><a href='https://jashow.org/resources/product/does-god-exist-arguments-for-the-existence-of-god/' rel='noopener' target='_blank'>https://jashow.org/resources/product/does-god-exist-arguments-for-the-existence-of-god/</a></li>\n</ul>",
+              "text" : ""
+            } ],
+            "headshot" : {
+              "alt" : "William Lane Craig",
+              "height" : 359,
+              "loading" : "lazy",
+              "max_height" : 359,
+              "max_width" : 285,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/William_Lane_Craig.png",
+              "width" : 285
+            },
+            "media_type" : "image",
+            "show_button" : false,
+            "tab_id" : "william-lane-craig",
+            "tab_name" : "William Lane Craig",
+            "videos" : {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

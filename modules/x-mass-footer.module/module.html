@@ -1,0 +1,72 @@
+{#
+Christmas Footer — logo, description, link columns, and footnote.
+#}
+{% set c = module.content %}
+
+{% require_css %}
+<style>
+  .x-mas-footer {
+            width: 100vw;
+            background: var(--forest2);
+            background-color: #23372e;
+            padding: 58px 0 24px
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: 2fr 1fr 1fr 1fr;
+            gap: 40px
+        }
+
+        .footer h4 {
+            font: 17px Georgia, serif;
+            color: var(--gold)
+        }
+
+        .footer a {
+            display: block;
+            font-size: 13px;
+            color: #e0e1d8;
+            margin: 7px 0
+        }
+
+        .footer p {
+            font-size: 13px;
+            color: #d2dcd4
+        }
+
+        .footnote {
+            border-top: 1px solid #ffffff30;
+            margin-top: 42px;
+            padding-top: 15px;
+            font-size: 12px;
+            color: #bdcbbf
+        }
+</style>
+{% end_require_css %}
+
+<footer class="x-mas-footer">
+    <div class="footer-grid">
+      <div>
+        <div class="logo" style="text-align:left;font-size:48px">ATRI<small>ANKERBERG THEOLOGICAL<br>RESEARCH
+            INSTITUTE</small></div>
+        <p style="margin-top:22px;max-width:310px">Give. Share. Equip.<br>Sharing biblical truth through
+          evangelism, discipleship, and education. Made possible by viewers like you.</p>
+      </div>
+      <div>
+        <h4>Explore</h4><a href="#audio">Audio Bibles</a><a href="#resources">Books &amp; Resources</a><a
+          href="#merch">ATRI Gifts</a>
+      </div>
+      <div>
+        <h4>Our Ministry</h4><a href="#equip">Discipleship</a><a href="#intro">About ATRI</a><a href="#resources">Study
+          Resources</a>
+      </div>
+      <div>
+        <h4>Partner With Us</h4><a href="#giving">Give to ATRI</a><a href="#giving">Monthly Giving</a><a
+          href="#audio">Audio Bible Outreach</a>
+      </div>
+    </div>
+    <div class="footnote">© 2026 Ankerberg Theological Research Institute · Christmas homepage interactive design
+      prototype</div>
+</footer>
+

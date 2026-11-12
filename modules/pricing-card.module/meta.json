@@ -1,0 +1,10 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "categories" : [ "commerce" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 172072221622,
+  "label" : "Pricing card",
+  "icon" : "/JAS2024/images/module-icons/table.svg",
+  "is_available_for_new_content" : false
+}

@@ -1,0 +1,15 @@
+[ {
+  "id" : "4e0b5d34-d83f-09a8-8236-db0d2e957497",
+  "name" : "background_color",
+  "label" : "Background color",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "transparent", "Transparent" ], [ "clr-grey", "Grey" ], [ "clr-beige", "Beige" ], [ "clr-dark-beige", "Dark beige" ], [ "clr-light-beige", "Light beige" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "clr-grey"
+} ]

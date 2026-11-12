@@ -1,0 +1,462 @@
+{
+  "default_text.go_to_page.default" : {
+    "message" : "Đi đến trang {{ this_page }}",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.pagination_navigation.default" : {
+    "message" : "Điều hướng phân trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_arrows" : {
+    "message" : "Hiển thị mũi tên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_labels" : {
+    "message" : "Hiển thị nhãn",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.label" : {
+    "message" : "Đầu tiên và cuối cùng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.default" : {
+    "message" : "Đầu tiên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.label" : {
+    "message" : "Nhãn đầu tiên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.default" : {
+    "message" : "Cuối",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.label" : {
+    "message" : "Nhãn cuối cùng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "Phân trang blog",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.default" : {
+    "message" : "Tiếp theo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.label" : {
+    "message" : "Nhãn tiếp theo",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.choices.show_numbers" : {
+    "message" : "Hiển thị số",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.label" : {
+    "message" : "Số",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_arrows" : {
+    "message" : "Hiển thị mũi tên",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_labels" : {
+    "message" : "Hiển thị nhãn",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.label" : {
+    "message" : "Trước và sau",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.default" : {
+    "message" : "Trước",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.label" : {
+    "message" : "Nhãn trước đó",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.label" : {
+    "message" : "Di chuột",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.label" : {
+    "message" : "Biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.size.label" : {
+    "message" : "Kích cỡ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.label" : {
+    "message" : "Đầu tiên và cuối cùng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Khoảng cách giữa văn bản và biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Kiểu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.help_text" : {
+    "message" : "Tạo kiểu cho liên kết được đánh số phù hợp với trang bạn hiện đang truy cập.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.label" : {
+    "message" : "Đang hoạt động",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.label" : {
+    "message" : "Di chuột",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.label" : {
+    "message" : "Số",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Phân trang",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Khoảng cách giữa các liên kết",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.label" : {
+    "message" : "Góc",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.radius.label" : {
+    "message" : "Bán kính",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.label" : {
+    "message" : "Nền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.label" : {
+    "message" : "Viền",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.label" : {
+    "message" : "Di chuột",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.color.label" : {
+    "message" : "Màu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.label" : {
+    "message" : "Biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.size.label" : {
+    "message" : "Kích cỡ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.label" : {
+    "message" : "Trước và sau",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Khoảng cách giữa văn bản và biểu tượng",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.spacing.label" : {
+    "message" : "Giãn cách",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.font.label" : {
+    "message" : "Phông chữ",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.label" : {
+    "message" : "Văn bản",
+    "description" : "",
+    "placeholders" : null
+  }
+}

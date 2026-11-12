@@ -1,0 +1,196 @@
+[ {
+  "id" : "cards",
+  "name" : "cards",
+  "label" : "Feature cards",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 6,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "cards.kicker",
+    "name" : "kicker",
+    "label" : "Kicker / eyebrow",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "NEW THIS CHRISTMAS"
+  }, {
+    "id" : "cards.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Gifts that"
+  }, {
+    "id" : "cards.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic part",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "share the mission."
+  }, {
+    "id" : "cards.body_text",
+    "name" : "body_text",
+    "label" : "Body text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "For the first time, discover ATRI mugs and totes, available while supplies last."
+  }, {
+    "id" : "cards.image",
+    "name" : "image",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : "Feature image"
+    }
+  }, {
+    "id" : "cards.link_text",
+    "name" : "link_text",
+    "label" : "Link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Explore ATRI Gifts"
+  }, {
+    "id" : "cards.link_url",
+    "name" : "link_url",
+    "label" : "Link URL",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#resources"
+  }, {
+    "id" : "cards.price_text",
+    "name" : "price_text",
+    "label" : "Price text (optional)",
+    "help_text" : "Shown as large serif text, e.g. '$5 each or 3 for $12'. Leave empty to hide.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "cards.cta_text",
+    "name" : "cta_text",
+    "label" : "CTA button text (optional)",
+    "help_text" : "Shown as a full button instead of a text link. Leave empty to use the text link.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "cards.layout",
+    "name" : "layout",
+    "label" : "Image position",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "left", "Image left" ], [ "right", "Image right" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "left"
+  }, {
+    "id" : "cards.bg_style",
+    "name" : "bg_style",
+    "label" : "Background style",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Default (paper)" ], [ "beige", "Beige" ], [ "forest", "Forest green" ], [ "white", "White" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "intro",
+  "name" : "intro",
+  "label" : "Section intro (optional)",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "intro.kicker",
+    "name" : "kicker",
+    "label" : "Intro kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "intro.heading",
+    "name" : "heading",
+    "label" : "Intro heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "intro.heading_em",
+    "name" : "heading_em",
+    "label" : "Intro heading italic",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "intro.body_text",
+    "name" : "body_text",
+    "label" : "Intro body",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

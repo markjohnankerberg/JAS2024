@@ -1,0 +1,1304 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Watch/TV Listings 2024
+  screenshotPath: ../images/template-previews/watch-tv-listings.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--watch"
+%}
+  
+  {# Section #1 - Heading #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0;"><span style="color: #000000;">Watch The Show</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #2 - Video section #}
+  {% dnd_section
+    background_color="rgba(27, 49, 75, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px"
+      }
+    },
+    max_width=878
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Video with info text",
+      offset=0,
+      width=12,
+      embed_field={
+        "height" : 240,
+        "max_height" : 240,
+        "max_width" : 426,
+        "oembed_response" : {
+          "author_name" : "John Ankerberg",
+          "author_url" : "https://vimeo.com/johnankerberg",
+          "height" : "240",
+          "html" : "<iframe src=\"https://player.vimeo.com/video/1019410000?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Ep. 2 - A Christian Response to the Israeli War | The Israel You Haven’t Heard About\"></iframe>",
+          "provider_name" : "Vimeo",
+          "provider_url" : "https://vimeo.com/",
+          "thumbnail_height" : "166",
+          "thumbnail_url" : "https://i.vimeocdn.com/video/1939224175-03078b7dcfe238669d0d41b6e649917f216bfc9fe01222444ba1535f6e7aec7f-d_295x166",
+          "thumbnail_width" : "295",
+          "title" : "Ep. 2 - A Christian Response to the Israeli War | The Israel You Haven’t Heard About",
+          "type" : "video",
+          "version" : "1.0",
+          "width" : "426"
+        },
+        "oembed_url" : "https://player.vimeo.com/video/1019410000?color&autopause=0&loop=0&muted=0&title=0&portrait=0&byline=0&h",
+        "size_type" : "auto_full_width",
+        "source_type" : "oembed",
+        "supported_oembed_types" : [ "video" ],
+        "width" : 426
+      }
+    %}
+      {% module_attribute "info_text" %}
+        <p style="font-size: 15px;"><span style="color: #6e7579;">Content warning: This series contains descriptions of violence, death, and other unsettling aspects of war that may be upsetting for some viewers. Viewer discretion is advised.</span></p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Custom section heading module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Custom section header",
+      offset=0,
+      width=12,
+      button_group=[ {
+        "button" : {
+          "button_style" : "btn-white-outline",
+          "button_text" : "Watch recent episodes",
+          "button_url" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "rel" : "",
+            "sponsored" : false,
+            "url" : {
+              "href" : "https://jashow.org/the-john-ankerberg-show/",
+              "type" : "EXTERNAL"
+            },
+            "user_generated_content" : false
+          },
+          "corner_radius" : "radius-s",
+          "horizontal_padding" : "padd-normal"
+        },
+        "button_type" : "regular",
+        "image" : {
+          "image_field" : {
+            "loading" : "lazy",
+            "size_type" : "auto",
+            "src" : ""
+          },
+          "image_url" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "rel" : "",
+            "sponsored" : false,
+            "url" : {
+              "href" : "https://duckduckgo.com/",
+              "href_with_scheme" : "https://duckduckgo.com/",
+              "type" : "EXTERNAL"
+            },
+            "user_generated_content" : false
+          }
+        }
+      }, {
+        "button" : {
+          "button_style" : "btn-custom",
+          "button_text" : "Learn more about this series",
+          "button_url" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://jashow.org/jm24/",
+              "type" : "EXTERNAL"
+            }
+          },
+          "corner_radius" : "radius-s",
+          "horizontal_padding" : "padd-small"
+        },
+        "button_type" : "regular",
+        "image" : {
+          "image_field" : {
+            "loading" : "lazy",
+            "size_type" : "auto",
+            "src" : ""
+          },
+          "image_url" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://duckduckgo.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }
+      } ],
+      heading="A Christian Response to the Israeli War",
+      show_button=true,
+      show_heading=true,
+      style={
+        "button" : {
+          "background_color" : {
+            "color" : "#1b314b",
+            "opacity" : 100
+          },
+          "background_color_hover" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "border_field" : {
+            "bottom" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "left" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#1b314b",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "border_hover" : {
+            "bottom" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "left" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "right" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            },
+            "top" : {
+              "color" : "#ffffff",
+              "opacity" : 100,
+              "style" : "solid",
+              "width" : {
+                "units" : "px",
+                "value" : 1
+              }
+            }
+          },
+          "spacing" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 12
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 8
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 12
+              }
+            }
+          },
+          "text_color" : {
+            "color" : "#ffffff",
+            "opacity" : 100
+          },
+          "text_color_hover" : {
+            "color" : "#1b314b",
+            "opacity" : 100
+          }
+        },
+        "heading" : {
+          "color_field" : {
+            "color" : "#fff",
+            "css" : "#ffffff",
+            "hex" : "#fff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          }
+        },
+        "section" : {
+          "background" : {
+            "background_color" : {
+              "color" : "#1b314b",
+              "css" : "#1b314b",
+              "hex" : "#1b314b",
+              "opacity" : 100,
+              "rgb" : "rgb(27, 49, 75)",
+              "rgba" : "rgba(27, 49, 75, 1)"
+            }
+          },
+          "content_maximum_width" : 880,
+          "spacing_desktop" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 20
+              }
+            }
+          },
+          "spacing_mobile" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 20
+              }
+            }
+          }
+        },
+        "subheading" : {
+          "color_field" : {
+            "color" : "#fff",
+            "css" : "#ffffff",
+            "hex" : "#fff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          }
+        }
+      },
+      subheading="CURRENT SERIES",
+      text_maximum_width=878
+    %}
+      {% module_attribute "supporting_text" %}
+        <p style="text-align: center; margin-bottom: 0px; font-size: 16px;"><span style="color: #b7ab9f;">featuring Dr. Jeff Myers</span></p>
+        <p style="text-align: center; margin-bottom: 0;">&nbsp;</p>
+        <p style="text-align: center; margin-bottom: 0px; font-size: 16px;"><span style="color: #ffffff;">Dr. Myers joins Dr. Ankerberg to discuss how Christians should respond to the Israeli war. He shares compelling stories from his time in Israel shortly after October 7, 2023 and challenges viewers to discover the facts for themselves. Myers shares biblical evidence for support of Israel, as well as specific information regarding Hamas’ propaganda campaign that has led to the anti-Semitism we see in our culture today.</span></p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %} 
+
+  {# Section #4 - Streaming services #}
+  {% dnd_section
+    full_width=false
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Streaming services",
+          offset=0,
+          width=12,
+          card=[ {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "YouTube logo",
+              "height" : 201,
+              "loading" : "lazy",
+              "max_height" : 201,
+              "max_width" : 200,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/youtube_logo_2x.png",
+              "width" : 200
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.youtube.com/channel/UCzkg2V5lfGU46g-SZ1KPVJQ",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text_label" : "Subscribe On Youtube"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "Apple TV logo",
+              "height" : 201,
+              "loading" : "lazy",
+              "max_height" : 201,
+              "max_width" : 200,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/apple_tv_2x.png",
+              "width" : 200
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.apple.com/tv/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text_label" : "Stream On Apple TV"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "Roku logo",
+              "height" : 201,
+              "loading" : "lazy",
+              "max_height" : 201,
+              "max_width" : 200,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/roku_logo_2x.png",
+              "width" : 200
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.roku.com/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text_label" : "Stream On Roku"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "Faithlife logo",
+              "height" : 202,
+              "loading" : "lazy",
+              "max_height" : 202,
+              "max_width" : 201,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/faithlife_logo_2x.png",
+              "width" : 201
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.faithlifetv.com/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text_label" : "Stream On Faithlife TV"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "Directv logo",
+              "height" : 201,
+              "loading" : "lazy",
+              "max_height" : 201,
+              "max_width" : 201,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/directv_logo_2x.png",
+              "width" : 201
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text_label" : "Stream On Direct TV"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "NRB TV logo",
+              "height" : 201,
+              "loading" : "lazy",
+              "max_height" : 201,
+              "max_width" : 200,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/nrb_logo_2x.png",
+              "width" : 200
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://nrbtv.org/show/the-john-ankerberg-show/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "text_label" : "Stream On NRB TV"
+          } ],
+          text_color_hover={
+            "color" : "#000000",
+            "opacity" : 100
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #5 - CTA Banner #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/CTA Banner",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "Watch now",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "content_id" : 182543941476,
+                  "type" : "CONTENT"
+                }
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-normal"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            }
+          } ],
+          heading="More To The Story",
+          show_subheading=true,
+          show_supporting_text=false,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/more_to_the_story_2x.png"
+                },
+                "background_image_overlay" : true,
+                "overlay_color_opacity" : {
+                  "colors" : [ {
+                    "color" : {
+                      "a" : 0.4,
+                      "b" : 75,
+                      "g" : 49,
+                      "r" : 27
+                    }
+                  }, {
+                    "color" : {
+                      "a" : 0.4,
+                      "b" : 75,
+                      "g" : 49,
+                      "r" : 27
+                    }
+                  } ],
+                  "side_or_corner" : {
+                    "verticalSide" : "BOTTOM"
+                  }
+                }
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 178
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 178
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 140
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 140
+                  }
+                }
+              }
+            }
+          },
+          subheading="Conversations about faith, apologetics & evangelism",
+          text_maximum_width=660
+        %}
+          {% module_attribute "supporting_text" %}
+
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #6 - Video topics #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/search_input",
+          offset=0,
+          width=12,
+          heading="Video Topics",
+          topics=[ {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Apologetics"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Biblical Prophecy"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Discipleship"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Salvation"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Heaven and Hell"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Science"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Study of Scripture"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Theology - Study of God"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "World Religions"
+          }, {
+            "button_link" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "button_text" : "Worldview & Culture"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #7 - Ankerberg Short Films #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Video gallery",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-primary",
+              "button_text" : "Watch more",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/short-films/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-normal"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            }
+          } ],
+          show_button=true,
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              }
+            }
+          },
+          tab_name="Ankerberg Short Films",
+          videos=[ {
+            "embed_field" : {
+              "embed_html" : '<iframe width=\"560\" height=\"315\" src=\"https://www.youtube.com/embed/vgh9tJJR_ek?si=zCbob88FyFfGYUCR\" title=\"YouTube video player\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen></iframe>',
+              "height" : 113,
+              "max_height" : 113,
+              "max_width" : 200,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg Show",
+                "author_url" : "https://www.youtube.com/@johnankerberg",
+                "height" : "113",
+                "html" : '<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/vgh9tJJR_ek?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"God, a Father Who Loves You\"></iframe>',
+                "provider_name" : "YouTube",
+                "provider_url" : "https://www.youtube.com/",
+                "thumbnail_height" : "360",
+                "thumbnail_url" : "https://i.ytimg.com/vi/vgh9tJJR_ek/hqdefault.jpg",
+                "thumbnail_width" : "480",
+                "title" : "God, a Father Who Loves You",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "200"
+              },
+              "oembed_url" : "https://www.youtube.com/watch?v=vgh9tJJR_ek&ab_channel=JohnAnkerbergShow",
+              "size_type" : "auto_full_width",
+              "source_type" : "oembed",
+              "width" : 200
+            },
+            "hubspot_video" : {
+              "height" : 1080,
+              "player_id" : 139299868783,
+              "player_type" : "hsvideo2",
+              "width" : 1920
+            },
+            "info_text" : "",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_info_text" : false,
+            "show_video_title" : false,
+            "video_type" : "embed"
+          }, {
+            "embed_field" : {
+              "height" : 113,
+              "max_height" : 113,
+              "max_width" : 200,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg Show",
+                "author_url" : "https://www.youtube.com/@johnankerberg",
+                "height" : "113",
+                "html" : '<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/rSA6ZNhNCkA?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"You Are Mine Forever\"></iframe>',
+                "provider_name" : "YouTube",
+                "provider_url" : "https://www.youtube.com/",
+                "thumbnail_height" : "360",
+                "thumbnail_url" : "https://i.ytimg.com/vi/rSA6ZNhNCkA/hqdefault.jpg",
+                "thumbnail_width" : "480",
+                "title" : "You Are Mine Forever",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "200"
+              },
+              "oembed_url" : "https://youtu.be/rSA6ZNhNCkA",
+              "size_type" : "auto_full_width",
+              "source_type" : "oembed",
+              "width" : 200
+            },
+            "hubspot_video" : {
+              "height" : 1080,
+              "player_id" : 139300325133,
+              "player_type" : "hsvideo2",
+              "width" : 1920
+            },
+            "info_text" : "",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_info_text" : false,
+            "show_video_title" : false,
+            "video_type" : "embed"
+          }, {
+            "embed_field" : {
+              "height" : 113,
+              "max_height" : 113,
+              "max_width" : 200,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg Show",
+                "author_url" : "https://www.youtube.com/@johnankerberg",
+                "height" : "113",
+                "html" : '<iframe width=\"200\" height=\"113\" src=\"https://www.youtube.com/embed/U90S_ivyViQ?feature=oembed\" frameborder=\"0\" allow=\"accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share\" referrerpolicy=\"strict-origin-when-cross-origin\" allowfullscreen title=\"Who is Jesus?\"></iframe>',
+                "provider_name" : "YouTube",
+                "provider_url" : "https://www.youtube.com/",
+                "thumbnail_height" : "360",
+                "thumbnail_url" : "https://i.ytimg.com/vi/U90S_ivyViQ/hqdefault.jpg",
+                "thumbnail_width" : "480",
+                "title" : "Who is Jesus?",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "200"
+              },
+              "oembed_url" : "https://youtu.be/U90S_ivyViQ",
+              "size_type" : "auto_full_width",
+              "source_type" : "oembed",
+              "width" : 200
+            },
+            "hubspot_video" : {
+              "height" : 1080,
+              "player_id" : 137554064394,
+              "player_type" : "hsvideo2",
+              "width" : 1920
+            },
+            "info_text" : "",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_info_text" : false,
+            "show_video_title" : false,
+            "video_type" : "embed"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  
+  {# Section #8 - Audio Bibles #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Tabs",
+          offset=0,
+          width=12,
+          tabs=[ {
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "View partner videos"
+              },
+              "content" : [ {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "We believe in joining together with like-minded, Bible-based ministries to make the gospel of Jesus Christ known. This is why The John Ankerberg Show has partnered with multiple ministries in the past few years to join our unique skillset with theirs to help reach people with the gospel of Jesus Christ. Our partnership with Faith Comes By Hearing helps us share with those who have never heard the gospel in their native language. In the past several years, we have millions of people through audio Bible devices, and we can’t wait to see what the Lord has in store for the future."
+              } ],
+              "image_field_1" : {
+                "alt" : "Headphones and a Bible",
+                "height" : 666,
+                "loading" : "lazy",
+                "max_height" : 666,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/watch_tv_listing_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : true
+            } ],
+            "tab_name" : "Audio Bibles"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #9 - Answers to Questions #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Tabs with video",
+          offset=0,
+          width=12,
+          tabs=[ {
+            "button" : {
+              "button_style" : "btn-primary",
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-normal",
+              "link_field" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "text_field" : "Watch now"
+            },
+            "content" : [ {
+              "content_type" : "con-h",
+              "heading" : "You Ask, We Answer. Here’s How.",
+              "text_field" : ""
+            }, {
+              "content_type" : "con-t",
+              "text_field" : "Answers to Questions is part of The John Ankerberg Show’s 40 year mission to help provide “Real Answers to Real Questions” about the Christian faith. This collection of articles and videos directly address specific questions that viewers have asked us over the last few years. Browse these resources to see if we tackled a topic you’ve questioned as well."
+            } ],
+            "embed_field" : {
+              "height" : 360,
+              "max_height" : 360,
+              "max_width" : 640,
+              "oembed_response" : {
+                "author_name" : "John Ankerberg",
+                "author_url" : "https://vimeo.com/johnankerberg",
+                "height" : "360",
+                "html" : '<iframe src=\"https://player.vimeo.com/video/292965955?app_id=122963\" width=\"640\" height=\"360\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Why Doesnt Natural Selection Make Sense for the Origin of Life?\"></iframe>',
+                "provider_name" : "Vimeo",
+                "provider_url" : "https://vimeo.com/",
+                "thumbnail_height" : "360",
+                "thumbnail_url" : "https://i.vimeocdn.com/video/955306410-4d993dc8d58445b80ce7d68cc375d0c78211de71263b07cbbd6bdaaa38a37e25-d_640",
+                "thumbnail_width" : "640",
+                "title" : "Why Doesn't Natural Selection Make Sense for the Origin of Life?",
+                "type" : "video",
+                "version" : "1.0",
+                "width" : "640"
+              },
+              "oembed_url" : "https://player.vimeo.com/video/292965955?color&autopause=0&loop=0&muted=0&title=0&portrait=0&byline=0&h",
+              "size_type" : "auto",
+              "source_type" : "oembed",
+              "width" : 640
+            },
+            "layout" : "vid-txt",
+            "oembed_thumbnail" : {
+              "loading" : "disabled",
+              "src" : ""
+            },
+            "placeholder_fields" : {
+              "placeholder_description" : "Select a video type in the sidebar.",
+              "placeholder_title" : "No video selected"
+            },
+            "show_button" : true,
+            "tab_name" : "Answers to Questions",
+            "video_type" : "embed"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #10 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 175469191267,
+  "label" : "Header background color",
+  "icon" : "fontawesome-5.14.0:Palette:SOLID",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,462 @@
+{
+  "default_text.go_to_page.default" : {
+    "message" : "Ga naar pagina {{ this_page }}",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.pagination_navigation.default" : {
+    "message" : "Paginanavigatie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_arrows" : {
+    "message" : "Pijlen weergeven",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.choices.show_labels" : {
+    "message" : "Labels weergeven",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_and_last.label" : {
+    "message" : "Eerste en laatste",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.default" : {
+    "message" : "Eerste",
+    "description" : "",
+    "placeholders" : null
+  },
+  "first_label.label" : {
+    "message" : "Eerste label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.default" : {
+    "message" : "Laatste",
+    "description" : "",
+    "placeholders" : null
+  },
+  "last_label.label" : {
+    "message" : "Laatste label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "Blogpaginering",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.default" : {
+    "message" : "Volgende",
+    "description" : "",
+    "placeholders" : null
+  },
+  "next_label.label" : {
+    "message" : "Volgend label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.choices.show_numbers" : {
+    "message" : "Nummers weergeven",
+    "description" : "",
+    "placeholders" : null
+  },
+  "numbers.label" : {
+    "message" : "Nummers",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_arrows" : {
+    "message" : "Pijlen weergeven",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.choices.show_labels" : {
+    "message" : "Labels weergeven",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_and_next.label" : {
+    "message" : "Vorige en volgende",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.default" : {
+    "message" : "Vorige",
+    "description" : "",
+    "placeholders" : null
+  },
+  "previous_label.label" : {
+    "message" : "Vorig label",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.label" : {
+    "message" : "Hoek",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.corner.radius.label" : {
+    "message" : "Radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.label" : {
+    "message" : "Aanwijzen",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.hover.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.label" : {
+    "message" : "Pictogram",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.icon.size.label" : {
+    "message" : "Grootte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.label" : {
+    "message" : "Eerste en laatste",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Ruimte tussen tekst en pictogram",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.spacing.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.font.label" : {
+    "message" : "Lettertype",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.first_and_last.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Stijlen",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.help_text" : {
+    "message" : "Geeft de genummerde koppeling vorm die overeenkomt met de pagina waarop je je bevindt.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.label" : {
+    "message" : "Actief",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.active.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.label" : {
+    "message" : "Hoek",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.corner.radius.label" : {
+    "message" : "Radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.label" : {
+    "message" : "Aanwijzen",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.hover.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.label" : {
+    "message" : "Nummers",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.spacing.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.font.label" : {
+    "message" : "Lettertype",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.numbers.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Paginering",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Ruimte tussen koppelingen",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.label" : {
+    "message" : "Hoek",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.corner.radius.label" : {
+    "message" : "Radius",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.background.label" : {
+    "message" : "Achtergrond",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.border.label" : {
+    "message" : "Rand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.label" : {
+    "message" : "Aanwijzen",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.color.label" : {
+    "message" : "Kleur",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.hover.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.label" : {
+    "message" : "Pictogram",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.icon.size.label" : {
+    "message" : "Grootte",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.label" : {
+    "message" : "Vorige en volgende",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Ruimte tussen tekst en pictogram",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.spacing.spacing.label" : {
+    "message" : "Afstand",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.font.label" : {
+    "message" : "Lettertype",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.previous_and_next.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  }
+}

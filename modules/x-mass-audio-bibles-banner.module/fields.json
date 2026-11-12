@@ -1,0 +1,490 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Section head",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "content.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "01 / GIVE"
+  }, {
+    "id" : "content.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "The gift of"
+  }, {
+    "id" : "content.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading (italic)",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "God's Word."
+  }, {
+    "id" : "content.intro",
+    "name" : "intro",
+    "label" : "Intro text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : true,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Audio Bibles make Scripture accessible to people who rely on hearing to understand it. This Christmas, your gift is double matched to help reach more people."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "photo",
+  "name" : "photo",
+  "label" : "Photo panel",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "photo.image",
+    "name" : "image",
+    "label" : "Background image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : "Audio Bible Proclaimer"
+    }
+  }, {
+    "picker" : "file",
+    "id" : "photo.video",
+    "name" : "video",
+    "label" : "Video (MP4)",
+    "help_text" : "Optional. Upload an .mp4 (H.264) to show video in this panel instead of the photo. The background image is used as its poster and as the fallback. Keep background loops short and small — under 10 MB.",
+    "required" : false,
+    "locked" : false,
+    "type" : "file",
+    "display_width" : null
+  }, {
+    "id" : "photo.video_mode",
+    "name" : "video_mode",
+    "label" : "Video playback",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "photo.video",
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : "NOT_EMPTY",
+      "access" : null
+    },
+    "display" : "radio",
+    "choices" : [ [ "background", "Background loop — muted, behind the text, with a pause button" ], [ "player", "Player — visitor presses play, with sound and controls; text sits below" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "background"
+  }, {
+    "id" : "photo.video_label",
+    "name" : "video_label",
+    "label" : "Video description",
+    "help_text" : "Read by screen readers, e.g. “A family listening to an Audio Bible in Swahili”.",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "photo.video",
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : "NOT_EMPTY",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "photo.video_layout",
+    "name" : "video_layout",
+    "label" : "Video layout",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "photo.video",
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : "NOT_EMPTY",
+      "access" : null
+    },
+    "display" : "radio",
+    "choices" : [ [ "side", "Beside the gift picker (left of the form)" ], [ "wide", "Full width — large video on its own row above the gift picker" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "side"
+  }, {
+    "id" : "photo.video_bg",
+    "name" : "video_bg",
+    "label" : "Video panel background",
+    "help_text" : "Shown around the video. Leave empty to use the green holly illustration (theme file images/audio-bible-video-bg.jpg).",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "photo.video",
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : "NOT_EMPTY",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : ""
+    }
+  }, {
+    "id" : "photo.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "A GIFT THAT GOES FURTHER"
+  }, {
+    "id" : "photo.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Help people hear Scripture in their own language."
+  }, {
+    "id" : "photo.text",
+    "name" : "text",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Your support helps put Audio Bibles into more hands."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "form",
+  "name" : "form",
+  "label" : "Gift picker",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "form.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "DOUBLE MATCHING GIFT"
+  }, {
+    "id" : "form.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Choose a way to help others hear."
+  }, {
+    "id" : "form.text",
+    "name" : "text",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "One gift becomes three through the current matching opportunity."
+  }, {
+    "id" : "form.button_text",
+    "name" : "button_text",
+    "label" : "Button text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Add to Cart"
+  }, {
+    "id" : "form.notice",
+    "name" : "notice",
+    "label" : "Notice (small print)",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "data",
+  "name" : "data",
+  "label" : "Data source",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "data.api_url",
+    "name" : "api_url",
+    "label" : "Products endpoint",
+    "help_text" : "ATRI Store API products endpoint (returns {results: [...]}). Add ?tag=<slug> to filter. Must allow CORS from the HubSpot domain. Do not put secrets here — this URL is visible in page source.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "https://cms.atriresearch.org/api/v1/products/"
+  }, {
+    "id" : "data.multiplier",
+    "name" : "multiplier",
+    "label" : "Gift multiplier",
+    "help_text" : "3 = doubly matched (one gift becomes three).",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 1,
+    "max" : 10,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 3
+  }, {
+    "id" : "data.allowed_skus",
+    "name" : "allowed_skus",
+    "label" : "Allowed SKUs (comma-separated)",
+    "help_text" : "Only show products whose SKU is in this list. Leave blank to show all.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "FR16-SC,FR16-100-2,FR16-30,FR16-500,FR16-1000-2"
+  }, {
+    "id" : "data.max_products",
+    "name" : "max_products",
+    "label" : "Max products",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 1,
+    "max" : 8,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 4
+  }, {
+    "id" : "data.cache_minutes",
+    "name" : "cache_minutes",
+    "label" : "Client cache (minutes)",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 0,
+    "max" : 60,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 5
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "custom_gift",
+  "name" : "custom_gift",
+  "label" : "Custom gift choice",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "custom_gift.enabled",
+    "name" : "enabled",
+    "label" : "Show custom gift card",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "custom_gift.title",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Custom Gift"
+  }, {
+    "id" : "custom_gift.tagline",
+    "name" : "tagline",
+    "label" : "Tagline",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Any amount"
+  }, {
+    "id" : "custom_gift.match_text",
+    "name" : "match_text",
+    "label" : "Match text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Your gift is tripled."
+  }, {
+    "id" : "custom_gift.sku",
+    "name" : "sku",
+    "label" : "Cart SKU / fund code",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "FR16-C"
+  }, {
+    "id" : "custom_gift.min_amount",
+    "name" : "min_amount",
+    "label" : "Minimum amount",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 1,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 5
+  }, {
+    "id" : "custom_gift.step_amount",
+    "name" : "step_amount",
+    "label" : "−/+ step amount",
+    "help_text" : "How much the − and + buttons change the custom gift amount.",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 1,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 5
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "style.bg_color",
+    "name" : "bg_color",
+    "label" : "Background color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#f4f0e8",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.panel_color",
+    "name" : "panel_color",
+    "label" : "Gift picker panel color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#e5eae6",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.accent_color",
+    "name" : "accent_color",
+    "label" : "Button / accent color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#18392f",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.gold_color",
+    "name" : "gold_color",
+    "label" : "Gold color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#e7d4a4",
+      "opacity" : 100
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

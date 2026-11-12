@@ -1,0 +1,115 @@
+.hs-editor-hide-until-active {
+  display: none;
+}
+
+.inpage-editor-active-field .hs-editor-hide-until-active {
+  display: block;
+}
+
+.hs-search-field {
+  position: relative;
+}
+
+.hs-search-field__input {
+  box-sizing: border-box;
+  width: 100%;
+  flex: 1;
+}
+
+.hs-search-field__bar button svg {
+  height: 10px;
+}
+
+.hs-search-field__suggestions {
+  padding: 0;
+  margin: 0;
+  list-style: none;
+}
+
+.hs-search-field--open .hs-search-field__suggestions,
+.inpage-editor-active-field .hs-search-field__suggestions {
+  position: absolute;
+  width: 100%;
+  border: 1px solid #cdcdcd;
+  background-color: #fff;
+  box-shadow: 1px 10px 16px -9px rgba(122, 122, 122, 0.75);
+}
+
+.hs-search-field__suggestions li {
+  display: block;
+  padding: 0;
+  margin: 0;
+}
+
+.hs-search-field__suggestions .results-for {
+  font-weight: bold;
+}
+
+.hs-search-field__suggestions a,
+.hs-search-field__suggestions .results-for {
+  display: block;
+  padding: 0 10px;
+  line-height: 1.7rem;
+}
+
+.hs-search-field__suggestions a:hover,
+.hs-search-field__suggestions a:focus {
+  background-color: rgba(0, 0, 0, 0.1);
+  outline: none;
+}
+
+.hs-search-field__input:focus {
+  outline-style: solid;
+}
+
+.hs-search-field__suggestions-container {
+  position: relative;
+  flex-basis: 100%;
+}
+
+.hs-search-field__form {
+  display: flex;
+  flex-wrap: wrap;
+}
+
+.hs-search-field__label {
+  flex-basis: 100%;
+}
+
+.hs-search-field__bar--button-beneath .hs-search-field__input {
+  flex-basis: 100%;
+}
+
+.hs-search-field__bar--button-beneath .hs-search-field__button {
+  margin-top: 0.725rem;
+  margin-right: 0.725rem;
+}
+
+.hs-search-field__bar--button-align-right .hs-search-field__button {
+  margin-right: 0;
+  margin-left: 0.725rem;
+  order: 2;
+}
+
+.hs-search-field__bar--button-beneath .hs-search-field__suggestions-container {
+  min-width: 75%;
+  flex-basis: auto;
+  flex-grow: 1;
+}
+
+.hs-search-field__button--labelled .hs_cos_wrapper_type_icon {
+  margin-right: 0.5rem;
+}
+
+/* stylelint-disable declaration-no-important */
+.show-for-sr {
+  position: absolute !important;
+  overflow: hidden !important;
+  height: 1px !important;
+  width: 1px !important;
+  padding: 0 !important;
+  border: 0 !important;
+  clip: rect(0, 0, 0, 0) !important;
+  white-space: nowrap !important;
+}
+/* stylelint-enable declaration-no-important */

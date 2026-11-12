@@ -1,0 +1,328 @@
+[ {
+  "id" : "34efe274-1b9d-5058-7800-a33a535aa8d8",
+  "name" : "text_color",
+  "label" : "Title color",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#B7AB9F",
+    "opacity" : 100
+  }
+}, {
+  "id" : "4045420a-6638-ad37-af74-80fd3dcddb0b",
+  "name" : "list_item_color",
+  "label" : "List item color",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#B7AB9F",
+    "opacity" : 80
+  }
+}, {
+  "id" : "459f360b-909f-8935-49c1-f0fd24c690ab",
+  "name" : "list_item_color_hover",
+  "label" : "List item color - hover",
+  "required" : false,
+  "locked" : false,
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#F4EBE3",
+    "opacity" : 80
+  }
+}, {
+  "id" : "4a589302-65f0-468c-4462-3533f154faef",
+  "name" : "number_of_columns",
+  "label" : "Number of columns",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 1,
+  "max" : 5,
+  "step" : 1,
+  "type" : "number",
+  "display_width" : null,
+  "default" : 5
+}, {
+  "id" : "c6a22102-ff33-bc39-0ebc-63271f9245d4",
+  "name" : "column",
+  "label" : "Column",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 5,
+    "sorting_label_field" : null,
+    "default" : 5
+  },
+  "children" : [ {
+    "id" : "08d033e8-e54b-56f2-4151-a1bf229ba1f3",
+    "name" : "list",
+    "label" : "List",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : 2,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "04666133-712f-b81c-fb03-614d75cffed0",
+      "name" : "title",
+      "label" : "Title",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Watch"
+    }, {
+      "id" : "654e92d8-fc63-6117-0ac5-3e00215f7bcc",
+      "name" : "list_items",
+      "label" : "List items",
+      "required" : false,
+      "locked" : false,
+      "occurrence" : {
+        "min" : 1,
+        "max" : null,
+        "sorting_label_field" : null,
+        "default" : 2
+      },
+      "children" : [ {
+        "id" : "76ff6b65-cfa9-bc50-67f7-442f4634ad06",
+        "name" : "list_item",
+        "label" : "Text",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "The John Ankerberg Show"
+      }, {
+        "id" : "8d85f079-ec5a-1ce0-8cda-64d91fa7f1d5",
+        "name" : "link_field",
+        "label" : "Link",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "title" : "Watch",
+      "list_items" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "list" : [ {
+      "title" : "Watch",
+      "list_items" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  }, {
+    "list" : [ {
+      "title" : "Watch",
+      "list_items" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  }, {
+    "list" : [ {
+      "title" : "Watch",
+      "list_items" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  }, {
+    "list" : [ {
+      "title" : "Watch",
+      "list_items" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  }, {
+    "list" : [ {
+      "title" : "Watch",
+      "list_items" : [ {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }, {
+        "list_item" : "The John Ankerberg Show",
+        "link_field" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ]
+    } ]
+  } ]
+} ]

@@ -1,0 +1,299 @@
+[ {
+  "id" : "section_head",
+  "name" : "section_head",
+  "label" : "Section heading",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "section_head.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "03 / EQUIP"
+  }, {
+    "id" : "section_head.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Biblical truth"
+  }, {
+    "id" : "section_head.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic line",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "to grow and to share."
+  }, {
+    "id" : "section_head.intro",
+    "name" : "intro",
+    "label" : "Intro text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Equip yourself and others with God’s Word. Your support also helps ATRI disciple pastors and ministry leaders who need biblical training and encouragement."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "follow_me",
+  "name" : "follow_me",
+  "label" : "Follow Me card",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "follow_me.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "INTERNATIONAL DISCIPLESHIP"
+  }, {
+    "id" : "follow_me.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Follow"
+  }, {
+    "id" : "follow_me.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Me"
+  }, {
+    "id" : "follow_me.tagline",
+    "name" : "tagline",
+    "label" : "Tagline",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Equipping pastors. Strengthening churches."
+  }, {
+    "id" : "follow_me.body_text",
+    "name" : "body_text",
+    "label" : "Body (rich text)",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>For years, ATRI has quietly helped equip pastors and ministry leaders with biblical training, including in places where resources are scarce. Today, more than 20,000 leaders are being discipled through <em>Follow Me</em>. As this work grows, we’re inviting you to help carry it forward.</p>"
+  }, {
+    "id" : "follow_me.cta_text",
+    "name" : "cta_text",
+    "label" : "CTA text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Support Discipleship"
+  }, {
+    "id" : "follow_me.cta_url",
+    "name" : "cta_url",
+    "label" : "CTA link",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#giving"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "stats",
+  "name" : "stats",
+  "label" : "Stats",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 4,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "stats.number",
+    "name" : "number",
+    "label" : "Number",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "40"
+  }, {
+    "id" : "stats.stat_label",
+    "name" : "stat_label",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "half-hour lessons"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "number" : "40",
+    "stat_label" : "half-hour lessons"
+  }, {
+    "number" : "20,000+",
+    "stat_label" : "pastors & leaders being discipled"
+  } ]
+}, {
+  "id" : "side_cards",
+  "name" : "side_cards",
+  "label" : "Side promo cards",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : 0,
+    "max" : 3,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "side_cards.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "ATRI STUDY RESOURCES"
+  }, {
+    "id" : "side_cards.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "For the season you’re in."
+  }, {
+    "id" : "side_cards.body_text",
+    "name" : "body_text",
+    "label" : "Body",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Grow through life’s difficult seasons with Scripture-based study."
+  }, {
+    "id" : "side_cards.link_text",
+    "name" : "link_text",
+    "label" : "Link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Explore Resources"
+  }, {
+    "id" : "side_cards.link_url",
+    "name" : "link_url",
+    "label" : "Link URL",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#resources"
+  }, {
+    "id" : "side_cards.image",
+    "name" : "image",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : "Card image"
+    }
+  }, {
+    "id" : "side_cards.bg_style",
+    "name" : "bg_style",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "default", "Default (paper)" ], [ "beige", "Beige" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "default"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "kicker" : "ATRI STUDY RESOURCES",
+    "heading" : "For the season you’re in.",
+    "body_text" : "Grow through life’s difficult seasons with Scripture-based study.",
+    "link_text" : "Explore Resources",
+    "link_url" : "#resources",
+    "image" : {
+      "src" : "",
+      "alt" : "Christmas display of ATRI biblical study resources"
+    },
+    "bg_style" : "default"
+  }, {
+    "kicker" : "ATRI PRINTABLE RESOURCES",
+    "heading" : "Easy to use. Easy to share.",
+    "body_text" : "Bring biblical truth into your home or Bible study.",
+    "link_text" : "Browse Resources",
+    "link_url" : "#resources",
+    "image" : {
+      "src" : "",
+      "alt" : "The Facts On biblical study books displayed for Christmas"
+    },
+    "bg_style" : "beige"
+  } ]
+} ]

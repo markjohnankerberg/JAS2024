@@ -1,0 +1,105 @@
+<div class="info-{{name}}">
+  <h4 class="info-title">{{ module.title }}</h4>
+  
+  <div class="info-list" role="list">
+    {% for item in module.info_item %}
+      <div class="info-item" role="listitem">
+        <span class="info-icon">
+          {% if item.icon.src %}
+            {% set sizeAttrs = 'width="{{ item.icon.width|escape_attr }}" height="{{ item.icon.height|escape_attr }}"' %}
+            {% if item.icon.size_type == 'auto' %}
+              {% set sizeAttrs = 'width="{{ item.icon.width|escape_attr }}" height="{{ item.icon.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+            {% elif item.icon.size_type == 'auto_custom_max' %}
+              {% set sizeAttrs = 'width="{{ item.icon.max_width|escape_attr }}" height="{{ item.icon.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+            {% endif %}
+             {% set loadingAttr = item.icon.loading != 'disabled' ? 'loading="{{ item.icon.loading|escape_attr }}"' : '' %}
+            <img src="{{ item.icon.src|escape_url }}" alt="{{ item.icon.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+          {% endif %}
+        </span>
+        
+        <span class="info-text">{{ item.info_text }}</span>
+      </div>
+    {% endfor %}
+  </div>
+</div>
+
+{% require_css %}
+  <style>
+    .info-{{name}} *,
+    .info-{{name}} *::before,
+    .info-{{name}} *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .info-{{name}} .info-title {
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 26px;
+      margin-bottom: 8px;
+/*       color: var(--clr-grey); */
+    }
+    
+    .info-{{name}} .info-title,
+    .info-{{name}} .info-text {
+      color: rgba({{ module.text_color.color|convert_rgb }}, {{ module.text_color.opacity/100 }});
+    }
+    
+    .info-{{name}} .info-list {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .info-{{name}} .info-list .info-item {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .info-{{name}} .info-list .info-item .info-icon {
+      width: 20px;
+      height: 20px;
+      max-width: 20px;
+      max-height: 20px;
+      overflow: hidden;
+    }
+    
+    .info-{{name}} .info-list .info-item .info-icon img {
+      max-width: 100%;
+      max-height: 100%;
+    }
+    
+    .info-{{name}} .info-list .info-item .info-text {
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 26px;
+      text-transform: uppercase;
+      text-wrap: balance;
+/*       -webkit-text-stroke: thin; */
+    }
+    
+    @media (max-width: 767px) {
+      .info-{{name}} .info-title {
+        text-align: center;
+        text-wrap: balance;
+      }
+      
+      .info-{{name}} .info-list .info-item {
+        justify-content: center;
+      }
+    }
+    
+    @media (max-width: 400px) {
+      .info-{{name}} .info-list .info-item {
+        flex-direction: column;
+      }
+      
+      .info-{{name}} .info-list .info-item .info-text {
+        text-align: center;
+      }
+    }
+    
+  </style>
+{% end_require_css %}

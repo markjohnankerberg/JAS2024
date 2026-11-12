@@ -1,0 +1,872 @@
+{
+  "default_text.current_page_aria_label.default" : {
+    "message" : "Obecna strona",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.current_page_aria_label.label" : {
+    "message" : "Element aria label obecnej strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.default" : {
+    "message" : "Wyróżniony obraz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.featured_image.label" : {
+    "message" : "Wyróżniony obraz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.default" : {
+    "message" : "Pierwsza strona",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.first_page_link_text.label" : {
+    "message" : "Tekst łącza pierwszej strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.label" : {
+    "message" : "Tekst domyślny",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.default" : {
+    "message" : "Ostatnia strona",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.last_page_link_text.label" : {
+    "message" : "Tekst łącza ostatniej strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.default" : {
+    "message" : "Nawigacja stronicowania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.navigation_aria_label.label" : {
+    "message" : "Etykieta nawigacji elementu aria",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.default" : {
+    "message" : "Dalej",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.next_page_link_text.label" : {
+    "message" : "Tekst łącza kolejnej strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.default" : {
+    "message" : "<p>Przepraszamy. Brak wyników dla zapytania „[[search_term]]”</p><p>Spróbuj przeformułować zapytanie lub przejrzyj naszą stronę.</p>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.no_results_message.label" : {
+    "message" : "Wiadomość o braku wyników",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.default" : {
+    "message" : "Strona",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.page_number_aria_label.label" : {
+    "message" : "Element aria label numeru strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.default" : {
+    "message" : "Wstecz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.previous_page_link_text.label" : {
+    "message" : "Tekst łącza poprzedniej strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.default" : {
+    "message" : "Wyświetlanie [[offset]] – [[limit]] z [[total]] wyników",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.label" : {
+    "message" : "Liczba wyników wyszukiwania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_count_message.placeholder" : {
+    "message" : "Wyświetlanie [[offset]] – [[limit]] z [[total]] wyników",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.default" : {
+    "message" : "Wyszukaj wyniki dla zapytania „{{ searched_term|escape }}”",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.help_text" : {
+    "message" : "Wprowadź tytuł, który ma być wyświetlony nad wynikami wyszukiwania.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.label" : {
+    "message" : "Tytuł wyników wyszukiwania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.results_title.placeholder" : {
+    "message" : "Wyszukaj wyniki dla zapytania „{{ searched_term|escape }}”",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.default" : {
+    "message" : "Niektóre teksty podglądu z każdej strony będą wyświetlane tutaj, żeby pomóc odwiedzającym w szybszym przeglądaniu wyników wyszukiwania i odnajdywaniu wyszukiwanej strony.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_description.label" : {
+    "message" : "Opis artykułu – wynik wyszukiwania.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.default" : {
+    "message" : "Tytuł artykułu – wynik wyszukiwania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "default_text.search_results_article_title.label" : {
+    "message" : "Tytuł artykułu – wynik wyszukiwania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "inline_help_text" : {
+    "message" : "Ten moduł jest używany wraz z modułem wprowadzania danych wyszukiwania. Gdy odwiedzający wyszukają termin w module wprowadzania danych wyszukiwania, każda strona z tym modułem pokaże swoje wyniki. <a href=\"https://knowledge.hubspot.com/design-manager/set-up-a-results-page-to-use-a-search-field-on-your-site\">Dowiedz się więcej.</a>",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_arrows" : {
+    "message" : "Pokaż strzałki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.choices.show_labels" : {
+    "message" : "Pokaż etykiety",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_and_last.label" : {
+    "message" : "Pierwsza i ostatnia",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.default" : {
+    "message" : "Pierwszy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.first_label.label" : {
+    "message" : "Pierwsza etykieta",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.inline_help_text" : {
+    "message" : "Podział strony pomaga użytkownikom w przeglądaniu długich list wyników, organizując je w strony.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.label" : {
+    "message" : "Podział strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.default" : {
+    "message" : "Ostatnia",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.last_label.label" : {
+    "message" : "Ostatnia etykieta",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.default" : {
+    "message" : "Dalej",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.next_label.label" : {
+    "message" : "Kolejna etykieta",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.choices.show_numbers" : {
+    "message" : "Pokaż numery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.numbers.label" : {
+    "message" : "Numery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_arrows" : {
+    "message" : "Pokaż strzałki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.choices.show_labels" : {
+    "message" : "Pokaż etykiety",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_and_next.label" : {
+    "message" : "Poprzednia i kolejna",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.default" : {
+    "message" : "Wstecz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "pagination.previous_label.label" : {
+    "message" : "Poprzednia etykieta",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.display_for_each_result.choices.image" : {
+    "message" : "Wyświetl podgląd obrazu dla każdego wyniku",
+    "description" : "",
+    "placeholders" : null
+  },
+  "results.label" : {
+    "message" : "Wyniki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.label" : {
+    "message" : "Pojemnik",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.container.spacing.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.label" : {
+    "message" : "Style",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.color.label" : {
+    "message" : "Kolor",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.background.label" : {
+    "message" : "Tło",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.border.label" : {
+    "message" : "Obramowanie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.border.label" : {
+    "message" : "Obramowanie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.label" : {
+    "message" : "Róg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.corner.radius.label" : {
+    "message" : "Promień",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.background_color.label" : {
+    "message" : "Kolor tła",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.border_color.label" : {
+    "message" : "Kolor obramowania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.label" : {
+    "message" : "Ustawienie wskaźnika myszy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.hover.text_color.label" : {
+    "message" : "Kolor tekstu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.label" : {
+    "message" : "Ikona",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.icon.size.label" : {
+    "message" : "Rozmiar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.label" : {
+    "message" : "Pierwsza i ostatnia",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.space_between_text_and_icon.label" : {
+    "message" : "Odstęp między tekstem i ikoną",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.spacing.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.first_and_last.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.label" : {
+    "message" : "Podział strony",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.background_color.label" : {
+    "message" : "Kolor tła",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.border_color.label" : {
+    "message" : "Kolor obramowania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.help_text" : {
+    "message" : "Dostosowuje ponumerowane łącza odpowiadające stronie, na której obecnie jesteś.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.label" : {
+    "message" : "Aktywne",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.active.text_color.label" : {
+    "message" : "Kolor tekstu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.color.label" : {
+    "message" : "Kolor",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.background.label" : {
+    "message" : "Tło",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.border.label" : {
+    "message" : "Obramowanie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.border.label" : {
+    "message" : "Obramowanie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.label" : {
+    "message" : "Róg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.corner.radius.label" : {
+    "message" : "Promień",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.background_color.label" : {
+    "message" : "Kolor tła",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.border_color.label" : {
+    "message" : "Kolor obramowania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.label" : {
+    "message" : "Ustawienie wskaźnika myszy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.hover.text_color.label" : {
+    "message" : "Kolor tekstu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.label" : {
+    "message" : "Numery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.spacing.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.numbers.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.color.label" : {
+    "message" : "Kolor",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.background.label" : {
+    "message" : "Tło",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.border.label" : {
+    "message" : "Obramowanie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.border.label" : {
+    "message" : "Obramowanie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.label" : {
+    "message" : "Róg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.corner.radius.label" : {
+    "message" : "Promień",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.background_color.label" : {
+    "message" : "Kolor tła",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.border_color.label" : {
+    "message" : "Kolor obramowania",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.label" : {
+    "message" : "Ustawienie wskaźnika myszy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.hover.text_color.label" : {
+    "message" : "Kolor tekstu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.label" : {
+    "message" : "Ikona",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.icon.size.label" : {
+    "message" : "Rozmiar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.label" : {
+    "message" : "Poprzednia i kolejna",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.space_between_text_and_icon.label" : {
+    "message" : "Odstęp między tekstem i ikoną",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.spacing.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.previous_and_next.text.label" : {
+    "message" : "Tekst",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.space_between_links.label" : {
+    "message" : "Odstęp między łączami",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.pagination.spacing.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.author.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.label" : {
+    "message" : "Font",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.font.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.label" : {
+    "message" : "Title copy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.author.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.description.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.description.label" : {
+    "message" : "Podgląd tekstu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.label" : {
+    "message" : "Róg",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.corner.radius.label" : {
+    "message" : "Promień",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.label" : {
+    "message" : "Obraz",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.1/1" : {
+    "message" : "1 : 1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.16/9" : {
+    "message" : "16 : 9",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.2/3" : {
+    "message" : "2 : 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/2" : {
+    "message" : "3 : 2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.3/4" : {
+    "message" : "3 : 4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.choices.4/3" : {
+    "message" : "4 : 3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.aspect_ratio.label" : {
+    "message" : "Współczynnik proporcji obrazu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.label" : {
+    "message" : "Rozmiar",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.size.width.label" : {
+    "message" : "Szerokość",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.between_image_and_content.label" : {
+    "message" : "Między obrazem i treścią",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.featured_image.spacing.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.label" : {
+    "message" : "Wyniki",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.name" : {
+    "message" : "search_results",
+    "description" : null,
+    "placeholders" : null
+  },
+  "styles.results.spacing.label" : {
+    "message" : "Odstępy",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.spacing.space_between_results.label" : {
+    "message" : "Odstęp między wynikami",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results.title.label" : {
+    "message" : "Tytuł",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.label" : {
+    "message" : "Wiadomość dotycząca liczby wyników",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.capitalize" : {
+    "message" : "Pisownia wielką i małą literą",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.lowercase" : {
+    "message" : "Małe litery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.none" : {
+    "message" : "Brak",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.choices.uppercase" : {
+    "message" : "Wielkie litery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.results_count_message.transform.label" : {
+    "message" : "Przekształcenie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.font.label" : {
+    "message" : "Czcionka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.label" : {
+    "message" : "Tytuł",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.capitalize" : {
+    "message" : "Pisownia wielką i małą literą",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.lowercase" : {
+    "message" : "Małe litery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.none" : {
+    "message" : "Brak",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.choices.uppercase" : {
+    "message" : "Wielkie litery",
+    "description" : "",
+    "placeholders" : null
+  },
+  "styles.title.transform.label" : {
+    "message" : "Przekształcenie",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h1" : {
+    "message" : "H1",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h2" : {
+    "message" : "H2",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h3" : {
+    "message" : "H3",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h4" : {
+    "message" : "H4",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h5" : {
+    "message" : "H5",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.choices.h6" : {
+    "message" : "H6",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.help_text" : {
+    "message" : "Wybierz poziom swojego nagłówka. Największym jest H1, następnie H2 itd.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.label" : {
+    "message" : "Tag nagłówka",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.heading_tag.placeholder" : {
+    "message" : "Wybierz typ tytułu",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.label" : {
+    "message" : "Tytuł",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.show_title.label" : {
+    "message" : "Pokaż tytuł",
+    "description" : "",
+    "placeholders" : null
+  }
+}

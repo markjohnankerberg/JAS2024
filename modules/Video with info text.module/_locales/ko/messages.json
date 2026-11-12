@@ -1,0 +1,82 @@
+{
+  "embed_field.label" : {
+    "message" : "삽입",
+    "description" : "",
+    "placeholders" : null
+  },
+  "hubspot_video.label" : {
+    "message" : "HubSpot 비디오",
+    "description" : "",
+    "placeholders" : null
+  },
+  "info_text.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.label" : {
+    "message" : "Rich text",
+    "description" : null,
+    "placeholders" : null
+  },
+  "info_text.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "Video with info text",
+    "description" : null,
+    "placeholders" : null
+  },
+  "oembed_thumbnail.label" : {
+    "message" : "사용자 정의 섬네일",
+    "description" : "",
+    "placeholders" : null
+  },
+  "placeholder_fields.placeholder_description.default" : {
+    "message" : "사이드바에서 비디오 형식을 선택하십시오.",
+    "description" : "",
+    "placeholders" : null
+  },
+  "placeholder_fields.placeholder_title.default" : {
+    "message" : "비디오가 선택되지 않음",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_options.label" : {
+    "message" : "스타일 옵션",
+    "description" : "",
+    "placeholders" : null
+  },
+  "style_options.oembed_thumbnail_play_button_color.label" : {
+    "message" : "재생 버튼 색상",
+    "description" : "",
+    "placeholders" : null
+  },
+  "video_type.choices.embed" : {
+    "message" : "삽입",
+    "description" : "",
+    "placeholders" : null
+  },
+  "video_type.choices.hubspot_video" : {
+    "message" : "HubSpot 비디오",
+    "description" : "",
+    "placeholders" : null
+  },
+  "video_type.label" : {
+    "message" : "비디오 형식",
+    "description" : "",
+    "placeholders" : null
+  }
+}

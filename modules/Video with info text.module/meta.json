@@ -1,0 +1,11 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "WEB_INTERACTIVE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "categories" : [ "media" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST", "WEB_INTERACTIVE" ],
+  "module_id" : 182485884528,
+  "label" : "Video with info text",
+  "icon" : "../../../mV0_d-web-default-modules_hubspot/img/icon/insert-video-icon-1.svg",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,2582 @@
+{# Nav background: forest green (#18392f). The old grey default (#393D3F) may still be saved in
+   the global content, so it's read as the new green; any other colour picked there is kept. #}
+{% set hv2_bg = module.style.header.background_color.color or "#18392f" %}
+{% if hv2_bg|lower == "#393d3f" %}{% set hv2_bg = "#18392f" %}{% endif %}
+{# Where the heart/cart icons go on pages without the cart drawer (it opens from #saved / #cart). #}
+{# "Store" (icon nav + phone dock): the homepage's products section, opened by its #store link. #}
+{% set hv2_store_url = "https://atriresearch.org/#store" %}
+{% set hv2_drawer_home = module.drawer_page_url or "https://atriresearch.org/" %}
+<div class="header-{{name}}">
+  <div class="header-limiter">
+    <div class="header-top">
+
+      <div class="menu-trigger">
+        <a class="menu-btn" href="#">
+          <div class="menu-open">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M3 5C3 4.73478 3.10536 4.48043 3.29289 4.29289C3.48043 4.10536 3.73478 4 4 4H16C16.2652 4 16.5196 4.10536 16.7071 4.29289C16.8946 4.48043 17 4.73478 17 5C17 5.26522 16.8946 5.51957 16.7071 5.70711C16.5196 5.89464 16.2652 6 16 6H4C3.73478 6 3.48043 5.89464 3.29289 5.70711C3.10536 5.51957 3 5.26522 3 5ZM3 10C3 9.73478 3.10536 9.48043 3.29289 9.29289C3.48043 9.10536 3.73478 9 4 9H10C10.2652 9 10.5196 9.10536 10.7071 9.29289C10.8946 9.48043 11 9.73478 11 10C11 10.2652 10.8946 10.5196 10.7071 10.7071C10.5196 10.8946 10.2652 11 10 11H4C3.73478 11 3.48043 10.8946 3.29289 10.7071C3.10536 10.5196 3 10.2652 3 10ZM3 15C3 14.7348 3.10536 14.4804 3.29289 14.2929C3.48043 14.1054 3.73478 14 4 14H16C16.2652 14 16.5196 14.1054 16.7071 14.2929C16.8946 14.4804 17 14.7348 17 15C17 15.2652 16.8946 15.5196 16.7071 15.7071C16.5196 15.8946 16.2652 16 16 16H4C3.73478 16 3.48043 15.8946 3.29289 15.7071C3.10536 15.5196 3 15.2652 3 15Z" fill="white"/>
+            </svg>
+          </div>
+
+          <div class="menu-close">
+            <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <path fill-rule="evenodd" clip-rule="evenodd" d="M15.6886 14.7735C16.0792 15.164 16.0792 15.7971 15.6886 16.1877C15.2981 16.5782 14.665 16.5782 14.2744 16.1877L10.0002 11.9134L5.71971 16.1939C5.32918 16.5844 4.69602 16.5844 4.3055 16.1939C3.91497 15.8034 3.91497 15.1702 4.3055 14.7797L8.58598 10.4992L4.29289 6.20613C3.90237 5.81561 3.90237 5.18244 4.29289 4.79192C4.68342 4.40139 5.31658 4.40139 5.70711 4.79192L10.0002 9.08501L14.2928 4.79244C14.6833 4.40191 15.3165 4.40191 15.707 4.79244C16.0975 5.18296 16.0975 5.81613 15.707 6.20665L11.4144 10.4992L15.6886 14.7735Z" fill="white"/>
+            </svg>
+          </div>
+
+          <span class="menu-btn-label">Menu</span>
+        </a>
+      </div>
+
+      <div class="h-logo-wrapper">
+        {% set loadingAttr = module.logo_field.loading != 'disabled' ? '{{ module.logo_field.loading }}' : '' %}
+        {% logo
+          override_inherited_src="{{ module.logo_field.override_inherited_src }}"
+          src="{{ module.logo_field.src }}"
+          alt="{{ module.logo_field.alt }}"
+          width="{{ module.logo_field.width }}"
+          height="{{ module.logo_field.height }}"
+          loading="{{ loadingAttr }}"
+          suppress_company_name="{{ module.logo_field.suppress_company_name }}"
+        %}
+      </div>
+
+      <div class="header-right-{{name}}">
+        {# ===== Search trigger (from atri-headerv2) ===== #}
+        <a class="header-search-open-{{name}}" id="hv2SearchOpen" href="javascript:void(0)" role="button" aria-label="Open search">
+          <span class="header-icon-{{name}}" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+          </span>
+        </a>
+
+        {# ===== Saved (heart) + cart =====
+           Open the slide-out drawer (x-mass-cart-drawer) where it's on the page; elsewhere they
+           link to the homepage, which opens the drawer from #saved / #cart. Counts come from
+           localStorage, so they're right on every page. Script: "Saved + cart icons" below. #}
+        <a class="header-icon-btn-{{name}}" href="{{ hv2_drawer_home }}#saved" data-hv2-drawer="favorites" aria-label="Saved items">
+          <span class="header-icon-{{name}}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg></span>
+          <span class="hv2-badge" data-hv2-count="favorites" hidden>0</span>
+        </a>
+        <a class="header-icon-btn-{{name}}" href="{{ hv2_drawer_home }}#cart" data-hv2-drawer="cart" aria-label="Cart">
+          <span class="header-icon-{{name}}" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.8a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2"/></svg></span>
+          <span class="hv2-badge" data-hv2-count="cart" hidden>0</span>
+        </a>
+
+        <div class="custom__btns-{{name}}">
+          {% for item in module.buttons %}
+            <div class="custom__btn-{{name}}">
+              {# Custom button #}
+              {% if item.button_type == "regular" %}
+                {% set href = item.button.button_url.url.href %}
+                {% if item.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                  {% set href = "mailto:" + href %}
+                {% endif %}
+
+                {# Dropdown button: the button toggles a menu instead of navigating.
+                   The href is kept as a no-JS fallback. #}
+                <div class="header-dropdown-{{name}}">
+                  <a href="{{ href|escape_url }}" class="header-btn btn-{{name}} button {{ item.button.button_style }} btn-{{loop.index}} {{ item.button.corner_radius }} header-dropdown-toggle-{{name}}"
+                    aria-haspopup="true" aria-expanded="false"
+                    {% if item.button.button_url.open_in_new_tab %}target="_blank"{% endif %}
+                    {% if item.button.button_url.rel %}rel="{{ item.button.button_url.rel|escape_attr }}"{% endif %}
+                    >
+                    {{ item.button.button_text }}
+                    <svg class="header-dropdown-caret-{{name}}" width="16" height="16" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg" aria-hidden="true">
+                      <path d="M9.99983 13.3332C9.89016 13.3338 9.78144 13.3128 9.67991 13.2713C9.57838 13.2298 9.48603 13.1687 9.40816 13.0915L4.40816 8.0915C4.25124 7.93458 4.16309 7.72175 4.16309 7.49983C4.16309 7.27791 4.25124 7.06508 4.40816 6.90816C4.56508 6.75124 4.77791 6.66309 4.99983 6.66309C5.22175 6.66309 5.43458 6.75124 5.5915 6.90816L9.99983 11.3248L14.4082 6.9165C14.5676 6.77997 14.7726 6.70864 14.9824 6.71674C15.1921 6.72484 15.3911 6.81178 15.5395 6.96019C15.6879 7.10861 15.7748 7.30755 15.7829 7.51728C15.791 7.72701 15.7197 7.93208 15.5832 8.0915L10.5832 13.0915C10.4279 13.2454 10.2184 13.3322 9.99983 13.3332Z" fill="currentColor"/>
+                    </svg>
+                  </a>
+                  <div class="header-dropdown-menu-{{name}}" role="menu" aria-label="{{ item.button.button_text|escape_attr }} options">
+                    <a href="https://atriresearch.org/donate" class="header-dropdown-link-{{name}}" role="menuitem">
+                      <span class="header-dropdown-icon-{{name}}" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <path d="M12 2.5a1 1 0 0 1 1 1V5h5a1 1 0 1 1 0 2h-5v12h3a1 1 0 1 1 0 2H8a1 1 0 1 1 0-2h3V7H6a1 1 0 0 1 0-2h5V3.5a1 1 0 0 1 1-1Z" fill="currentColor"/>
+                          <path d="M6 7 2.8 13.2h6.4L6 7Zm0 7.6A3.4 3.4 0 0 1 2.6 11.2h6.8A3.4 3.4 0 0 1 6 14.6ZM18 7l-3.2 6.2h6.4L18 7Zm0 7.6a3.4 3.4 0 0 1-3.4-3.4h6.8A3.4 3.4 0 0 1 18 14.6Z" fill="currentColor"/>
+                        </svg>
+                      </span>
+                      <span>Donate to ATRI</span>
+                    </a>
+                    <a href="https://atriresearch.org/audio-bibles#donate-form" class="header-dropdown-link-{{name}}" role="menuitem">
+                      <span class="header-dropdown-icon-{{name}}" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="2.5" y="6" width="19" height="13" rx="1.5" stroke="currentColor" stroke-width="1.6"/>
+                          <circle cx="8" cy="12.5" r="3" stroke="currentColor" stroke-width="1.6"/>
+                          <circle cx="8" cy="12.5" r="0.9" fill="currentColor"/>
+                          <rect x="13.5" y="10" width="6" height="5" rx="0.8" stroke="currentColor" stroke-width="1.6"/>
+                          <path d="M6.5 6V4.5a1 1 0 0 1 1-1h9a1 1 0 0 1 1 1V6" stroke="currentColor" stroke-width="1.6"/>
+                        </svg>
+                      </span>
+                      <span>Audio Bibles</span>
+                    </a>
+                    <a href="https://atriresearch.org/friends-of-atri" class="header-dropdown-link-{{name}}" role="menuitem">
+                      <span class="header-dropdown-icon-{{name}}" aria-hidden="true">
+                        <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                          <rect x="3" y="4.5" width="18" height="16.5" rx="2" stroke="currentColor" stroke-width="1.6"/>
+                          <path d="M3 9.5h18" stroke="currentColor" stroke-width="1.6"/>
+                          <path d="M8 2.8v3.4M16 2.8v3.4" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"/>
+                          <path d="M12 17.9 8.6 14.5a2.4 2.4 0 1 1 3.4-3.4 2.4 2.4 0 1 1 3.4 3.4L12 17.9Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                        </svg>
+                      </span>
+                      <span>Monthly Giving</span>
+                    </a>
+                     <a href="https://partner.freewill.com/smartgiving/atri" class="header-dropdown-link-{{name}}" role="menuitem">
+                        <span class="header-dropdown-icon-{{name}}" aria-hidden="true">
+                          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <rect x="3" y="8" width="18" height="4" rx="1" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M5 12v7a2 2 0 0 0 2 2h10a2 2 0 0 0 2-2v-7" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                            <path d="M12 8v13" stroke="currentColor" stroke-width="1.6"/>
+                            <path d="M12 8C11 6 9.7 3.5 8 3.5a2.25 2.25 0 0 0 0 4.5h4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                            <path d="M12 8c1-2 2.3-4.5 4-4.5a2.25 2.25 0 0 1 0 4.5h-4Z" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/>
+                          </svg>
+                        </span>
+                      <span>Non-Cash Gifts</span>
+                    </a>
+                  </div>
+                </div>
+              {% endif %}
+
+              {# CTA button #}
+              {% if item.button_type == "cta" %}
+                {% cta guid="{{ item.cta_field }}" %}
+              {% endif %}
+
+              {# Image button #}
+              {% if item.button_type == "image" %}
+                {% set href = item.image.image_url.url.href %}
+                {% if item.image.image_url.url.type is equalto "EMAIL_ADDRESS" %}
+                  {% set href = "mailto:" + href %}
+                {% endif %}
+                <a href="{{ href|escape_url }}"
+                  {% if item.image.image_url.open_in_new_tab %}target="_blank"{% endif %}
+                  {% if item.image.image_url.rel %}rel="{{ item.image.image_url.rel|escape_attr }}"{% endif %}
+                  >
+                  {% if item.image.image_field.src %}
+                    {% set sizeAttrs = 'width="{{ item.image.image_field.width|escape_attr }}" height="{{ item.image.image_field.height|escape_attr }}"' %}
+                    {% if item.image.image_field.size_type == 'auto' %}
+                      {% set sizeAttrs = 'width="{{ item.image.image_field.width|escape_attr }}" height="{{ item.image.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                    {% elif item.image.image_field.size_type == 'auto_custom_max' %}
+                      {% set sizeAttrs = 'width="{{ item.image.image_field.max_width|escape_attr }}" height="{{ item.image.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                    {% endif %}
+                     {% set loadingAttr = item.image.image_field.loading != 'disabled' ? 'loading="{{ item.image.image_field.loading|escape_attr }}"' : '' %}
+                    <img src="{{ item.image.image_field.src|escape_url }}" alt="{{ item.image.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                  {% endif %}
+                </a>
+              {% endif %}
+            </div>
+          {% endfor %}
+        </div>
+      </div>
+    </div>
+
+    {# ===== Icon nav row (hardcoded, from atri-headerv2) =====
+       Each item uses a dummy href="#". Replace the # with the real
+       destination once URLs are known. #}
+    <nav class="header-icon-nav-{{name}}" aria-label="Quick navigation">
+      <a class="header-icon-link-{{name}}" href="https://atriresearch.org/watch">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Watch</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="https://atriresearch.org/podcasts">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Listen</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="https://blog.atriresearch.org/articles">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-9-2v15c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><line x1="12" y1="6" x2="12" y2="21"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Read</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="https://jabible.org/">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v4c0 1.5 3 2.5 6 2.5s6-1 6-2.5v-4"/><line x1="22" y1="10" x2="22" y2="16"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Learn</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="{{ hv2_store_url }}">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2 4h2l3 11h12l2-7H6"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Store</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="http://jabiblia.org">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9c-3-3-4.5-6-4.5-9s1.5-6 4.5-9z"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">International</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="https://atriresearch.org/guests">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 20c0-2 1.8-3.5 4-3.5s2.5 1 2.5 3"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Guests</span>
+      </a>
+
+      <a class="header-icon-link-{{name}}" href="https://atriresearch.org/about-the-john-ankerberg-show/">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="17"/><circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">About</span>
+      </a>
+
+
+
+      <a class="header-icon-link-{{name}}" href="https://atriresearch.org/friends-of-atri">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 20c0-2 1.8-3.5 4-3.5s2.5 1 2.5 3"/></svg>
+        </span>
+        <span class="header-icon-label-{{name}}">Monthly Giving</span>
+      </a>
+    </nav>
+
+    <div class="header-nav-panel">
+      {% if module.show_top_navigation %}
+        <div class="header-top-nav" aria-label="Top Navigation">
+          <ul class="header-topnav-list">
+            {% for item in module.top_navigation %}
+            <li class="header-topnav-item{% if item.has_submenu %} has-submenu{% endif %}" {% if item.has_submenu %}aria-haspopup="true"{% endif %}>
+              {% set href = item.link_field.url.href %}
+              {% if item.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+              {% endif %}
+              <a class="topnav-link-lvl1"
+                {% if item.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+                  href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                {% else %}
+                  href="{{ href|escape_url }}"
+                {% endif %}
+                {% if item.link_field.open_in_new_tab %}
+                  target="_blank"
+                {% endif %}
+                {% if item.link_field.rel %}
+                  rel="{{ item.link_field.rel|escape_attr }}"
+                {% endif %}
+                >
+                {{ item.text_field }}
+                {% if item.has_submenu %}
+                  <svg width="20" height="20" viewBox="0 0 20 20" fill="none" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M9.99983 13.3332C9.89016 13.3338 9.78144 13.3128 9.67991 13.2713C9.57838 13.2298 9.48603 13.1687 9.40816 13.0915L4.40816 8.0915C4.25124 7.93458 4.16309 7.72175 4.16309 7.49983C4.16309 7.27791 4.25124 7.06508 4.40816 6.90816C4.56508 6.75124 4.77791 6.66309 4.99983 6.66309C5.22175 6.66309 5.43458 6.75124 5.5915 6.90816L9.99983 11.3248L14.4082 6.9165C14.5676 6.77997 14.7726 6.70864 14.9824 6.71674C15.1921 6.72484 15.3911 6.81178 15.5395 6.96019C15.6879 7.10861 15.7748 7.30755 15.7829 7.51728C15.791 7.72701 15.7197 7.93208 15.5832 8.0915L10.5832 13.0915C10.4279 13.2454 10.2184 13.3322 9.99983 13.3332Z" fill="#B7AB9F"/>
+                  </svg>
+                {% endif %}
+              </a>
+
+              {% if item.has_submenu %}
+                <ul class="topnav-submenu">
+                  {% for item2 in item.submenu %}
+                    <li class="topnav-submenu-item">
+                      {% set href = item2.link_field_1.url.href %}
+                      {% if item2.link_field_1.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      <a
+                        {% if item2.link_field_1.url.type is equalto "CALL_TO_ACTION"  %}
+                          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                        {% else %}
+                          href="{{ href|escape_url }}"
+                        {% endif %}
+                        {% if item2.link_field_1.open_in_new_tab %}
+                          target="_blank"
+                        {% endif %}
+                        {% if item2.link_field_1.rel %}
+                          rel="{{ item2.link_field_1.rel|escape_attr }}"
+                        {% endif %}
+                        >
+                        {{ item2.submenu_item }}
+                      </a>
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+
+            {% if not loop.last %}
+              <span class="topnav-divider">|</span>
+            {% endif %}
+          {% endfor %}
+          </ul>
+        </div>
+      {% endif %}
+
+      <nav class="header-main-nav" role="navigation" aria-label="Main Navigation">
+        <ul class="header-mainnav-list">
+          {% for item in module.main_navigation %}
+            <li class="header-mainnav-item{% if item.has_submenu %} has-submenu{% endif %}" {% if item.has_submenu %}aria-haspopup="true"{% endif %}>
+              {% set href = item.link_field.url.href %}
+              {% if item.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+              {% endif %}
+              <a class="mainnav-link-lvl1"
+                {% if item.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+                  href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                {% else %}
+                  href="{{ href|escape_url }}"
+                {% endif %}
+                {% if item.link_field.open_in_new_tab %}
+                  target="_blank"
+                {% endif %}
+                {% if item.link_field.rel %}
+                  rel="{{ item.link_field.rel|escape_attr }}"
+                {% endif %}
+                >
+                {% if item.has_submenu %}
+                  <div class="submenu-icon-wrapper" aria-label="submenu icon">
+                    <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                      <path d="M14.0001 18.6662C13.8465 18.6671 13.6943 18.6377 13.5522 18.5796C13.41 18.5216 13.2807 18.436 13.1717 18.3279L6.17172 11.3279C5.95203 11.1082 5.82861 10.8103 5.82861 10.4996C5.82861 10.1889 5.95203 9.89092 6.17172 9.67123C6.39141 9.45154 6.68937 9.32812 7.00005 9.32812C7.31074 9.32812 7.6087 9.45154 7.82839 9.67123L14.0001 15.8546L20.1717 9.6829C20.3949 9.49177 20.682 9.39189 20.9756 9.40324C21.2692 9.41458 21.5478 9.5363 21.7555 9.74408C21.9633 9.95185 22.085 10.2304 22.0964 10.524C22.1077 10.8176 22.0078 11.1047 21.8167 11.3279L14.8167 18.3279C14.5994 18.5434 14.3061 18.6649 14.0001 18.6662Z" fill="white"/>
+                    </svg>
+                  </div>
+                {% endif %}
+                {{ item.text_field }}
+              </a>
+
+              {% if item.has_submenu %}
+                <ul class="mainnav-submenu">
+                  {% for item2 in item.submenu %}
+                    <li class="mainnav-submenu-item" {% if item2.has_submenu %}aria-haspopup="true"{% endif %}>
+                      {% set href = item2.link_field_1.url.href %}
+                      {% if item2.link_field_1.url.type is equalto "EMAIL_ADDRESS" %}
+                        {% set href = "mailto:" + href %}
+                      {% endif %}
+                      <a class="mainnav-link-lvl2{% if item2.has_submenu %} has-submenu-lvl3{% endif %}"
+                        {% if item2.link_field_1.url.type is equalto "CALL_TO_ACTION"  %}
+                          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                        {% else %}
+                          href="{{ href|escape_url }}"
+                        {% endif %}
+                        {% if item2.link_field_1.open_in_new_tab %}
+                          target="_blank"
+                        {% endif %}
+                        {% if item2.link_field_1.rel %}
+                          rel="{{ item2.link_field_1.rel|escape_attr }}"
+                        {% endif %}
+                        >
+                        {% if item2.has_submenu %}
+                          <div class="submenu-icon-wrapper-lvl3">
+                            <svg width="28" height="28" viewBox="0 0 28 28" fill="none" xmlns="http://www.w3.org/2000/svg">
+                              <path d="M14.0001 18.6662C13.8465 18.6671 13.6943 18.6377 13.5522 18.5796C13.41 18.5216 13.2807 18.436 13.1717 18.3279L6.17172 11.3279C5.95203 11.1082 5.82861 10.8103 5.82861 10.4996C5.82861 10.1889 5.95203 9.89092 6.17172 9.67123C6.39141 9.45154 6.68937 9.32812 7.00005 9.32812C7.31074 9.32812 7.6087 9.45154 7.82839 9.67123L14.0001 15.8546L20.1717 9.6829C20.3949 9.49177 20.682 9.39189 20.9756 9.40324C21.2692 9.41458 21.5478 9.5363 21.7555 9.74408C21.9633 9.95185 22.085 10.2304 22.0964 10.524C22.1077 10.8176 22.0078 11.1047 21.8167 11.3279L14.8167 18.3279C14.5994 18.5434 14.3061 18.6649 14.0001 18.6662Z" fill="white"/>
+                            </svg>
+                          </div>
+                        {% endif %}
+                        {{ item2.submenu_item }}
+                      </a>
+
+                      {% if item2.has_submenu %}
+                        <ul class="mainnav-submenu-lvl3">
+                          {% for item3 in item2.submenu_level_3 %}
+                            <li class="mainnav-submenu-item-lvl3">
+                              {% set href = item3.link_field_2.url.href %}
+                              {% if item3.link_field_2.url.type is equalto "EMAIL_ADDRESS" %}
+                                {% set href = "mailto:" + href %}
+                              {% endif %}
+                              <a class="mainnav-link-lvl3"
+                                {% if item3.link_field_2.url.type is equalto "CALL_TO_ACTION"  %}
+                                href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                                {% else %}
+                                href="{{ href|escape_url }}"
+                                {% endif %}
+                                {% if item3.link_field_2.open_in_new_tab %}
+                                target="_blank"
+                                {% endif %}
+                                {% if item3.link_field_2.rel %}
+                                rel="{{ item3.link_field_2.rel|escape_attr }}"
+                                {% endif %}
+                                >
+                                {{ item3.submenu_lvl3_item }}
+                              </a>
+                            </li>
+                          {% endfor %}
+                        </ul>
+                      {% endif %}
+                    </li>
+                  {% endfor %}
+                </ul>
+              {% endif %}
+            </li>
+          {% endfor %}
+        </ul>
+      </nav>
+    </div>
+  </div>
+</div>
+
+{# ===== Search panel (from atri-headerv2) ===== #}
+<div class="hv2-search__backdrop" id="hv2Backdrop"></div>
+
+<aside class="hv2-search__panel" id="hv2SearchPanel" role="dialog" aria-modal="true" aria-label="Site search"
+       data-api-base="{{ module.search_api_base }}"
+       data-per-page="{{ module.search_per_page|default(12) }}">
+  <div class="hv2-search__top">
+    <a class="hv2-search__close" id="hv2SearchClose" href="javascript:void(0)" role="button" aria-label="Close search">
+      <span class="header-icon-{{name}}" aria-hidden="true">
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linecap="round"><path d="M6 6l12 12M18 6L6 18"/></svg>
+      </span>
+    </a>
+  </div>
+  <div class="hv2-search__body">
+    <h2 class="hv2-search__heading">What can we help you find?</h2>
+    <form class="hv2-search__field" id="hv2SearchForm" action="/search" method="GET" autocomplete="off" role="search">
+      <input type="text" name="q" placeholder="Search…" aria-label="Search" />
+      <button class="hv2-search__submit" type="submit" aria-label="Submit search">
+        <span class="header-icon-{{name}}" aria-hidden="true">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12h14M13 6l6 6-6 6"/></svg>
+        </span>
+      </button>
+    </form>
+
+    {# Source filter pills → API `source` param #}
+    <div class="hv2-search__filters" id="hv2SearchFilters" role="tablist" aria-label="Filter results by type">
+      <button class="hv2-search__pill is-active" type="button" data-source="" role="tab" aria-selected="true">All</button>
+      <button class="hv2-search__pill" type="button" data-source="hubspot" role="tab" aria-selected="false">Articles</button>
+      <button class="hv2-search__pill" type="button" data-source="woocommerce" role="tab" aria-selected="false">Store</button>
+    </div>
+
+    {# Live results, rendered by the inline script below #}
+    <div class="hv2-search__status" id="hv2SearchStatus" role="status" aria-live="polite"></div>
+    <ul class="hv2-search__results" id="hv2SearchResults" aria-label="Search results"></ul>
+    <div class="hv2-search__results-more">
+      <button class="hv2-search__load-more" id="hv2SearchMore" type="button" style="display:none">Load more</button>
+    </div>
+  </div>
+</aside>
+
+{# ===== Mobile floating dock (phones only) =====
+   Fixed pill at the bottom of the viewport holding the icon-nav links plus a
+   search trigger. Shown at <=540px, where the in-header icon nav and header
+   search trigger are hidden. Moved to <body> by the inline script (like the
+   search panel) so position:fixed is viewport-relative. #}
+<nav class="hv2-dock" id="hv2MobileDock" aria-label="Quick navigation">
+  <div class="hv2-dock__scroll">
+  <a class="hv2-dock__link hv2-dock__link--search" id="hv2DockSearchOpen" href="javascript:void(0)" role="button" aria-label="Open search">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round"><circle cx="11" cy="11" r="7"/><path d="M21 21l-4.35-4.35"/></svg>
+    </span>
+    <span class="hv2-dock__label">Search</span>
+  </a>
+  <a class="hv2-dock__link hv2-dock__link--search" href="{{ hv2_drawer_home }}#saved" data-hv2-drawer="favorites" aria-label="Saved items">
+    <span class="hv2-dock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linejoin="round"><path d="M12 20.5s-7.5-4.6-7.5-10.2A4.3 4.3 0 0 1 12 7.6a4.3 4.3 0 0 1 7.5 2.7c0 5.6-7.5 10.2-7.5 10.2z"/></svg><span class="hv2-badge" data-hv2-count="favorites" hidden>0</span></span>
+    <span class="hv2-dock__label">Saved</span>
+  </a>
+  <a class="hv2-dock__link hv2-dock__link--search" href="{{ hv2_drawer_home }}#cart" data-hv2-drawer="cart" aria-label="Cart">
+    <span class="hv2-dock__icon" aria-hidden="true"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.4"/><circle cx="18" cy="20" r="1.4"/><path d="M2 3h3l2.6 12.2a1.5 1.5 0 0 0 1.5 1.2h8.8a1.5 1.5 0 0 0 1.5-1.1L21 8H6.2"/></svg><span class="hv2-badge" data-hv2-count="cart" hidden>0</span></span>
+    <span class="hv2-dock__label">Cart</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://atriresearch.org/watch">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="5" width="18" height="14" rx="2"/><polygon points="10,9 16,12 10,15" fill="currentColor" stroke="none"/></svg>
+    </span>
+    <span class="hv2-dock__label">Watch</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://atriresearch.org/podcasts">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="9" y="3" width="6" height="11" rx="3"/><path d="M5 11a7 7 0 0 0 14 0"/><line x1="12" y1="18" x2="12" y2="22"/><line x1="8" y1="22" x2="16" y2="22"/></svg>
+    </span>
+    <span class="hv2-dock__label">Listen</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://blog.atriresearch.org/articles">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M12 6c-2-1.5-5-2-9-2v15c4 0 7 .5 9 2 2-1.5 5-2 9-2V4c-4 0-7 .5-9 2z"/><line x1="12" y1="6" x2="12" y2="21"/></svg>
+    </span>
+    <span class="hv2-dock__label">Read</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://jabible.org/">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 10l10-5 10 5-10 5z"/><path d="M6 12v4c0 1.5 3 2.5 6 2.5s6-1 6-2.5v-4"/><line x1="22" y1="10" x2="22" y2="16"/></svg>
+    </span>
+    <span class="hv2-dock__label">Learn</span>
+  </a>
+
+  <a class="hv2-dock__link" href="{{ hv2_store_url }}">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="20" r="1.5"/><circle cx="17" cy="20" r="1.5"/><path d="M2 4h2l3 11h12l2-7H6"/></svg>
+    </span>
+    <span class="hv2-dock__label">Store</span>
+  </a>
+
+  <a class="hv2-dock__link" href="http://jabiblia.org">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="3" y1="12" x2="21" y2="12"/><path d="M12 3c3 3 4.5 6 4.5 9s-1.5 6-4.5 9c-3-3-4.5-6-4.5-9s1.5-6 4.5-9z"/></svg>
+    </span>
+    <span class="hv2-dock__label">International</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://atriresearch.org/guests">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 20c0-2 1.8-3.5 4-3.5s2.5 1 2.5 3"/></svg>
+    </span>
+    <span class="hv2-dock__label">Guests</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://atriresearch.org/about-the-john-ankerberg-show/">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="9"/><line x1="12" y1="11" x2="12" y2="17"/><circle cx="12" cy="8" r="0.6" fill="currentColor" stroke="none"/></svg>
+    </span>
+    <span class="hv2-dock__label">About</span>
+  </a>
+
+  <a class="hv2-dock__link" href="https://atriresearch.org/friends-of-atri">
+    <span class="hv2-dock__icon" aria-hidden="true">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><circle cx="9" cy="8" r="3"/><circle cx="17" cy="9" r="2.5"/><path d="M3 20c0-3 2.5-5 6-5s6 2 6 5"/><path d="M15 20c0-2 1.8-3.5 4-3.5s2.5 1 2.5 3"/></svg>
+    </span>
+    <span class="hv2-dock__label">Monthly Giving</span>
+  </a>
+  </div>
+
+  {# Micro gradient arrow: hints that the dock scrolls; fades out at the end #}
+  <span class="hv2-dock__more" aria-hidden="true">
+    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M9 5l7 7-7 7"/></svg>
+  </span>
+</nav>
+
+{% require_css %}
+  <style>
+    .header .header-{{name}} {
+      background: rgba({{ hv2_bg|convert_rgb }}, 0);
+      transition: var(--transition);
+      width: 100%;
+      padding: 0px 30px;
+    }
+
+    .header.sticky .header-{{name}},
+    .header.sticky-small .header-{{name}} {
+      background: rgba({{ hv2_bg|convert_rgb }}, {{ module.style.header.background_color.opacity/100 }});
+      padding: 0px 30px;
+    }
+
+    .header.sticky.menu-active .header-{{name}},
+    .header.sticky-small.menu-active .header-{{name}},
+    .header.menu-active .header-{{name}} {
+      padding: 0 30px 60px 30px;
+      background: rgba({{ hv2_bg|convert_rgb }}, {{ module.style.header.background_color.opacity/100 }});
+    }
+
+    /* ===== Fixed-header offset =====
+       The theme sets `header.header { position: fixed }`, so the header is out of
+       flow and overlaps page content. By default, reserve its height at the top of
+       every page (JS writes the live height to --jas-header-h; it varies with the
+       viewport and shrinks when sticky) and give it a solid background from the top
+       so it never floats over light content.
+
+       Transparent-hero pages opt out: content slides back under the header and the
+       header stays transparent at the top. A page opts out by carrying
+       `.has-transparent-hero` — add it as a custom CSS class on the page's top
+       section in the editor. The homepage is pre-opted-out via its built-in
+       `.body-container--home` class, so it keeps working with no editor change. */
+    .body-wrapper {
+      /* Fallback ≈ the desktop top-of-page header height, used until the script
+         measures the real value; keeps non-hero pages close-to-correct on first
+         paint. Hero pages force this to 0 below, so a non-zero default is safe. */
+      padding-top: var(--jas-header-h, 158px);
+    }
+
+    .body-wrapper:has(.has-transparent-hero),
+    .body-wrapper:has(.body-container--home) {
+      padding-top: 0;
+    }
+
+    /* Solid header background at the top of non-hero pages (overrides the alpha-0
+       base). Sticky and menu-active states set their own solid background above and
+       are unaffected; hero pages keep their transparent top. */
+    .body-wrapper:not(:has(.has-transparent-hero)):not(:has(.body-container--home)) .header:not(.sticky):not(.sticky-small):not(.menu-active) .header-{{name}} {
+      background: rgba({{ hv2_bg|convert_rgb }}, {{ module.style.header.background_color.opacity/100 }});
+    }
+
+    .header-{{name}} .header-limiter {
+      position: relative;
+      width: 100%;
+      max-width: {{ module.style.header.maximum_width ~ 'px' }};
+      margin: auto;
+    }
+
+    .header-{{name}} .header-limiter .header-top {
+      position: relative;
+      width: 100%;
+      margin: auto;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 62px 0 60px 0;
+      background: transparent;
+      transition: padding 0.3s ease-in-out;
+    }
+
+    .header.sticky.menu-active .header-{{name}} .header-top,
+    .header.sticky-small.menu-active .header-{{name}} .header-top,
+    .header.menu-active .header-{{name}} .header-top {
+      padding: 62px 0 60px 0;
+    }
+
+    .header.sticky .header-{{name}} .header-top,
+    .header.sticky-small .header-{{name}} .header-top {
+      padding: 40px 0;
+    }
+
+    .header-{{name}} .header-limiter .header-top.sticky-top {
+      position: sticky;
+      top: 0;
+      left: 0;
+      z-index: 1010;
+      background: rgba({{ hv2_bg|convert_rgb }}, {{ module.style.header.background_color.opacity/100 }});
+    }
+
+    /* Menu button */
+
+    .header-{{name}} .menu-btn {
+      font-size: 14px;
+      font-weight: 700;
+      line-height: 1.2;
+      text-transform: uppercase;
+      letter-spacing: 0;
+      text-decoration: none;
+      color: var(--clr-light);
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      border: 1px solid var(--clr-light);
+      padding: 7px 24px;
+      max-height: 36px;
+      border-radius: 5px;
+      background: transparent;
+      transition: var(--transition);
+      cursor: pointer;
+    }
+
+    .header-{{name}} .menu-btn:hover {
+      background: var(--clr-light);
+      color: var(--clr-grey);
+    }
+
+    .header-{{name}} .menu-btn .menu-open,
+    .header-{{name}} .menu-btn .menu-close {
+      width: 20px;
+      height: 20px;
+      max-height: 20px;
+      max-width: 20px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+
+    .header-{{name}} .menu-btn .menu-open {
+      display: inline-block;
+    }
+
+    .header-{{name}} .menu-btn.menu-btn-active .menu-open {
+      display: none;
+    }
+
+    .header-{{name}} .menu-btn .menu-close {
+      display: none;
+    }
+
+    .header-{{name}} .menu-btn.menu-btn-active .menu-close {
+      display: inline-block;
+    }
+
+    .header-{{name}} .menu-btn .menu-open svg path,
+    .header-{{name}} .menu-btn .menu-close svg path {
+      fill: var(--clr-light);
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .menu-btn:hover .menu-open svg path,
+    .header-{{name}} .menu-btn:hover .menu-close svg path {
+      fill: var(--clr-grey);
+    }
+
+    /* Logo */
+
+    .header-{{name}} .h-logo-wrapper {
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      height: 122px;
+      transition: var(--transition);
+    }
+
+    .header.sticky .header-{{name}} .h-logo-wrapper,
+    .header.sticky-small .header-{{name}} .h-logo-wrapper {
+      height: 95px;
+    }
+
+    .header.sticky.sticky-small.menu-active .header-{{name}} .h-logo-wrapper
+    .header.sticky.menu-active .header-{{name}} .h-logo-wrapper,
+    .header.menu-active .header-{{name}} .h-logo-wrapper {
+      height: 122px;
+    }
+
+    .header-{{name}} .h-logo-wrapper img {
+      display: block;
+      max-width: 100%;
+      min-height: 100%;
+      max-height: 100%;
+      width: auto !important;
+      object-fit: cover;
+      transition: var(--transition);
+    }
+
+    /* Right side: search trigger + buttons */
+
+    .header-{{name}} .header-right-{{name}} {
+      display: flex;
+      align-items: center;
+      gap: 16px;
+    }
+
+    .header-{{name}} .header-search-open-{{name}} {
+      background: transparent;
+      border: 0;
+      color: var(--clr-light);
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-search-open-{{name}}:hover {
+      background: rgba(255, 255, 255, 0.1);
+    }
+
+    .header-{{name}} .header-search-open-{{name}} svg {
+      width: 22px;
+      height: 22px;
+      display: block;
+    }
+
+    /* Saved + cart icons: same size and hover as the search trigger, plus a gold count badge */
+    .header-{{name}} a.header-icon-btn-{{name}} {
+      position: relative;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      width: 38px;
+      height: 38px;
+      border-radius: 999px;
+      color: var(--clr-light);
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    .header-{{name}} .header-right-{{name}} a.header-icon-btn-{{name}} + a.header-icon-btn-{{name}},
+    .header-{{name}} .header-search-open-{{name}} + a.header-icon-btn-{{name}} { margin-left: -10px; }
+    .header-{{name}} a.header-icon-btn-{{name}}:hover { background: rgba(255, 255, 255, 0.1); color: var(--clr-light); }
+    .header-{{name}} a.header-icon-btn-{{name}}:focus-visible { outline: 2px solid #e7d4a4; outline-offset: 2px; }
+    .header-{{name}} a.header-icon-btn-{{name}} svg { width: 22px; height: 22px; display: block; }
+    .hv2-badge {
+      position: absolute;
+      top: 1px;
+      right: -1px;
+      min-width: 17px;
+      height: 17px;
+      padding: 0 4px;
+      border-radius: 999px;
+      background: #e7d4a4;
+      color: #18392f;
+      font: 700 10px/17px Arial, Helvetica, sans-serif;
+      text-align: center;
+      letter-spacing: 0;
+    }
+    .hv2-badge[hidden] { display: none; }
+    .hv2-dock__icon { position: relative; }
+    .hv2-dock__icon .hv2-badge { top: -6px; right: -10px; }
+
+    .header-{{name}} .custom__btns-{{name}} .custom__btn-{{name}} .header-btn.btn-{{name}}:not(.btn-custom) {
+      padding: 9.5px 24px !important;
+      max-height: 36px !important;
+      font-size: 14px !important;
+    }
+
+    .header-{{name}} .custom__btns-{{name}} {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+
+    /* The theme sets `header.header { max-height: 100vh; overflow-y: auto }` so the
+       slide-out menu can scroll on short screens. That also makes the header a scroll
+       container as tall as the bar itself, which traps the dropdowns below: opening one
+       grows the header's scroll area, adding an inner scrollbar (which narrows the bar
+       and shifts the nav left) and pushing the menu links out of view. Only the open
+       menu needs to scroll, so let the closed header overflow visibly. */
+    header.header:not(.menu-active) {
+      overflow: visible;
+    }
+
+    /* Dropdown button */
+
+    .header-{{name}} .header-dropdown-{{name}} {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-toggle-{{name}} {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-caret-{{name}} {
+      flex: 0 0 auto;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-menu-{{name}} {
+      position: absolute;
+      top: calc(100% + 8px);
+      right: 0;
+      min-width: 200px;
+      background: #303436;
+      border-radius: 5px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      padding: 6px 0;
+      display: none;
+      z-index: 1100;
+    }
+
+    /* Invisible bridge so the cursor can cross the gap from button to menu
+       without the hover state dropping. */
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-menu-{{name}}::before {
+      content: "";
+      position: absolute;
+      top: -8px;
+      left: 0;
+      right: 0;
+      height: 12px;
+    }
+
+    /* Open on click (.open class) OR on hover */
+    .header-{{name}} .header-dropdown-{{name}}.open .header-dropdown-menu-{{name}},
+    .header-{{name}} .header-dropdown-{{name}}:hover .header-dropdown-menu-{{name}} {
+      display: block;
+    }
+
+    .header-{{name}} .header-dropdown-{{name}}.open .header-dropdown-caret-{{name}},
+    .header-{{name}} .header-dropdown-{{name}}:hover .header-dropdown-caret-{{name}} {
+      transform: scaleY(-1);
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-link-{{name}} {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      padding: 12px 20px;
+      color: var(--clr-light-beige);
+      font-size: 18px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-icon-{{name}} {
+      flex: 0 0 auto;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 24px;
+      height: 24px;
+      color: var(--clr-light-beige);
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-link-{{name}}:hover {
+      background: var(--clr-light-beige);
+      color: #303436;
+    }
+
+    .header-{{name}} .header-dropdown-{{name}} .header-dropdown-link-{{name}}:hover .header-dropdown-icon-{{name}} {
+      color: #303436;
+    }
+
+    .header-{{name}} .custom__btns-{{name}} .custom__btn-{{name}} .btn-{{name}}.btn-custom {
+      text-decoration: none;
+      color: rgba({{ module.style.button.text_color.color|convert_rgb }}, {{ module.style.button.text_color.opacity/100 }});
+      background: rgba({{ module.style.button.background_color.color|convert_rgb }}, {{ module.style.button.background_color.opacity/100 }});
+      border-radius: {{ module.style.button.border_radius ~ 'px' }};
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-transform: uppercase;
+      {{ module.style.button.border_field.css }}
+      {{ module.style.button.spacing.css }}
+    }
+
+    .header-{{name}} .custom__btns-{{name}} .custom__btn-{{name}} .btn-{{name}}.btn-custom:hover {
+      font-weight: 600;
+      background: rgba({{ module.style.button.background_color_hover.color|convert_rgb }}, {{ module.style.button.background_color_hover.opacity/100 }});
+      color: rgba({{ module.style.button.text_color_hover.color|convert_rgb }}, {{ module.style.button.text_color_hover.opacity/100 }});
+      {{ module.style.button.border_hover.css }}
+    }
+
+    /* ===== Icon nav row (from atri-headerv2) ===== */
+
+    .header-{{name}} .header-icon-nav-{{name}} {
+      display: none;
+      align-items: center;
+      justify-content: center;
+      gap: 32px;
+      padding: 0 0 24px 0;
+      border-bottom: 1px solid #494d4f;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .header.sticky .header-{{name}} .header-icon-nav-{{name}},
+    .header.sticky-small .header-{{name}} .header-icon-nav-{{name}} {
+      display: flex;
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}}::-webkit-scrollbar {
+      display: none;
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-link-{{name}} {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      font-size: 12px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      color: var(--clr-light-beige);
+      white-space: nowrap;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-link-{{name}}:hover {
+      color: var(--clr-light);
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-{{name}} {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-{{name}} svg {
+      width: 24px;
+      height: 24px;
+      display: block;
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-link--accent-{{name}} .header-icon-{{name}} {
+      color: #c9a96e;
+    }
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-link--accent-{{name}}:hover .header-icon-{{name}} {
+      color: #d8bd8a;
+    }
+
+    /* ===== Icon-nav hover dropdown (International, Guests) ===== */
+
+    .header-{{name}} .header-icon-nav-{{name}} .header-icon-dropdown-{{name}} {
+      position: relative;
+      display: inline-flex;
+    }
+
+    .header-{{name}} .header-icon-dropdown-{{name}} .header-icon-dropdown-menu-{{name}} {
+      position: absolute;
+      top: calc(100% + 10px);
+      left: 50%;
+      transform: translateX(-50%);
+      width: max-content;
+      max-width: 90vw;
+      background: #303436;
+      border-radius: 5px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.25);
+      padding: 6px;
+      display: none;
+      flex-direction: row;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: center;
+      gap: 2px;
+      z-index: 1200;
+    }
+
+    /* Invisible bridge across the gap so hover doesn't drop between label and menu */
+    .header-{{name}} .header-icon-dropdown-{{name}} .header-icon-dropdown-menu-{{name}}::before {
+      content: "";
+      position: absolute;
+      top: -10px;
+      left: 0;
+      right: 0;
+      height: 10px;
+    }
+
+    .header-{{name}} .header-icon-dropdown-{{name}}:hover .header-icon-dropdown-menu-{{name}} {
+      display: flex;
+    }
+
+    .header-{{name}} .header-icon-dropdown-{{name}} .header-icon-dropdown-link-{{name}} {
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 6px;
+      padding: 10px 14px;
+      color: var(--clr-light-beige);
+      font-size: 12px;
+      font-weight: 500;
+      line-height: 1.3;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      border-radius: 4px;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-icon-dropdown-{{name}} .header-icon-dropdown-link-{{name}}:hover {
+      background: var(--clr-light-beige);
+      color: #303436;
+    }
+
+    /* The icon nav scrolls horizontally (overflow), which clips the hover
+       dropdown. The dropdown is hover-only, so on any hover-capable (mouse)
+       device let the nav overflow visibly so the menu can bleed over the bar.
+       Touch devices keep the scroll box (the dropdown never opens there). */
+    @media (hover: hover) {
+      .header-{{name}} .header-icon-nav-{{name}} {
+        overflow: visible;
+      }
+    }
+
+    @media (max-width: 1080px) {
+      .header-{{name}} .header-icon-nav-{{name}} {
+        gap: 22px;
+        justify-content: flex-start;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .header-{{name}} .header-icon-nav-{{name}} {
+        gap: 18px;
+        padding: 0 0 16px 0;
+      }
+
+      .header-{{name}} .header-icon-nav-{{name}} .header-icon-link-{{name}} {
+        font-size: 10px;
+      }
+
+      .header-{{name}} .header-icon-nav-{{name}} .header-icon-{{name}} svg {
+        width: 20px;
+        height: 20px;
+      }
+    }
+
+    /* Top navigation */
+
+    .header-{{name}} .header-limiter .header-nav-panel {
+      padding: 42px 0 0 0;
+      display: none;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-top-nav {
+      padding: 0 4px;
+      border-bottom: 1px solid #494d4f;
+      width: fit-content;
+      margin: 0 auto;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-list {
+      display: flex;
+      justify-content: center;
+      gap: 20px;
+      padding: 0;
+      margin: 0 auto;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item {
+      list-style: none;
+      position: relative;
+      padding: 2px 0 28px 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item .topnav-link-lvl1 {
+      cursor: pointer;
+      color: var(--clr-light-beige);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 0;
+      margin: 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item:hover .topnav-link-lvl1 {
+      color: var(--clr-light-grey);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu .topnav-link-lvl1 {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu .topnav-link-lvl1 svg {
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu .topnav-link-lvl1 svg path {
+      transition: var(--transition);
+      fill: var(--clr-light-beige);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu:hover .topnav-link-lvl1 svg {
+      transform: scaleY(-1);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu:hover .topnav-link-lvl1 svg path {
+      fill: var(--clr-light-grey);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu {
+      padding: 14px 0;
+      margin: 0 auto;
+      display: none;
+      position: absolute;
+      left: -20px;
+      top: 52px;
+      width: calc(100% + 40px);
+      background: #303436;
+      z-index: 1001;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu:hover .topnav-submenu {
+      display: block;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu-item {
+      list-style: none;
+      padding: 0;
+      margin: 0;
+      background: #303436;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu-item:hover {
+      background: var(--clr-light-beige);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu-item a {
+      display: block;
+      cursor: pointer;
+      color: var(--clr-light-beige);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 6px 20px;
+      margin: 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu-item:hover a {
+      color: #303436;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .topnav-divider {
+      color: var(--clr-light-beige);
+      font-size: 20px;
+      font-weight: 500;
+      line-height: 1.2;
+      letter-spacing: 0;
+    }
+
+    @media (max-width: 1080px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-list {
+        display: grid;
+        grid-template-columns: 1fr 1px 1fr;
+        gap: 5px 20px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .topnav-divider:nth-of-type(even) {
+        display: none;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu {
+        width: max-content;
+        left: -4px;
+        top: 40px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item {
+        padding: 2px 0 15px 0;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu-item a {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 767px) {
+      .header-{{name}} .header-limiter .header-nav-panel {
+        padding: 20px 0 0 0;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item .topnav-link-lvl1 {
+        font-size: 16px;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-list {
+        grid-template-columns: 1fr;
+        gap: 0;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .topnav-divider {
+        display: none;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu {
+        width: max-content;
+        top: 30px;
+        left: 50%;
+        transform: translateX(-50%);
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item {
+        text-align: center;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu .topnav-link-lvl1 {
+        justify-content: center;
+      }
+    }
+
+    /* Main navigation */
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-main-nav {
+      padding-top: 60px;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 32px;
+      padding: 0;
+      margin: 0 auto;
+
+      /* v2 */
+      width: max-content;
+      margin-left: 42%;
+    }
+
+    @media (max-width: 1080px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-list {
+        margin-left: 40%;
+      }
+    }
+
+    @media (max-width: 920px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-list {
+        margin-left: 38%;
+      }
+    }
+
+    @media (max-width: 720px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-list {
+        margin-left: 36%;
+      }
+    }
+
+    @media (max-width: 620px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-list {
+        margin-left: 33%;
+      }
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item {
+      /* v2 */
+      text-align: left;
+      width: 100%;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item.has-submenu {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 {
+      position: relative;
+      cursor: pointer;
+      color: var(--clr-light-beige);
+      font-size: 32px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 0;
+
+      /* v2 */
+      display: flex;
+      align-items: center;
+      gap: 20px;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1:hover {
+      color: var(--clr-light);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 .submenu-icon-wrapper {
+      width: 32px;
+      height: 32px;
+      min-width: 32px;
+      max-width: 32px;
+      min-height: 32px;
+      max-height: 32px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 .submenu-icon-wrapper svg {
+      width: 28px;
+      height: auto;
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 .submenu-icon-wrapper.submenu-active svg {
+      transform: scaleY(-1);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item.has-submenu .mainnav-link-lvl1 .submenu-icon-wrapper svg {
+      transition: var(--transition);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item.has-submenu .mainnav-link-lvl1 .submenu-icon-wrapper svg path,
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item.has-submenu .mainnav-link-lvl1:hover .submenu-icon-wrapper svg path {
+      transition: var(--transition);
+      fill: var(--clr-light-beige);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item.has-submenu .mainnav-link-lvl1:hover .submenu-icon-wrapper:hover svg path {
+      fill: var(--clr-light);
+    }
+
+    /* Menu submenu lvl 2 */
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu {
+      list-style: none;
+      padding: 0 0 0 48px;
+      margin: 0;
+      display: none;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item {
+      list-style: none;
+      padding: 8px 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item:last-child {
+      padding-bottom: 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2 {
+      cursor: pointer;
+      color: var(--clr-light-beige);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-transform: capitalize;
+      text-decoration: none;
+      transition: var(--transition);
+      padding: 0;
+      margin: 0;
+      position: relative;
+
+      /* v2 */
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2:hover {
+      color: var(--clr-light);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 {
+      position: relative;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 .submenu-icon-wrapper-lvl3 {
+      width: 28px;
+      height: 28px;
+      min-width: 28px;
+      max-width: 28px;
+      min-height: 28px;
+      max-height: 28px;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      cursor: pointer;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 .submenu-icon-wrapper-lvl3 svg {
+     transition: var(--transition);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 .submenu-icon-wrapper-lvl3.submenu-active svg {
+      transform: scaleY(-1);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 .submenu-icon-wrapper-lvl3 svg path,
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3:hover .submenu-icon-wrapper-lvl3 svg path {
+      transition: var(--transition);
+      fill: var(--clr-light-beige);
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3:hover .submenu-icon-wrapper-lvl3:hover svg path {
+      fill: var(--clr-light);
+    }
+
+    /* Menu submenu lvl 3 */
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 {
+      list-style: none;
+      padding: 10px 0 0 40px;
+      margin: 0;
+      display: none;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 .mainnav-submenu-item-lvl3 {
+      padding-bottom: 10px;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 .mainnav-submenu-item-lvl3:last-child {
+      padding: 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 .mainnav-link-lvl3 {
+      cursor: pointer;
+      color: var(--clr-light-beige);
+      font-size: 26px;
+      font-weight: 600;
+      line-height: 1.2;
+      letter-spacing: 0;
+      text-decoration: none;
+      text-transform: capitalize;
+      transition: var(--transition);
+      padding: 0 0 10px 0;
+      margin-bottom: 0;
+    }
+
+    .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 .mainnav-link-lvl3:hover {
+      color: var(--clr-light);
+    }
+
+    @media (max-width: 767px) {
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 {
+        font-size: 28px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2 {
+        font-size: 20px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 .mainnav-link-lvl3 {
+        font-size: 20px;
+      }
+    }
+
+    @media (max-width: 540px) {
+      .header .header-{{name}},
+      .header.sticky .header-{{name}},
+      .header.sticky-small .header-{{name}} {
+        padding: 0px 20px;
+      }
+
+      .header.sticky.menu-active .header-{{name}},
+      .header.sticky-small.menu-active .header-{{name}},
+      .header.menu-active .header-{{name}} {
+        padding: 0 20px 30px 20px;
+      }
+
+      .header-{{name}} .header-limiter .header-top {
+        padding: 62px 0 40px 0;
+      }
+
+      .header.sticky.menu-active .header-{{name}} .header-top,
+      .header.sticky-small.menu-active .header-{{name}} .header-top,
+      .header.menu-active .header-{{name}} .header-top {
+        padding: 62px 0 40px 0;
+      }
+
+      .header.sticky .header-{{name}} .header-top,
+      .header.sticky-small .header-{{name}} .header-top {
+        padding: 30px 0;
+      }
+
+      .header-{{name}} .menu-btn {
+        padding: 7px 12px;
+      }
+
+      .header-{{name}} .header-search-open-{{name}},
+      .header-{{name}} a.header-icon-btn-{{name}} {
+        display: none;
+      }
+
+      /* Icons move to the floating bottom dock (.hv2-dock) on phones */
+      .header-{{name}} .header-icon-nav-{{name}},
+      .header.sticky .header-{{name}} .header-icon-nav-{{name}},
+      .header.sticky-small .header-{{name}} .header-icon-nav-{{name}} {
+        display: none;
+      }
+
+      .header-{{name}} .custom__btns-{{name}} .custom__btn-{{name}} .header-btn.btn-{{name}}:not(.btn-custom) {
+        padding: 9.5px 12px !important;
+      }
+
+      .header-{{name}} .h-logo-wrapper {
+        height: 18vw;
+      }
+
+      .header.sticky .header-{{name}} .h-logo-wrapper,
+      .header.sticky-small .header-{{name}} .h-logo-wrapper {
+        height: 13.5vw;
+      }
+
+      .header.sticky.menu-active .header-{{name}} .h-logo-wrapper,
+      .header.sticky-small.menu-active .header-{{name}} .h-logo-wrapper,
+      .header.menu-active .header-{{name}} .h-logo-wrapper {
+        height: 18vw;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel {
+        padding-top: 10px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-topnav-item.has-submenu:hover .topnav-submenu {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .topnav-submenu-item a {
+        text-align: left;
+        padding: 10px 15px;
+        font-size: 14px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-main-nav {
+        padding-top: 24px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-list {
+        gap: 15px;
+        width: 100%;
+        margin: 0 auto;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item {
+        text-align: left;
+        width: 100%;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 {
+        font-size: 20px;
+        margin: 0;
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        width: 100%;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .header-mainnav-item .mainnav-link-lvl1 .submenu-icon-wrapper,
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 .submenu-icon-wrapper-lvl3 {
+        position: static;
+        right: auto;
+        top: auto;
+        transform: translate(0);
+        width: 24px;
+        height: 24px;
+        min-width: 24px;
+        max-width: 24px;
+        min-height: 24px;
+        max-height: 24px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu {
+        padding: 5px 0 10px 12px;
+        width: 100%;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2,
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 .mainnav-link-lvl3 {
+        font-size: 16px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 {
+        display: flex;
+        flex-direction: row-reverse;
+        justify-content: space-between;
+        align-items: center;
+        gap: 20px;
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-link-lvl2.has-submenu-lvl3 .submenu-icon-wrapper-lvl3 {
+        position: static;
+        top: auto;
+        right: auto;
+        transform: translate(0);
+      }
+
+      .header-{{name}} .header-limiter .header-nav-panel .mainnav-submenu-item .mainnav-submenu-lvl3 {
+        padding: 10px 0 0 12px;
+      }
+    }
+
+    @media (max-width: 440px) {
+      .header-{{name}} .header-limiter .header-top,
+      .header.sticky.menu-active .header-{{name}} .header-top,
+      .header.sticky-small.menu-active .header-{{name}} .header-top,
+      .header.menu-active .header-{{name}} .header-top {
+        padding: 40px 0;
+      }
+    }
+
+    /* ===== Search panel (from atri-headerv2) =====
+       The panel + backdrop are moved to <body> by the inline script so
+       position:fixed is relative to the viewport. Styles are therefore NOT
+       scoped under .header-{{name}}. The hv2- prefix keeps them isolated. */
+
+    .hv2-search__backdrop {
+      position: fixed;
+      inset: 0;
+      background: rgba(8, 8, 10, 0.55);
+      backdrop-filter: blur(2px);
+      opacity: 0;
+      visibility: hidden;
+      transition: opacity 0.4s ease, visibility 0.4s ease;
+      z-index: 1090;
+    }
+
+    .hv2-search__backdrop.open {
+      opacity: 1;
+      visibility: visible;
+    }
+
+    .hv2-search__panel {
+      position: fixed;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: min(560px, 100%);
+      background: #fff;
+      color: rgba(57, 61, 63, 1.0);
+      transform: translateX(100%);
+      transition: transform 0.5s cubic-bezier(0.16, 1, 0.3, 1);
+      z-index: 1100;
+      display: flex;
+      flex-direction: column;
+      box-shadow: -20px 0 60px rgba(0, 0, 0, 0.25);
+      font-family: inherit;
+    }
+
+    .hv2-search__panel.open {
+      transform: translateX(0);
+    }
+
+    .hv2-search__top {
+      display: flex;
+      justify-content: flex-end;
+      padding: 1.5rem 1.75rem;
+    }
+
+    .hv2-search__close {
+      background: transparent;
+      border: 0;
+      color: #555;
+      width: 40px;
+      height: 40px;
+      border-radius: 999px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hv2-search__close:hover {
+      background: #f1f1f1;
+      color: #111;
+    }
+
+    .hv2-search__close svg {
+      width: 22px;
+      height: 22px;
+    }
+
+    .hv2-search__body {
+      padding: 1rem 3rem 3rem;
+      overflow-y: auto;
+    }
+
+    .hv2-search__heading {
+      font-weight: 600;
+      font-size: 1.7rem;
+      line-height: 1.2;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      color: #393d3f;
+      max-width: 18ch;
+      margin-bottom: 1.8rem;
+    }
+
+    .hv2-search__field {
+      display: flex;
+      align-items: center;
+      gap: .75rem;
+    }
+
+    .hv2-search__field input {
+      flex: 1;
+      min-width: 0;
+      border: 1px solid rgba(57, 61, 63, 1.0);
+      background: #fff;
+      padding: 1rem 1.1rem;
+      font-family: inherit;
+      font-size: 0.95rem;
+      color: rgba(57, 61, 63, 1.0);
+      border-radius: 2px;
+      outline: none;
+      transition: border-color 0.2s, box-shadow 0.2s;
+    }
+
+    .hv2-search__field input::placeholder {
+      color: #a8a8a8;
+    }
+
+    .hv2-search__field input:focus {
+      border-color: #1c1c1c;
+      box-shadow: 0 0 0 3px rgba(0, 0, 0, 0.05);
+    }
+
+    .hv2-search__submit {
+      flex: 0 0 auto;
+      background: #393d3f;
+      border: 0;
+      color: #fff;
+      width: 48px;
+      height: 48px;
+      border-radius: 2px;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      transition: color 0.2s, background 0.2s;
+      cursor: pointer;
+    }
+
+    .hv2-search__submit:hover {
+      background: #333;
+      color: #fff;
+    }
+
+    .hv2-search__submit svg {
+      width: 20px;
+      height: 20px;
+    }
+
+    .hv2-search__filters {
+      display: flex;
+      gap: 0.5rem;
+      margin-top: 1.25rem;
+    }
+
+    .hv2-search__pill {
+      border: 1px solid #d9d9d9;
+      background: #fff;
+      color: #555;
+      padding: 0.4rem 0.9rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.12em;
+      text-transform: uppercase;
+      border-radius: 999px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s, border-color 0.2s;
+    }
+
+    .hv2-search__pill:hover {
+      border-color: #1c1c1c;
+      color: #1c1c1c;
+    }
+
+    .hv2-search__pill.is-active {
+      background: #1c1c1c;
+      border-color: #1c1c1c;
+      color: #fff;
+    }
+
+    .hv2-search__status {
+      margin-top: 1.4rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.04em;
+      color: #888;
+      min-height: 1.1em;
+    }
+
+    .hv2-search__status--error {
+      color: #b4452f;
+    }
+
+    .hv2-search__status--loading {
+      color: #555;
+    }
+
+    .hv2-search__results {
+      list-style: none;
+      margin: 0.9rem 0 0;
+      padding: 0;
+    }
+
+    .hv2-result {
+      border-top: 1px solid #ececec;
+    }
+
+    .hv2-result:first-child {
+      border-top: 0;
+    }
+
+    .hv2-result__link {
+      display: flex;
+      gap: 1rem;
+      padding: 1rem 0;
+      align-items: flex-start;
+      color: inherit;
+      text-decoration: none;
+    }
+
+    .hv2-result__link:hover .hv2-result__title {
+      color: #c9a96e;
+    }
+
+    .hv2-result__thumb {
+      flex: 0 0 auto;
+      width: 64px;
+      height: 64px;
+      border-radius: 3px;
+      background-size: cover;
+      background-position: center;
+      background-color: #f1f1f1;
+    }
+
+    .hv2-result__thumb--placeholder {
+      background-image: linear-gradient(135deg, #1c1c1c, #c9a96e);
+    }
+
+    .hv2-result__content {
+      display: flex;
+      flex-direction: column;
+      gap: 0.25rem;
+      min-width: 0;
+    }
+
+    .hv2-result__kind {
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.16em;
+      text-transform: uppercase;
+      color: #a8a8a8;
+    }
+
+    .hv2-result__title {
+      font-size: 0.95rem;
+      font-weight: 600;
+      line-height: 1.3;
+      color: #1c1c1c;
+      transition: color 0.2s;
+    }
+
+    .hv2-result__excerpt {
+      font-size: 0.82rem;
+      line-height: 1.45;
+      color: #6b6b6b;
+    }
+
+    .hv2-result__meta {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin-top: 0.15rem;
+      font-size: 0.78rem;
+      color: #777;
+    }
+
+    .hv2-result__price {
+      font-weight: 700;
+      color: #1c1c1c;
+    }
+
+    .hv2-result__price-was {
+      text-decoration: line-through;
+      color: #a8a8a8;
+    }
+
+    .hv2-result__badge {
+      background: #b4452f;
+      color: #fff;
+      font-size: 0.58rem;
+      font-weight: 700;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      padding: 0.15rem 0.45rem;
+      border-radius: 2px;
+    }
+
+    .hv2-search__results-more {
+      text-align: center;
+      margin-top: 1rem;
+    }
+
+    .hv2-search__load-more {
+      border: 1px solid #1c1c1c;
+      background: #fff;
+      color: #1c1c1c;
+      padding: 0.65rem 1.6rem;
+      font-size: 0.68rem;
+      font-weight: 600;
+      letter-spacing: 0.14em;
+      text-transform: uppercase;
+      border-radius: 2px;
+      cursor: pointer;
+      transition: background 0.2s, color 0.2s;
+    }
+
+    .hv2-search__load-more:hover {
+      background: #1c1c1c;
+      color: #fff;
+    }
+
+    @media (max-width: 720px) {
+      .hv2-search__body {
+        padding: 1rem 1.5rem 2.5rem;
+      }
+
+      .hv2-search__heading {
+        font-size: 1.4rem;
+      }
+    }
+
+    /* ===== Mobile floating dock (phones only) =====
+       Like the search panel, the dock is moved to <body> by the inline script,
+       so these styles are NOT scoped under .header-{{name}}. Sits below the
+       search backdrop (1090) / panel (1100) so the open search covers it. */
+
+    .hv2-dock {
+      display: none;
+      position: fixed;
+      bottom: calc(14px + env(safe-area-inset-bottom, 0px));
+      left: 50%;
+      transform: translateX(-50%);
+      max-width: calc(100vw - 28px);
+      background: rgba(24, 57, 47, 0.97);
+      border: 1px solid #2c5245;
+      border-radius: 999px;
+      box-shadow: 0 10px 30px rgba(0, 0, 0, 0.35);
+      overflow: hidden;
+      z-index: 1080;
+      transition: opacity 0.3s ease, visibility 0.3s ease;
+    }
+
+    /* Inner scroller: the pill stays put while the links scroll, so the
+       gradient arrow can overlay the pill's right edge without moving. */
+    .hv2-dock__scroll {
+      display: flex;
+      align-items: center;
+      gap: 4px;
+      padding: 10px 14px;
+      overflow-x: auto;
+      -ms-overflow-style: none;
+      scrollbar-width: none;
+    }
+
+    .hv2-dock__scroll::-webkit-scrollbar {
+      display: none;
+    }
+
+    /* Micro gradient arrow: right-edge scroll hint */
+    .hv2-dock__more {
+      position: absolute;
+      top: 0;
+      right: 0;
+      bottom: 0;
+      width: 38px;
+      display: flex;
+      align-items: center;
+      justify-content: flex-end;
+      padding-right: 9px;
+      color: #c9a96e;
+      /* Opaque fade into the dock background, with a slight gold hue layered
+         over the right edge */
+      background:
+        linear-gradient(to right, rgba(201, 169, 110, 0), rgba(201, 169, 110, 0.16) 70%),
+        linear-gradient(to right, rgba(48, 52, 54, 0), rgba(48, 52, 54, 0.97) 62%);
+      pointer-events: none;
+      transition: opacity 0.25s ease;
+    }
+
+    .hv2-dock__more svg {
+      width: 12px;
+      height: 12px;
+      display: block;
+    }
+
+    /* Hidden once scrolled to the end (or when nothing overflows) */
+    .hv2-dock.hv2-dock--end .hv2-dock__more {
+      opacity: 0;
+    }
+
+    .hv2-dock__link {
+      flex: 0 0 auto;
+      display: inline-flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 4px;
+      padding: 2px 7px;
+      color: var(--clr-light-beige, #d9cfc2);
+      font-size: 9px;
+      font-weight: 500;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .hv2-dock__link:hover {
+      color: var(--clr-light, #fff);
+    }
+
+    .hv2-dock__icon {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      color: inherit;
+    }
+
+    .hv2-dock__icon svg {
+      width: 20px;
+      height: 20px;
+      display: block;
+    }
+
+    .hv2-dock__link--search {
+      color: #c9a96e;
+    }
+
+    .hv2-dock__link--search:hover {
+      color: #d8bd8a;
+    }
+
+    /* Hidden while the slide-out menu is open (class toggled by the menu JS) */
+    body.hv2-menu-open .hv2-dock {
+      opacity: 0;
+      visibility: hidden;
+    }
+
+    @media (max-width: 540px) {
+      .hv2-dock {
+        display: flex;
+      }
+    }
+
+    /* ===== Theme override hardening =====
+       The host theme ships a global rule that wins via !important and clobbers
+       every <button> (forced padding 12px 30px, letter-spacing 0, etc.). That
+       balloons our icon buttons and pills. Re-assert the intended box model
+       with matching specificity + !important so the theme can't win. Keep these
+       as the ONLY !important block for the search UI. */
+    .hv2-search__submit,
+    .hv2-search__close {
+      padding: 0 !important;
+      line-height: 1 !important;
+    }
+
+    .hv2-search__submit {
+      width: 48px !important;
+      height: 48px !important;
+      background: #1c1c1c !important;
+      color: #fff !important;
+    }
+
+    .hv2-search__close {
+      width: 40px !important;
+      height: 40px !important;
+    }
+
+    .hv2-search__submit svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+
+    .hv2-search__submit svg,
+    .hv2-search__submit svg *,
+    .hv2-search__close svg,
+    .hv2-search__close svg * {
+      fill: none !important;
+    }
+
+    .hv2-search__close svg {
+      width: 22px !important;
+      height: 22px !important;
+    }
+
+    .hv2-search__pill {
+      padding: 0.4rem 0.9rem !important;
+      font-size: 0.68rem !important;
+      letter-spacing: 0.12em !important;
+      line-height: 1.2 !important;
+    }
+
+    .hv2-search__load-more {
+      padding: 0.65rem 1.6rem !important;
+      font-size: 0.68rem !important;
+      letter-spacing: 0.14em !important;
+      line-height: 1.2 !important;
+    }
+  </style>
+{% end_require_css %}
+
+{% require_js %}
+  <script>
+    $(document).ready(function() {
+      $('.header-{{name}} .menu-btn').click(function(e) {
+        e.preventDefault();
+
+        // Toggle the menu-active class on header
+        $('#jas-header').toggleClass('menu-active');
+
+        // Toggle the menu button active class
+        $(this).toggleClass('menu-btn-active');
+
+        // The floating dock lives on <body> (moved there by the search script),
+        // so mirror the menu state there to hide the dock behind the open menu
+        $('body').toggleClass('hv2-menu-open', $(this).hasClass('menu-btn-active'));
+
+        // Slide toggle the navigation panel
+        if ($(this).hasClass('menu-btn-active')) {
+          $('.header-nav-panel').slideDown(250);
+          $('.menu-open').hide();
+          $('.menu-btn-label').text('Close');
+          $('.menu-close').fadeIn(300);
+          $('.header-{{name}} .header-top').delay(300).queue(function(next) {
+              $(this).addClass('sticky-top');
+              next(); // Continue with the next item in the queue
+          });
+
+        } else {
+          $('.header-{{name}} .header-top').removeClass('sticky-top');
+          $('.header-nav-panel').slideUp();
+          $('.menu-close').hide();
+          $('.menu-open').fadeIn(300);
+          $('.menu-btn-label').text('Menu');
+          $('.header-{{name}} .mainnav-submenu').slideUp();
+          $('.header-{{name}} .submenu-icon-wrapper').removeClass('submenu-active');
+          $('.header-{{name}} .mainnav-submenu-lvl3').slideUp();
+          $('.header-{{name}} .submenu-icon-wrapper-lvl3').removeClass('submenu-active');
+        }
+      });
+
+      // Dropdown button: toggle the menu instead of navigating
+      $('.header-{{name}} .header-dropdown-toggle-{{name}}').click(function(e) {
+        e.preventDefault();
+
+        var $wrapper = $(this).closest('.header-dropdown-{{name}}');
+        var isOpen = $wrapper.hasClass('open');
+
+        // Close any open dropdowns first
+        $('.header-{{name}} .header-dropdown-{{name}}').removeClass('open')
+          .find('.header-dropdown-toggle-{{name}}').attr('aria-expanded', 'false');
+
+        // Open this one if it was closed
+        if (!isOpen) {
+          $wrapper.addClass('open');
+          $(this).attr('aria-expanded', 'true');
+        }
+      });
+
+      // Close the dropdown when clicking outside it
+      $(document).on('click', function(e) {
+        if (!$(e.target).closest('.header-{{name}} .header-dropdown-{{name}}').length) {
+          $('.header-{{name}} .header-dropdown-{{name}}').removeClass('open')
+            .find('.header-dropdown-toggle-{{name}}').attr('aria-expanded', 'false');
+        }
+      });
+
+      $('.header-{{name}} .topnav-link-lvl1').click(function(e) {
+        let href = $(this).attr('href');
+
+        // Check if the href attribute is empty or just a single "#" character
+        if (!href || href === '' || href === "#") {
+            e.preventDefault(); // Prevent the default action (page refresh)
+        }
+      });
+
+      $('.header-{{name}} .submenu-icon-wrapper').click(function(e) {
+          e.preventDefault();
+
+          let $iconWrapper = $(this);
+          let $submenu = $iconWrapper.closest('.header-mainnav-item').find('.mainnav-submenu');
+
+          // Slide up all submenus
+          $('.header-{{name}} .mainnav-submenu').not($submenu).slideUp();
+          $('.header-{{name}} .submenu-icon-wrapper').not($iconWrapper).removeClass('submenu-active');
+          $('.header-{{name}} .mainnav-submenu-lvl3').slideUp();
+          $('.header-{{name}} .submenu-icon-wrapper-lvl3').removeClass('submenu-active');
+
+          // Toggle the clicked submenu and the active class
+          if ($submenu.is(':visible')) {
+            $submenu.slideUp();
+            $iconWrapper.removeClass('submenu-active');
+          } else {
+            $submenu.slideDown();
+            $iconWrapper.addClass('submenu-active');
+          }
+      });
+
+      $('.header-{{name}} .submenu-icon-wrapper-lvl3').click(function(e) {
+          e.preventDefault();
+
+          let $iconWrapper2 = $(this);
+          let $submenu2 = $iconWrapper2.closest('.mainnav-submenu-item').find('.mainnav-submenu-lvl3');
+
+          // Slide up all submenus
+          $('.header-{{name}} .mainnav-submenu-lvl3').not($submenu2).slideUp();
+          $('.header-{{name}} .submenu-icon-wrapper-lvl3').not($iconWrapper2).removeClass('submenu-active');
+
+          // Toggle the clicked submenu and the active class
+          if ($submenu2.is(':visible')) {
+            $submenu2.slideUp();
+            $iconWrapper2.removeClass('submenu-active');
+          } else {
+            $submenu2.slideDown();
+            $iconWrapper2.addClass('submenu-active');
+          }
+      });
+    });
+  </script>
+
+  {# ===== Saved + cart icons =====
+     Badges read localStorage directly (cart: atri_cart_v1 from js/cart.js; saved:
+     atri-christmas-2026-picks from the products section), so they work on pages without
+     cart.js. Clicks open the drawer when it's on the page, otherwise follow the link. #}
+  <script>
+    (function () {
+      var CART_KEY = 'atri_cart_v1';
+      var PICKS_KEY = 'atri-christmas-2026-picks';
+      function read(key) {
+        try { var v = JSON.parse(localStorage.getItem(key) || '[]'); return Array.isArray(v) ? v : []; }
+        catch (e) { return []; }
+      }
+      function counts() {
+        var cart = window.ATRICart ? window.ATRICart.count() : read(CART_KEY).reduce(function (n, item) {
+          return n + (item && item.type === 'gift' ? 1 : Math.max(1, Number(item && item.quantity) || 1));
+        }, 0);
+        return { cart: cart, favorites: read(PICKS_KEY).length };
+      }
+      function update() {
+        var n = counts();
+        document.querySelectorAll('[data-hv2-count]').forEach(function (b) {
+          var v = n[b.getAttribute('data-hv2-count')] || 0;
+          b.textContent = v > 99 ? '99+' : String(v);
+          b.hidden = v === 0;
+        });
+        document.querySelectorAll('[data-hv2-drawer]').forEach(function (a) {
+          var fav = a.getAttribute('data-hv2-drawer') === 'favorites';
+          var v = fav ? n.favorites : n.cart;
+          a.setAttribute('aria-label', fav ? 'Saved items, ' + v : 'Cart, ' + v + ' item' + (v === 1 ? '' : 's'));
+        });
+      }
+      document.addEventListener('click', function (e) {
+        var a = e.target.closest && e.target.closest('[data-hv2-drawer]');
+        if (!a || !window.ATRIDrawer) return; // no drawer here: the link goes to the homepage
+        e.preventDefault();
+        window.ATRIDrawer.open(a.getAttribute('data-hv2-drawer'));
+      });
+      window.addEventListener('atri:cart', update);
+      window.addEventListener('atri:picks', update);
+      window.addEventListener('storage', function (e) { if (e.key === CART_KEY || e.key === PICKS_KEY) update(); });
+      window.addEventListener('load', update);
+      update();
+    })();
+  </script>
+
+  {# Publish the header's natural (non-sticky) height so the page can reserve
+     space beneath the fixed header. See the "Fixed-header offset" CSS above. #}
+  <script>
+    (function () {
+      var header = document.getElementById('jas-header');
+      if (!header) return;
+      var root = document.documentElement;
+
+      // Measure with the sticky classes neutralised, so the reserved gap always
+      // clears the tall top-of-page header even if the page loads already
+      // scrolled (the remove/read/re-add happens in one synchronous frame, so
+      // there's no visible flash and no transition is triggered).
+      // Only the scroll class (.sticky) is neutralised. .sticky-small is a page setting (the
+      // "Header background color" module adds it for good), so it's measured as the page shows it.
+      function updateHeaderOffset() {
+        var wasSticky = header.classList.contains('sticky');
+        if (wasSticky) header.classList.remove('sticky');
+        var h = header.offsetHeight;
+        if (wasSticky) header.classList.add('sticky');
+        root.style.setProperty('--jas-header-h', h + 'px');
+      }
+
+      updateHeaderOffset();
+      window.addEventListener('load', updateHeaderOffset);
+      window.addEventListener('resize', updateHeaderOffset);
+      window.addEventListener('orientationchange', updateHeaderOffset);
+      // The logo image and the Oswald web font both change the header's height.
+      if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateHeaderOffset);
+    })();
+  </script>
+{% end_require_js %}
+
+{# ===== Live search (vanilla JS, inlined to guarantee execution) ===== #}
+<script>
+(() => {
+  const panel = document.getElementById('hv2SearchPanel');
+  if (!panel) return;
+
+  const backdrop = document.getElementById('hv2Backdrop');
+  const openBtn = document.getElementById('hv2SearchOpen');
+  const dock = document.getElementById('hv2MobileDock');
+  const dockSearchBtn = document.getElementById('hv2DockSearchOpen');
+  const closeBtn = document.getElementById('hv2SearchClose');
+  const form = document.getElementById('hv2SearchForm');
+  const input = form ? form.querySelector('input[name="q"]') : null;
+  const filters = document.getElementById('hv2SearchFilters');
+  const statusEl = document.getElementById('hv2SearchStatus');
+  const resultsEl = document.getElementById('hv2SearchResults');
+  const moreBtn = document.getElementById('hv2SearchMore');
+
+  // Move fixed overlays to <body> so position:fixed is relative to the viewport,
+  // not a HubSpot column wrapper that may have a CSS transform applied.
+  if (panel.parentNode !== document.body) document.body.appendChild(panel);
+  if (backdrop && backdrop.parentNode !== document.body) document.body.appendChild(backdrop);
+  if (dock && dock.parentNode !== document.body) document.body.appendChild(dock);
+
+  // ===== Dock scroll hint (micro gradient arrow) =====
+  // Fade the arrow out once the dock is scrolled to the end, or when the
+  // links fit without overflowing (e.g. wide phones in landscape).
+  const dockScroll = dock ? dock.querySelector('.hv2-dock__scroll') : null;
+  if (dock && dockScroll) {
+    const updateDockHint = () => {
+      const overflows = dockScroll.scrollWidth > dockScroll.clientWidth + 1;
+      const atEnd = dockScroll.scrollLeft + dockScroll.clientWidth >= dockScroll.scrollWidth - 4;
+      dock.classList.toggle('hv2-dock--end', !overflows || atEnd);
+    };
+    dockScroll.addEventListener('scroll', updateDockHint, { passive: true });
+    window.addEventListener('resize', updateDockHint);
+    updateDockHint();
+  }
+
+  // ----- Config (from HubL via data attributes) -----
+  const apiBase = (panel.dataset.apiBase || '').replace(/\/+$/, '');
+  const perPage = parseInt(panel.dataset.perPage, 10) || 12;
+
+  // ----- Search state -----
+  const state = { query: '', source: '', page: 1, total: 0, loaded: 0, reqId: 0 };
+
+  // ===== Panel open/close =====
+  const openSearch = () => {
+    panel.classList.add('open');
+    backdrop.classList.add('open');
+    document.body.style.overflow = 'hidden';
+    setTimeout(() => { if (input) input.focus(); }, 350);
+  };
+
+  const closeSearch = () => {
+    panel.classList.remove('open');
+    backdrop.classList.remove('open');
+    document.body.style.overflow = '';
+  };
+
+  if (openBtn) openBtn.addEventListener('click', openSearch);
+  if (dockSearchBtn) dockSearchBtn.addEventListener('click', openSearch);
+  if (closeBtn) closeBtn.addEventListener('click', closeSearch);
+  if (backdrop) backdrop.addEventListener('click', closeSearch);
+  document.addEventListener('keydown', (e) => { if (e.key === 'Escape') closeSearch(); });
+
+  // ===== Helpers =====
+  const escapeHtml = (str) =>
+    String(str == null ? '' : str)
+      .replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;')
+      .replace(/"/g, '&quot;').replace(/'/g, '&#39;');
+
+  const stripHtml = (html) => {
+    const tmp = document.createElement('div');
+    tmp.innerHTML = String(html == null ? '' : html);
+    return (tmp.textContent || tmp.innerText || '').replace(/\s+/g, ' ').trim();
+  };
+
+  const truncate = (text, max) =>
+    text.length <= max ? text : (text.slice(0, max).replace(/\s+\S*$/, '') + '…');
+
+  const setStatus = (msg, modifier) => {
+    statusEl.textContent = msg || '';
+    statusEl.className = 'hv2-search__status' + (modifier ? ' hv2-search__status--' + modifier : '');
+  };
+
+  const formatPrice = (value) => {
+    const n = Number(value);
+    return Number.isFinite(n) ? '$' + n.toFixed(2) : '';
+  };
+
+  // ===== Card renderers =====
+  const productMeta = (m) => {
+    const parts = [];
+    const onSale = m.sale_price && Number(m.sale_price) < Number(m.regular_price);
+    if (onSale) {
+      parts.push('<span class="hv2-result__price">' + escapeHtml(formatPrice(m.price)) + '</span>');
+      parts.push('<span class="hv2-result__price-was">' + escapeHtml(formatPrice(m.regular_price)) + '</span>');
+      parts.push('<span class="hv2-result__badge">Sale</span>');
+    } else if (m.price) {
+      parts.push('<span class="hv2-result__price">' + escapeHtml(formatPrice(m.price)) + '</span>');
+    }
+    return parts.length ? '<div class="hv2-result__meta">' + parts.join('') + '</div>' : '';
+  };
+
+  const articleMeta = (m) => {
+    const parts = [];
+    if (m.author_name) parts.push(escapeHtml(m.author_name));
+    if (m.publish_date) {
+      const d = new Date(m.publish_date);
+      if (!isNaN(d)) parts.push(d.toLocaleDateString(undefined, { year: 'numeric', month: 'short', day: 'numeric' }));
+    }
+    return parts.length ? '<div class="hv2-result__meta">' + parts.join(' \xB7 ') + '</div>' : '';
+  };
+
+  const renderResult = (item) => {
+    const m = item.metadata || {};
+    const isProduct = item.source === 'woocommerce';
+    const body = truncate(stripHtml(item.body), 140);
+    const thumb = item.image_url
+      ? '<span class="hv2-result__thumb" style="background-image:url(' + encodeURI(item.image_url) + ')"></span>'
+      : '<span class="hv2-result__thumb hv2-result__thumb--placeholder"></span>';
+    const meta = isProduct ? productMeta(m) : articleMeta(m);
+    return '<li class="hv2-result hv2-result--' + escapeHtml(item.source) + '">' +
+      '<a class="hv2-result__link" href="' + escapeHtml(item.url || '#') + '">' +
+        thumb +
+        '<span class="hv2-result__content">' +
+          '<span class="hv2-result__kind">' + escapeHtml(isProduct ? 'Store' : 'Article') + '</span>' +
+          '<span class="hv2-result__title">' + escapeHtml(item.title) + '</span>' +
+          (body ? '<span class="hv2-result__excerpt">' + escapeHtml(body) + '</span>' : '') +
+          meta +
+        '</span>' +
+      '</a></li>';
+  };
+
+  // ===== API =====
+  const buildUrl = () => {
+    const params = new URLSearchParams();
+    params.set('q', state.query);
+    if (state.source) params.set('source', state.source);
+    params.set('page', String(state.page));
+    params.set('per_page', String(perPage));
+    return apiBase + '/api/search/?' + params;
+  };
+
+  const runSearch = async (append) => {
+    if (!apiBase) { setStatus('Search is not configured yet.', 'error'); return; }
+    const myReqId = ++state.reqId;
+    if (!append) {
+      state.page = 1;
+      state.loaded = 0;
+      resultsEl.innerHTML = '';
+      moreBtn.style.display = 'none';
+    }
+    setStatus(append ? 'Loading more…' : 'Searching…', 'loading');
+
+    try {
+      const res = await fetch(buildUrl(), { headers: { Accept: 'application/json' } });
+      if (!res.ok) throw new Error('HTTP ' + res.status);
+      const data = await res.json();
+      if (myReqId !== state.reqId) return;
+
+      state.total = data.total || 0;
+      const items = data.results || [];
+      state.loaded += items.length;
+      resultsEl.insertAdjacentHTML('beforeend', items.map(renderResult).join(''));
+      setStatus(
+        state.loaded === 0
+          ? (state.query ? 'No results for “' + state.query + '”.' : 'No results found.')
+          : state.total + ' result' + (state.total === 1 ? '' : 's') + '.',
+        state.loaded === 0 ? 'empty' : 'done'
+      );
+      moreBtn.style.display = state.loaded >= state.total ? 'none' : '';
+    } catch (err) {
+      if (myReqId !== state.reqId) return;
+      setStatus('Something went wrong. Please try again.', 'error');
+      moreBtn.style.display = 'none';
+    }
+  };
+
+  // ===== Wiring =====
+  let debounceTimer;
+  if (input) input.addEventListener('input', () => {
+    clearTimeout(debounceTimer);
+    debounceTimer = setTimeout(() => { state.query = input.value.trim(); runSearch(false); }, 300);
+  });
+
+  if (form) form.addEventListener('submit', (e) => {
+    e.preventDefault();
+    clearTimeout(debounceTimer);
+    state.query = input ? input.value.trim() : '';
+    runSearch(false);
+  });
+
+  if (filters) filters.addEventListener('click', (e) => {
+    const pill = e.target.closest('.hv2-search__pill');
+    if (!pill) return;
+    filters.querySelectorAll('.hv2-search__pill').forEach((p) => {
+      p.classList.remove('is-active');
+      p.setAttribute('aria-selected', 'false');
+    });
+    pill.classList.add('is-active');
+    pill.setAttribute('aria-selected', 'true');
+    state.source = pill.dataset.source || '';
+    runSearch(false);
+  });
+
+  if (moreBtn) moreBtn.addEventListener('click', () => { state.page += 1; runSearch(true); });
+})();
+</script>

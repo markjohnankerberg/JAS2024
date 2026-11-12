@@ -1,0 +1,212 @@
+<div class="fl-{{name}} cols-{{ module.number_of_columns }}">
+  {% for item in module.column %}
+    <div class="fl-column">
+      {% for item2 in item.list %}
+        <div class="fl-list" role="list">
+          <h4 class="fl-title">{{ item2.title }}
+            <span class="fl-icon">
+              <svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"><path fill="currentColor" d="M7.41 8.58L12 13.17l4.59-4.59L18 10l-6 6l-6-6z"/></svg>
+            </span>
+          </h4>
+
+          <div class="fl-list-items" role="listitem">
+            {% for item3 in item2.list_items %}
+              <p class="list-item">
+                {% set href = item3.link_field.url.href %}
+                {% if item3.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+                  {% set href = "mailto:" + href %}
+                {% endif %}
+                <a
+                  {% if item3.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+                    href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                  {% else %}
+                    href="{{ href|escape_url }}"
+                  {% endif %}
+                  {% if item3.link_field.open_in_new_tab %}
+                    target="_blank"
+                  {% endif %}
+                  {% if item3.link_field.rel %}
+                    rel="{{ item3.link_field.rel|escape_attr }}"
+                  {% endif %}
+                  >
+                  {{ item3.list_item }}
+                </a>            
+              </p>
+            {% endfor %}
+          </div>
+
+        </div>
+      {% endfor %}
+    </div>
+  {% endfor %}
+</div>
+
+{% require_css %}
+  <style>
+    .fl-{{name}} *,
+    .fl-{{name}} *::before,
+    .fl-{{name}} *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .fl-{{name}} .fl-title { 
+      color: rgba({{ module.text_color.color|convert_rgb }}, {{ module.text_color.opacity/100 }});
+    }
+    
+    .fl-{{name}} .list-item {
+      color: rgba({{ module.list_item_color.color|convert_rgb }}, {{ module.list_item_color.opacity/100 }});
+      transition: var(--transition);
+    }
+    
+    .fl-{{name}} .list-item:hover {
+      color: rgba({{ module.list_item_color_hover.color|convert_rgb }}, {{ module.list_item_color_hover.opacity/100 }});
+    }
+    
+    .fl-{{name}} .fl-icon svg path {
+      fill: rgba({{ module.text_color.color|convert_rgb }}, {{ module.text_color.opacity/100 }});
+    }
+    
+    .fl-{{name}} {
+      display: grid;
+      grid-template-columns: repeat({{ module.number_of_columns }}, 1fr);
+      gap: 40px;
+    }
+    
+    @media (max-width: 960px) {
+      .fl-{{name}}.cols-5 {
+          grid-template-columns: repeat(4, 1fr);
+      }
+    }
+    
+    @media (max-width: 820px) {
+      .fl-{{name}}.cols-5,
+      .fl-{{name}}.cols-4 {
+          grid-template-columns: repeat(3, 1fr);
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .fl-{{name}}.cols-5,
+      .fl-{{name}}.cols-4,
+      .fl-{{name}}.cols-3,
+      .fl-{{name}}.cols-2 {
+          grid-template-columns: 1fr;
+      }
+    }
+    
+    .fl-{{name}} .fl-column {
+      display: flex;
+      flex-direction: column;
+      gap: 30px;
+    }
+    
+    .fl-{{name}} .fl-column .fl-title {
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 1.2;
+      font-weight: 600;
+      display: flex;
+      align-items: center;
+      margin-bottom: 12px;
+    }
+    
+    .fl-{{name}} .fl-column .fl-title .fl-icon {
+      display: inline-block;
+      width: 16px;
+      height: 16px;
+      margin-left: 4px;
+      margin-bottom: 2px;
+    }
+    
+    .fl-{{name}} .fl-column .fl-title .fl-icon svg {
+      width: 16px;
+      max-height: 16px;
+      transition: var(--transition);
+    }
+    
+    .fl-{{name}} .fl-column .fl-title .fl-icon.active svg {
+      transform: scaleY(-1);
+    }
+    
+    @media (min-width: 768px) {
+      .fl-{{name}} .fl-column .fl-title .fl-icon {
+        display: none;
+      }
+    }
+    
+    .fl-{{name}} .fl-column .fl-list-items {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+    
+    .fl-{{name}} .fl-column .list-item {
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+/*       -webkit-text-stroke: thin; */
+/*       opacity: 0.8; */
+    }
+    
+    .fl-{{name}} .fl-column .list-item a {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      font-size: 14px;
+      line-height: 1.5;
+      font-weight: 500;
+      letter-spacing: -0.02em;
+    }
+    
+    @media (max-width: 767px) {
+      .fl-{{name}} {
+        max-width: fit-content;
+        width: 100%;
+        margin-left: auto;
+        margin-right: auto;
+        gap: 18px;
+      }
+      
+      .fl-{{name}} .fl-column {
+        gap: 18px;
+      }
+      
+      .fl-{{name}} .fl-column .fl-list-items {
+        display: none;
+      }
+      
+      .fl-{{name}} .fl-column .fl-title {
+        justify-content: center;
+        padding-left: 8px;
+        cursor: pointer;
+      }
+      
+      .fl-{{name}} .fl-column .list-item {
+        text-align: center;
+        padding-bottom: 8px;
+      }
+    }
+    
+  </style>
+{% end_require_css %}
+
+{% require_js %}
+  <script>
+    $(document).ready(function() {
+      $('.fl-list').click(function() {
+        if (window.innerWidth < 768) {
+          // Hide all .fl-list-items
+          $('.fl-list-items').slideUp();
+          $('.fl-list .fl-icon').removeClass('active');
+          $(this).find('.fl-icon').addClass('active');
+
+          // Toggle the visibility of the clicked .fl-list's .fl-list-items
+          $(this).find('.fl-list-items').stop(true, true).slideToggle(300);
+        }
+      });
+    });
+  </script>
+{% end_require_js %}

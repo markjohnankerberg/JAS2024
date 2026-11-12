@@ -1,0 +1,731 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Friends of ATRI 2024
+  screenshotPath: ../images/template-previews/friends-of-atri.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--friends"
+%}
+
+  {# Section #1 - Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Hero",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "Get started",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "href_with_scheme" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "href_with_scheme" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          heading="Friends of ATRI",
+          show_button=true,
+          show_subheading=true,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/friends_of_atri_hero_bg.png"
+                },
+                "background_image_overlay" : false
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 215
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 185
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              }
+            },
+            "subheading" : {
+              "line_height" : 1.5
+            }
+          },
+          subheading="Become a friend of ATRI and defend the faith"
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+
+  {# Section #2 - Content #}
+  {% dnd_section
+    full_width=false
+    max_width=1200
+  %}
+    {% dnd_column
+      offset=0,
+      width=7,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "30px",
+          "top" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h2 style="font-weight: 600; font-size: 28px; font-family: Lato, sans-serif;">Become a friend of ATRI and defend the faith.</h2>
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">Friends of ATRI is a group of generous and passionate believers who know God’s Word provides the answers to today’s most pressing questions. People like you, from across the world, give whatever they can monthly to help provide biblical answers to today’s pressing questions, equip believers with the best evangelical scholarship, and provide God’s Word to those who need it most.</span></p>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h2 style="font-weight: 600; font-size: 28px; font-family: Lato, sans-serif;">Our Mission</h2>
+            <p style="font-size: 16px; font-weight: 500;"><span>God has called all of us to spread the Gospel and make disciples, and we want to do it alongside you.&nbsp;</span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span>We want to continue bringing television programs that defend the faith and challenge the skeptic. Your monthly gifts make it possible for us to tape with renowned guests, edit every episode, and pay for airtime on stations worldwide so that millions of people can hear the truth of God’s Word in their homes. </span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span>We want to continue to bring you resources from the best evangelical scholars so that you can, in the words of Peter, be “prepared to make a defense to anyone who asks you for a reason for the hope that is in you” (1 Peter 3:15). </span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span>We also want to continue to put our faith into practice with you by giving the gift of God’s Word to those who need it most through Audio Bibles and relief efforts worldwide. </span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span>Would you pray about joining us in fulfilling the Great Commission? Would you consider giving monthly so that the truth of God’s Word might spread to those who need it most?</span></p>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Custom button v2",
+          offset=0,
+          width=12,
+          alignment="left",
+          buttons=[ {
+            "button" : {
+              "button_style" : "btn-secondary",
+              "button_text" : "Donate",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-large"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            }
+          } ],
+          style={
+            "button" : {
+              "spacing" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 12
+                  }
+                }
+              }
+            },
+            "button_container" : {
+              "bottom_margin" : 40
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h2 style="font-weight: 600; font-size: 24px; font-family: Lato, sans-serif; margin-bottom: 20px;">How it Works</h2>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/info-cards",
+          offset=0,
+          width=12,
+          cards=[ {
+            "icon_field" : {
+              "name" : "Television",
+              "type" : "SOLID",
+              "unicode" : "f26c"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "Support icon",
+              "height" : 40,
+              "max_height" : 40,
+              "max_width" : 41,
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/support_grey_svg.svg",
+              "width" : 41
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "show_link" : false,
+            "text_field" : "Each month you will give a set donation by your payment method of choice.  You choose the amount you give, and you are free to stop your gift at  any time, with no extra fees.",
+            "title" : "Choose a Monthly Donation Amount"
+          }, {
+            "icon_field" : {
+              "name" : "Television",
+              "type" : "SOLID",
+              "unicode" : "f26c"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "Save the planet icon",
+              "height" : 40,
+              "max_height" : 40,
+              "max_width" : 40,
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/save-the-planet_grey_svg.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "show_link" : false,
+            "text_field" : "Your gifts make a huge impact in many different ways around the world. From  helping air our show in Asia to giving a village their first Bible,  these gifts are what make this possible.",
+            "title" : "Make an Impact around the World"
+          }, {
+            "icon_field" : {
+              "name" : "Television",
+              "type" : "SOLID",
+              "unicode" : "f26c"
+            },
+            "icon_type" : "img",
+            "image_field" : {
+              "alt" : "exclusive icon",
+              "height" : 40,
+              "max_height" : 40,
+              "max_width" : 41,
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/exclusive_grey_svg.svg",
+              "width" : 41
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "show_link" : false,
+            "text_field" : "We want to say thank you. Your gifts make sending God's word to the world  possible in so many ways*, and we want you to stay up to date on the  impact while also offering you resources that are exclusive only to  Friends of ATRI members.",
+            "title" : "Receive Exclusive Resources"
+          } ],
+          style={
+            "cards" : {
+              "minimum_width" : 180
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Custom button v2",
+          offset=0,
+          width=12,
+          alignment="left",
+          buttons=[ {
+            "button" : {
+              "button_style" : "btn-secondary",
+              "button_text" : "Join today",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-large"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            }
+          } ],
+          style={
+            "button" : {
+              "spacing" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 12
+                  }
+                }
+              }
+            },
+            "button_container" : {
+              "bottom_margin" : 40
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h2 style="font-weight: 600; font-size: 24px; font-family: Lato, sans-serif; margin-bottom: 20px;">Monthly Exclusive Resources</h2>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row
+        padding={
+          "default" : {
+            "bottom" : "20px",
+            "left" : "0px",
+            "right" : "0px",
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_module
+          path="@hubspot/linked_image",
+          offset=0,
+          width=12,
+          horizontal_alignment="CENTER",
+          img={
+            "alt" : "books on the table",
+            "height" : 856,
+            "loading" : "lazy",
+            "max_height" : 856,
+            "max_width" : 1280,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/friends_of_atri_illustration_2x.png",
+            "width" : 1280
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <p style="font-size: 16px; font-weight: 500;"><span>As a Friend of ATRI, you will receive a resource as a thank-you for partnering with us. We want this to be valuable to you, so month to month we will include various behind-the-scenes, notes from John, digital downloads of our newest series, or previews of upcoming series or content. These resources are designed to encourage and equip you, and this is just a small way for us to say “thank you” for partnering with us in this mission to reach people with the gospel!</span></p>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Custom button v2",
+          offset=0,
+          width=12,
+          alignment="left",
+          buttons=[ {
+            "button" : {
+              "button_style" : "btn-secondary",
+              "button_text" : "Sign up now",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-large"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            }
+          } ],
+          style={
+            "button" : {
+              "spacing" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 12
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 12
+                  }
+                }
+              }
+            },
+            "button_container" : {
+              "bottom_margin" : 25
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Accordion",
+          offset=0,
+          width=12,
+          item=[ {
+            "answer_field_type" : "ans-text",
+            "question" : "How is my gift used?",
+            "richtext_field" : "",
+            "text_field" : "As a 100% viewer-funded ministry, your non-restricted gift supports the production of a number of Ministry programs and purposes, including the broadcasting and expansion of the  airing and production of the John Ankerberg Show in the US and  international markets. The John Ankerberg Show broadcasts to potentially 4.5 billion viewers in more than 200 countries and territories."
+          }, {
+            "answer_field_type" : "ans-text",
+            "question" : "How often is my debit/credit card charged?",
+            "richtext_field" : "",
+            "text_field" : "Your debit or credit card is only charged once a month, recurring on the day of your original donation. If your first gift was given on May 19, you will be charged on the 19th of each subsequent month. You are also free to visit your account in the store and cancel (with no cancellation fees) your subscription at any time."
+          }, {
+            "answer_field_type" : "ans-rich-text",
+            "question" : "Can I trust how your ministry handles finances?",
+            "richtext_field" : '<p><span>The John Ankerberg Show is audited annually by an independent agency. We post our most recent IRS form 990 at our website and welcome inquiries about our stewardship of the resources entrusted to us.&nbsp; If you would like any other information or have any questions, please click&nbsp;</span><a href=\"https://jashow.org/financial-disclosure/\">here</a><span>. Furthermore, don’t hesitate to contact us through our website at&nbsp;</span><a href=\"https://jashow.org/contact-the-john-ankerberg-show)\" target=\"_blank\" rel=\"noopener\" data-link-card=\"true\">Contact JA Show</a><span>&nbsp;or by phone Monday-Friday 9:00am – 4:30pm EST at&nbsp;</span><a href=\"tel:18008053030\" target=\"_blank\" rel=\"noopener\" data-link-card=\"true\">1-800-805-3030</a><span>.</span></p>',
+            "text_field" : ""
+          }, {
+            "answer_field_type" : "ans-text",
+            "question" : "What if I need to cancel my ATRI Friends membership?",
+            "richtext_field" : "",
+            "text_field" : "We understand that life happens and circumstances change. You can manually change your subscription on your account, or reach out to us at any time for support. Even if you are part of ATRI Friends for a short time, know that your gifts make a difference!"
+          } ],
+          module_heading="Do you have more questions about Friends of ATRI?",
+          style={
+            "module_spacing" : {
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 15
+                }
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+
+    {% dnd_column
+      offset=7,
+      width=5,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "80px"
+        }
+      }
+    %}
+      {# Donate form module goes here #}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Disclaimer module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Disclaimer",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

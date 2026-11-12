@@ -1,0 +1,157 @@
+<section class="section-{{name}}">
+  <div class="info-cards" role="group">
+    
+    {% for item in module.cards %}
+      <div class="info-card">
+        {% if item.show_link %}
+          {% set href = item.link_field.url.href %}
+          {% if item.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+            {% set href = "mailto:" + href %}
+          {% endif %}
+          <a class="info-card-link"
+            {% if item.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+              href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+            {% else %}
+              href="{{ href|escape_url }}"
+            {% endif %}
+            {% if item.link_field.open_in_new_tab %}
+              target="_blank"
+            {% endif %}
+            {% if item.link_field.rel %}
+              rel="{{ item.link_field.rel|escape_attr }}"
+            {% endif %}
+            >
+          </a>
+        {% endif %}
+        <div class="info-icon">
+          {% if item.icon_type == "hs-icon" %}
+            {% icon
+              name="{{ item.icon_field.name }}"
+              style="{{ item.icon_field.type }}"
+              unicode="{{ item.icon_field.unicode }}"
+              icon_set="{{ item.icon_field.icon_set }}"
+            %}
+          {% endif %}
+          
+          {% if item.icon_type == "img" %}
+            {% if item.image_field.src %}
+              {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{ item.image_field.height|escape_attr }}"' %}
+              {% if item.image_field.size_type == 'auto' %}
+                {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{ item.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+              {% elif item.image_field.size_type == 'auto_custom_max' %}
+                {% set sizeAttrs = 'width="{{ item.image_field.max_width|escape_attr }}" height="{{ item.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+              {% endif %}
+               {% set loadingAttr = item.image_field.loading != 'disabled' ? 'loading="{{ item.image_field.loading|escape_attr }}"' : '' %}
+              <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+            {% endif %}
+          {% endif %}
+          
+          {% if item.icon_type == "embed-svg" %}
+            {{ item.embed_svg }}
+          {% endif %}
+        </div>
+        
+        <div class="info-content">
+          <p class="info-title">{{ item.title }}</p>
+          <p class="info-text">{{ item.text_field }}</p>
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .section-{{name}} *,
+    .section-{{name}} *::before,
+    .section-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .section-{{name}} {
+      margin: 0 auto;
+      background-color: rgba({{ module.style.module.background_color.color|convert_rgb }}, {{ module.style.module.background_color.opacity/100 }});
+      {{ module.style.module.spacing_desktop.css }}
+    }
+    
+    @media (max-width: 767px) {
+      .section-{{name}} {
+        {{ module.style.module.spacing_mobile.css }}
+      }
+    }
+    
+    .section-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }    
+    
+    .section-{{name}} .info-cards {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min({{ module.style.cards.minimum_width ~ 'px' }}, 100%), 1fr));
+      gap: {{ module.style.cards.card_gap ~ 'px' }}
+    }
+    
+    .section-{{name}} .info-cards .info-card {
+      {{ module.style.cards.border_field.css }}
+      border-radius: {{ module.style.cards.corner_radius ~ 'px' }};
+      background-color: rgba({{ module.style.cards.background_color.color|convert_rgb }}, {{ module.style.cards.background_color.opacity/100 }});
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 20px;
+      min-width: {{ module.style.cards.minimum_width ~ 'px' }};
+      {{ module.style.cards.padding.css }}
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-card-link {
+      cursor: pointer;
+      position: absolute;
+      inset: 0;
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-icon {
+      height: 40px !important;
+      width: 40px !important;
+      max-height: 40px;
+      max-width: 40px;
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-icon svg {
+      max-width: 40px;
+      max-height: 40px;
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-icon svg path {
+      fill: rgba({{ module.style.cards.icon_color.color|convert_rgb }}, {{ module.style.cards.icon_color.opacity/100 }});
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-icon img {
+      max-width: 100%;
+      max-height: 40px !important;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-title {
+      color: rgba({{ module.style.cards.text_color.color|convert_rgb }}, {{ module.style.cards.text_color.opacity/100 }});
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      letter-spacing: -0.01em;
+      text-wrap: balance;
+      text-align: center;
+      margin: 0 auto 10px auto;
+    }
+    
+    .section-{{name}} .info-cards .info-card .info-text {
+      color: rgba({{ module.style.cards.text_color.color|convert_rgb }}, {{ module.style.cards.text_color.opacity/100 }});
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-wrap: balance;
+      text-align: center;
+      margin: 0 auto;
+    }
+  </style>
+{% end_require_css %}

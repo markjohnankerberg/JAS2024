@@ -1,0 +1,777 @@
+[ {
+  "id" : "2eb1c1da-8b60-e758-7d03-31f445fc135a",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "f1007529-a625-9b2b-7942-94fbbeb1afc5",
+    "name" : "module",
+    "label" : "Module",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f38d4e15-ca44-7b7e-acd8-b2e910da8968",
+      "name" : "spacing_desktop",
+      "label" : "Spacing - desktop",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "0976a8f5-b32b-002c-7214-fc0893af56df",
+      "name" : "spacing_mobile",
+      "label" : "Spacing - mobile",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "b957d874-c134-08ed-6c67-8882fdcec944",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "spacing_desktop" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "spacing_mobile" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "background_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }
+  }, {
+    "id" : "7abc668a-496d-4b72-7ee5-33d4c7500085",
+    "name" : "cards",
+    "label" : "Cards",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "90a50a1b-fcc6-133d-b978-4f15810747a3",
+      "name" : "minimum_width",
+      "label" : "Minimum width",
+      "help_text" : "The number of columns depends on the minimum width of the card",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 150,
+      "max" : 600,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 250
+    }, {
+      "id" : "3c041986-6067-9c42-b74e-9fedc7999ffb",
+      "name" : "card_gap",
+      "label" : "Gap",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 30
+    }, {
+      "id" : "3e210f1d-c759-b36c-c207-67ee86803376",
+      "name" : "border_field",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "allow_custom_border_sides" : false,
+      "type" : "border",
+      "display_width" : null,
+      "default" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "9a330057-578a-e389-7cb2-c215dce55910",
+      "name" : "padding",
+      "label" : "Padding",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "f2554416-bba8-3dd4-f8f6-eef7cb60261e",
+      "name" : "corner_radius",
+      "label" : "Corner radius",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 5
+    }, {
+      "id" : "082d5f32-ae3f-fcba-ab11-686e9f832c0b",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#FAF9F8",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "bb32cf4f-9e68-7776-c3dc-4b2af59c0955",
+      "name" : "text_color",
+      "label" : "Text color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "863ef267-7f22-680b-22ed-a92d5c257551",
+      "name" : "icon_color",
+      "label" : "Icon color",
+      "help_text" : "Not valid for Icon type: Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "cards.icon_type",
+        "controlling_value_regex" : "img",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "minimum_width" : 250,
+      "card_gap" : 30,
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      },
+      "padding" : {
+        "padding" : {
+          "top" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      },
+      "corner_radius" : 5,
+      "background_color" : {
+        "color" : "#FAF9F8",
+        "opacity" : 100
+      },
+      "text_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "icon_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "module" : {
+      "spacing_desktop" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "spacing_mobile" : {
+        "padding" : {
+          "top" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 0,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 0,
+            "units" : "px"
+          }
+        }
+      },
+      "background_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    },
+    "cards" : {
+      "minimum_width" : 250,
+      "card_gap" : 30,
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#FAF9F8",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      },
+      "padding" : {
+        "padding" : {
+          "top" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 40,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      },
+      "corner_radius" : 5,
+      "background_color" : {
+        "color" : "#FAF9F8",
+        "opacity" : 100
+      },
+      "text_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "icon_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }
+  }
+}, {
+  "id" : "5000f885-ebe3-422c-64bf-b089d0bcf17f",
+  "name" : "cards",
+  "label" : "Card",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 2,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 4
+  },
+  "children" : [ {
+    "id" : "43fbe6b8-6e78-c8d4-cdc4-f7599ea67d1b",
+    "name" : "title",
+    "label" : "Title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Broadcasting"
+  }, {
+    "id" : "8663005e-c49b-caff-51b2-251379854685",
+    "name" : "text_field",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "You are supporting the filming, editing, and distribution of The John Ankerberg Show across the United States."
+  }, {
+    "id" : "ba816234-c69e-0ee8-aeca-6eb8b27cdbf9",
+    "name" : "icon_type",
+    "label" : "Icon type",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "hs-icon", "HubSpot icons" ], [ "img", "Image" ], [ "embed-svg", "Embed SVG" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "hs-icon"
+  }, {
+    "id" : "10096b0c-ba15-353a-39ab-56f41d46bc53",
+    "name" : "icon_field",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cards.icon_type",
+      "controlling_value_regex" : "hs-icon",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "icon_set" : "fontawesome-5.14.0",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "Television",
+      "unicode" : "f26c",
+      "type" : "SOLID"
+    }
+  }, {
+    "id" : "636da498-c547-8969-304f-90593377faa0",
+    "name" : "image_field",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cards.icon_type",
+      "controlling_value_regex" : "img",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/stream_svg.svg",
+      "alt" : "stream_svg",
+      "width" : 41,
+      "height" : 40,
+      "max_width" : 41,
+      "max_height" : 40
+    }
+  }, {
+    "id" : "3f852431-0e59-edae-28e8-4342cd71175c",
+    "name" : "embed_svg",
+    "label" : "Embed SVG",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cards.icon_type",
+      "controlling_value_regex" : "embed-svg",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "placeholder" : "Paste your code here",
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "80dd902c-10df-9fdf-764e-d85b6f15d6b5",
+    "name" : "show_link",
+    "label" : "Show link",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "f7fbf0dd-5c39-1a08-6114-b27f6e76c6a3",
+    "name" : "link_field",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "cards.show_link",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "title" : "Broadcasting",
+    "text_field" : "You are supporting the filming, editing, and distribution of The John Ankerberg Show across the United States.",
+    "icon_type" : "hs-icon",
+    "icon_field" : {
+      "name" : "Television",
+      "unicode" : "f26c",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/stream_svg.svg",
+      "alt" : "stream_svg",
+      "width" : 41,
+      "height" : 40,
+      "max_width" : 41,
+      "max_height" : 40
+    },
+    "show_link" : false,
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "title" : "Broadcasting",
+    "text_field" : "You are supporting the filming, editing, and distribution of The John Ankerberg Show across the United States.",
+    "icon_type" : "hs-icon",
+    "icon_field" : {
+      "name" : "Television",
+      "unicode" : "f26c",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/stream_svg.svg",
+      "alt" : "stream_svg",
+      "width" : 41,
+      "height" : 40,
+      "max_width" : 41,
+      "max_height" : 40
+    },
+    "show_link" : false,
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "title" : "Broadcasting",
+    "text_field" : "You are supporting the filming, editing, and distribution of The John Ankerberg Show across the United States.",
+    "icon_type" : "hs-icon",
+    "icon_field" : {
+      "name" : "Television",
+      "unicode" : "f26c",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/stream_svg.svg",
+      "alt" : "stream_svg",
+      "width" : 41,
+      "height" : 40,
+      "max_width" : 41,
+      "max_height" : 40
+    },
+    "show_link" : false,
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }, {
+    "title" : "Broadcasting",
+    "text_field" : "You are supporting the filming, editing, and distribution of The John Ankerberg Show across the United States.",
+    "icon_type" : "hs-icon",
+    "icon_field" : {
+      "name" : "Television",
+      "unicode" : "f26c",
+      "type" : "SOLID"
+    },
+    "image_field" : {
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/stream_svg.svg",
+      "alt" : "stream_svg",
+      "width" : 41,
+      "height" : 40,
+      "max_width" : 41,
+      "max_height" : 40
+    },
+    "show_link" : false,
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "href" : "https://jashow.org/",
+        "type" : "EXTERNAL"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ]
+} ]

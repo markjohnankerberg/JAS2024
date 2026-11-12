@@ -1,0 +1,84 @@
+[ {
+  "id" : "1e504efd-76ac-810d-5a15-1602e2561f35",
+  "name" : "cards",
+  "label" : "Cards",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "97cc9ab1-d150-56dc-3683-a156b8c2c39f",
+    "name" : "card_color",
+    "label" : "Card color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#393D3F",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "ffca6fdd-e16e-dc33-4a97-0fdce725af34",
+    "name" : "text_color",
+    "label" : "Text color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#ffffff",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "41b552b6-207d-4f92-edf9-3a2b8b476e2f",
+    "name" : "color_name",
+    "label" : "Color name",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Onyx"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "card_color" : {
+      "color" : "#393D3F",
+      "opacity" : 100
+    },
+    "text_color" : {
+      "color" : "#ffffff",
+      "opacity" : 100
+    },
+    "color_name" : "Onyx"
+  }, {
+    "card_color" : {
+      "color" : "#393D3F",
+      "opacity" : 100
+    },
+    "text_color" : {
+      "color" : "#ffffff",
+      "opacity" : 100
+    },
+    "color_name" : "Onyx"
+  }, {
+    "card_color" : {
+      "color" : "#393D3F",
+      "opacity" : 100
+    },
+    "text_color" : {
+      "color" : "#ffffff",
+      "opacity" : 100
+    },
+    "color_name" : "Onyx"
+  } ]
+} ]

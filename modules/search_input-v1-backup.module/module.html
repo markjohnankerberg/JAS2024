@@ -1,0 +1,526 @@
+{# Search input - version 1 #}
+
+{# Need help setting up site search?
+   Start here: https://knowledge.hubspot.com/articles/kcs_article/cos-general/how-do-i-set-up-a-results-page-for-my-search-field-in-hubspot #}
+{% set hide_search_label = module.input.field_label is truthy ? false : true %}
+{% set button_position_class = "hs-search-field__bar--button-" ~  module.styles.button.position.button_position %}
+{% set button_alignment_class = module.styles.button.position.button_position == "beneath" ? "hs-search-field__bar--button-align-" ~ module.styles.button.position.button_alignment : "" %}
+{% set has_search_icon = module.button.icon.name is truthy ? true : false %}
+{% set show_suggest_in_editor_class = is_in_editor ? "hs-search-field--open": "" %}
+
+{% set button_label_class = module.button.button_label is truthy ? "hs-search-field__button--labelled" : "" %}
+{% set search_page = module.results.use_custom_search_results_template is truthy and module.results.path_id ? content_by_id(module.results.path_id).absolute_url : site_settings.content_search_results_page_path %}
+
+{% unless (search_page is string_containing "//") %}
+  {% set search_page = "/" ~ search_page %}
+{% endunless %}
+
+{% set search_page = search_page|regex_replace("http:", "") %}
+
+{# Add a checker here so any new border object keys don't get included in CSS loop. #}
+{% set valid_border_sides = [ "top", "right", "left", "bottom" ] %}
+
+{% require_css %}
+  <style>
+    .section-{{name}} *,
+    .section-{{name}} *::before,
+    .section-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .section-{{name}} {
+      margin: 0 auto;
+      {% if module.styles.section.background.background_type == 'color' %}
+        background-color: rgba({{ module.styles.section.background.background_color.color|convert_rgb }}, {{ module.styles.section.background.background_color.opacity/100 }});
+      {% elif module.styles.section.background.background_type == 'gradient' %}
+        background: {{ module.styles.section.background.gradient_field.css }};
+      {% elif module.styles.section.background.background_type == 'image' %}
+        position: relative;
+        {{ module.styles.section.background.background_image.css }}
+      {% endif %}
+      {{ module.styles.section.spacing_desktop.css }}
+      
+      {% if module.styles.section.show_top_and_bottom_border %}
+        {{ module.styles.section.top_and_bottom_border.css }}
+        border-left: none !important;
+        border-right: none !important;
+      {% endif %}
+    }
+    
+    {% if module.styles.section.background.background_type == 'image' %}
+      {% if module.styles.section.background.background_image_overlay %}
+        .overlay-{{name}}{
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          background: rgba({{ module.styles.section.background.overlay_color_opacity.color|convert_rgb }}, {{ module.styles.section.background.overlay_color_opacity.opacity/100 }});
+        }
+      {% endif %}
+    {% endif %}
+    
+    @media (max-width: 767px) {
+      .section-{{name}} {
+        {{ module.styles.section.spacing_mobile.css }}
+      }
+    }
+    
+    .section-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }
+    
+    .section-{{name}} .section-limiter {
+      max-width: {{ module.styles.section.content_maximum_width ~ 'px' }};
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+  
+    .section-{{name}} .section-header-{{name}} {
+      display: flex;
+      flex-direction: column;
+/*       align-items: center; */
+      gap: 20px;
+      
+      margin: 0 auto;
+      max-width: {{ module.text_maximum_width ~ 'px' }};
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-heading {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.styles.heading.alignment }};
+      margin-bottom: {{ module.styles.heading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.styles.heading.color_field.color|convert_rgb }}, {{ module.styles.heading.color_field.opacity/100 }});
+      font-size: {{ module.styles.heading.font_size ~ 'px' }};
+      font-weight: {{ module.styles.heading.font_weight }};
+      font-style: {{ module.styles.heading.font_style }};
+      text-transform: {{ module.styles.heading.text_transform }};
+      letter-spacing: {{ module.styles.heading.letter_spacing ~ 'px' }};
+      line-height: {{ module.styles.heading.line_height }};
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-subheading {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.styles.subheading.alignment }};
+      margin-bottom: {{ module.styles.subheading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.styles.subheading.color_field.color|convert_rgb }}, {{ module.styles.subheading.color_field.opacity/100 }});
+      font-size: {{ module.styles.subheading.font_size ~ 'px' }};
+      font-weight: {{ module.styles.subheading.font_weight }};
+      font-style: {{ module.styles.subheading.font_style }};
+      text-transform: {{ module.styles.subheading.text_transform }};
+      letter-spacing: {{ module.styles.subheading.letter_spacing ~ 'px' }};
+      line-height: {{ module.styles.subheading.line_height }};
+    }
+    
+    .section-{{name}} .section-header-{{name}} .text-wrapper .hs_cos_wrapper_type_inline_rich_text > *:last-child {
+      margin-bottom: 0;
+    }
+  
+    .section-{{name}} .section-limiter .topics-container {
+      --min-width: 196px;
+      --max-width: 220px;
+      width: 100%;
+      display: grid;
+/*       grid-template-columns: repeat(5, 1fr); */
+      grid-template-columns: repeat(auto-fit, minmax(min(var(--min-width), 100%), 1fr));
+      gap: 10px;
+    }
+    
+    .section-{{name}} .section-limiter .topics-container .btn-wrapper {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .section-{{name}} .section-limiter .topics-container .btn-wrapper .topic-btn {
+      display: inline-block;
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      padding: 14px 6px;
+      cursor: pointer;
+      width: 100%;
+      letter-spacing: -0.02em; /* dz */
+      min-width: var(--min-width);
+/*       max-width: var(--max-width); */
+      text-decoration: none;
+      text-align: center;
+      transition: var(--transition);
+      color: rgba({{ module.styles.topics.text.color|convert_rgb }}, {{ module.styles.topics.text.opacity/100 }});
+      background: rgba({{ module.styles.topics.background.color|convert_rgb }}, {{ module.styles.topics.background.opacity/100 }});
+      border: 1px solid rgba({{ module.styles.topics.border.color|convert_rgb }}, {{ module.styles.topics.border.opacity/100 }});
+      border-radius: {{ module.styles.topics.border_radius ~ 'px' }};
+    }
+    
+    .section-{{name}} .section-limiter .topics-container .btn-wrapper .topic-btn:hover {
+      color: rgba({{ module.styles.topics.text_hover.color|convert_rgb }}, {{ module.styles.topics.text_hover.opacity/100 }});
+      background: rgba({{ module.styles.topics.background_hover.color|convert_rgb }}, {{ module.styles.topics.background_hover.opacity/100 }});
+      border: 1px solid rgba({{ module.styles.topics.border_hover.color|convert_rgb }}, {{ module.styles.topics.border_hover.opacity/100 }});
+    }
+
+   {% scope_css %} 
+    .hs-search-field__bar > form {
+      {% if module.styles.container.color.color %}
+        background-color: {{ module.styles.container.color.css }};
+      {% endif %}
+      {% if module.styles.container.radius >= 0 %}
+        border-radius: {{ module.styles.container.radius ~ "px" }};
+      {% endif %}
+      {{ module.styles.container.spacing.spacing.css }}
+    }
+
+    .hs-search-field__bar > form > label {
+      {{ module.styles.field_label.spacing.spacing.css }}
+      {{ module.styles.field_label.text.font.css }}
+    }
+
+    .hs-search-field__bar > form > .hs-search-field__input {
+      {{ module.styles.input.spacing.spacing.css }}
+      {{ module.styles.input.text.font.css }}
+      {% if module.styles.input.background.color.css %}
+        background-color: {{ module.styles.input.background.color.css }};
+      {% endif %}
+      {{ module.styles.input.border.border.css }}
+      {% if !module.styles.input.border.border.css and module.styles.input.border.border %}
+        {% for side, border in module.styles.input.border.border.items() %}
+          {% if valid_border_sides is containing side %}
+            border-{{ side }}: 1px {{ border.style }} {{ theme.colors.primary.color }};
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if module.styles.input.corner.radius >= 0 %}
+        border-radius: {{ module.styles.input.corner.radius ~ "px" }};
+      {% endif %}
+    }
+
+    .hs-search-field__button {
+      {% if module.styles.button.background.color.css %}
+        background-color: {{ module.styles.button.background.color.css }};
+      {% endif %}
+      {{ module.styles.button.border.border.css }}
+      {% if !module.styles.button.border.border.css and module.styles.button.border.border %}
+        {% for side, border in module.styles.button.border.border.items() %}
+          {% if valid_border_sides is containing side %}
+            border-{{ side }}: 1px {{ border.style }} {{ theme.colors.primary.color }};
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if module.styles.button.corner.radius >= 0 %}
+        border-radius: {{ module.styles.button.corner.radius ~ "px" }};
+      {% endif %}
+      {{ module.styles.button.spacing.spacing.css }}
+      {{ module.styles.button.text.font.css }}
+      {% if module.styles.button.text.transform %}
+        text-transform: {{ module.styles.button.text.transform }};
+      {% endif %}
+    }
+
+    .hs-search-field__button:hover, .hs-search-field__button:focus {
+      {% if module.styles.button.hover.background.color.css %}
+        background-color: {{ module.styles.button.hover.background.color.css }};
+      {% endif %}
+      {{ module.styles.button.hover.text.font.css }}
+      {{ module.styles.button.hover.border.border.css }}
+      {% if !module.styles.button.hover.border.border.css and module.styles.button.hover.border.border %}
+        {% for side, border in module.styles.button.hover.border.border.items() %}
+          {% if valid_border_sides is containing side %}
+            border-{{ side }}: 1px {{ border.style }} {{ theme.colors.primary.color }};
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+    }
+
+    {% if has_search_icon and module.styles.button.hover.text.font.color %}
+      .hs-search-field__button:hover svg,
+      .hs-search-field__button:focus svg {
+        fill: {{ module.styles.button.hover.text.font.color }};
+      }
+    {% endif %}
+
+    .hs-search-field__button:active {
+      {% if module.styles.button.hover.background.color.color %}
+        background-color: rgba({{ color_variant(module.styles.button.hover.background.color.color, 80)|convert_rgb }}, {{ module.styles.button.hover.background.color.opacity / 100 }});
+      {% endif %}
+      {{ module.styles.button.hover.border.border.css }}
+      {% if module.styles.button.hover.border.border %}
+        border-color: {{ color_variant(module.styles.button.hover.border.border.top.color, 80) }};
+      {% endif %}
+      {% if !module.styles.button.hover.border.border.css and module.styles.button.hover.border.border %}
+        {% for side, border in module.styles.button.hover.border.border.items() %}
+          {% if valid_border_sides is containing side %}
+            border-{{ side }}: 1px {{ border.style }} {{ theme.colors.primary.color }};
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if module.styles.button.hover.text.font.color %}
+        color: {{ module.styles.button.hover.text.font.color }};
+      {% endif %}
+      {{ module.styles.button.hover.text.font.css }}
+    }
+
+    {% if has_search_icon and module.styles.button.hover.text.font.color %}
+      .hs-search-field__button:active svg {
+        fill: {{ module.styles.button.hover.text.font.color }};
+      }
+    {% endif %}
+
+    .hs-search-field--open .hs-search-field__suggestions {
+      {% if module.styles.autosuggest_results.background.color.css %}
+        background-color: {{ module.styles.autosuggest_results.background.color.css }};
+      {% endif %}
+      {{ module.styles.autosuggest_results.spacing.spacing.css }}
+      {{ module.styles.autosuggest_results.border.border.css }}
+      {% if !module.styles.autosuggest_results.border.border.css and module.styles.autosuggest_results.border.border %}
+        {% for side, border in module.styles.autosuggest_results.border.border.items() %}
+          {% if valid_border_sides is containing side %}
+            border-{{ side }}: 1px {{ border.style }} {{ theme.colors.primary.color }};
+          {% endif %}
+        {% endfor %}
+      {% endif %}
+      {% if module.styles.autosuggest_results.corner.radius >= 0 %}
+        border-radius: {{ module.styles.autosuggest_results.corner.radius ~ "px" }};
+      {% endif %}
+      {{ module.styles.autosuggest_results.text.header_font.css }}
+    }
+
+    .hs-search-field--open .hs-search-field__suggestions a {
+      {{ module.styles.autosuggest_results.text.suggestion_font.css }}
+    }
+
+    .hs-search-field--open .hs-search-field__suggestions a:hover {
+      {% if module.styles.autosuggest_results.hover.text.font.color %}
+        color: {{ module.styles.autosuggest_results.hover.text.font.color }};
+      {% endif %}
+      {{ module.styles.autosuggest_results.hover.text.suggestion_font.css }}
+      {% if module.styles.autosuggest_results.hover.background.color.color %}
+        background-color: rgba({{ color_variant(module.styles.autosuggest_results.hover.background.color.color, 80)|convert_rgb }}, {{ module.styles.autosuggest_results.hover.background.color.opacity / 100 }});
+      {% endif %}
+    }
+  {% end_scope_css %}
+
+    .section-{{name}} .section-limiter .form-title,
+    .section-{{name}} .section-limiter label:not(.hs_error_rollup label) {
+      display: none;
+    }
+    
+    .section-{{name}} .section-limiter .hs-search-field {
+      width: 100%;
+      max-width: 500px;
+      margin: 0 auto;
+    }
+    
+    .section-{{name}} .section-limiter form {
+      position: relative;
+      width: 100%;
+    }
+
+    .section-{{name}} .section-limiter .hs-form-field {
+      margin: 0;
+    }
+    
+    .section-{{name}} .section-limiter .hs-search-field input {
+      padding: 13px 100px 13px 12px;
+      border: 1px solid #ccc;
+      color: var(--clr-dark-beige);
+      
+      height: 47px !important;
+    }
+
+    .section-{{name}} .section-limiter .hs_error_rollup label {
+      font-size: 14px;
+      color: var(--clr-light);
+      margin-bottom: 0;
+    }
+
+    .section-{{name}} .section-limiter form ::-webkit-input-placeholder {
+      color: var(--clr-light-beige);
+    }
+
+    .section-{{name}} .section-limiter form ::-moz-placeholder {
+      color: var(--clr-light-beige);
+    }
+
+    .section-{{name}} .section-limiter form :-ms-input-placeholder {
+      color: var(--clr-light-beige);
+      opacity: 1;
+    }
+
+    .section-{{name}} .section-limiter form ::placeholder {
+      color: var(--clr-light-beige);
+    }
+
+    .section-{{name}} .section-limiter form .hs-search-field__button {
+      padding: 11px 20px !important;
+/*       height: 38px; */
+      height: 41px !important;
+      margin: 0;
+      border: none;
+      font-size: 14px !important;
+      line-height: 1.2 !important;
+      font-weight: 700 !important;
+      position: absolute;
+      top: 3px;
+      right: 3px;
+      background: var(--clr-light-beige);
+      color: var(--clr-light);
+    }
+
+    .section-{{name}} .section-limiter form .hs-search-field__button:hover {
+      background: #B1A599;
+    }  
+    
+    .section-{{name}} .section-limiter form .hs-search-field__suggestions .results-for {
+      line-height: 1.4;
+      color: var(--clr-dark-beige);
+      font-size: 14px;
+      font-weight: 700;
+      margin-top: 10px;
+    }
+    
+</style>
+{% end_require_css %}
+
+<section class="section-{{name}}" role="region">
+  {% if module.style.section.background.background_type == 'image' %}
+    {% if module.style.section.background.background_image_overlay %}
+      <div class="overlay-{{name}}" aria-hidden="true"></div>
+    {% endif %}
+  {% endif %}
+  
+  <div class="section-limiter">
+    
+    <div class="section-header-{{name}}"> 
+      {% if module.show_subheading %}
+        <h5 class="section-subheading">{{ module.subheading }}</h5>
+      {% endif %}
+
+      {# Section title #}
+      {% if module.show_heading %}
+        <h2 class="section-heading">{{ module.heading }}</h2>
+      {% endif %}
+
+      {# Supporting text #}
+      {% if module.show_supporting_text %}
+      <div class="text-wrapper">
+        {% inline_rich_text field="supporting_text" value="{{ module.supporting_text }}" %}
+      </div>
+      {% endif %}
+    </div>
+
+    <div class="hs-search-field">
+      <div class="hs-search-field__bar {{ button_position_class|escape_attr }} {{ button_alignment_class|escape_attr }} {{ show_suggest_in_editor_class|escape_attr }}">
+        <form data-hs-do-not-collect="true" class="hs-search-field__form" action="{{ search_page|escape_url }}">
+
+          <label class="hs-search-field__label {% if hide_search_label %}show-for-sr{% endif %}" for="{{ name ~ "-input"|escape_attr }}">{{ module.input.field_label|sanitize_html or module.default_text.sr_search_field_aria_label|sanitize_html }}</label>
+
+          <input
+            role="combobox"
+            aria-expanded="false"
+            aria-controls="autocomplete-results"
+            aria-label="{{ module.default_text.sr_search_field_aria_label|escape_attr }}"
+            type="search"
+            class="hs-search-field__input"
+            id="{{ name ~ "-input"|escape_attr }}"
+            name="q"
+            autocomplete="off"
+            aria-autocomplete="list"
+            placeholder="{{ module.input.placeholder|escape_attr }}">
+
+          {% if module.results.content_types.website_pages %}
+            <input type="hidden" name="type" value="SITE_PAGE">
+          {% endif %}
+          {% if module.results.content_types.landing_pages %}
+            <input type="hidden" name="type" value="LANDING_PAGE">
+          {% endif %}
+          {% if module.results.content_types.blog_posts %}
+            <input type="hidden" name="type" value="BLOG_POST">
+            <input type="hidden" name="type" value="LISTING_PAGE">
+          {% endif %}
+          {% if module.results.content_types.knowledge_articles %}
+            <input type="hidden" name="type" value="KNOWLEDGE_ARTICLE">
+          {% endif %}
+          {% if module.results.group_id %}
+            <input type="hidden" name="groupId" value="{{ module.results.group_id|escape_attr }}">
+          {% endif %}
+
+          <button class="hs-search-field__button {{ button_label_class|escape_attr }}" aria-label="{{ module.default_text.sr_search_button_aria_label|escape_attr }}">{% if has_search_icon %}
+            {% icon
+              name={{ module.button.icon.name }}
+              style={{ module.button.icon.type }}
+              unicode={{ module.button.icon.unicode }}
+              icon_set={{ module.button.icon.icon_set }}
+            %}
+            {% endif %} {{ module.button.button_label }}</button>
+          <div class="hs-search-field__suggestions-container {% if is_in_editor %} hs-editor-hide-until-active {% endif %}">
+            <ul
+              id="autocomplete-results"
+              role="listbox"
+              aria-label="term"
+              class="hs-search-field__suggestions">
+              {% if is_in_editor %}
+              <li role="option" tabindex="-1" aria-posinset="1" aria-setsize="3" class="results-for">{{ module.default_text.as_example_search_results|sanitize_html }}</li>
+              <li role="option" aria-posinset="2" tabindex="1"><a href="#">{{ module.default_text.as_example_line_1|sanitize_html }}</a></li>
+              <li role="option" aria-posinset="3" tabindex="2"><a href="#">{{ module.default_text.as_example_line_2|sanitize_html }}</a></li>
+              <li role="option" aria-posinset="4" tabindex="3"><a href="#">{{ module.default_text.as_example_line_3|sanitize_html }}</a></li>
+              {% else %}
+                <li role="option" tabindex="-1" aria-posinset="1" aria-setsize="0" class="results-for show-for-sr">{{ module.default_text.sr_empty_search_field_message|sanitize_html }}</li>
+              {% endif %}
+            </ul>
+          </div>
+        </form>
+      </div>
+      
+      <div id="sr-messenger" class="hs-search-sr-message-container show-for-sr"
+          role="status"
+          aria-live="polite"
+          aria-atomic="true">
+      </div>
+    </div>
+    
+    <div class="topics-container">
+      {% for item in module.topics %}
+        <div class="btn-wrapper">
+          {% set href = item.button_link.url.href %}
+          {% if item.button_link.url.type is equalto "EMAIL_ADDRESS" %}
+            {% set href = "mailto:" + href %}
+          {% endif %}
+          <a class="topic-btn"
+            {% if item.button_link.url.type is equalto "CALL_TO_ACTION"  %}
+              href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+            {% else %}
+              href="{{ href|escape_url }}"
+            {% endif %}
+            {% if item.button_link.open_in_new_tab %}
+              target="_blank"
+            {% endif %}
+            {% if item.button_link.rel %}
+              rel="{{ item.button_link.rel|escape_attr }}"
+            {% endif %}
+            >
+            {{ item.button_text }}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+{% require_js position="head" %}
+<script data-search_input-config="config_{{ name|escape_attr }}" type="application/json">
+{
+  "autosuggest_results_message": "{{ module.default_text.autosuggest_results_message|escapejson }}",
+  "autosuggest_no_results_message": "{{ module.default_text.autosuggest_no_results_message|escapejson }}",
+  "sr_empty_search_field_message": "{{ module.default_text.sr_empty_search_field_message|escapejson }}",
+  "sr_autosuggest_results_message": "{{ module.default_text.sr_autosuggest_results_message|escapejson }}",
+  "sr_search_field_aria_label": "{{ module.default_text.sr_search_field_aria_label|escapejson }}",
+  "sr_search_button_aria_label": "{{ module.default_text.sr_search_button_aria_label|escapejson }}"
+}
+</script>
+{% end_require_js %}

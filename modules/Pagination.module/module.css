@@ -1,0 +1,94 @@
+/* Pagination */
+
+.hs-pagination {
+  align-items: center;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+/* Pagination links */
+
+.hs-pagination__link {
+  align-items: center;
+  display: flex;
+/*   margin-right: 0.5rem; */
+  margin-right: 10px;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1.2;
+  text-transform: uppercase;
+}
+
+.hs-pagination__link:last-child {
+  margin-right: 0;
+}
+
+.hs-pagination__link,
+.hs-pagination__link:hover,
+.hs-pagination__link:focus,
+.hs-pagination__link:active {
+  text-decoration: none;
+}
+
+.hs-pagination__link:hover,
+.hs-pagination__link:hover .hs-pagination__link-text,
+.hs-pagination__link-text {
+  font-weight: 500;
+}
+
+.hs-pagination__link-text {
+  margin-top: 2px;
+  transition: var(--transition);
+}
+
+.hs-pagination__link:hover .hs-pagination__link-text {
+  color: var(--clr-dark-beige);
+}
+
+.hs-pagination__link svg path {
+  transition: var(--transition);
+}
+
+.hs-pagination__link:hover svg path {
+  fill:  var(--clr-dark-beige);
+}
+
+.hs-pagination__link--text-and-icon.hs-pagination__link--first > .hs-pagination__link-icon,
+.hs-pagination__link--text-and-icon.hs-pagination__link--prev > .hs-pagination__link-icon {
+  margin-right: 0.125rem;
+}
+
+.hs-pagination__link--text-and-icon.hs-pagination__link--last > .hs-pagination__link-icon,
+.hs-pagination__link--text-and-icon.hs-pagination__link--next > .hs-pagination__link-icon {
+  margin-left: 0.125rem;
+}
+
+.hs-pagination__link-icon {
+  display: inline-flex;
+}
+
+.hs-pagination__link-icon svg {
+/*   height: 16px; */
+/*   width: 16px; */
+  height: 20px;
+  width: 20px;
+}
+
+.hs-pagination__link--number {
+/*   padding: 0.25rem 0.5rem; */
+  padding: 4px 10px;
+}
+
+@media (max-width: 767px) {
+  .hs-pagination__show-for-sr--mobile {
+    border: 0 !important;
+    clip: rect(0, 0, 0, 0) !important;
+    height: 1px !important;
+    overflow: hidden !important;
+    padding: 0 !important;
+    position: absolute !important;
+    white-space: nowrap !important;
+    width: 1px !important;
+  }
+}

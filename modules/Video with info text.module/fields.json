@@ -1,0 +1,269 @@
+[ {
+  "id" : "video_type",
+  "name" : "video_type",
+  "label" : "Video type",
+  "required" : false,
+  "locked" : false,
+  "visibility_rules" : "ADVANCED",
+  "advanced_visibility" : {
+    "boolean_operator" : "OR",
+    "criteria" : [ {
+      "controlling_field" : null,
+      "controlling_field_path" : null,
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : null,
+      "access" : {
+        "operator" : "HAS_ALL",
+        "scopes" : [ "marketing-video" ]
+      }
+    }, {
+      "controlling_field" : "video_type",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "hubspot_video",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    } ],
+    "children" : [ ]
+  },
+  "display" : "radio",
+  "choices" : [ [ "embed", "Embed" ], [ "hubspot_video", "HubSpot video" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "embed"
+}, {
+  "id" : "hubspot_video",
+  "name" : "hubspot_video",
+  "label" : "HubSpot video",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "video_type",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "hubspot_video",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "resizable" : true,
+  "show_preview" : true,
+  "show_advanced_options" : true,
+  "type" : "videoplayer",
+  "display_width" : null
+}, {
+  "id" : "embed_field",
+  "name" : "embed_field",
+  "label" : "Embed",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : "video_type",
+    "controlling_field_path" : null,
+    "controlling_value_regex" : "embed",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "supported_source_types" : [ "oembed", "html" ],
+  "supported_oembed_types" : [ "video" ],
+  "resizable" : true,
+  "show_preview" : true,
+  "supported_media_bridge_providers" : [ ],
+  "type" : "embed",
+  "display_width" : null,
+  "default" : {
+    "source_type" : "oembed"
+  }
+}, {
+  "id" : "oembed_thumbnail",
+  "name" : "oembed_thumbnail",
+  "label" : "Custom thumbnail",
+  "required" : false,
+  "locked" : false,
+  "visibility_rules" : "ADVANCED",
+  "advanced_visibility" : {
+    "boolean_operator" : "AND",
+    "criteria" : [ {
+      "controlling_field" : "video_type",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "embed",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    }, {
+      "controlling_field" : "embed_field",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "(?=.*\"source_type\":\"oembed\")",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    }, {
+      "controlling_field" : "embed_field",
+      "controlling_field_path" : null,
+      "controlling_value_regex" : "(?=.*\"oembed_url\":\"(?!\")+)",
+      "property" : null,
+      "operator" : "MATCHES_REGEX",
+      "access" : null
+    } ],
+    "children" : [ ]
+  },
+  "responsive" : true,
+  "resizable" : false,
+  "show_loading" : false,
+  "type" : "image",
+  "display_width" : null,
+  "default" : {
+    "src" : "",
+    "alt" : null,
+    "size_type" : null,
+    "width" : null,
+    "height" : null,
+    "max_width" : null,
+    "max_height" : null,
+    "loading" : "disabled"
+  }
+}, {
+  "id" : "style_options",
+  "name" : "style_options",
+  "label" : "Style options",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style_options.oembed_thumbnail_play_button_color",
+    "name" : "oembed_thumbnail_play_button_color",
+    "label" : "Play button color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : null,
+      "controlling_value_regex" : null,
+      "property" : null,
+      "operator" : null,
+      "access" : null,
+      "hidden_subfields" : {
+        "opacity" : true
+      }
+    },
+    "visibility_rules" : "ADVANCED",
+    "advanced_visibility" : {
+      "boolean_operator" : "OR",
+      "criteria" : [ ],
+      "children" : [ {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : "video_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "hubspot_video",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : "hubspot_video",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "(?=.*\"player_id\":\\d+)",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        } ],
+        "children" : [ ]
+      }, {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : "video_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "embed",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : "embed_field",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "(?=.*\"source_type\":\"oembed\")",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        }, {
+          "controlling_field" : "embed_field",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "(?=.*\"oembed_url\":\"(?!\")+)",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        }, {
+          "controlling_field" : "oembed_thumbnail",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "(?=.*\"src\":\"(?!\")+)",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        } ],
+        "children" : [ ]
+      } ]
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#ffffff"
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "oembed_thumbnail_play_button_color" : {
+      "color" : "#ffffff"
+    }
+  }
+}, {
+  "id" : "placeholder_fields",
+  "name" : "placeholder_fields",
+  "label" : "Placeholder text",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "placeholder_fields.placeholder_title",
+    "name" : "placeholder_title",
+    "label" : "Video placeholder title",
+    "required" : false,
+    "locked" : true,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "No video selected"
+  }, {
+    "id" : "placeholder_fields.placeholder_description",
+    "name" : "placeholder_description",
+    "label" : "Video placeholder description",
+    "required" : false,
+    "locked" : true,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Select a video type in the sidebar."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "placeholder_title" : "No video selected",
+    "placeholder_description" : "Select a video type in the sidebar."
+  }
+}, {
+  "id" : "dddc46eb-535a-5272-67b3-bfdfcd0083ac",
+  "name" : "info_text",
+  "label" : "Info text",
+  "required" : false,
+  "locked" : false,
+  "type" : "richtext",
+  "display_width" : null,
+  "default" : ""
+} ]

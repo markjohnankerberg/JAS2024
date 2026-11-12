@@ -1,0 +1,82 @@
+<div class="flinks-{{name}}" role="list">
+  {% for item in module.links %}
+    <div class="flink" role="listitem">
+      {% set href = item.link_field.url.href %}
+      {% if item.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% endif %}
+      <a class="flink-text"
+        {% if item.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+        {% else %}
+          href="{{ href|escape_url }}"
+        {% endif %}
+        {% if item.link_field.open_in_new_tab %}
+          target="_blank"
+        {% endif %}
+        {% if item.link_field.rel %}
+          rel="{{ item.link_field.rel|escape_attr }}"
+        {% endif %}
+        >
+        {{ item.text_field }}
+      </a>
+    </div>
+  
+    {% if not loop.last %}
+      <span class="pipeline" aria-hidden="true">|</span>
+    {% endif %}
+  {% endfor %}
+</div>
+
+{% require_css %}
+  <style>
+    .flinks-{{name}} *,
+    .flinks-{{name}} *::before,
+    .flinks-{{name}} *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+    
+    .flinks-{{name}} .flink-text,
+    .flinks-{{name}} .pipeline {
+      color: rgba({{ module.text_color.color|convert_rgb }}, {{ module.text_color.opacity/100 }});
+      transition: var(--transition);
+    }
+    
+    .flinks-{{name}} .flink-text:hover {
+      color: rgba({{ module.text_color_hover.color|convert_rgb }}, {{ module.text_color_hover.opacity/100 }});
+    }
+    
+    .flinks-{{name}} {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+    
+    .flinks-{{name}} .flink .flink-text {
+      text-decoration: none;
+      text-transform: uppercase;
+      font-size: 14px;
+      line-height: 1.2;
+      cursor: pointer;
+      font-weight: 500;
+/*       -webkit-text-stroke: thin; */
+    }
+    
+/*     .flinks-{{name}} .pipeline {
+      -webkit-text-stroke: thin;
+    } */
+    
+    @media (max-width: 600px) {
+      .flinks-{{name}} {
+        flex-direction: column;
+      }
+      
+      .flinks-{{name}} .pipeline {
+        display: none;
+      }
+    }
+    
+  </style>
+{% end_require_css %}

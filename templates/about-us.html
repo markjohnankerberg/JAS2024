@@ -1,0 +1,634 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: About us 2024
+  screenshotPath: ../images/template-previews/about-us.png
+-->
+
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--about"
+%}
+  
+  {# Section #1 - Heading #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0;"><span style="color: #000000;">About Us</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #2 - About Us section #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Custom section header",
+          offset=0,
+          width=12,
+          heading="The John Ankerberg Show is a television and media ministry committed to defending the Christian faith, encouraging the believer, and challenging the skeptic.",
+          show_heading=true,
+          style={
+            "heading" : {
+              "color_field" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            },
+            "section" : {
+              "background" : {
+                "background_color" : {
+                  "color" : "#393D3F",
+                  "opacity" : 100
+                }
+              }
+            },
+            "subheading" : {
+              "color_field" : {
+                "color" : "#FFFFFF",
+                "opacity" : 100
+              }
+            }
+          },
+          subheading="About us",
+          text_maximum_width=740
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: center;"><span style="color: #ffffff;">For over 40 years The John Ankerberg Show has offered Real Answers to Real Questions and presented and defended the Christian faith. In all areas of ministry and through a variety of media outlets, our mission is to provide answers to tough theological questions in order to proclaim biblical truth, encourage the believer, and challenge the skeptic.</span></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Statement of Belief section #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Statement cards",
+          offset=0,
+          width=12,
+          cards=[ {
+            "supporting_text" : "We believe in one God, eternally existing in three persons: Father, Son and Holy Spirit.",
+            "supporting_text_field_type" : "text",
+            "title" : "ONE GOD"
+          }, {
+            "supporting_text" : "We believe that man was created in the image of God; that he sinned and thereby incurred not only physical death but also that spiritual death which is separation from God; and that all human beings are born with a sinful nature and, in the case of those who reach moral responsibility, become sinners in thought, word and deed.",
+            "supporting_text_field_type" : "text",
+            "title" : "THE HUMAN CONDITION"
+          }, {
+            "supporting_text" : "We believe that all who receive by repentance and faith the Lord Jesus Christ are born again of the Holy Spirit, and become children of God.",
+            "supporting_text_field_type" : "text",
+            "title" : "BECOMING A CHILD OF GOD"
+          }, {
+            "supporting_text" : "We believe in the resurrection of the crucified body of our Lord, His ascension into heaven and His present life there for us as a High Priest and Advocate.",
+            "supporting_text_field_type" : "text",
+            "title" : "RESURRECTION"
+          }, {
+            "supporting_text" : "We believe that Jesus Christ was begotten by the Holy Spirit and born of the Virgin Mary and is true God and true man.",
+            "supporting_text_field_type" : "text",
+            "title" : "SON OF GOD"
+          }, {
+            "supporting_text" : "We believe that the Lord Jesus Christ died for our sins according to the Scriptures, as a representative and substitutionary sacrifice and that all who believe in Him are justified on the ground of His shed blood.",
+            "supporting_text_field_type" : "text",
+            "title" : "FORGIVENESS THROUGH JESUS"
+          }, {
+            "supporting_text" : "We believe in the bodily resurrection of the just and the unjust, the everlasting blessedness of the saved and the everlasting punishment of the lost.",
+            "supporting_text_field_type" : "text",
+            "title" : "EVERLASTING LIFE"
+          } ],
+          text_maximum_width=720
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #4 - CTA Banner #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/CTA Banner",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "READ THE JA SHOW'S STORY",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/meet-the-ankerbergs/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-normal"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "href_with_scheme" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          heading="Learn about the ministry",
+          show_subheading=false,
+          show_supporting_text=false,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/about_us_cta_banner.png"
+                },
+                "background_image_overlay" : false,
+                "overlay_color_opacity" : {
+                  "colors" : [ {
+                    "color" : {
+                      "a" : 0.4,
+                      "b" : 75,
+                      "g" : 49,
+                      "r" : 27
+                    }
+                  }, {
+                    "color" : {
+                      "a" : 0.4,
+                      "b" : 75,
+                      "g" : 49,
+                      "r" : 27
+                    }
+                  } ],
+                  "css" : "linear-gradient(to bottom, rgba(27, 49, 75, 0.4), rgba(27, 49, 75, 0.4))",
+                  "side_or_corner" : {
+                    "verticalSide" : "BOTTOM"
+                  }
+                }
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 200
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 200
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 150
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 150
+                  }
+                }
+              }
+            }
+          },
+          subheading="",
+          text_maximum_width=660
+        %}
+          {% module_attribute "supporting_text" %}
+
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #5 - Rich text #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "30px"
+      }
+    },
+    max_width=750
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h3 style="text-align: center; margin-bottom: 30px; font-weight: 600; font-size: 24px;">The John Ankerberg Show’s outreach extends far beyond the borders of America and is not limited to the weekly television program.</h3>
+            <p style="text-align: center; margin-bottom: 0; font-weight: 500;">The combination of our broadcast and online presence has allowed us to reach more people with the Gospel and much needed discipleship materials in exciting new ways. Some of our greatest recent impact has taken place in Southeast Asia, where we broadcast in English, Hindi, Telugu, and Tamil to over 80% of all television homes. Combined with online and mobile initiatives, we are seeing many people around the world come to faith in Christ and grow in Him. Our approach is to use these 8 areas to connect people to God’s Word.</p>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"]}) }}
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  
+  {# Section #6 - Icon cards #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "top" : "30px"
+      }
+    },
+    full_width=false
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Icon cards",
+          offset=0,
+          width=12,
+          card=[ {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : '<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M8.00023 6V10H4V14H0V34H32V29.9992H35.9998V26H40V6H8.00023ZM30 32.0001H2V16H30V32.0001ZM33.9998 28H32V14H6.00023V12H33.9998V28H33.9998ZM37.9996 23.9992H35.9998V10H10V8H37.9996V23.9992ZM12 18V29.9992L20 23.9992L12 18ZM14 21.9992L16.668 23.9993L14 26V21.9992Z\" fill=\"#393D3F\"/></svg>',
+            "text_label" : "Episodes"
+          }, {
+            "fill_or_stroke_color" : "stroke",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : '<svg width=\"41\" height=\"40\" viewBox=\"0 0 41 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><g clip-path=\"url(#clip0_666_772)\"><path d=\"M11.2813 7.70836L8.20828 1.5625H2.0625M11.2813 7.70836H38.9375V15.6543C38.9375 18.4368 37.8321 21.1054 35.8645 23.073C33.897 25.0405 31.2284 26.1459 28.4459 26.1459H16.527C15.1357 26.1459 13.8014 25.5932 12.8177 24.6094C11.8339 23.6256 11.2813 22.2913 11.2813 20.9001V7.70836ZM30.487 30.7552C28.3655 30.7552 26.6458 32.475 26.6458 34.5964C26.6458 36.7178 28.3655 38.4375 30.487 38.4375C32.6084 38.4375 34.3281 36.7178 34.3281 34.5964C34.3281 32.475 32.6084 30.7552 30.487 30.7552ZM16.638 30.7552C14.5166 30.7552 12.7969 32.475 12.7969 34.5964C12.7969 36.7178 14.5166 38.4375 16.638 38.4375C18.7595 38.4375 20.4791 36.7178 20.4791 34.5964C20.4791 32.475 18.7595 30.7552 16.638 30.7552Z\" stroke=\"#393D3F\" stroke-width=\"2.3\" stroke-miterlimit=\"10\" stroke-linecap=\"round\" stroke-linejoin=\"round\"/></g><defs><clipPath id=\"clip0_666_772\"><rect width=\"40\" height=\"40\" fill=\"white\" transform=\"translate(0.5)\"/></clipPath></defs></svg>',
+            "text_label" : "Resources"
+          }, {
+            "fill_or_stroke_color" : "fill",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : '<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><path d=\"M16.2941 30.5035C16.4529 30.5988 16.6435 30.6412 16.8235 30.6412C17.0035 30.6412 17.1941 30.5988 17.3529 30.5035L26.6176 25.1565C26.9459 24.9659 27.1471 24.6165 27.1471 24.2353C27.1471 23.8541 26.9459 23.5047 26.6176 23.3141L17.3529 17.9671C17.0247 17.7765 16.6224 17.7765 16.2941 17.9671C15.9659 18.1576 15.7647 18.5071 15.7647 18.8882V29.5824C15.7647 29.9635 15.9659 30.3129 16.2941 30.5035ZM17.8824 20.7306L23.9706 24.2459L17.8824 27.7612V20.7412V20.7306ZM34.8235 2H5.17647C3.42941 2 2 3.42941 2 5.17647V34.8235C2 36.5706 3.42941 38 5.17647 38H34.8235C36.5706 38 38 36.5706 38 34.8235V5.17647C38 3.42941 36.5706 2 34.8235 2ZM4.11765 5.17647C4.11765 4.59412 4.59412 4.11765 5.17647 4.11765H34.8235C35.4059 4.11765 35.8824 4.59412 35.8824 5.17647V11.5294H4.11765V5.17647ZM35.8824 34.8235C35.8824 35.4059 35.4059 35.8824 34.8235 35.8824H5.17647C4.59412 35.8824 4.11765 35.4059 4.11765 34.8235V13.6471H35.8824V34.8235ZM9.41177 7.82353C9.41177 8.70235 8.70235 9.41177 7.82353 9.41177C6.94471 9.41177 6.23529 8.70235 6.23529 7.82353C6.23529 6.94471 6.94471 6.23529 7.82353 6.23529C8.70235 6.23529 9.41177 6.94471 9.41177 7.82353ZM14.7059 7.82353C14.7059 8.70235 13.9965 9.41177 13.1176 9.41177C12.2388 9.41177 11.5294 8.70235 11.5294 7.82353C11.5294 6.94471 12.2388 6.23529 13.1176 6.23529C13.9965 6.23529 14.7059 6.94471 14.7059 7.82353Z\" fill=\"#393D3F\"/></svg>',
+            "text_label" : "Web Series"
+          }, {
+            "fill_or_stroke_color" : "stroke",
+            "icon_field" : {
+              "name" : "Alternate Fire",
+              "type" : "SOLID",
+              "unicode" : "f7e4"
+            },
+            "icon_type" : "svg",
+            "image_field" : {
+              "alt" : "episodes",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/episodes.svg",
+              "width" : 40
+            },
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "svg_code" : '<svg width=\"40\" height=\"40\" viewBox=\"0 0 40 40\" fill=\"none\" xmlns=\"http://www.w3.org/2000/svg\"><mask id=\"mask0_604_1625\" style=\"mask-type:luminance\" maskUnits=\"userSpaceOnUse\" x=\"0\" y=\"0\" width=\"40\" height=\"40\"><path d=\"M0 3.8147e-06H40V40H0V3.8147e-06Z\" fill=\"white\"/></mask><g mask=\"url(#mask0_604_1625)\"><path d=\"M31.7188 19.9219C31.7188 26.3832 26.4613 31.6406 20 31.6406C13.5387 31.6406 8.28125 26.3832 8.28125 19.9219\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M20 26.9531C16.1167 26.9531 12.9688 23.8052 12.9688 19.9219V8.20312C12.9688 4.31984 16.1167 1.17188 20 1.17188C23.8833 1.17188 27.0312 4.31984 27.0312 8.20312V19.9219C27.0312 23.8052 23.8833 26.9531 20 26.9531Z\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M20 31.6406V38.8281\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M10.625 38.8281H29.375\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M12.9688 8.20312H17.6562\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M12.9688 14.0625H17.6562\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M12.9688 19.9219H17.6562\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M22.3438 8.20312H27.0312\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M22.3438 14.0625H27.0312\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/><path d=\"M22.3438 19.9219H27.0312\" stroke=\"#393D3F\" stroke-width=\"2\" stroke-miterlimit=\"10\"/></g></svg>',
+            "text_label" : "Podcasts"
+          } ],
+          gap_desktop=120,
+          gap_mobile=60
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  
+  {# Section #7 - A note on financial accountability from the Ankerbergs #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Custom section header",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-secondary",
+              "button_text" : "Learn more",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://jashow.org/financial-disclosure/",
+                  "type" : "EXTERNAL"
+                }
+              },
+              "corner_radius" : "radius-s",
+              "horizontal_padding" : "padd-normal"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            }
+          } ],
+          show_button=true,
+          show_subheading=false,
+          style={
+            "section" : {
+              "background" : {
+                "background_color" : {
+                  "color" : "#FAF9F8",
+                  "opacity" : 100
+                }
+              }
+            }
+          },
+          subheading=""
+        %}
+          {% module_attribute "supporting_text" %}
+            <h3 style="text-align: center;"><span style="color: #88817b;">A note on financial accountability from the Ankerbergs</span></h3>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #8 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

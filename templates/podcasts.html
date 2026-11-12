@@ -1,0 +1,1137 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Podcasts 2024
+  screenshotPath: ../images/template-previews/podcasts.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--podcasts"
+%}
+
+  {# Section #1 - Breadcrumbs #}
+  {% dnd_section
+    max_width=1200,
+    background_color="rgba(250, 249, 248, 1)",
+    padding={
+      "default" : {
+        "bottom" : "15px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "18px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    },
+    full_width=false
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Breadcrumbs",
+          offset=0,
+          width=12,
+          breadcrumbs=[ {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "content_id" : 173684607290,
+                "type" : "CONTENT"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Home"
+          }, {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "content_id" : 182802214248,
+                "type" : "CONTENT"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Listen"
+          }, {
+            "page_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "rel" : "",
+              "sponsored" : false,
+              "url" : {
+                "href" : "",
+                "href_with_scheme" : "",
+                "type" : "CONTENT"
+              },
+              "user_generated_content" : false
+            },
+            "text_field" : "Podcasts"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  
+  {# Section #2 - Heading #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0;"><span style="color: #000000;">Podcasts</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Podcast cards #}
+  {% dnd_section
+    max_width=1200,
+    padding={
+      "default" : {
+        "bottom" : "30px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=6,
+      padding={
+        "default" : {
+          "left" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "60px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Podcast card",
+          offset=0,
+          width=12,
+          button={
+            "button_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/the-john-ankerberg-show-podcast/",
+                "type" : "EXTERNAL"
+              }
+            }
+          },
+          podcast_image={
+            "alt" : "The John Ankerberg show radio podcast banner",
+            "height" : 174,
+            "loading" : "lazy",
+            "max_height" : 174,
+            "max_width" : 570,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png",
+            "width" : 570
+          },
+          podcast_link=[ {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "Castro logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://pca.st/itunes/1457996131",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "pocket casts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://podcasts.apple.com/us/podcast/the-john-ankerberg-show-podcast/id1457996131",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "apple podcasts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://overcast.fm/itunes1457996131/the-john-ankerberg-show-podcast",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "overcast logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.jashow.org/feed/jasradio/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "rss feed logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://open.spotify.com/show/4mcJ9IS4GbWuBKyvcn5L0m",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "spotify logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png",
+              "width" : 40
+            }
+          } ],
+          show_heading=false
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: left;"><span>The John Ankerberg Show is a daily radio program that discusses the historical accuracy of the life of Jesus, the Bible and how current issues stand up to Biblical history and Christianity.<br><br></span><span></span></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+    {% dnd_column
+      offset=6,
+      width=6,
+      padding={
+        "default" : {
+          "right" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Podcast card",
+          offset=0,
+          width=12,
+          button={
+            "button_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/verse-by-verse-with-dr-wayne-barber/",
+                "type" : "EXTERNAL"
+              }
+            }
+          },
+          podcast_image={
+            "alt" : "Verse by verse podcast banner",
+            "height" : 174,
+            "loading" : "lazy",
+            "max_height" : 174,
+            "max_width" : 570,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png",
+            "width" : 570
+          },
+          podcast_link=[ {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://castro.fm/podcast/19982a6a-b91c-44e8-972c-d54bc02abd45",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "castro logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://pca.st/itunes/1176598998",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "pocket casts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://podcasts.apple.com/us/podcast/verse-by-verse-bible-study-with-dr-wayne-barber/id1176598998",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "apple podcasts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://overcast.fm/itunes1176598998/verse-by-verse-bible-study-with-dr-wayne-barber",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "overcast logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.jashow.org/feed/verse-by-verse-bible-study-wayne-barber/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "rss feed logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://open.spotify.com/show/0bIVV5almu8qa6BVsWnnjD",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "spotify logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png",
+              "width" : 40
+            }
+          } ]
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: left;">Longtime friend of the John Ankerberg Show, the late Dr. Wayne Barber, provides in-depth verse by verse teaching from the Bible. Listen as Dr. Barber walks you through each passage, explaining how to experience the Christ Life as we live daily in God's grace.</p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {% dnd_section
+    max_width=1200,
+    padding={
+      "default" : {
+        "bottom" : "30px",
+        "top" : "30px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=6,
+      padding={
+        "default" : {
+          "left" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "60px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Podcast card",
+          offset=0,
+          width=12,
+          podcast_image={
+            "alt" : "ankerberg minute podcast banner",
+            "height" : 174,
+            "loading" : "lazy",
+            "max_height" : 174,
+            "max_width" : 570,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/ankerberg_minute_podcast.png",
+            "width" : 570
+          },
+          podcast_link=[ {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://castro.fm/podcast/3218bedc-7edb-4162-afbe-8daf1da76075",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "castro logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://pca.st/wm495y92",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "pocket casts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://podcasts.apple.com/us/podcast/ankerberg-minute/id1482955442?mt=2&ls=1",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "apple podcasts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://overcast.fm/itunes1482955442/ankerberg-minute",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "overcast logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.jashow.org/feed/ankerberg-minute-podcast/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "rss feed logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://open.spotify.com/show/2fyd89zh83FnosunpYNSOW",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "spotify logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png",
+              "width" : 40
+            }
+          } ],
+          show_heading=false
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: left;">The Ankerberg Minute airs nearly 700 times daily nationwide and provides quick answers from apologetics expert Dr. John Ankerberg. The Ankerberg Minute will boost your understanding of hundreds of key issues of the Christian faith including your daily Christian walk, the reliability of the Bible and what God is like.<br><br></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+    {% dnd_column
+      offset=6,
+      width=6,
+      padding={
+        "default" : {
+          "right" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Podcast card",
+          offset=0,
+          width=12,
+          button={
+            "button_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/the-ankerberg-espanol-podcast/",
+                "type" : "EXTERNAL"
+              }
+            }
+          },
+          podcast_image={
+            "alt" : "un minuto podcast banner",
+            "height" : 174,
+            "loading" : "lazy",
+            "max_height" : 174,
+            "max_width" : 570,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/un_minuto_podcast.png",
+            "width" : 570
+          },
+          podcast_link=[ {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://castro.fm/podcast/7103782b-c647-46b1-ad26-d4ae26dcea8a",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "castro logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://pca.st/bpiownl9",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "pocket casts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://podcasts.apple.com/us/podcast/ankerberg-espa%C3%B1ol/id1482955746?mt=2&ls=1",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "apple podcasts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://overcast.fm/itunes1482955746/ankerberg-espa-ol",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "overcast logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://www.jashow.org/feed/ankerberg-espanol/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "rss feed logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://open.spotify.com/show/1143g9FVpqPBAoZX54zy2z",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "spotify logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png",
+              "width" : 40
+            }
+          } ]
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: left;">Un Minuto con John Ankerberg se escucha por toda la nacin alrededor de 700 veces al da proveyendo respuestas rpidas del experto apologeta Dr. John Ankerberg. Este programa revitalizar tu entendimiento de muchos temas claves de la fe cristiana incluyendo tu diario caminar cristiano, la confiabilidad de la Biblia y tu conocimiento de Dios.</p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {% dnd_section
+    max_width=1200,
+    padding={
+      "default" : {
+        "bottom" : "60px",
+        "top" : "30px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=6,
+      padding={
+        "default" : {
+          "left" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "60px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Podcast card",
+          offset=0,
+          width=12,
+          button={
+            "button_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/moment-with-michelle/",
+                "type" : "EXTERNAL"
+              }
+            }
+          },
+          podcast_image={
+            "alt" : "a moment with michelle podcast banner",
+            "height" : 174,
+            "loading" : "lazy",
+            "max_height" : 174,
+            "max_width" : 570,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/a_moment_with_michelle_podcast.png",
+            "width" : 570
+          },
+          podcast_link=[ {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://castro.fm/podcast/ce2bb29e-c5d5-4e5c-a2f6-89e4c9d2feee",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "castro logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://play.pocketcasts.com/discover/podcast/f233e1b0-c0c0-0139-f632-0acc26574db2",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "pocket casts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://podcasts.apple.com/us/podcast/a-moment-with-michelle/id1575369679",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "apple podcasts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://overcast.fm/p3213239-zeAeTh",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "overcast logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://jashow.org/feed/a-moment-with-michelle/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "rss feed logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://open.spotify.com/show/5P3dugWbTHBPfzsbe18NPy",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "spotify logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png",
+              "width" : 40
+            }
+          } ],
+          show_heading=false
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: left;">A Moment with Michelle offers inspirational thoughts to spur you on in your daily walk with Christ. Michelle Ankerberg, daughter of Dr. John Ankerberg, offers encouragement from God’s Word to those who are juggling the many aspects and stresses of life. These moments will remind you of God’s faithfulness and offer practical applications of His word as you walk with Him.</p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+    {% dnd_column
+      offset=6,
+      width=6,
+      padding={
+        "default" : {
+          "right" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Podcast card",
+          offset=0,
+          width=12,
+          button={
+            "button_url" : {
+              "no_follow" : false,
+              "open_in_new_tab" : false,
+              "url" : {
+                "href" : "https://jashow.org/un-momento-con-michelle/",
+                "type" : "EXTERNAL"
+              }
+            }
+          },
+          podcast_image={
+            "alt" : "un momento con michelle podcast banner",
+            "height" : 174,
+            "loading" : "lazy",
+            "max_height" : 174,
+            "max_width" : 570,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/un_momento_con_michelle_podcast.png",
+            "width" : 570
+          },
+          podcast_link=[ {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://castro.fm/podcast/ce2bb29e-c5d5-4e5c-a2f6-89e4c9d2feee",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "castro logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://play.pocketcasts.com/discover/podcast/f233e1b0-c0c0-0139-f632-0acc26574db2",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "pocket casts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://podcasts.apple.com/us/podcast/un-momento-con-michelle-ankerberg/id1600381750",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "apple podcasts logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://overcast.fm/p3213239-zeAeTh",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "overcast logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://jashow.org/feed/un-momento-con-michelle-ankerberg/",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "rss feed logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png",
+              "width" : 40
+            }
+          }, {
+            "link_field" : {
+              "no_follow" : false,
+              "open_in_new_tab" : true,
+              "url" : {
+                "href" : "https://open.spotify.com/show/4ZLAxysmIZgHewIt996A1O?si=1ffefb68668c47ca",
+                "type" : "EXTERNAL"
+              }
+            },
+            "podcast_icon" : {
+              "alt" : "spotify logo",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "auto",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png",
+              "width" : 40
+            }
+          } ]
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: left;">Un Momento con Michelle ofrece pensamientos inspiraciones para alentarte en tu diario caminar con Cristo. Michelle Ankerberg, la hija del Dr. John Ankerberg, ofrece el ánimo de la palabra de Dios a aquellos que están luchando con los grandes aspectos y el estrés de la rutina. Estos momentos te van a recordar de la bondad de Dios y ofrece aplicaciones de su palabra a medida que caminas con El.</p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+
+  {# Section #4 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

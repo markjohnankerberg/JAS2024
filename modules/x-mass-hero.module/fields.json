@@ -1,0 +1,196 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "content.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "CHRISTMAS AT ATRI · 2026"
+  }, {
+    "id" : "content.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Give. Share."
+  }, {
+    "id" : "content.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic line",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Equip."
+  }, {
+    "id" : "content.body_text",
+    "name" : "body_text",
+    "label" : "Body text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "One mission, carried out in many ways. This Christmas, help share God’s Word, equip pastors around the world, and bring biblical truth to people who need it."
+  }, {
+    "id" : "content.cta_primary_text",
+    "name" : "cta_primary_text",
+    "label" : "Primary CTA text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Give to ATRI"
+  }, {
+    "id" : "content.cta_primary_url",
+    "name" : "cta_primary_url",
+    "label" : "Primary CTA link",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#giving"
+  }, {
+    "id" : "content.cta_secondary_text",
+    "name" : "cta_secondary_text",
+    "label" : "Secondary CTA text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Explore Resources"
+  }, {
+    "id" : "content.cta_secondary_url",
+    "name" : "cta_secondary_url",
+    "label" : "Secondary CTA link",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#resources"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "style.background_image",
+    "name" : "background_image",
+    "label" : "Background image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : ""
+    }
+  }, {
+    "id" : "style.background_image_mobile",
+    "name" : "background_image_mobile",
+    "label" : "Mobile background image (optional)",
+    "help_text" : "Shown on phones (600px and below). Use a portrait/square crop. Leave empty to reuse the main image.",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : ""
+    }
+  }, {
+    "id" : "style.bg_color",
+    "name" : "bg_color",
+    "label" : "Background color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#18392f",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.gold_color",
+    "name" : "gold_color",
+    "label" : "Gold accent",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#e7d4a4",
+      "opacity" : 100
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "quicklinks",
+  "name" : "quicklinks",
+  "label" : "Quick links (bottom of hero)",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "quicklinks.enabled",
+    "name" : "enabled",
+    "label" : "Show quick links",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "quicklinks.style",
+    "name" : "style",
+    "label" : "Style",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "strip", "Cream strip along the bottom edge" ], [ "overlay", "On the hero image (translucent)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "strip"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

@@ -1,0 +1,190 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: DnD template - Transparent heading 2025
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--page-th"
+%}
+
+  {# Section #1 - Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Hero",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "Ways you can give",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "href_with_scheme" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "href_with_scheme" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          heading="A Legacy That Lives On",
+          show_button=true,
+          show_subheading=true,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/legacy_hero_bg_2x.png"
+                },
+                "background_image_overlay" : false
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 185
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 185
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              }
+            },
+            "subheading" : {
+              "line_height" : 1.5
+            }
+          },
+          subheading='"One generation shall commend your works to another, and shall declare your mighty acts." Psalm 145:4'
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+
+
+  {# Section - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

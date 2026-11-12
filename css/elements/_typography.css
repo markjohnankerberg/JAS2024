@@ -1,0 +1,129 @@
+/* The overflow-wrap is meant to prevent long/large words from breaking the mobile responsiveness of a page (e.g. horizontal scrolling). It is preferred to reduce font sizes on mobile to address this, with this CSS specifically helping with extreme scenarios where a reduction in font size is not possible. */
+
+body {
+  line-height: 1.4;
+  overflow-wrap: break-word;
+}
+
+/* Handles word breaking for a few specific languages which handle breaks in words differently. If your content is not translated into these languages, you can safely remove this.  */
+
+html[lang^="ja"] body,
+html[lang^="zh"] body,
+html[lang^="ko"] body {
+  line-break: strict;
+  overflow-wrap: normal;
+  word-break: break-all;
+}
+
+/* Paragraphs */
+
+p {
+  font-size: 1rem;
+/*   margin: 0 0 1.4rem; */
+  margin: 0 0 1.25rem;
+}
+
+/* Anchors */
+
+a {
+  cursor: pointer;
+}
+
+p a,
+p span,
+h1 a,
+h2 a,
+h3 a,
+h4 a,
+h5 a,
+h6 a {
+  font-weight: inherit;
+}
+
+p a:hover,
+h1 a:hover,
+h2 a:hover,
+h3 a:hover,
+h4 a:hover,
+h5 a:hover,
+h6 a:hover,
+p a:focus,
+h1 a:focus,
+h2 a:focus,
+h3 a:focus,
+h4 a:focus,
+h5 a:focus,
+h6 a:focus{
+  font-weight: inherit;
+}
+
+/* Headings */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+/*   margin: 0 0 1.4rem; */
+  margin: 0 0 1.25rem;
+}
+
+/* Lists */
+
+ul,
+ol {
+  margin: 0 0 1.4rem;
+}
+
+ul ul,
+ol ul,
+ul ol,
+ol ol {
+  margin: 0;
+}
+
+ul.no-list {
+  list-style: none;
+  margin: 0;
+  padding-left: 0;
+}
+
+/* Code blocks */
+
+pre {
+  overflow: auto;
+}
+
+code {
+  vertical-align: bottom;
+}
+
+/* Blockquotes */
+
+blockquote {
+  border-left: 2px solid;
+  margin: 0 0 1.4rem;
+  padding-left: 0.7rem;
+}
+
+/* Horizontal rules */
+
+hr {
+  border: none;
+  border-bottom: 1px solid #CCC;
+}
+
+/* Image alt text */
+
+img {
+  font-size: 0.583rem;
+  word-break: normal;
+}
+
+/* Module heading - dz */
+
+.module-heading {
+  font-size: 24px;
+  font-weight: 500;
+}

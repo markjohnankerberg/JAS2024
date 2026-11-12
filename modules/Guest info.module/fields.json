@@ -1,0 +1,1343 @@
+[ {
+  "id" : "b3886545-bdda-f18b-8204-16ea285858ea",
+  "name" : "section_id",
+  "label" : "Section ID",
+  "required" : false,
+  "locked" : false,
+  "placeholder" : "yourID",
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "845db473-ae4a-035e-85b5-d45d6e8bc115",
+  "name" : "heading",
+  "label" : "Heading",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : ""
+}, {
+  "id" : "cd1802da-32fd-69f5-ecb0-00522c4b4709",
+  "name" : "guests",
+  "label" : "Guests",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "3407c3e4-77bb-14ed-fa5e-184741f7fdef",
+    "name" : "tab_name",
+    "label" : "Tab name",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Anne Graham Lotz"
+  }, {
+    "id" : "0a4640a7-3e36-f122-05b6-1a8898f2e92a",
+    "name" : "tab_id",
+    "label" : "Tab ID",
+    "help_text" : "You can use the provided ID to create a link from other pages to the guest tab, in the following way: domain.com/pageURL?guest=your-tab-id",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "anne-graham-lotz"
+  }, {
+    "id" : "d0e0fb1c-de38-e3f6-8a5a-bb82b21487ed",
+    "name" : "media_type",
+    "label" : "Media type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "image", "Image" ], [ "video", "Video" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "image"
+  }, {
+    "id" : "7e6d8a4c-2546-07c7-8dbe-0d8d42559bb0",
+    "name" : "headshot",
+    "label" : "Headshot",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "guests.media_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/anne_graham_lotz.png",
+      "alt" : "anne_graham_lotz",
+      "loading" : "lazy",
+      "width" : 250,
+      "height" : 311,
+      "max_width" : 250,
+      "max_height" : 311
+    }
+  }, {
+    "id" : "f471f1eb-7293-e8ec-a188-ea7f60f4fdb4",
+    "name" : "videos",
+    "label" : "Video",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "guests.media_type",
+      "controlling_value_regex" : "video",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "video_type",
+      "name" : "video_type",
+      "label" : "Video type",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "OR",
+        "criteria" : [ {
+          "controlling_field" : null,
+          "controlling_field_path" : null,
+          "controlling_value_regex" : null,
+          "property" : null,
+          "operator" : null,
+          "access" : {
+            "operator" : "HAS_ALL",
+            "scopes" : [ "marketing-video" ]
+          }
+        }, {
+          "controlling_field" : "video_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "hubspot_video",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "display" : "radio",
+      "choices" : [ [ "embed", "Embed" ], [ "hubspot_video", "HubSpot video" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "embed"
+    }, {
+      "id" : "hubspot_video",
+      "name" : "hubspot_video",
+      "label" : "HubSpot video",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "video_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "hubspot_video",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "resizable" : true,
+      "show_preview" : true,
+      "show_advanced_options" : true,
+      "type" : "videoplayer",
+      "display_width" : null
+    }, {
+      "id" : "embed_field",
+      "name" : "embed_field",
+      "label" : "Embed",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : "video_type",
+        "controlling_field_path" : null,
+        "controlling_value_regex" : "embed",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "supported_source_types" : [ "oembed", "html" ],
+      "supported_oembed_types" : [ "video" ],
+      "resizable" : true,
+      "show_preview" : true,
+      "supported_media_bridge_providers" : [ ],
+      "type" : "embed",
+      "display_width" : null,
+      "default" : {
+        "source_type" : "oembed"
+      }
+    }, {
+      "id" : "oembed_thumbnail",
+      "name" : "oembed_thumbnail",
+      "label" : "Custom thumbnail",
+      "required" : false,
+      "locked" : false,
+      "visibility_rules" : "ADVANCED",
+      "advanced_visibility" : {
+        "boolean_operator" : "AND",
+        "criteria" : [ {
+          "controlling_field" : "video_type",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "embed",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        }, {
+          "controlling_field" : "embed_field",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "(?=.*\"source_type\":\"oembed\")",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        }, {
+          "controlling_field" : "embed_field",
+          "controlling_field_path" : null,
+          "controlling_value_regex" : "(?=.*\"oembed_url\":\"(?!\")+)",
+          "property" : null,
+          "operator" : "MATCHES_REGEX",
+          "access" : null
+        } ],
+        "children" : [ ]
+      },
+      "responsive" : true,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      }
+    }, {
+      "id" : "placeholder_fields",
+      "name" : "placeholder_fields",
+      "label" : "Placeholder text",
+      "required" : false,
+      "locked" : true,
+      "children" : [ {
+        "id" : "placeholder_fields.placeholder_title",
+        "name" : "placeholder_title",
+        "label" : "Video placeholder title",
+        "required" : false,
+        "locked" : true,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "No video selected"
+      }, {
+        "id" : "placeholder_fields.placeholder_description",
+        "name" : "placeholder_description",
+        "label" : "Video placeholder description",
+        "required" : false,
+        "locked" : true,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Select a video type in the sidebar."
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "placeholder_title" : "No video selected",
+        "placeholder_description" : "Select a video type in the sidebar."
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "video_type" : "embed",
+      "embed_field" : {
+        "source_type" : "oembed"
+      },
+      "oembed_thumbnail" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      },
+      "placeholder_fields" : {
+        "placeholder_title" : "No video selected",
+        "placeholder_description" : "Select a video type in the sidebar."
+      }
+    }
+  }, {
+    "id" : "e31ed306-013f-843f-5efd-327a6f02b18e",
+    "name" : "content",
+    "label" : "Content",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "children" : [ {
+      "id" : "322da769-4f47-60bd-c4a9-0ce1f823d015",
+      "name" : "content_type",
+      "label" : "Content type",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "con-t", "Text" ], [ "con-sh", "Section title" ], [ "con-h", "List title" ], [ "con-rt", "Rich text" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "con-t"
+    }, {
+      "id" : "38ca5654-a836-d757-c7d6-8a1ee4a65478",
+      "name" : "text",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "guests.content.content_type",
+        "controlling_value_regex" : "con-rt",
+        "property" : null,
+        "operator" : "NOT_EQUAL",
+        "access" : null
+      },
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : ""
+    }, {
+      "id" : "efe36e00-d550-69e3-869c-c79dea709c65",
+      "name" : "richtext_field",
+      "label" : "Rich text",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "guests.content.content_type",
+        "controlling_value_regex" : "con-rt",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "richtext",
+      "display_width" : null,
+      "default" : ""
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "content_type" : "con-t",
+      "text" : "",
+      "richtext_field" : ""
+    } ]
+  }, {
+    "id" : "3e438db6-17d1-aa9a-b179-548d25950c97",
+    "name" : "show_button",
+    "label" : "Show button",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "8fa7714d-4c3f-cb29-b845-936dde40ddd6",
+    "name" : "alignment",
+    "label" : "Button alignment",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "guests.show_button",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "display" : "select",
+    "choices" : [ [ "left", "Left" ], [ "center", "Center" ], [ "right", "Right" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "left"
+  }, {
+    "id" : "ff3cae36-5c03-058e-dca1-d894fac4049f",
+    "name" : "button_group",
+    "label" : "Buttons",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 0,
+      "max" : 3,
+      "sorting_label_field" : null,
+      "default" : 1
+    },
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "guests.show_button",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "f41013ee-4c22-ab91-fd99-609efb5b1174",
+      "name" : "button_type",
+      "label" : "Button type",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "regular", "Button" ], [ "cta", "CTA" ], [ "image", "Image" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "regular"
+    }, {
+      "id" : "fb5f1932-bd75-c57b-2898-d6f73199da33",
+      "name" : "button",
+      "label" : "Button",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "guests.button_group.button_type",
+        "controlling_value_regex" : "regular",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "01b3fb01-e8d3-2ad8-5cbe-419d5e98119f",
+        "name" : "button_style",
+        "label" : "Button style",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "btn-primary"
+      }, {
+        "id" : "abd4604b-a1fb-2ff7-6c7c-9c067fe5d88b",
+        "name" : "corner_radius",
+        "label" : "Corner radius",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "radius-s"
+      }, {
+        "id" : "54af8c13-bb93-bce9-1691-fc8158f9766f",
+        "name" : "horizontal_padding",
+        "label" : "Horizontal padding",
+        "required" : true,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "padd-small", "Small" ], [ "padd-normal", "Normal" ], [ "padd-large", "Large" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "padd-normal"
+      }, {
+        "id" : "bae2500d-ca6f-f5a6-06b8-66fd5f20ec62",
+        "name" : "button_text",
+        "label" : "Button text",
+        "required" : false,
+        "locked" : false,
+        "allow_new_line" : false,
+        "type" : "text",
+        "display_width" : null,
+        "default" : "Watch more"
+      }, {
+        "id" : "56b1bcd2-28f6-3900-fd8d-304418f342e4",
+        "name" : "button_url",
+        "label" : "Button URL",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+        "show_advanced_rel_options" : false,
+        "type" : "link",
+        "display_width" : null,
+        "default" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "button_style" : "btn-primary",
+        "corner_radius" : "radius-s",
+        "horizontal_padding" : "padd-normal",
+        "button_text" : "Watch more",
+        "button_url" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      }
+    }, {
+      "id" : "0a22e60f-2e58-3d29-c8b0-c64aa1b1915c",
+      "name" : "cta_field",
+      "label" : "CTA",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "guests.button_group.button_type",
+        "controlling_value_regex" : "cta",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "type" : "cta",
+      "display_width" : null
+    }, {
+      "id" : "760ba2c8-30be-f748-d51b-6be9f40332d8",
+      "name" : "image",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "visibility" : {
+        "controlling_field" : null,
+        "controlling_field_path" : "guests.button_group.button_type",
+        "controlling_value_regex" : "image",
+        "property" : null,
+        "operator" : "EQUAL",
+        "access" : null
+      },
+      "children" : [ {
+        "id" : "9d0975ff-68dd-b54c-42ef-24235995ca3a",
+        "name" : "image_field",
+        "label" : "Image",
+        "required" : false,
+        "locked" : false,
+        "responsive" : true,
+        "resizable" : true,
+        "show_loading" : false,
+        "type" : "image",
+        "display_width" : null,
+        "default" : {
+          "size_type" : "auto",
+          "src" : "",
+          "alt" : null,
+          "loading" : "lazy"
+        }
+      }, {
+        "id" : "5a5469d3-52f4-0c2a-718e-72cf4a815e92",
+        "name" : "image_url",
+        "label" : "Image URL",
+        "required" : false,
+        "locked" : false,
+        "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+        "type" : "url",
+        "display_width" : null,
+        "default" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        }
+      } ],
+      "tab" : "CONTENT",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "image_field" : {
+          "size_type" : "auto",
+          "src" : "",
+          "alt" : null,
+          "loading" : "lazy"
+        },
+        "image_url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        }
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "button_type" : "regular",
+      "button" : {
+        "button_style" : "btn-primary",
+        "corner_radius" : "radius-s",
+        "horizontal_padding" : "padd-normal",
+        "button_text" : "Watch more",
+        "button_url" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "image" : {
+        "image_field" : {
+          "size_type" : "auto",
+          "src" : "",
+          "alt" : null,
+          "loading" : "lazy"
+        },
+        "image_url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        }
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "tab_name" : "Anne Graham Lotz",
+    "tab_id" : "anne-graham-lotz",
+    "media_type" : "image",
+    "headshot" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/anne_graham_lotz.png",
+      "alt" : "anne_graham_lotz",
+      "loading" : "lazy",
+      "width" : 250,
+      "height" : 311,
+      "max_width" : 250,
+      "max_height" : 311
+    },
+    "videos" : {
+      "video_type" : "embed",
+      "embed_field" : {
+        "source_type" : "oembed"
+      },
+      "oembed_thumbnail" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      },
+      "placeholder_fields" : {
+        "placeholder_title" : "No video selected",
+        "placeholder_description" : "Select a video type in the sidebar."
+      }
+    },
+    "content" : [ {
+      "content_type" : "con-t",
+      "text" : "",
+      "heading" : "",
+      "subheading" : "",
+      "richtext_field" : ""
+    } ],
+    "show_button" : false,
+    "alignment" : "left",
+    "button_group" : [ {
+      "button_type" : "regular",
+      "button" : {
+        "button_style" : "btn-primary",
+        "corner_radius" : "radius-s",
+        "horizontal_padding" : "padd-normal",
+        "button_text" : "Watch more",
+        "button_url" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "image" : {
+        "image_field" : {
+          "size_type" : "auto",
+          "src" : "",
+          "alt" : null,
+          "loading" : "lazy"
+        },
+        "image_url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        }
+      }
+    } ]
+  }, {
+    "tab_name" : "Anne Graham Lotz",
+    "tab_id" : "anne-graham-lotz",
+    "media_type" : "image",
+    "headshot" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Headshots/anne_graham_lotz.png",
+      "alt" : "anne_graham_lotz",
+      "loading" : "lazy",
+      "width" : 250,
+      "height" : 311,
+      "max_width" : 250,
+      "max_height" : 311
+    },
+    "videos" : {
+      "video_type" : "embed",
+      "embed_field" : {
+        "source_type" : "oembed"
+      },
+      "oembed_thumbnail" : {
+        "src" : "",
+        "alt" : null,
+        "size_type" : null,
+        "width" : null,
+        "height" : null,
+        "max_width" : null,
+        "max_height" : null,
+        "loading" : "disabled"
+      },
+      "placeholder_fields" : {
+        "placeholder_title" : "No video selected",
+        "placeholder_description" : "Select a video type in the sidebar."
+      }
+    },
+    "content" : [ {
+      "content_type" : "con-t",
+      "text" : "",
+      "heading" : "",
+      "subheading" : "",
+      "richtext_field" : ""
+    } ],
+    "show_button" : false,
+    "alignment" : "left",
+    "button_group" : [ {
+      "button_type" : "regular",
+      "button" : {
+        "button_style" : "btn-primary",
+        "corner_radius" : "radius-s",
+        "horizontal_padding" : "padd-normal",
+        "button_text" : "Watch more",
+        "button_url" : {
+          "url" : {
+            "content_id" : null,
+            "href" : "https://jashow.org/",
+            "type" : "EXTERNAL"
+          },
+          "open_in_new_tab" : false,
+          "no_follow" : false
+        }
+      },
+      "image" : {
+        "image_field" : {
+          "size_type" : "auto",
+          "src" : "",
+          "alt" : null,
+          "loading" : "lazy"
+        },
+        "image_url" : {
+          "content_id" : null,
+          "href" : "https://jashow.org/",
+          "type" : "EXTERNAL"
+        }
+      }
+    } ]
+  } ]
+}, {
+  "id" : "bc91eb2f-477f-bb97-ff8c-79a0182fb3db",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "89c78d39-272d-8d66-eccd-a8b30e09f44f",
+    "name" : "section",
+    "label" : "Section",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "96a81452-48b5-4068-cbf0-5f240fc778ec",
+      "name" : "spacing_desktop",
+      "label" : "Spacing - Desktop",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 60,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 30,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "a05c3a5c-913f-08ec-2808-85603dd78ef0",
+      "name" : "spacing_mobile",
+      "label" : "Spacing - Mobile",
+      "required" : false,
+      "locked" : false,
+      "type" : "spacing",
+      "display_width" : null,
+      "default" : {
+        "padding" : {
+          "top" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 60,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      }
+    }, {
+      "id" : "ce1a833e-d7ac-dd40-d921-df5d94851b85",
+      "name" : "content_maximum_width",
+      "label" : "Content maximum width",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 280,
+      "max" : 1800,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 1200
+    }, {
+      "id" : "1508833b-5851-9b44-6c4c-5a11599e1388",
+      "name" : "background",
+      "label" : "Background",
+      "required" : false,
+      "locked" : false,
+      "children" : [ {
+        "id" : "27926931-c937-6e74-a392-f498f45af2a8",
+        "name" : "background_type",
+        "label" : "Background type",
+        "required" : false,
+        "locked" : false,
+        "display" : "select",
+        "choices" : [ [ "color", "Color" ], [ "gradient", "Gradient" ], [ "image", "Image" ] ],
+        "multiple" : false,
+        "reordering_enabled" : true,
+        "preset" : null,
+        "type" : "choice",
+        "display_width" : null,
+        "default" : "color"
+      }, {
+        "id" : "6498d8d1-f036-cdad-8823-282887a03480",
+        "name" : "background_color",
+        "label" : "Background color",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.section.background.background_type",
+          "controlling_value_regex" : "color",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        }
+      }, {
+        "id" : "227cdfcd-be3e-ba1a-db56-755670d59aea",
+        "name" : "gradient_field",
+        "label" : "Gradient",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.section.background.background_type",
+          "controlling_value_regex" : "gradient",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "gradient",
+        "display_width" : null,
+        "default" : {
+          "side_or_corner" : {
+            "verticalSide" : "BOTTOM",
+            "horizontalSide" : "RIGHT"
+          },
+          "colors" : [ {
+            "color" : {
+              "r" : 255,
+              "g" : 255,
+              "b" : 255,
+              "a" : 1
+            }
+          }, {
+            "color" : {
+              "r" : 204,
+              "g" : 204,
+              "b" : 204,
+              "a" : 1
+            }
+          } ]
+        }
+      }, {
+        "id" : "3056485c-a58d-0659-b73f-60d99f795d29",
+        "name" : "background_image",
+        "label" : "Background image",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.section.background.background_type",
+          "controlling_value_regex" : "image",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "backgroundimage",
+        "display_width" : null,
+        "default" : {
+          "background_position" : "MIDDLE_CENTER",
+          "background_size" : "cover",
+          "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/US%20Flag.png"
+        }
+      }, {
+        "id" : "2e219b49-58be-a408-a97b-871231ad2efe",
+        "name" : "background_image_overlay",
+        "label" : "Background image overlay",
+        "required" : false,
+        "locked" : false,
+        "display" : "toggle",
+        "type" : "boolean",
+        "display_width" : null,
+        "default" : false
+      }, {
+        "id" : "81a2a8c0-0abf-de82-f648-2518584bfbce",
+        "name" : "overlay_color_opacity",
+        "label" : "Overlay color/opacity",
+        "required" : false,
+        "locked" : false,
+        "visibility" : {
+          "controlling_field" : null,
+          "controlling_field_path" : "style.section.background.background_image_overlay",
+          "controlling_value_regex" : "true",
+          "property" : null,
+          "operator" : "EQUAL",
+          "access" : null
+        },
+        "type" : "color",
+        "display_width" : null,
+        "default" : {
+          "color" : "#000000",
+          "opacity" : 10
+        }
+      } ],
+      "tab" : "STYLE",
+      "expanded" : false,
+      "group_occurrence_meta" : null,
+      "type" : "group",
+      "display_width" : null,
+      "default" : {
+        "background_type" : "color",
+        "background_color" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        },
+        "gradient_field" : {
+          "side_or_corner" : {
+            "verticalSide" : "BOTTOM",
+            "horizontalSide" : "RIGHT"
+          },
+          "colors" : [ {
+            "color" : {
+              "r" : 255,
+              "g" : 255,
+              "b" : 255,
+              "a" : 1
+            }
+          }, {
+            "color" : {
+              "r" : 204,
+              "g" : 204,
+              "b" : 204,
+              "a" : 1
+            }
+          } ]
+        },
+        "background_image" : {
+          "background_position" : "MIDDLE_CENTER",
+          "background_size" : "cover",
+          "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/US%20Flag.png"
+        },
+        "background_image_overlay" : false,
+        "overlay_color_opacity" : {
+          "color" : "#000000",
+          "opacity" : 10
+        }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "spacing_desktop" : {
+        "padding" : {
+          "top" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 60,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 30,
+            "units" : "px"
+          }
+        }
+      },
+      "spacing_mobile" : {
+        "padding" : {
+          "top" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 60,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      },
+      "content_maximum_width" : 1200,
+      "background" : {
+        "background_type" : "color",
+        "background_color" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        },
+        "gradient_field" : {
+          "side_or_corner" : {
+            "verticalSide" : "BOTTOM",
+            "horizontalSide" : "RIGHT"
+          },
+          "colors" : [ {
+            "color" : {
+              "r" : 255,
+              "g" : 255,
+              "b" : 255,
+              "a" : 1
+            }
+          }, {
+            "color" : {
+              "r" : 204,
+              "g" : 204,
+              "b" : 204,
+              "a" : 1
+            }
+          } ]
+        },
+        "background_image" : {
+          "background_position" : "MIDDLE_CENTER",
+          "background_size" : "cover",
+          "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/US%20Flag.png"
+        },
+        "background_image_overlay" : false,
+        "overlay_color_opacity" : {
+          "color" : "#000000",
+          "opacity" : 10
+        }
+      }
+    }
+  }, {
+    "id" : "b275e4a7-235a-0028-582a-97983bd49791",
+    "name" : "content_text_colors",
+    "label" : "Content text colors",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "dae5da80-4318-0fec-5a02-84eacb2104d8",
+      "name" : "heading",
+      "label" : "Heading",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#B7AB9F",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "2aba11f5-8ef4-df3f-8c70-438f86bfaace",
+      "name" : "subheading",
+      "label" : "Subheading",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#000000",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "6d931c38-67a9-7890-909b-fefefcb94f1e",
+      "name" : "text",
+      "label" : "Text",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "heading" : {
+        "color" : "#B7AB9F",
+        "opacity" : 100
+      },
+      "subheading" : {
+        "color" : "#000000",
+        "opacity" : 100
+      },
+      "text" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "section" : {
+      "spacing_desktop" : {
+        "padding" : {
+          "top" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 60,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 30,
+            "units" : "px"
+          }
+        }
+      },
+      "spacing_mobile" : {
+        "padding" : {
+          "top" : {
+            "value" : 30,
+            "units" : "px"
+          },
+          "bottom" : {
+            "value" : 60,
+            "units" : "px"
+          },
+          "left" : {
+            "value" : 20,
+            "units" : "px"
+          },
+          "right" : {
+            "value" : 20,
+            "units" : "px"
+          }
+        }
+      },
+      "content_maximum_width" : 1200,
+      "background" : {
+        "background_type" : "color",
+        "background_color" : {
+          "color" : "#ffffff",
+          "opacity" : 100
+        },
+        "gradient_field" : {
+          "side_or_corner" : {
+            "verticalSide" : "BOTTOM",
+            "horizontalSide" : "RIGHT"
+          },
+          "colors" : [ {
+            "color" : {
+              "r" : 255,
+              "g" : 255,
+              "b" : 255,
+              "a" : 1
+            }
+          }, {
+            "color" : {
+              "r" : 204,
+              "g" : 204,
+              "b" : 204,
+              "a" : 1
+            }
+          } ]
+        },
+        "background_image" : {
+          "background_position" : "MIDDLE_CENTER",
+          "background_size" : "cover",
+          "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/US%20Flag.png"
+        },
+        "background_image_overlay" : false,
+        "overlay_color_opacity" : {
+          "color" : "#000000",
+          "opacity" : 10
+        }
+      }
+    },
+    "content_text_colors" : {
+      "heading" : {
+        "color" : "#B7AB9F",
+        "opacity" : 100
+      },
+      "subheading" : {
+        "color" : "#000000",
+        "opacity" : 100
+      },
+      "text" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }
+  }
+}, {
+  "id" : "2e536eab-1ed6-e48b-dbb7-1ef966f112c9",
+  "name" : "oembed_thumbnail_play_button_color",
+  "label" : "Play button color",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "guests.media_type",
+    "controlling_value_regex" : "video",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#ffffff",
+    "opacity" : 100
+  }
+} ]

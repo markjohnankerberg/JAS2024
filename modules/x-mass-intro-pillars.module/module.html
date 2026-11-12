@@ -1,0 +1,126 @@
+{#
+Mission Intro & Pillars — two-column intro (kicker + heading | body text) plus a row of pillar cards.
+#}
+{% set c = module.content %}
+
+{% require_css %}
+<style>
+  .xmas-intro {
+    --intro-ink: #21372d;
+    --intro-muted: #626b63;
+    --intro-line: #d9d1c2;
+    --intro-em: #6d806a;
+    --intro-serif: Georgia, 'Times New Roman', serif;
+    --intro-sans: Arial, Helvetica, sans-serif;
+
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    max-width: none;
+    padding: 90px max(2rem, calc(50vw - 568px)) 60px;
+    color: var(--intro-ink);
+    font-family: var(--intro-sans);
+  }
+  .xmas-intro *, .xmas-intro *::before, .xmas-intro *::after { box-sizing: border-box; }
+
+  .xmas-intro__grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 100px;
+    align-items: center;
+  }
+
+  .xmas-intro__kicker {
+    margin: 0 0 16px;
+    font: 700 11px/1.6 var(--intro-sans);
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--intro-muted);
+  }
+
+  .xmas-intro__heading {
+    margin: 0;
+    font-family: var(--intro-serif);
+    font-weight: 400;
+    font-size: clamp(36px, 4.6vw, 56px);
+    line-height: 1.08;
+    letter-spacing: -1.5px;
+  }
+  .xmas-intro__heading em {
+    font-style: italic;
+    color: var(--intro-em);
+  }
+
+  .xmas-intro__body {
+    font-size: 15px;
+    line-height: 1.75;
+    color: #58635b;
+  }
+  .xmas-intro__body p { margin: 0; }
+  .xmas-intro__body p + p { margin-top: 16px; }
+
+  .xmas-intro__pillars {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 28px;
+    margin-top: 52px;
+    padding-top: 25px;
+    border-top: 1px solid var(--intro-line);
+  }
+
+  .xmas-intro__pillar {
+    border-right: 1px solid var(--intro-line);
+    padding-right: 20px;
+  }
+  .xmas-intro__pillar:last-child {
+    border-right: 0;
+  }
+
+  .xmas-intro__pillar-label {
+    margin: 0 0 8px;
+    font: italic 22px var(--intro-serif);
+    color: #667b69;
+  }
+
+  .xmas-intro__pillar-desc {
+    margin: 8px 0;
+    font-size: 13px;
+    line-height: 1.65;
+    color: #58635b;
+  }
+
+  @media (max-width: 700px) {
+    .xmas-intro { padding: clamp(36px, 5vw, 60px) 1.25rem; }
+    .xmas-intro__grid { display: block; gap: 30px; }
+    .xmas-intro__body { margin-top: 22px; max-width: 480px; }
+    .xmas-intro__heading { font-size: 40px; }
+    .xmas-intro__pillars { grid-template-columns: 1fr; margin-top: 32px; gap: 20px; }
+    .xmas-intro__pillar { border-right: 0; padding-right: 0; border-bottom: 1px solid var(--intro-line); padding-bottom: 20px; }
+    .xmas-intro__pillar:last-child { border-bottom: 0; }
+  }
+</style>
+{% end_require_css %}
+
+<section class="xmas-intro" id="intro">
+  <div class="xmas-intro__grid">
+    <div>
+      {% if c.kicker %}<p class="xmas-intro__kicker">{{ c.kicker }}</p>{% endif %}
+      <h2 class="xmas-intro__heading">
+        {{ c.heading }}{% if c.heading_em %}<br><em>{{ c.heading_em }}</em>{% endif %}
+      </h2>
+    </div>
+    <div class="xmas-intro__body">
+      {{ c.body_text }}
+    </div>
+  </div>
+
+  {% if module.pillars %}
+  <div class="xmas-intro__pillars">
+    {% for pillar in module.pillars %}
+    <div class="xmas-intro__pillar">
+      <p class="xmas-intro__pillar-label">{{ pillar.pillar_label }}</p>
+      <p class="xmas-intro__pillar-desc">{{ pillar.description }}</p>
+    </div>
+    {% endfor %}
+  </div>
+  {% endif %}
+</section>

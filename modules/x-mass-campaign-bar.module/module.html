@@ -1,0 +1,414 @@
+{#
+Christmas Campaign Bar — matching-gift banner with optional SSE progress bar.
+Rendered above the nav by templates/partials/header-v2.html; also usable as a page module.
+CSS and JS are inline (require_css / require_js) so the banner renders immediately.
+#}
+{% set c = module.content %}
+{% set p = module.progress %}
+{% set s = module.style %}
+{# The button goes to the Audio Bibles donate form. Old saved values (the homepage's #audio
+   section) are redirected there too, so pages that kept the old link still go to the form. #}
+{% set audio_url = "https://atriresearch.org/audio-bibles#donate-form" %}
+{% set cta_url = audio_url if c.cta_url in ["#audio", "https://atriresearch.org/#audio", "/#audio"] else c.cta_url %}
+{% set show_progress = p.enabled %}
+{% set d = module.devices %}
+{% set show_devices = d and d.enabled and d.items|length > 0 %}
+
+{% if c.show is not defined or c.show %}
+{% require_css %}
+<style>
+  /* Matches the reference .banner: burgundy gradient, 24px Georgia headline, gold CTA.
+     Placed inside <header id="jas-header"> (header-v2 partial) it sits above the nav, and
+     HeaderV2's height script counts it, so page content moves down automatically. */
+  .campaign-bar {
+    --cb-gold: {{ s.gold_color.color or '#e7d4a4' }};
+    --cb-ink: #fff5df;
+    --cb-kicker: #f0d6a2;
+    --cb-serif: Georgia, 'Times New Roman', serif;
+    --cb-sans: Arial, Helvetica, sans-serif;
+    position: relative;
+    z-index: 2;
+    width: 100%;
+    background: {% if s.bg_style == 'solid' %}{{ s.bg_color.color }}{% else %}linear-gradient(105deg, #4b0d17, #842027 60%, #57121b){% endif %};
+    border-bottom: 1px solid #bb8755;
+    color: var(--cb-ink);
+    font: 16px/1.65 var(--cb-sans);
+    text-align: left;
+  }
+  .campaign-bar *, .campaign-bar *::before, .campaign-bar *::after { box-sizing: border-box; }
+  {% if s.hide_on_scroll is not defined or s.hide_on_scroll %}
+  /* Only .sticky (added after 20px of scrolling). Not .sticky-small: the "Header background
+     color" module adds that permanently on some pages for a compact header, which would hide
+     the banner even at the top of the page. */
+  .header.sticky .campaign-bar { display: none; }
+  {% endif %}
+  /* Homepage-style pages (.body-container--home / .has-transparent-hero) put the transparent nav
+     over the hero with no space reserved. Reserve just the banner's height there, so the nav and
+     hero keep their usual layout below it. The script writes --jas-banner-h. */
+  body .body-wrapper:has(.body-container--home),
+  body .body-wrapper:has(.has-transparent-hero) { padding-top: var(--jas-banner-h, 0px); }
+
+  /* The open slide-out menu uses the whole header; keep the banner out of it. */
+  .header.menu-active .campaign-bar { display: none; }
+
+  .campaign-bar .campaign-bar__inner {
+    display: grid;
+    grid-template-columns: 1.3fr 1fr auto;
+    gap: 30px;
+    align-items: center;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 15px 2rem;
+  }
+  /* Without the progress column: text on the left, button on the right. */
+  .campaign-bar .campaign-bar__inner--no-progress { grid-template-columns: 1fr auto; }
+  .campaign-bar .campaign-bar__eyebrow {
+    margin: 0;
+    font: 700 11px/1.6 var(--cb-sans);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--cb-kicker);
+  }
+  /* "01 / GIVE": its own line in the gold accent, just above the eyebrow. */
+  .campaign-bar .campaign-bar__section {
+    display: block;
+    color: var(--cb-gold);
+    white-space: nowrap;
+  }
+  .campaign-bar .campaign-bar__headline {
+    display: block;
+    margin: 0;
+    font: 400 24px/1.25 var(--cb-serif);
+    letter-spacing: -.02em;
+    color: var(--cb-ink);
+  }
+  .campaign-bar .campaign-bar__headline em { font-style: italic; color: var(--cb-gold); }
+  .campaign-bar .campaign-bar__subtext,
+  .campaign-bar .campaign-bar__progress-note {
+    margin: 0;
+    font-size: 12px;
+    line-height: 1.5;
+    color: var(--cb-ink);
+  }
+  .campaign-bar .campaign-bar__progress-label {
+    font: 400 24px/1.2 var(--cb-serif);
+    color: var(--cb-gold);
+  }
+  .campaign-bar .campaign-bar__track {
+    height: 6px;
+    margin: 8px 0;
+    border-radius: 10px;
+    background: rgba(255, 255, 255, .27);
+    overflow: hidden;
+  }
+  .campaign-bar .campaign-bar__fill {
+    height: 100%;
+    border-radius: 10px;
+    background: #e6bd79;
+    transition: width .6s ease;
+  }
+  .campaign-bar a.campaign-bar__cta {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 46px;
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: var(--cb-gold);
+    color: #102d27;
+    font: 700 14px/1.2 var(--cb-sans);
+    letter-spacing: .08em;
+    text-decoration: none;
+    text-transform: uppercase;
+    white-space: nowrap;
+    transition: background-color .2s;
+  }
+  .campaign-bar a.campaign-bar__cta:hover { background: #d4c08e; color: #102d27; }
+  .campaign-bar a.campaign-bar__cta:focus-visible { outline: 2px solid var(--cb-gold); outline-offset: 2px; }
+
+  /* Devices given: a slim row under the banner with each device's live count. Hidden until
+     the counts load, so it never shows zeros while waiting. */
+  .campaign-bar .campaign-bar__devices[hidden] { display: none; }
+  .campaign-bar .campaign-bar__devices { border-top: 1px solid rgba(240, 214, 162, .25); }
+  .campaign-bar .campaign-bar__devices-inner {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 6px 22px;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 8px 2rem 10px;
+  }
+  .campaign-bar .campaign-bar__devices-label {
+    font: 700 11px/1.6 var(--cb-sans);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--cb-kicker);
+  }
+  .campaign-bar .campaign-bar__device-list {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 4px 22px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+  .campaign-bar .campaign-bar__device {
+    display: inline-flex;
+    align-items: center;
+    gap: 2px;
+    margin: 0;
+    font-size: 13px;
+    line-height: 1.4;
+    color: var(--cb-ink);
+    white-space: nowrap;
+  }
+  /* Device photo: decorative (the name follows), transparent PNG on the burgundy. */
+  .campaign-bar img.campaign-bar__device-img {
+    flex: none;
+    width: 50px;
+    height: 50px;
+    margin-right: 6px;
+    object-fit: contain;
+  }
+  /* Device names in the banner's serif, to match the headline. */
+  .campaign-bar .campaign-bar__device-name {
+    font-family: var(--cb-serif);
+    font-size: 15px;
+  }
+  .campaign-bar .campaign-bar__device-count {
+    margin-right: 4px;
+    font: 400 18px/1 var(--cb-serif);
+    color: var(--cb-gold);
+  }
+
+  @media (max-width: 900px) {
+    .campaign-bar .campaign-bar__inner { grid-template-columns: 1fr auto; gap: 16px; }
+    /* Progress moves to its own full-width row under the headline and button. */
+    .campaign-bar .campaign-bar__progress {
+      grid-column: 1 / -1;
+      grid-row: 2;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+    }
+    .campaign-bar .campaign-bar__progress-label { flex: none; font-size: 16px; }
+    .campaign-bar .campaign-bar__meter { flex: 1; min-width: 0; }
+    .campaign-bar .campaign-bar__track { margin: 4px 0; }
+    .campaign-bar .campaign-bar__headline { font-size: 18px; }
+    .campaign-bar a.campaign-bar__cta { min-height: 0; padding: 10px; font-size: 11px; }
+  }
+  @media (max-width: 600px) {
+    .campaign-bar .campaign-bar__inner { padding: 12px 16px; }
+    .campaign-bar .campaign-bar__subtext { display: none; }
+    .campaign-bar .campaign-bar__inner { row-gap: 10px; }
+    .campaign-bar .campaign-bar__progress-label { font-size: 14px; }
+    .campaign-bar .campaign-bar__progress-note { font-size: 11px; }
+    .campaign-bar .campaign-bar__devices-inner { padding: 6px 16px 8px; }
+    .campaign-bar .campaign-bar__device-list { display: grid; grid-template-columns: 1fr 1fr; gap: 2px 12px; width: 100%; }
+    .campaign-bar .campaign-bar__device { font-size: 12px; white-space: normal; }
+    .campaign-bar .campaign-bar__device-count { font-size: 15px; }
+    .campaign-bar .campaign-bar__device-name { font-size: 13px; }
+    .campaign-bar img.campaign-bar__device-img { width: 40px; height: 40px; margin-right: 4px; }
+  }
+  @media (prefers-reduced-motion: reduce) {
+    .campaign-bar .campaign-bar__fill { transition: none; }
+  }
+</style>
+{% end_require_css %}
+
+<div class="campaign-bar" id="campaign-bar" role="region" aria-label="Christmas campaign"{% if p.sse_url %} data-sse-url="{{ p.sse_url|escape_attr }}"{% endif %}{% if p.totals_url and p.public_key %} data-totals-url="{{ p.totals_url|escape_attr }}" data-public-key="{{ p.public_key|escape_attr }}"{% endif %}>
+  <div class="campaign-bar__inner{% if not show_progress %} campaign-bar__inner--no-progress{% endif %}">
+    <div>
+      {# "01 / GIVE" is hard-coded for now: the homepage's section number for the campaign. #}
+      <p class="campaign-bar__eyebrow"><span class="campaign-bar__section">01 / GIVE</span>{% if c.eyebrow %} {{ c.eyebrow }}{% endif %}</p>
+      <strong class="campaign-bar__headline">
+        {%- if c.headline_em and c.headline_em in c.headline -%}
+          {{ c.headline|escape|replace(c.headline_em|escape, '<em>' ~ c.headline_em|escape ~ '</em>') }}
+        {%- else -%}
+          {{ c.headline }}
+        {%- endif -%}
+      </strong>
+      {% if c.subtext %}<p class="campaign-bar__subtext">{{ c.subtext }}</p>{% endif %}
+    </div>
+
+    {% if show_progress %}
+    {% set raised = p.raised or 0 %}
+    {% set goal = p.goal or 0 %}
+    {% set pct = p.percent or 0 %}
+    {% if goal > 0 %}{% set pct = (raised / goal * 100)|round(1) %}{% endif %}
+    {% if pct > 100 %}{% set pct = 100 %}{% endif %}
+    {% set show_amount = p.show_amount is not defined or p.show_amount %}
+    <div class="campaign-bar__progress">
+      {% if c.progress_label %}<span class="campaign-bar__progress-label">{{ c.progress_label }}</span>{% endif %}
+      <div class="campaign-bar__meter" data-goal="{{ goal }}" data-raised="{{ raised }}" data-show-amount="{{ 'true' if show_amount else 'false' }}">
+        <div class="campaign-bar__track" role="progressbar" aria-valuenow="{{ pct }}" aria-valuemin="0" aria-valuemax="100" aria-label="Campaign progress">
+          <div class="campaign-bar__fill" style="width: {{ pct }}%"></div>
+        </div>
+        {# The script swaps this for "$X raised of $750,000" once it has an amount. #}
+        {% if c.progress_note or show_amount %}<small class="campaign-bar__progress-note" data-cb-note>{{ c.progress_note }}</small>{% endif %}
+      </div>
+    </div>
+    {% endif %}
+
+    {% if c.cta_text and cta_url %}
+    <a class="campaign-bar__cta" href="{{ cta_url|escape_attr }}">{{ c.cta_text }} <span aria-hidden="true">&#8599;</span></a>
+    {% else %}<span></span>
+    {% endif %}
+  </div>
+
+  {% if show_devices %}
+  <div class="campaign-bar__devices" data-cb-devices hidden>
+    <div class="campaign-bar__devices-inner">
+      {% if d.heading %}<span class="campaign-bar__devices-label">{{ d.heading }}</span>{% endif %}
+      <ul class="campaign-bar__device-list">
+        {% for item in d.items %}{% if item.title and item.skus %}
+        <li class="campaign-bar__device" data-skus="{{ item.skus|escape_attr }}" data-one="{{ (item.title_one or item.title)|escape_attr }}" data-many="{{ item.title|escape_attr }}">{% if item.image.src %}<img class="campaign-bar__device-img" src="{{ item.image.src|escape_attr }}" alt="" width="50" height="50" loading="lazy" decoding="async">{% endif %}<span class="campaign-bar__device-count" data-cb-count>0</span> <span class="campaign-bar__device-name" data-cb-name>{{ item.title }}</span></li>
+        {% endif %}{% endfor %}
+      </ul>
+    </div>
+  </div>
+  {% endif %}
+</div>
+
+{# Runs right away (not in the footer) so homepage-style pages reserve the banner's space
+   before first paint instead of the banner briefly covering the hero. #}
+<script>
+  (function () {
+    var bar = document.getElementById('campaign-bar');
+    if (!bar) return;
+    /* Publish the banner's natural height as --jas-banner-h (used above for homepage-style
+       pages). Measured with the sticky classes removed, as HeaderV2 does, so a page that
+       loads already scrolled still reserves the right space. */
+    var header = bar.closest('#jas-header');
+    var root = document.documentElement;
+    function updateBannerOffset() {
+      var sticky = header && header.classList.contains('sticky');
+      if (sticky) header.classList.remove('sticky');
+      var h = header ? bar.offsetHeight : 0; // only reserve space when it's in the fixed header
+      if (sticky) header.classList.add('sticky');
+      root.style.setProperty('--jas-banner-h', h + 'px');
+    }
+    updateBannerOffset();
+    window.addEventListener('load', updateBannerOffset);
+    window.addEventListener('resize', updateBannerOffset);
+    window.addEventListener('orientationchange', updateBannerOffset);
+    if (document.fonts && document.fonts.ready) document.fonts.ready.then(updateBannerOffset);
+
+  })();
+</script>
+
+{% require_js position="footer" %}
+<script>
+  (function () {
+    var bar = document.getElementById('campaign-bar');
+    if (!bar) return;
+
+    var url = bar.dataset.sseUrl;
+    var totalsUrl = bar.dataset.totalsUrl;
+
+    var meter = bar.querySelector('.campaign-bar__meter');
+    var fill = bar.querySelector('.campaign-bar__fill');
+    var track = bar.querySelector('[role="progressbar"]');
+    var hasMeter = !!(meter && fill && track);
+    var devices = bar.querySelector('[data-cb-devices]');
+    if (!hasMeter && !devices) return;
+    var goal = hasMeter ? Number(meter.dataset.goal) || 0 : 0;
+    var note = bar.querySelector('[data-cb-note]');
+    var showAmount = hasMeter && meter.dataset.showAmount !== 'false';
+    var dollars = new Intl.NumberFormat('en-US', { style: 'currency', currency: 'USD', maximumFractionDigits: 0 });
+    var count = new Intl.NumberFormat('en-US');
+
+    /* Devices given: by_sku is [{ sku, quantity, raised }] from the platform summary. Each
+       device adds up the quantities of every SKU listed for it (e.g. FR16-1000-2 and FR16-1000). */
+    function showDevices(bySku) {
+      var bySkuQty = {};
+      bySku.forEach(function (row) {
+        var sku = String(row.sku || '').trim().toUpperCase();
+        bySkuQty[sku] = (bySkuQty[sku] || 0) + (Number(row.quantity) || 0);
+      });
+      devices.querySelectorAll('[data-skus]').forEach(function (li) {
+        var total = li.dataset.skus.split(',').reduce(function (sum, sku) {
+          return sum + (bySkuQty[sku.trim().toUpperCase()] || 0);
+        }, 0);
+        li.querySelector('[data-cb-count]').textContent = count.format(total);
+        li.querySelector('[data-cb-name]').textContent = total === 1 ? li.dataset.one : li.dataset.many;
+      });
+      if (devices.hidden) {
+        devices.hidden = false;
+        // The banner just got taller: let the header and page offsets re-measure it.
+        window.dispatchEvent(new Event('resize'));
+      }
+    }
+
+    /* Dollars raised, worked out from the per-SKU counts: the DMS rows carry no amount, so
+       each SKU is valued at the number after its prefix (FR16-30 = $30, FR16-1000-2 = $1,000)
+       times its quantity. A SKU with no number (e.g. FR16-C, a custom gift) uses the amount
+       the platform recorded for it. */
+    function raisedFromSkus(bySku) {
+      return bySku.reduce(function (sum, row) {
+        var qty = Number(row.quantity) || 0;
+        var price = /^[A-Za-z0-9]+-(\d+)(?:-|$)/.exec(String(row.sku || '').trim());
+        return sum + (price ? Number(price[1]) * qty : Number(row.raised) || 0);
+      }, 0);
+    }
+
+    // Events: { raised: dollars, goal?: dollars, percent?: 0-100 }.
+    function update(d) {
+      if (!hasMeter) return;
+      if (d.goal != null && Number(d.goal) > 0) goal = Number(d.goal);
+      var raised = d.raised != null ? Number(d.raised) : NaN;
+      var pct = d.percent != null ? Number(d.percent)
+        : goal > 0 && isFinite(raised) ? raised / goal * 100 : NaN;
+      if (isFinite(pct)) {
+        var v = Math.max(0, Math.min(100, pct));
+        fill.style.width = v + '%';
+        track.setAttribute('aria-valuenow', String(Math.round(v * 10) / 10));
+      }
+      if (showAmount && note && isFinite(raised) && goal > 0) {
+        note.textContent = dollars.format(raised) + ' raised of ' + dollars.format(goal);
+        track.setAttribute('aria-valuetext', note.textContent);
+      }
+    }
+
+    // The static amount from the module settings, until live totals arrive.
+    if (hasMeter && Number(meter.dataset.raised) > 0) update({ raised: Number(meter.dataset.raised) });
+
+    /* Totals URL: the platform's public summary ({ raised, quantity, gifts }), read with the
+       public key on load and every 2 minutes (the platform caches it for a minute). If it
+       fails, the static amount from the module settings stays. */
+    if (totalsUrl) {
+      var loadTotals = function () {
+        fetch(totalsUrl, { headers: { 'X-Public-Key': bar.dataset.publicKey || '' } })
+          .then(function (r) { return r.ok ? r.json() : Promise.reject(r.status); })
+          .then(function (d) {
+            if (!d) return;
+            /* Prefer the total worked out from the SKUs; never replace the static amount
+               from the module settings with $0. */
+            var raised = Array.isArray(d.by_sku) ? raisedFromSkus(d.by_sku) : Number(d.raised) || 0;
+            if (raised > 0) update({ raised: raised });
+            if (devices && Array.isArray(d.by_sku)) showDevices(d.by_sku);
+          })
+          .catch(function (err) { console.warn('[Campaign banner] totals unavailable:', err); });
+      };
+      loadTotals();
+      setInterval(function () { if (!document.hidden) loadTotals(); }, 120000);
+    }
+    if (!url || !hasMeter) return;
+
+    try {
+      var src = new EventSource(url);
+      src.onmessage = function (e) {
+        try {
+          var d = JSON.parse(e.data);
+          if (d) update(d);
+        } catch (err) {}
+      };
+      src.onerror = function () { src.close(); };
+    } catch (err) {}
+  })();
+</script>
+{% end_require_js %}
+{% endif %}

@@ -1,0 +1,113 @@
+<div class="custom-site-search">
+  <form id="custom-search-form">
+    <input type="text" id="custom-search-input" placeholder="Search..." />
+    <button type="submit">Search</button>
+  </form>
+  <div id="custom-search-results"></div>
+</div>
+
+{% require_js %}
+  <script>
+    const resultsContainer = document.getElementById('custom-search-results');
+    const searchInput = document.getElementById('custom-search-input');
+    const form = document.getElementById('custom-search-form');
+
+    let currentQuery = '';
+    let offsetSite = 0;
+    let offsetBlog = 0;
+    let offsetLanding = 0;
+    const limit = 10;
+
+    form.addEventListener('submit', function(e) {
+      e.preventDefault();
+      currentQuery = searchInput.value.trim();
+      if (!currentQuery) return;
+
+      offsetSite = 0;
+      offsetBlog = 0;
+      offsetLanding = 0;
+      resultsContainer.innerHTML = '<p>Searching...</p>';
+      loadResults(true);
+    });
+
+    function loadResults(isInitial = false) {
+      const urls = {
+        site: `/hs-search-site?term=${encodeURIComponent(currentQuery)}&limit=${limit}&offset=${offsetSite}&filters=ALL&site=atriresearch.org`,
+        blog: `/hs-search-site?term=${encodeURIComponent(currentQuery)}&limit=${limit}&offset=${offsetBlog}&filters=ALL&site=blog.atriresearch.org`,
+        landing: `/hs-search-site?term=${encodeURIComponent(currentQuery)}&limit=${limit}&offset=${offsetLanding}&filters=ALL&site=landing.jashow.org`
+      };
+
+      Promise.all([
+        fetch(urls.site).then(res => res.json()).catch(() => ({ results: [] })),
+        fetch(urls.blog).then(res => res.json()).catch(() => ({ results: [] })),
+        fetch(urls.landing).then(res => res.json()).catch(() => ({ results: [] }))
+      ]).then(([siteResults, blogResults, landingResults]) => {
+        const contentSite = renderResults(siteResults.results || [], 'site');
+        const contentBlog = renderResults(blogResults.results || [], 'blog');
+        const contentLanding = renderResults(landingResults.results || [], 'landing');
+
+        if (isInitial) {
+          resultsContainer.innerHTML = contentSite + contentBlog + contentLanding;
+        } else {
+          document.getElementById('site-results')?.insertAdjacentHTML('beforeend', contentSite);
+          document.getElementById('blog-results')?.insertAdjacentHTML('beforeend', contentBlog);
+          document.getElementById('landing-results')?.insertAdjacentHTML('beforeend', contentLanding);
+        }
+
+        showOrHideLoadMore('site', siteResults.results);
+        showOrHideLoadMore('blog', blogResults.results);
+        showOrHideLoadMore('landing', landingResults.results);
+      });
+    }
+
+    function renderResults(results, type) {
+      if (!results.length) return '';
+
+      const labels = {
+        site: 'Website Pages',
+        blog: 'Blog Posts',
+        landing: 'Landing Pages'
+      };
+
+      const containerId = `${type}-results`;
+      const items = results.map(result => `
+        <div class="search-result">
+          <a href="${result.url}" target="_blank">
+            <h4>${result.title}</h4>
+          </a>
+          <p>${result.description || ''}</p>
+        </div>
+      `).join('');
+
+      const html = `
+        <div class="${type}-block">
+          <h3>${labels[type]}</h3>
+          <div id="${containerId}">
+            ${items}
+          </div>
+          <button id="load-more-${type}" class="load-more" style="display:none">Load More ${labels[type]}</button>
+        </div>
+      `;
+      return html;
+    }
+
+    function showOrHideLoadMore(type, results) {
+      const btn = document.getElementById(`load-more-${type}`);
+      if ((results || []).length === limit) {
+        if (btn) btn.style.display = 'block';
+      } else {
+        if (btn) btn.style.display = 'none';
+      }
+    }
+
+    document.addEventListener('click', function(e) {
+      if (e.target.classList.contains('load-more')) {
+        const type = e.target.id.replace('load-more-', '');
+        if (type === 'site') offsetSite += limit;
+        else if (type === 'blog') offsetBlog += limit;
+        else if (type === 'landing') offsetLanding += limit;
+        loadResults(false);
+      }
+    });
+  </script>
+{% end_require_js %}

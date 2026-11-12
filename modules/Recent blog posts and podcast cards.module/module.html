@@ -1,0 +1,600 @@
+{% if module.select_blog is number %}
+  {% set rec_posts = blog_recent_posts(module.select_blog, module.number_of_posts_to_fetch) %}
+{% else %}
+  {% set rec_posts = blog_recent_posts("default", module.number_of_posts_to_fetch) %}
+{% endif %}
+
+<section class="listing-{{name}} section-{{name}}" role="region">
+  <div class="listing-limiter page-{{current_page_num}}">
+    
+    <div class="resources-container">
+    <div class="resource-tabs" role="tablist">
+        <div class="resource-tab active" data-id="card-1" role="tab">
+            <h4>Articles</h4>
+        </div>
+
+        <div class="resource-tab" data-id="card-2" role="tab">
+            <h4>Podcasts</h4>
+        </div>
+    </div>
+
+    <div class="resource-cards">
+        <div class="resource-card active" data-id="card-1" role="tabpanel">
+          <div class="post-grid">       
+
+            {# {% set counter = 1 %} #}
+            {% for content in rec_posts %}
+
+              {# <article class="post-card{% if current_page_num == 1 %}{% if counter < 3 %} featured-card featured-card-{{counter}}{% endif %}{% endif %}"> #}
+              <article class="post-card">
+                <div class="feat-img-wrapper">
+                  <a class="post-link" href="{{ content.absolute_url }}">
+                    <img class="post-img" src="{{ content.featured_image }}" loading="lazy" alt="{{ content.featured_image_alt_text }}">
+                  </a>
+                </div>
+
+                <div class="card-content">
+                  <div class="post-info">
+                    <span class="post-author">
+                      {# <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}"> #} {# v1 #}
+                      <a href="{{ blog_author_url(module.select_blog, content.blog_post_author.slug) }}"> {# v2 #}
+                        {{ content.blog_post_author.display_name }}
+                      </a>
+                    </span>
+                    <span class="info-divider">|</span>
+                    <span class="published-date">{{ content.publish_date|datetimeformat('%B %e, %Y') }} </span>
+                  </div>
+
+                  <h4 class="post-heading"><a class="post-link" href="{{ content.absolute_url }}">{{content.name}}</a></h4>
+
+                  <div class="card-tags">
+                    {% for tag in content.tag_list %}
+                    <span class="card-tag">
+                      {# <a class="card-tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a> #} {# v1 #}
+                      <a class="card-tag-link" href="{{ blog_tag_url(module.select_blog, tag.slug) }}">{{ tag.name }}</a> {# v2 #}
+                    </span>
+                    {% endfor %}
+                  </div>
+                </div>
+              </article>
+              {# {% set counter = counter + 1 %} #}
+            {% endfor %}
+          </div>
+        </div>
+
+        <div class="resource-card" data-id="card-2" role="tabpanel" style="display: none">
+          <div class="podcast-cards podcast-{{name}}">
+            <div class="card-content">
+              <div class="img-wrapper">
+                <a aria-label="" class="img-link" href="https://atriresearch.org/the-john-ankerberg-show-podcast">
+                  <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=570&amp;height=174&amp;name=JA_podcast.png" alt="The John Ankerberg show radio podcast banner" loading="lazy" width="570" height="174" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=285&amp;height=87&amp;name=JA_podcast.png 285w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=570&amp;height=174&amp;name=JA_podcast.png 570w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=855&amp;height=261&amp;name=JA_podcast.png 855w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=1140&amp;height=348&amp;name=JA_podcast.png 1140w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=1425&amp;height=435&amp;name=JA_podcast.png 1425w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png?width=1710&amp;height=522&amp;name=JA_podcast.png 1710w" sizes="(max-width: 570px) 100vw, 570px">
+                </a>
+              </div>     
+              <div class="text-wrapper">
+                <p style="text-align: left;"><span>The John Ankerberg Show is a daily radio program that discusses the historical accuracy of the life of Jesus, the Bible and how current issues stand up to Biblical history and Christianity.<br><br></span><span></span></p>
+              </div>
+              <h5 class="subscribe-text">Subscribe</h5>
+              <div class="podcasts">
+                <div class="podcast">
+                  <a href="https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=40&amp;height=40&amp;name=castro_logo.png" alt="Castro logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=20&amp;height=20&amp;name=castro_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=40&amp;height=40&amp;name=castro_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=60&amp;height=60&amp;name=castro_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=80&amp;height=80&amp;name=castro_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=100&amp;height=100&amp;name=castro_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=120&amp;height=120&amp;name=castro_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://pca.st/itunes/1457996131" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=40&amp;height=40&amp;name=pocket_casts_logo.png" alt="pocket casts logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=20&amp;height=20&amp;name=pocket_casts_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=40&amp;height=40&amp;name=pocket_casts_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=60&amp;height=60&amp;name=pocket_casts_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=80&amp;height=80&amp;name=pocket_casts_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=100&amp;height=100&amp;name=pocket_casts_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=120&amp;height=120&amp;name=pocket_casts_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://podcasts.apple.com/us/podcast/the-john-ankerberg-show-podcast/id1457996131" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=40&amp;height=40&amp;name=apple_podcasts_logo.png" alt="apple podcasts logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=20&amp;height=20&amp;name=apple_podcasts_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=40&amp;height=40&amp;name=apple_podcasts_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=60&amp;height=60&amp;name=apple_podcasts_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=80&amp;height=80&amp;name=apple_podcasts_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=100&amp;height=100&amp;name=apple_podcasts_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=120&amp;height=120&amp;name=apple_podcasts_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://overcast.fm/itunes1457996131/the-john-ankerberg-show-podcast" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=40&amp;height=40&amp;name=overcast_logo.png" alt="overcast logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=20&amp;height=20&amp;name=overcast_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=40&amp;height=40&amp;name=overcast_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=60&amp;height=60&amp;name=overcast_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=80&amp;height=80&amp;name=overcast_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=100&amp;height=100&amp;name=overcast_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=120&amp;height=120&amp;name=overcast_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://www.jashow.org/feed/jasradio/?__hstc=233546881.f6ce0bac9527cbdf317d8bffa4c70c90.1731063240555.1743763927292.1743767620247.402&amp;__hssc=233546881.1.1743767620247&amp;__hsfp=1654223050" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=40&amp;height=40&amp;name=rss_feed_logo.png" alt="rss feed logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=20&amp;height=20&amp;name=rss_feed_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=40&amp;height=40&amp;name=rss_feed_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=60&amp;height=60&amp;name=rss_feed_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=80&amp;height=80&amp;name=rss_feed_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=100&amp;height=100&amp;name=rss_feed_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=120&amp;height=120&amp;name=rss_feed_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://open.spotify.com/show/4mcJ9IS4GbWuBKyvcn5L0m" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=40&amp;height=40&amp;name=spotify_logo.png" alt="spotify logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=20&amp;height=20&amp;name=spotify_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=40&amp;height=40&amp;name=spotify_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=60&amp;height=60&amp;name=spotify_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=80&amp;height=80&amp;name=spotify_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=100&amp;height=100&amp;name=spotify_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=120&amp;height=120&amp;name=spotify_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+              </div>
+
+              <div class="custom__btn-widget_1734428497968">      
+                <a aria-label="" class="btn-widget_1734428497968 button btn-primary radius-s padd-normal" href="https://atriresearch.org/the-john-ankerberg-show-podcast">
+                  Listen now
+                </a>
+              </div>
+            </div>
+            
+            <div class="card-content">
+              <div class="img-wrapper">
+                <a aria-label="" class="img-link" href="https://atriresearch.org/verse-by-verse-with-dr-wayne-barber">
+                  <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=570&amp;height=174&amp;name=verse_by_verse_podcast.png" alt="Verse by verse podcast banner" loading="lazy" width="570" height="174" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=285&amp;height=87&amp;name=verse_by_verse_podcast.png 285w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=570&amp;height=174&amp;name=verse_by_verse_podcast.png 570w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=855&amp;height=261&amp;name=verse_by_verse_podcast.png 855w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=1140&amp;height=348&amp;name=verse_by_verse_podcast.png 1140w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=1425&amp;height=435&amp;name=verse_by_verse_podcast.png 1425w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/verse_by_verse_podcast.png?width=1710&amp;height=522&amp;name=verse_by_verse_podcast.png 1710w" sizes="(max-width: 570px) 100vw, 570px">
+                </a>
+              </div>
+              <div class="text-wrapper">
+                <p style="text-align: left;">Longtime friend of the John Ankerberg Show, the late Dr. Wayne Barber, provides in-depth verse by verse teaching from the Bible. Listen as Dr. Barber walks you through each passage, explaining how to experience the Christ Life as we live daily in God's grace.</p>
+              </div>
+              <h5 class="subscribe-text">Subscribe</h5>
+
+              <div class="podcasts">
+                <div class="podcast">
+                  <a href="https://castro.fm/podcast/19982a6a-b91c-44e8-972c-d54bc02abd45" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=40&amp;height=40&amp;name=castro_logo.png" alt="castro logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=20&amp;height=20&amp;name=castro_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=40&amp;height=40&amp;name=castro_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=60&amp;height=60&amp;name=castro_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=80&amp;height=80&amp;name=castro_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=100&amp;height=100&amp;name=castro_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png?width=120&amp;height=120&amp;name=castro_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://pca.st/itunes/1176598998" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=40&amp;height=40&amp;name=pocket_casts_logo.png" alt="pocket casts logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=20&amp;height=20&amp;name=pocket_casts_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=40&amp;height=40&amp;name=pocket_casts_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=60&amp;height=60&amp;name=pocket_casts_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=80&amp;height=80&amp;name=pocket_casts_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=100&amp;height=100&amp;name=pocket_casts_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/pocket_casts_logo.png?width=120&amp;height=120&amp;name=pocket_casts_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://podcasts.apple.com/us/podcast/verse-by-verse-bible-study-with-dr-wayne-barber/id1176598998" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=40&amp;height=40&amp;name=apple_podcasts_logo.png" alt="apple podcasts logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=20&amp;height=20&amp;name=apple_podcasts_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=40&amp;height=40&amp;name=apple_podcasts_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=60&amp;height=60&amp;name=apple_podcasts_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=80&amp;height=80&amp;name=apple_podcasts_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=100&amp;height=100&amp;name=apple_podcasts_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/apple_podcasts_logo.png?width=120&amp;height=120&amp;name=apple_podcasts_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://overcast.fm/itunes1176598998/verse-by-verse-bible-study-with-dr-wayne-barber" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=40&amp;height=40&amp;name=overcast_logo.png" alt="overcast logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=20&amp;height=20&amp;name=overcast_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=40&amp;height=40&amp;name=overcast_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=60&amp;height=60&amp;name=overcast_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=80&amp;height=80&amp;name=overcast_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=100&amp;height=100&amp;name=overcast_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/overcast_logo.png?width=120&amp;height=120&amp;name=overcast_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://www.jashow.org/feed/verse-by-verse-bible-study-wayne-barber/?__hstc=233546881.f6ce0bac9527cbdf317d8bffa4c70c90.1731063240555.1743763927292.1743767620247.402&amp;__hssc=233546881.1.1743767620247&amp;__hsfp=1654223050" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=40&amp;height=40&amp;name=rss_feed_logo.png" alt="rss feed logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=20&amp;height=20&amp;name=rss_feed_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=40&amp;height=40&amp;name=rss_feed_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=60&amp;height=60&amp;name=rss_feed_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=80&amp;height=80&amp;name=rss_feed_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=100&amp;height=100&amp;name=rss_feed_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/rss_feed_logo.png?width=120&amp;height=120&amp;name=rss_feed_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+
+                <div class="podcast">
+                  <a href="https://open.spotify.com/show/0bIVV5almu8qa6BVsWnnjD" target="_blank" rel="noopener">
+                    <img src="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=40&amp;height=40&amp;name=spotify_logo.png" alt="spotify logo" loading="lazy" width="40" height="40" style="max-width: 100%; height: auto;" srcset="https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=20&amp;height=20&amp;name=spotify_logo.png 20w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=40&amp;height=40&amp;name=spotify_logo.png 40w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=60&amp;height=60&amp;name=spotify_logo.png 60w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=80&amp;height=80&amp;name=spotify_logo.png 80w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=100&amp;height=100&amp;name=spotify_logo.png 100w, https://23773134.fs1.hubspotusercontent-na1.net/hub/23773134/hubfs/The%20John%20Ankerberg%20Show%202024/Podcasts/spotify_logo.png?width=120&amp;height=120&amp;name=spotify_logo.png 120w" sizes="(max-width: 40px) 100vw, 40px">
+                  </a>
+                </div>
+              </div>
+              <div class="custom__btn-widget_1734428501956">
+                <a aria-label="" class="btn-widget_1734428501956 button btn-primary radius-s padd-normal" href="https://atriresearch.org/verse-by-verse-with-dr-wayne-barber">
+                  Listen now
+                </a>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .listing-{{name}} *,
+    .listing-{{name}} *::before,
+    .listing-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .listing-{{name}} .listing-limiter {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+    }
+        
+    .listing-{{name}} .listing-limiter .post-grid {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(6, 1fr);
+      gap: 30px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card {
+      list-style: none;
+      overflow: hidden;
+      border-radius: 5px 5px 8px 8px;
+      background: var(--clr-light-grey);
+      grid-column: span 2;
+    }
+    
+    .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+      grid-column: span 3;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper {
+      width: 100%;
+      height: 220px;
+      min-height: 220px;
+      max-height: 220px;
+      overflow: hidden;
+    }
+    
+    .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+      width: 100%;
+      height: 332px;
+      min-height: 332px;
+      max-height: 332px;
+      overflow: hidden;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+      min-height: 100%;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-info {
+      margin: 0;
+      padding: 0;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a,
+    .listing-{{name}} .listing-limiter .post-card .card-content .info-divider,
+    .listing-{{name}} .listing-limiter .post-card .card-content .published-date {
+      color: var(--clr-dark-beige);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a {
+      cursor: pointer;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a:hover {
+      color: var(--clr-dark);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .info-divider {
+      display: inline-block;
+      padding: 0 4px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags a,
+    .listing-{{name}} .listing-limiter .post-card .card-content .more-tags {
+      display: block;
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--clr-dark-beige);
+      border-radius: 30px;
+      transition: var(--transition);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--clr-dark-beige);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags a:hover {
+      background: var(--clr-dark-beige);
+      color: #fff;
+    }    
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--clr-grey);
+      transition: var(--transition);    
+      margin: 0;
+      padding: 0;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading:hover {
+      color: var(--clr-dark);
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading a {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      font-weight: inherit;
+    }
+    
+    /* Resources */
+    
+    .section-{{name}} .resources-container {
+      width: 100%;
+      display: flex;
+      flex-direction: column;
+      gap: 40px;
+    }
+    
+    .section-{{name}} .resources-container .resource-tabs {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      border-bottom: var(--tabs-border-bottom);
+    }
+    
+    .section-{{name}} .resources-container .resource-tab {
+      position: relative;
+      cursor: pointer;
+      padding-bottom: 16px;
+    }
+    
+    .section-{{name}} .resources-container .resource-tab::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 1px;
+      background: transparent;
+      transition: var(--transition);
+    }
+    
+    .section-{{name}} .resources-container .resource-tab.active::before {
+      background: var(--clr-tabs-active);
+    }
+
+    .section-{{name}} .resources-container .resource-tab h4 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--clr-tabs);
+      /* opacity: 0.7; */
+      transition: var(--transition);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .section-{{name}} .resources-container .resource-tab:hover h4 {
+      color: var(--clr-tabs-hover);
+    } 
+    
+    .section-{{name}} .resources-container .resource-tab.active h4 {
+      color: var(--clr-tabs-active);
+      opacity: 1;
+    }
+    
+    .section-{{name}} .resources-container .resource-cards,
+    .section-{{name}} .resources-container .resource-cards .resource-card {
+      width: 100%;
+    }
+
+    .section-{{name}} .resources-container .resource-cards .resource-card {
+      display: none;
+    }
+    
+    .section-{{name}} .resources-container .resource-cards .resource-card.active {
+      display: block;
+    }
+    
+    /* Podcasts */
+    
+    .podcast-{{name}} {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 50px;
+    }
+    
+    @media (max-width: 767px) {
+      .podcast-{{name}} {
+        grid-template-columns: 1fr;
+      }
+    }
+    
+    .podcast-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }
+    
+    .podcast-{{name}} .card-content {
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .podcast-{{name}} .card-content .img-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    .podcast-{{name}} .card-content .img-wrapper img {
+      display: flex;
+      max-width: 100%;
+      object-fit: cover;
+    }
+        
+    .podcast-{{name}} .card-heading {
+      margin: 0;
+      padding: 0;
+    }
+    
+    .podcast-{{name}} .subscribe-text {
+      margin: 0;
+      padding: 0;
+      text-align: left;
+      margin-bottom: 0px;
+      color: rgba(57, 61, 63, 1.0);
+      font-size: 15px;
+      font-weight: 400;
+      font-style: normal;
+      text-transform: uppercase;
+      letter-spacing: 3px;
+      line-height: 1.2;
+    }
+    
+    .podcast-{{name}} .text-wrapper > *:last-child {
+      margin-bottom: 0;
+    }
+    
+    .podcast-{{name}} .podcasts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .podcast-{{name}} .podcasts .podcast {
+      height: 40px !important;
+      width: 40px !important;
+      min-height: 40px !important;
+      max-height: 40px !important;
+      min-width: 40px !important;
+      max-height: 40px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .podcast-{{name}} .podcasts .podcast img {
+      display: block;
+      max-width: 40px;
+      object-fit: contain;
+    }
+    
+    @media (min-width: 961px) {
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+        margin-bottom: 20px;
+      }
+      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card.featured-card-1 {
+        margin-right: 10px;
+      }
+      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card.featured-card-2 {
+        margin-left: 10px;
+      }
+    }
+    
+    @media (max-width: 960px) {
+      .listing-{{name}} .listing-limiter .post-grid {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      .listing-{{name}} .listing-limiter .post-card,
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+        grid-column: span 1;
+      }
+
+      .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper,
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+        height: 250px;
+        min-height: 250px;
+        max-height: 250px;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper,
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+        height: 220px;
+        min-height: 220px;
+        max-height: 220px;
+      }
+      
+      .section-{{name}} .resources-container .resource-tabs {
+        overflow-x: scroll;
+        max-width: 100%;
+      }
+      
+      .section-{{name}} .resources-container .resource-tab {
+        padding-bottom: 12px;
+      }
+      
+      .section-{{name}} .resources-container .resource-tab h4 {
+        width: max-content;
+        font-size: 18px;
+      }
+      
+      .section-{{name}} .resources-container .resource-tab::before {
+        bottom: 0px;
+      }
+    }
+    
+    @media (max-width: 620px) {
+      .listing-{{name}} .listing-limiter .post-grid {
+        grid-template-columns: 1fr;
+      }
+    }   
+    
+    @media (max-width: 480px) {
+      .section-{{name}} .resources-container .resource-tabs {
+        gap: 20px;
+      }
+    }
+  </style>
+{% end_require_css %}
+
+{% require_js %}
+  <script>
+    $(document).ready(function() {
+      $('.section-{{name}} .resource-tab').click(function() {
+        // Remove 'active' class from all tabs and resource cards
+        $('.section-{{name}} .resource-tab').removeClass('active');
+        $('.section-{{name}} .resource-card').removeClass('active').hide();
+
+        // Add 'active' class to the clicked tab
+        $(this).addClass('active');
+
+        // Get the data-id of the clicked tab
+        var dataId = $(this).data('id');
+
+        // Find the resource card with the same data-id and add 'active' class to it, then fade it in
+        $('.section-{{name}} .resource-card[data-id="' + dataId + '"]').addClass('active').fadeIn();
+      });
+
+      // Initially hide all resource cards except the active one
+      $('.section-{{name}} .resource-card:not(.active)').hide();
+      
+      $('.listing-{{name}} .card-tags').each(function() {
+        const $tags = $(this).find('.card-tag');
+        const totalTags = $tags.length;
+
+        if (totalTags > 2) {
+          // Hide all tags except the first two
+          $tags.slice(2).hide();
+
+          // Create the "+X" element
+          const remainingCount = totalTags - 2;
+          const $moreTags = $('<span class="card-tag more-tags">+' + remainingCount + '</span>');
+
+          // Append the "+X" element after the second tag
+          $(this).append($moreTags);
+
+          // Click event to show the remaining tags
+          $moreTags.click(function() {
+            $tags.slice(2).show();
+            $(this).remove(); // Remove the "+X" element after showing all tags
+          });
+        }
+      });
+    });
+  </script>
+{% end_require_js %}

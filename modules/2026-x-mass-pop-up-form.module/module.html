@@ -1,0 +1,2343 @@
+{#
+Give to ATRI panel + checkout dialog (ATRI Platform payments API + Stripe Payment Element).
+
+Styles and scripts are inline on purpose: some templates don't output standard_header/footer_includes,
+so module.css / module.js would not load there. Everything is scoped to .atri-give so it can't
+restyle the rest of the page.
+
+API: "ATRI Payments API for HubSpot" brief; reference module in the platform repo at
+docs/examples/hubspot-checkout-module.module.
+
+Monthly gifts check out on their own: the platform takes the first month and saves the card,
+then creates a WooCommerce subscription that bills each month after (platform repo,
+docs/woocommerce.md).
+#}
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Libre+Baskerville:wght@400;700&family=Source+Sans+3:wght@400;600&display=swap"
+      rel="stylesheet">
+<style>
+    .atri-give {
+        --cream: #f8f3ea;
+        --cream-dark: #f1e9dc;
+        --panel: #fbf8f2;
+        --red: #8b1c1c;
+        --red-dark: #6f1414;
+        --ink: #1e1a17;
+        --muted: #5a514a;
+        --gold: #c9a46a;
+        --line: #e3d8c6;
+        --serif: "Libre Baskerville", Georgia, "Times New Roman", serif;
+        --sans: "Source Sans 3", -apple-system, "Segoe UI", Roboto, sans-serif;
+
+        background: var(--cream);
+        color: var(--ink);
+        font-family: var(--sans);
+        line-height: 1.5;
+        /* Contain the panel's bottom margin, so the cream background runs 3rem past the
+           card instead of stopping at its edge (the card looked like it spilled out). */
+        display: flow-root;
+    }
+
+    .atri-give *, .atri-give *::before, .atri-give *::after {
+        box-sizing: border-box;
+    }
+
+    .atri-give [hidden] {
+        display: none !important;
+    }
+
+    /* ---------- Support strip ---------- */
+    .atri-give .support {
+        max-width: 1100px;
+        margin: 0 auto;
+        padding: 2rem 1.5rem 1.5rem;
+    }
+
+    .atri-give .support__title {
+        display: flex;
+        align-items: center;
+        gap: 1rem;
+        margin: 0 0 1.5rem;
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 400;
+        letter-spacing: 0.12em;
+        color: var(--ink);
+        text-transform: uppercase;
+        text-align: center;
+    }
+
+    .atri-give .support__title::before,
+    .atri-give .support__title::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: var(--gold);
+    }
+
+    .atri-give .support__grid {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+    }
+
+    .atri-give .support__item {
+        padding: 0 1.25rem;
+        text-align: center;
+    }
+
+    .atri-give .support__item + .support__item {
+        border-left: 1px solid var(--line);
+    }
+
+    .atri-give .support__icon {
+        display: grid;
+        place-items: center;
+        width: 52px;
+        height: 52px;
+        margin: 0 auto 0.6rem;
+        border-radius: 50%;
+        background: #f3e4d4;
+        color: var(--red);
+    }
+
+    .atri-give .support__icon svg {
+        width: 26px;
+        height: 26px;
+    }
+
+    .atri-give .support__item h3 {
+        margin: 0 0 0.25rem;
+        font-family: var(--serif);
+        font-size: 0.95rem;
+    }
+
+    .atri-give .support__item p {
+        margin: 0;
+        font-size: 0.85rem;
+        color: var(--muted);
+    }
+
+    /* ---------- Give panel ---------- */
+    .atri-give .give {
+        position: relative;
+        max-width: 1100px;
+        margin: 0 auto 3rem;
+        padding: 2rem;
+        background: var(--panel);
+        border: 1px solid var(--line);
+        border-radius: 6px;          /* page-wide box rounding */
+        box-shadow: 0 6px 24px rgba(80, 50, 20, 0.08);
+        display: grid;
+        grid-template-columns: 1.1fr 1fr 0.95fr;
+        gap: 2rem;
+        align-items: start;
+    }
+
+    .atri-give .give__close {
+        position: absolute;
+        top: 0.75rem;
+        right: 0.9rem;
+        border: 0;
+        background: none;
+        font-size: 1.5rem;
+        line-height: 1;
+        color: var(--ink);
+        cursor: pointer;
+        padding: 0.25rem;
+    }
+
+    .atri-give .give__intro h2 {
+        margin: 0.5rem 0 1rem;
+        font-family: var(--serif);
+        font-size: clamp(2rem, 3.5vw, 2.6rem);
+        line-height: 1.1;
+    }
+
+    .atri-give .give__lead {
+        margin: 0 0 1rem;
+        font-family: var(--serif);
+        font-size: 1rem;
+        line-height: 1.6;
+    }
+
+    .atri-give .give__note {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+    }
+
+    /* Frequency tabs */
+    .atri-give .tabs {
+        display: grid;
+        grid-auto-flow: column;
+        grid-auto-columns: 1fr;
+        background: var(--cream-dark);
+        border-radius: 4px;
+        margin-bottom: 1rem;
+    }
+
+    .atri-give .tabs button {
+        position: relative;
+        border: 0;
+        background: none;
+        padding: 0.55rem 0.5rem;
+        font: 600 0.8rem var(--sans);
+        color: var(--ink);
+        cursor: pointer;
+        border-radius: 4px;
+    }
+
+    .atri-give .tabs button[aria-selected="true"] {
+        background: var(--red);
+        color: #fff;
+    }
+
+    .atri-give .tabs button[aria-selected="true"]::after {
+        content: "";
+        position: absolute;
+        left: 50%;
+        bottom: -6px;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-bottom: 0;
+        border-top-color: var(--red);
+    }
+
+    /* Amounts */
+    .atri-give .amounts {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 0.5rem;
+        margin-bottom: 0.75rem;
+    }
+
+    .atri-give .amounts button {
+        padding: 0.8rem 0;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: #fff;
+        font: 600 1rem var(--serif);
+        color: var(--ink);
+        cursor: pointer;
+    }
+
+    .atri-give .amounts button:hover {
+        border-color: var(--red);
+    }
+
+    .atri-give .amounts button[aria-pressed="true"] {
+        border-color: var(--red);
+        background: #f7e9e6;
+        color: var(--red);
+    }
+
+    .atri-give .custom {
+        display: flex;
+        align-items: stretch;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: #fff;
+        margin-bottom: 1rem;
+    }
+
+    .atri-give .custom span {
+        display: grid;
+        place-items: center;
+        padding: 0 0.85rem;
+        border-right: 1px solid var(--line);
+        font-weight: 600;
+    }
+
+    .atri-give .custom input {
+        flex: 1;
+        min-width: 0;
+        border: 0;
+        padding: 0.75rem;
+        font: 0.95rem var(--sans);
+        text-align: center;
+        background: transparent;
+    }
+
+    .atri-give .custom input:focus {
+        outline: none;
+    }
+
+    .atri-give .custom:focus-within {
+        border-color: var(--red);
+    }
+
+    .atri-give .btn {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.5rem;
+        width: 100%;
+        padding: 0.85rem 1rem;
+        border: 0;
+        border-radius: 4px;
+        background: var(--red);
+        color: #fff;
+        font: 600 1.05rem var(--serif);
+        cursor: pointer;
+        text-decoration: none;
+    }
+
+    .atri-give .btn:hover {
+        background: var(--red-dark);
+    }
+
+    .atri-give .btn[aria-disabled="true"],
+    .atri-give .btn:disabled {
+        opacity: 0.6;
+        cursor: not-allowed;
+    }
+
+    .atri-give .btn svg {
+        width: 20px;
+        height: 20px;
+    }
+
+    /* Cart */
+    .atri-give .cart {
+        background: var(--cream-dark);
+        border-radius: 6px;
+        padding: 1.1rem;
+    }
+
+    .atri-give .cart__head {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 0.85rem;
+    }
+
+    .atri-give .cart__head h3 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: 1.1rem;
+    }
+
+    .atri-give .cart__items {
+        list-style: none;
+        margin: 0 0 1rem;
+        padding: 0;
+    }
+
+    .atri-give .cart__item {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        padding: 0.75rem;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+    }
+
+    .atri-give .cart__item + .cart__item {
+        margin-top: 0.5rem;
+    }
+
+    .atri-give .cart__item svg {
+        width: 30px;
+        height: 30px;
+        color: var(--red);
+        flex: none;
+    }
+
+    .atri-give .cart__item div {
+        flex: 1;
+        font-size: 0.85rem;
+    }
+
+    .atri-give .cart__item strong {
+        display: block;
+        font-family: var(--serif);
+        font-size: 1rem;
+    }
+
+    .atri-give .cart__remove {
+        border: 0;
+        background: none;
+        color: var(--muted);
+        cursor: pointer;
+        padding: 0.25rem;
+    }
+
+    .atri-give .cart__remove svg {
+        width: 18px;
+        height: 18px;
+        color: currentColor;
+    }
+
+    .atri-give .cart__empty {
+        font-size: 0.9rem;
+        color: var(--muted);
+        margin: 0 0 1rem;
+    }
+
+    .atri-give .cart__subtotal {
+        display: flex;
+        justify-content: space-between;
+        padding-top: 0.85rem;
+        margin-bottom: 1rem;
+        border-top: 1px solid var(--line);
+        font-weight: 600;
+    }
+
+    .atri-give .cart__subtotal span:last-child {
+        font-family: var(--serif);
+    }
+
+    .atri-give .cart .btn {
+        font-size: 0.95rem;
+    }
+
+    .atri-give .cart__continue {
+        display: block;
+        margin-top: 0.75rem;
+        text-align: center;
+        font-size: 0.85rem;
+        font-weight: 600;
+        color: var(--red);
+    }
+
+    .atri-give .cart__error {
+        margin: 0.75rem 0 0;
+        font-size: 0.85rem;
+        color: var(--red);
+    }
+
+    .atri-give .cart__error:empty {
+        display: none;
+    }
+
+    /* ---------- You may also like (fills the space beside a growing cart) ---------- */
+    .atri-give .give.has-recs {
+        grid-template-areas: "intro form cart" "recs recs cart";
+    }
+    .atri-give .give.has-recs .give__intro { grid-area: intro; }
+    .atri-give .give.has-recs .give__form { grid-area: form; }
+    .atri-give .give.has-recs .cart { grid-area: cart; }
+    .atri-give .give.has-recs .recs { grid-area: recs; }
+
+    .atri-give .recs {
+        padding-top: 1.5rem;
+        border-top: 1px solid var(--line);
+    }
+    .atri-give .recs[hidden] { display: none; }
+    .atri-give .recs__title {
+        margin: 0 0 1rem;
+        font-family: var(--serif);
+        font-size: 1.25rem;
+        font-weight: 400;
+    }
+    .atri-give .recs__grid {
+        list-style: none;
+        margin: 0;
+        padding: 0;
+        display: grid;
+        grid-template-columns: repeat(var(--recs-cols, 3), minmax(0, 1fr));
+        gap: 0.85rem;
+    }
+    .atri-give .rec {
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 6px;
+        overflow: hidden;
+    }
+    .atri-give .rec__img {
+        aspect-ratio: 1 / 1;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0.75rem;
+        background: #fff;
+    }
+    .atri-give .rec__img img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+    }
+    .atri-give .rec__body {
+        flex: 1;
+        display: flex;
+        flex-direction: column;
+        gap: 0.25rem;
+        padding: 0.75rem;
+        border-top: 1px solid var(--line);
+    }
+    .atri-give .rec__name {
+        display: -webkit-box;
+        -webkit-line-clamp: 2;
+        -webkit-box-orient: vertical;
+        overflow: hidden;
+        margin: 0;
+        font-size: 0.85rem;
+        font-weight: 600;
+        line-height: 1.35;
+    }
+    .atri-give .rec__price {
+        font-family: var(--serif);
+        font-size: 1rem;
+    }
+    .atri-give .rec__add {
+        margin-top: auto;
+        padding: 0.5rem 0.75rem;
+        border: 1px solid var(--red);
+        border-radius: 4px;
+        background: #fff;
+        color: var(--red);
+        font: inherit;
+        font-size: 0.8rem;
+        font-weight: 700;
+        cursor: pointer;
+        transition: background .2s, color .2s;
+    }
+    .atri-give .rec__add:hover,
+    .atri-give .rec__add.is-added { background: var(--red); color: #fff; }
+    .atri-give .rec__add:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+    .atri-give .rec__fav {
+        position: absolute;
+        top: 0.5rem;
+        right: 0.5rem;
+        width: 34px;
+        height: 34px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        padding: 0;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: rgba(255, 255, 255, 0.92);
+        color: var(--red);
+        cursor: pointer;
+    }
+    /* The theme restyles every <button>, which turned the round heart into an empty white
+       rectangle; 0,4,1 + !important puts it back. */
+    .atri-give .rec > button.rec__fav.rec__fav {
+        width: 34px !important;
+        min-width: 34px !important;
+        height: 34px !important;
+        margin: 0 !important;
+        padding: 0 !important;
+        display: flex !important;
+        align-items: center !important;
+        justify-content: center !important;
+        border: 1px solid var(--line) !important;
+        border-radius: 50% !important;
+        background: rgba(255, 255, 255, 0.92) !important;
+        color: var(--red) !important;
+        box-shadow: none !important;
+    }
+    .atri-give .rec__fav svg { width: 18px; height: 18px; }
+    .atri-give .rec__fav[aria-pressed="true"] svg { fill: currentColor; }
+    .atri-give .rec__fav:focus-visible { outline: 2px solid var(--red); outline-offset: 2px; }
+
+    @media (max-width: 960px) {
+        .atri-give .give.has-recs { grid-template-areas: "intro intro" "form cart" "recs recs"; }
+    }
+    @media (max-width: 700px) {
+        .atri-give .give.has-recs { grid-template-areas: "intro" "form" "cart" "recs"; }
+        .atri-give .recs__grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
+    }
+
+    /* ---------- Checkout dialog ---------- */
+    .atri-give .checkout {
+        width: min(560px, calc(100vw - 24px));
+        max-width: none;
+        max-height: min(94vh, 980px);
+        padding: 0;
+        border: 0;
+        border-radius: 10px;
+        background: var(--panel);
+        color: var(--ink);
+        box-shadow: 0 24px 60px rgba(30, 20, 10, 0.25);
+        overflow: hidden;
+    }
+
+    .atri-give .checkout[open] {
+        display: flex;
+        flex-direction: column;
+    }
+
+    /* The dialog is moved into this wrapper at the end of <body> (see the script), so no
+       section, column or transform on the page can hide or clip it on mobile. */
+    .atri-give.atri-give--portal { display: block; height: 0; background: none; }
+
+    /* Browsers without <dialog> (iOS Safari before 15.4): the script opens it with the
+       open attribute instead, and this places it over the page with a shaded backdrop. */
+    .atri-give .checkout.checkout--fallback { display: none; }
+    .atri-give .checkout.checkout--fallback[open] {
+        display: flex;
+        position: fixed;
+        top: 0;
+        right: 0;
+        bottom: 0;
+        left: 0;
+        margin: auto;
+        height: -webkit-fit-content;
+        height: fit-content;
+        z-index: 2147483000;
+        box-shadow: 0 0 0 100vmax rgba(30, 20, 15, 0.6);
+    }
+    html.checkout-lock, html.checkout-lock body { overflow: hidden; }
+
+    .atri-give .checkout::backdrop {
+        background: rgba(30, 20, 15, 0.6);
+        backdrop-filter: blur(2px);
+    }
+
+    /* flex: 1 1 auto, not flex: 1 (which is a 0 basis). The dialog's height is its content
+       (fit-content); with a 0 basis Safari 26 adds the content up to 0 and the dialog opens
+       0px tall: open, but invisible. min-height: 0 still lets the body shrink and scroll. */
+    .atri-give .checkout__form,
+    .atri-give .checkout__done {
+        display: flex;
+        flex-direction: column;
+        min-height: 0;
+        flex: 1 1 auto;
+    }
+
+    .atri-give .checkout__head {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 1rem 1.5rem;
+        border-bottom: 1px solid var(--line);
+    }
+
+    .atri-give .checkout__head h2 {
+        margin: 0;
+        font-family: var(--serif);
+        font-size: 1.35rem;
+    }
+
+    .atri-give .checkout__close {
+        display: grid;
+        place-items: center;
+        width: 34px;
+        height: 34px;
+        border: 1px solid var(--line);
+        border-radius: 50%;
+        background: transparent;
+        font-size: 1.4rem;
+        line-height: 1;
+        color: var(--ink);
+        cursor: pointer;
+    }
+
+    .atri-give .checkout__close:hover {
+        background: var(--cream-dark);
+    }
+
+    /* The theme restyles every <button> (white box, 12px 30px padding, uppercase), so the X and
+       the Remove links need a stronger selector to keep their own look. */
+    .atri-give .checkout .checkout__head button.checkout__close {
+        flex: none;
+        display: grid !important;
+        place-items: center;
+        width: 34px !important;
+        height: 34px !important;
+        min-width: 0 !important;
+        padding: 0 !important;
+        border: 1px solid var(--line) !important;
+        border-radius: 50% !important;
+        background: transparent !important;
+        color: var(--ink) !important;
+        font: 400 1.5rem/1 var(--serif) !important;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+    }
+    .atri-give .checkout .checkout__head button.checkout__close:hover,
+    .atri-give .checkout .checkout__head button.checkout__close:focus-visible {
+        background: var(--cream-dark) !important;
+        color: var(--ink) !important;
+    }
+    .atri-give .checkout .checkout__head button.checkout__close:disabled { opacity: .4; cursor: not-allowed; }
+
+    .atri-give .checkout .checkout__lines .checkout__line-name {
+        display: flex;
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 2px;
+        min-width: 0;
+    }
+    .atri-give .checkout .checkout__lines button.checkout__remove {
+        min-width: 0 !important;
+        min-height: 0 !important;
+        padding: 0 !important;
+        border: 0 !important;
+        border-radius: 0 !important;
+        background: none !important;
+        color: var(--muted, #6e6d65) !important;
+        font-family: inherit !important;
+        font-size: 0.78rem !important;
+        font-weight: 400 !important;
+        line-height: 1.3 !important;
+        text-decoration: underline !important;
+        text-underline-offset: 2px;
+        text-transform: none !important;
+        letter-spacing: 0 !important;
+        cursor: pointer;
+    }
+    .atri-give .checkout .checkout__lines button.checkout__remove:hover,
+    .atri-give .checkout .checkout__lines button.checkout__remove:focus-visible {
+        background: none !important;
+        color: var(--red, #8d2728) !important;
+    }
+    .atri-give .checkout .checkout__lines button.checkout__remove:disabled { opacity: .4; cursor: not-allowed; }
+
+    .atri-give .checkout__body {
+        flex: 1 1 auto;
+        min-height: 0;
+        overflow-y: auto;
+        padding: 1.25rem 1.5rem;
+    }
+
+    .atri-give .checkout__summary {
+        margin-bottom: 1.25rem;
+        background: var(--cream-dark);
+        border-radius: 6px;
+    }
+
+    .atri-give .checkout__summary summary {
+        display: flex;
+        justify-content: space-between;
+        padding: 0.8rem 1rem;
+        font-weight: 600;
+        cursor: pointer;
+    }
+
+    .atri-give .checkout__summary summary span {
+        font-family: var(--serif);
+    }
+
+    .atri-give .checkout__lines,
+    .atri-give .checkout__totals {
+        list-style: none;
+        margin: 0;
+        padding: 0 1rem;
+        font-size: 0.9rem;
+    }
+
+    .atri-give .checkout__lines li,
+    .atri-give .checkout__totals li {
+        display: flex;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.35rem 0;
+    }
+
+    .atri-give .checkout__lines span:last-child,
+    .atri-give .checkout__totals span:last-child {
+        white-space: nowrap;
+    }
+
+    .atri-give .checkout__totals {
+        margin-top: 0.4rem;
+        padding-bottom: 0.8rem;
+        border-top: 1px solid var(--line);
+        padding-top: 0.4rem;
+    }
+
+    .atri-give .checkout__totals .is-total {
+        font-weight: 600;
+    }
+
+    .atri-give .checkout__totals .is-note {
+        color: var(--muted);
+        font-size: 0.82rem;
+    }
+
+    .atri-give .checkout fieldset {
+        margin: 0 0 1.25rem;
+        padding: 0;
+        border: 0;
+        min-width: 0;
+    }
+
+    .atri-give .checkout legend {
+        margin-bottom: 0.6rem;
+        padding: 0;
+        font-family: var(--serif);
+        font-size: 1rem;
+        font-weight: 700;
+    }
+
+    .atri-give .checkout__row {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 0.75rem;
+    }
+
+    .atri-give .field {
+        display: block;
+        margin-bottom: 0.75rem;
+        font-size: 0.85rem;
+        font-weight: 600;
+    }
+
+    .atri-give .field input {
+        display: block;
+        width: 100%;
+        margin-top: 0.3rem;
+        padding: 0.7rem 0.75rem;
+        border: 1px solid var(--line);
+        border-radius: 4px;
+        background: #fff;
+        font: 400 1rem var(--sans);
+        color: var(--ink);
+    }
+
+    .atri-give .field input:focus {
+        outline: 2px solid var(--red);
+        outline-offset: 0;
+        border-color: var(--red);
+    }
+
+    .atri-give .field small {
+        font-weight: 400;
+        color: var(--muted);
+    }
+
+    .atri-give .check {
+        display: flex;
+        align-items: flex-start;
+        gap: 0.6rem;
+        margin-bottom: 0.6rem;
+        font-size: 0.9rem;
+        cursor: pointer;
+    }
+
+    .atri-give .check input {
+        width: 18px;
+        height: 18px;
+        margin: 0.15rem 0 0;
+        accent-color: var(--red);
+        flex: none;
+    }
+
+    .atri-give .checkout__status {
+        margin: 0;
+        font-size: 0.9rem;
+        color: var(--muted);
+    }
+
+    .atri-give .checkout__error {
+        margin: 0.5rem 0 0;
+        padding: 0.7rem 0.85rem;
+        border-left: 3px solid var(--red);
+        background: #f7e9e6;
+        font-size: 0.9rem;
+        color: var(--red-dark);
+    }
+
+    .atri-give .checkout__error:empty {
+        display: none;
+    }
+
+    .atri-give .checkout__foot {
+        padding: 1rem 1.5rem 1.25rem;
+        border-top: 1px solid var(--line);
+        background: var(--panel);
+    }
+
+    .atri-give .checkout__paypal { margin-bottom: 0.75rem; }
+    .atri-give .checkout__paypal-buttons { min-height: 46px; }
+    .atri-give .checkout__or {
+        display: flex;
+        align-items: center;
+        gap: 0.75rem;
+        margin: 0.75rem 0 0;
+        font-size: 0.8rem;
+        color: var(--muted);
+    }
+    .atri-give .checkout__or::before,
+    .atri-give .checkout__or::after { content: ""; flex: 1; border-top: 1px solid var(--line); }
+
+    .atri-give .checkout__secure {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 0.4rem;
+        margin: 0.6rem 0 0;
+        font-size: 0.8rem;
+        color: var(--muted);
+        text-align: center;
+    }
+
+    .atri-give .checkout__secure svg {
+        width: 14px;
+        height: 14px;
+        flex: none;
+    }
+
+    .atri-give .checkout__done {
+        align-items: center;
+        justify-content: center;
+        padding: 2.5rem 1.75rem 2rem;
+        text-align: center;
+    }
+
+    .atri-give .checkout__done-icon {
+        display: grid;
+        place-items: center;
+        width: 64px;
+        height: 64px;
+        margin-bottom: 1rem;
+        border-radius: 50%;
+        background: #f3e4d4;
+        color: var(--red);
+        font-size: 1.8rem;
+    }
+
+    .atri-give .checkout__done h2 {
+        margin: 0 0 0.6rem;
+        font-family: var(--serif);
+        font-size: 1.6rem;
+    }
+
+    /* Focus is moved here for screen readers; no visible ring needed. */
+    .atri-give .checkout__done h2:focus {
+        outline: none;
+    }
+
+    .atri-give .checkout__done p {
+        max-width: 380px;
+        margin: 0 0 1.5rem;
+        color: var(--muted);
+    }
+
+    .atri-give .checkout__receipt {
+        width: 100%;
+        max-width: 380px;
+        margin: 0 0 1.5rem;
+        text-align: left;
+    }
+
+    .atri-give .checkout__turnstile:not(:empty) {
+        margin-top: 1rem;
+    }
+
+    .atri-give .checkout__done .btn {
+        width: auto;
+        min-width: 200px;
+    }
+
+    /* Focus states */
+    .atri-give button:focus-visible,
+    .atri-give a:focus-visible,
+    .atri-give .custom:focus-within {
+        outline: 2px solid var(--red);
+        outline-offset: 2px;
+    }
+
+    /* ---------- Responsive ---------- */
+    @media (max-width: 960px) {
+        .atri-give .give {
+            grid-template-columns: 1fr 1fr;
+        }
+
+        .atri-give .give__intro {
+            grid-column: 1 / -1;
+        }
+    }
+
+    @media (max-width: 700px) {
+        .atri-give .support__grid {
+            grid-template-columns: 1fr 1fr;
+            row-gap: 1.5rem;
+        }
+
+        .atri-give .support__item:nth-child(3) {
+            border-left: 0;
+        }
+
+        .atri-give .give {
+            grid-template-columns: 1fr;
+            padding: 1.5rem;
+        }
+
+        .atri-give .checkout,
+        .atri-give .checkout.checkout--fallback[open] {
+            width: 100vw;
+            /* vh first: older iOS Safari ignores dvh. */
+            max-height: 100vh;
+            max-height: 100dvh;
+            height: 100vh;
+            height: 100dvh;
+            margin: 0;
+            border-radius: 0;
+        }
+
+        .atri-give .checkout__body,
+        .atri-give .checkout__head,
+        .atri-give .checkout__foot {
+            padding-left: 1rem;
+            padding-right: 1rem;
+            /* Keep the Pay button clear of the iPhone home bar. */
+            padding-bottom: calc(1.25rem + env(safe-area-inset-bottom, 0px));
+        }
+    }
+
+    @media (max-width: 420px) {
+        .atri-give .amounts {
+            grid-template-columns: repeat(2, 1fr);
+        }
+
+        .atri-give .checkout__row {
+            grid-template-columns: 1fr;
+            gap: 0;
+        }
+    }
+</style>
+{# Direct tag (not require_js) so it loads on templates without standard_header_includes. #}
+<script src="{{ get_asset_url('/JAS2024/js/cart.js') }}"></script>
+
+{# id="giving": the hero's "Give to ATRI" button and other #giving links land here. #}
+<div class="atri-give" id="giving">
+
+    <!-- Support strip -->
+    <section class="support">
+        <h2 class="support__title">Your gift helps support</h2>
+        <div class="support__grid">
+            <div class="support__item">
+                <div class="support__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <rect x="3" y="4" width="18" height="12" rx="1"/>
+                        <path d="M8 20h8M12 16v4"/>
+                    </svg>
+                </div>
+                <h3>TV &amp; Airtime</h3>
+                <p>Bringing trusted biblical teaching to viewers around the world.</p>
+            </div>
+            <div class="support__item">
+                <div class="support__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <rect x="3" y="4" width="18" height="16" rx="1"/>
+                        <path d="M10 9l5 3-5 3z"/>
+                    </svg>
+                </div>
+                <h3>Digital Ministry</h3>
+                <p>Reaching people with biblical truth online and through social media.</p>
+            </div>
+            <div class="support__item">
+                <div class="support__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <path d="M12 6c-2-1.5-5-2-8-1.5V19c3-.5 6 0 8 1.5 2-1.5 5-2 8-1.5V4.5c-3-.5-6 0-8 1.5zM12 6v14.5"/>
+                    </svg>
+                </div>
+                <h3>New Content &amp; Resources</h3>
+                <p>Creating new series, books, and study resources to equip believers and seekers.</p>
+            </div>
+            <div class="support__item">
+                <div class="support__icon">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <circle cx="12" cy="12" r="9"/>
+                        <path d="M3 12h18M12 3c2.5 2.5 3.5 5.5 3.5 9s-1 6.5-3.5 9c-2.5-2.5-3.5-5.5-3.5-9S9.5 5.5 12 3z"/>
+                    </svg>
+                </div>
+                <h3>Ministry Operations</h3>
+                <p>Supporting the work that makes it all possible and keeps ATRI reaching people globally.</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Give panel -->
+    <section class="give" id="give-panel" aria-labelledby="give-title"
+             data-api-base="{{ module.api_base_url|escape_attr }}"
+             data-public-key="{{ module.public_key|escape_attr }}"
+             data-fee-percent="{{ module.fee_percent or 0 }}"
+             data-gift-sku="{{ (module.gift_sku or 'ATRI-GIVE')|escape_attr }}"
+             data-legacy-url="{{ module.legacy_giving_url.href|escape_attr }}">
+        <button class="give__close" type="button" aria-label="Close">&times;</button>
+
+        <div class="give__intro">
+            <h2 id="give-title">Give to ATRI</h2>
+            <p class="give__lead">Your gift helps carry out the full mission of this ministry—one mission, carried out in
+                many ways.</p>
+            <p class="give__note">Choose an amount or enter a custom gift.</p>
+        </div>
+
+        <div class="give__form">
+            <div class="tabs" role="tablist" aria-label="Gift frequency">
+                <button type="button" role="tab" aria-selected="true" data-freq="one-time">One Time</button>
+                {% if module.offer_monthly %}
+                <button type="button" role="tab" aria-selected="false" data-freq="monthly">Monthly</button>
+                {% endif %}
+                {% if module.legacy_giving_url.href %}
+                <button type="button" role="tab" aria-selected="false" data-freq="legacy">Legacy Giving</button>
+                {% endif %}
+            </div>
+
+            <div class="amounts">
+                <button type="button" aria-pressed="false" data-amount="30" data-one-time="30" data-monthly="30">$30</button>
+                <button type="button" aria-pressed="false" data-amount="60" data-one-time="60" data-monthly="100">$60</button>
+                <button type="button" aria-pressed="true" data-amount="100" data-one-time="100" data-monthly="500">$100</button>
+                <button type="button" aria-pressed="false" data-amount="250" data-one-time="250" data-monthly="1000">$250</button>
+            </div>
+
+            <label class="custom">
+                <span>$</span>
+                <input type="number" min="1" step="1" inputmode="decimal" placeholder="Custom Amount"
+                       aria-label="Custom amount">
+            </label>
+
+            <button class="btn" type="button" id="add-to-cart">
+                <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8">
+                    <path d="M3 4h2l2.4 11h11.2L21 7H6.2"/>
+                    <circle cx="9" cy="19.5" r="1.3"/>
+                    <circle cx="17" cy="19.5" r="1.3"/>
+                </svg>
+                Add to Cart
+            </button>
+        </div>
+
+        <aside class="cart" aria-label="Your cart">
+            <div class="cart__head">
+                <h3>Your Cart (<span id="cart-count">1</span>)</h3>
+            </div>
+
+            <ul class="cart__items" id="cart-items">
+                <li class="cart__item">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                        <rect x="3" y="9" width="18" height="4"/>
+                        <path d="M5 13v8h14v-8M12 9v12M12 9c-1.5-3-5-4-5-1.5S10 9 12 9zm0 0c1.5-3 5-4 5-1.5S14 9 12 9z"/>
+                    </svg>
+                    <div>Gift to ATRI<strong>$100.00</strong></div>
+                    <button class="cart__remove" type="button" aria-label="Remove gift">
+                        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.6">
+                            <path d="M4 7h16M9 7V4h6v3M6 7l1 13h10l1-13M10 11v6M14 11v6"/>
+                        </svg>
+                    </button>
+                </li>
+            </ul>
+
+            <div class="cart__subtotal">
+                <span>Subtotal:</span>
+                <span id="cart-subtotal">$100.00</span>
+            </div>
+
+            <a class="btn" id="checkout-btn" href="#" role="button" aria-haspopup="dialog">Proceed to Checkout</a>
+            <p class="cart__error" id="checkout-error" role="alert"></p>
+            <a class="cart__continue" href="#">Continue Shopping</a>
+        </aside>
+
+        {% set r = module.recommendations %}
+        {% if r.enabled %}
+        <section class="recs" id="give-recs" aria-labelledby="give-recs-title" hidden
+                 data-url="{{ r.products_url|escape_attr }}"
+                 data-featured="{{ r.featured_skus|escape_attr }}"
+                 data-exclude="{{ r.exclude_skus|escape_attr }}"
+                 data-cols="{{ r.per_row or 3 }}">
+            <h3 class="recs__title" id="give-recs-title">{{ r.heading }}</h3>
+            <ul class="recs__grid" role="list"></ul>
+        </section>
+        {% endif %}
+    </section>
+
+    <!-- Checkout dialog -->
+    <dialog class="checkout" id="checkout-dialog" aria-labelledby="checkout-title">
+        <form class="checkout__form" id="checkout-form" novalidate>
+            <div class="checkout__head">
+                <h2 id="checkout-title">Checkout</h2>
+                <button type="button" class="checkout__close" data-co-close aria-label="Close checkout">&times;</button>
+            </div>
+
+            <div class="checkout__body">
+                <details class="checkout__summary" data-co="summary" open>
+                    <summary>Order summary <span data-co="summary-total"></span></summary>
+                    <ul class="checkout__lines" data-co="lines"></ul>
+                    <ul class="checkout__totals" data-co="totals"></ul>
+                </details>
+
+                <fieldset>
+                    <legend>Your details</legend>
+                    <div class="checkout__row">
+                        <label class="field">First name
+                            <input name="first_name" autocomplete="given-name" required>
+                        </label>
+                        <label class="field">Last name
+                            <input name="last_name" autocomplete="family-name" required>
+                        </label>
+                    </div>
+                    <label class="field">Email <small>(for your receipt)</small>
+                        <input name="email" type="email" autocomplete="email" required>
+                    </label>
+                    <label class="field">Phone <small>(optional)</small>
+                        <input name="phone" type="tel" autocomplete="tel">
+                    </label>
+                </fieldset>
+
+                <fieldset data-co="shipping" hidden>
+                    <legend data-co="address-legend">Shipping address</legend>
+                    <div data-co="address"></div>
+                </fieldset>
+
+                <fieldset>
+                    <legend>Payment</legend>
+                    <p class="checkout__status" data-co="status" aria-live="polite"></p>
+                    <div data-co="payment"></div>
+                    <div class="checkout__turnstile" data-co="turnstile"></div>
+                </fieldset>
+
+                {% if module.fee_percent %}
+                <label class="check">
+                    <input type="checkbox" name="cover_fees" data-co="cover">
+                    <span>Add {{ module.fee_percent }}% to help cover processing fees, so more of my gift goes to ministry.</span>
+                </label>
+                {% endif %}
+
+                <p class="checkout__error" data-co="error" role="alert"></p>
+            </div>
+
+            <div class="checkout__foot">
+                {# PayPal: shown once the platform has PayPal on (config.paypal_client_id); never for monthly gifts. #}
+                <div class="checkout__paypal" data-co="paypal-wrap" hidden>
+                    <div class="checkout__paypal-buttons" data-co="paypal"></div>
+                    <p class="checkout__or"><span>or pay by card</span></p>
+                </div>
+                <button type="submit" class="btn" data-co="pay">Pay</button>
+                <p class="checkout__secure">
+                    <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" aria-hidden="true">
+                        <rect x="5" y="11" width="14" height="10" rx="1"/>
+                        <path d="M8 11V7a4 4 0 0 1 8 0v4"/>
+                    </svg>
+                    Payments are processed securely by Stripe and PayPal. ATRI never sees your card number.
+                </p>
+            </div>
+        </form>
+
+        <div class="checkout__done" data-co="done" hidden>
+            <div class="checkout__done-icon" aria-hidden="true" data-co="done-icon">✓</div>
+            <h2 data-co="done-title" tabindex="-1">Thank you!</h2>
+            <p data-co="done-text"></p>
+            <ul class="checkout__totals checkout__receipt" data-co="receipt" hidden></ul>
+            <button type="button" class="btn" data-co="done-action">Close</button>
+        </div>
+    </dialog>
+</div>
+
+<script>
+    /*
+    * Wires the Give to ATRI panel to window.ATRICart (cart.js) and runs checkout in a dialog
+    * against the ATRI Platform payments API with the Stripe Payment Element.
+    *
+    * 1. GET  /api/v1/payments/donations/config            → Stripe + Turnstile keys, shipping rule
+    * 2. POST /api/v1/payments/checkout  (items + donation) → server-priced order + client_secret
+    *    POST /api/v1/payments/donations (gifts only)
+    *    POST /api/v1/integrations/woocommerce/subscriptions/monthly (a monthly gift, alone)
+    * 3. stripe.confirmPayment with that client_secret (3-D Secure may redirect and come back)
+    * 4. POST …/{id}/complete                               → captured / pending / failed
+    *    (monthly: also subscription_status, once the platform has signed the donor up)
+    *
+    * The browser sends only SKUs, quantities and the donation; the platform decides what it costs,
+    * and nothing is charged until the buyer has seen the platform's amount.
+    */
+    (function () {
+        const panel = document.getElementById('give-panel');
+        if (!panel || !window.ATRICart) return;
+
+        const Cart = window.ATRICart;
+        const tabs = panel.querySelectorAll('[role="tab"]');
+        const amountBtns = panel.querySelectorAll('.amounts button');
+        const customInput = panel.querySelector('.custom input');
+        const addBtn = document.getElementById('add-to-cart');
+        const itemsEl = document.getElementById('cart-items');
+        const countEl = document.getElementById('cart-count');
+        const subtotalEl = document.getElementById('cart-subtotal');
+        const checkoutBtn = document.getElementById('checkout-btn');
+        const errorEl = document.getElementById('checkout-error');
+        const itemTemplate = itemsEl.querySelector('.cart__item').cloneNode(true);
+
+        let frequency = 'one-time';
+        let amountCents = 10000;
+
+        const money = cents => '$' + (cents / 100).toFixed(2);
+        const giveSku = (panel.dataset.giftSku || '').trim() || 'ATRI-GIVE';
+
+        tabs.forEach(tab => tab.addEventListener('click', () => {
+            // Legacy giving is a conversation, not a cart item.
+            if (tab.dataset.freq === 'legacy') {
+                if (panel.dataset.legacyUrl) window.location.href = panel.dataset.legacyUrl;
+                return;
+            }
+            tabs.forEach(t => t.setAttribute('aria-selected', String(t === tab)));
+            frequency = tab.dataset.freq;
+            showAmounts();
+        }));
+
+        // Each tab has its own amounts (monthly ones match the WooCommerce products in MONTHLY_SKUS).
+        // Keep the chosen amount if the new tab offers it, otherwise choose $100.
+        function showAmounts() {
+            const key = frequency === 'monthly' ? 'monthly' : 'oneTime';
+            const chosen = customInput.value ? 0 : amountCents / 100;
+            const keep = [...amountBtns].some(b => Number(b.dataset[key]) === chosen);
+            amountBtns.forEach(btn => {
+                btn.dataset.amount = btn.dataset[key];
+                btn.textContent = '$' + Number(btn.dataset.amount).toLocaleString('en-US');
+                const pressed = !customInput.value && Number(btn.dataset.amount) === (keep ? chosen : 100);
+                btn.setAttribute('aria-pressed', String(pressed));
+            });
+            if (!customInput.value && !keep) amountCents = 10000;
+        }
+
+        amountBtns.forEach(btn => btn.addEventListener('click', () => {
+            amountBtns.forEach(b => b.setAttribute('aria-pressed', String(b === btn)));
+            amountCents = Number(btn.dataset.amount) * 100;
+            customInput.value = '';
+        }));
+
+        customInput.addEventListener('input', () => {
+            amountBtns.forEach(b => b.setAttribute('aria-pressed', 'false'));
+            amountCents = Math.round(parseFloat(customInput.value) * 100) || 0;
+        });
+
+        addBtn.addEventListener('click', () => {
+            if (amountCents < 500) {
+                customInput.focus();
+                showError('Enter an amount of at least $5.');
+                return;
+            }
+            showError('');
+            Cart.add({type: 'gift', frequency, amount_cents: amountCents, fund: 'general', sku: giveSku});
+        });
+
+        itemsEl.addEventListener('click', event => {
+            const btn = event.target.closest('.cart__remove');
+            if (btn) Cart.remove(btn.closest('li').dataset.id);
+        });
+
+        checkoutBtn.addEventListener('click', event => {
+            event.preventDefault();
+            openCheckout();
+        });
+
+        // Shared checkout: the slide-out cart drawer (x-mass-cart-drawer) opens this same dialog.
+        window.ATRICheckout = {
+            open: report => openCheckout(report),
+            isOpen: () => dialog.open,
+        };
+
+        function showError(message) {
+            if (errorEl) errorEl.textContent = message;
+        }
+
+        // A gift keeps the name it was added with (e.g. "Audio Bibles — Custom Gift" from the
+        // Audio Bibles banner); only an unnamed gift is a general gift to ATRI.
+        function itemLabel(item) {
+            if (item.type !== 'gift') return item.name;
+            return item.name || (item.frequency === 'monthly' ? 'Monthly gift to ATRI' : 'Gift to ATRI');
+        }
+
+        function itemCents(item) {
+            return item.type === 'gift' ? item.amount_cents : (item.unit_cents || 0) * (item.quantity || 1);
+        }
+
+        function render() {
+            const items = Cart.items();
+            itemsEl.innerHTML = '';
+
+            items.forEach(item => {
+                const li = itemTemplate.cloneNode(true);
+                li.dataset.id = item.id;
+                const text = li.querySelector('div');
+                text.textContent = itemLabel(item);
+                const strong = document.createElement('strong');
+                strong.textContent = money(itemCents(item)) + (item.frequency === 'monthly' ? ' / month' : '');
+                text.appendChild(strong);
+                itemsEl.appendChild(li);
+            });
+
+            if (!items.length) {
+                itemsEl.innerHTML = '<li class="cart__empty">Your cart is empty.</li>';
+            }
+            countEl.textContent = items.length;
+            subtotalEl.textContent = money(Cart.subtotalCents());
+            checkoutBtn.toggleAttribute('aria-disabled', !items.length);
+        }
+
+        window.addEventListener('atri:cart', render);
+        render();
+
+        // ───────────────────────── Checkout dialog ─────────────────────────
+
+        const dialog = document.getElementById('checkout-dialog');
+
+        // Move the dialog to the end of <body>, in its own .atri-give wrapper so its styles
+        // still apply. Inside the page section it can be hidden by a mobile-only "hide" on a
+        // HubSpot row/column, or clipped by an ancestor on some iOS Safari versions.
+        if (dialog && dialog.parentNode && dialog.parentNode !== document.body) {
+            const portal = document.createElement('div');
+            portal.className = 'atri-give atri-give--portal';
+            portal.appendChild(dialog);
+            document.body.appendChild(portal);
+        }
+
+        // Safari (Mac and iPhone) before 27 can open the modal <dialog> without showing it, and
+        // iOS Safari before 15.4 has no <dialog> at all. In those, skip the browser's modal and open
+        // it as an ordinary fixed panel instead (the open attribute, styled by .checkout--fallback).
+        const safariMajor = (() => {
+            const ua = navigator.userAgent;
+            if (!/Safari\//.test(ua) || /Chrome|Chromium|CriOS|FxiOS|EdgiOS|Edg\/|OPR\//.test(ua)) return 0;
+            const m = ua.match(/Version\/(\d+)/);
+            return m ? Number(m[1]) : 0;
+        })();
+        const useFallbackDialog = typeof dialog.showModal !== 'function' || (safariMajor > 0 && safariMajor < 27);
+        if (dialog && useFallbackDialog) {
+            dialog.classList.add('checkout--fallback');
+            dialog.setAttribute('role', 'dialog');
+            dialog.setAttribute('aria-modal', 'true');
+            Object.defineProperty(dialog, 'open', {
+                configurable: true,
+                get: () => dialog.hasAttribute('open'),
+            });
+            dialog.showModal = () => {
+                dialog.setAttribute('open', '');
+                document.documentElement.classList.add('checkout-lock');
+                const first = dialog.querySelector('[data-co-close], button, input');
+                if (first) first.focus();
+            };
+            dialog.close = () => {
+                if (!dialog.hasAttribute('open')) return;
+                dialog.removeAttribute('open');
+                document.documentElement.classList.remove('checkout-lock');
+                dialog.dispatchEvent(new Event('close'));
+            };
+            // Esc closes it, as with a real modal; the 'cancel' handler can still refuse mid-payment.
+            document.addEventListener('keydown', event => {
+                if (event.key !== 'Escape' || !dialog.hasAttribute('open')) return;
+                const cancel = new Event('cancel', {cancelable: true});
+                if (dialog.dispatchEvent(cancel)) dialog.close();
+            });
+        }
+        const form = document.getElementById('checkout-form');
+        const co = key => dialog.querySelector('[data-co="' + key + '"]');
+        const apiBase = (panel.dataset.apiBase || '').trim().replace(/\/+$/, '');
+        // Only a platform public key belongs in a page; ignore anything else (e.g. a pasted secret key).
+        const publicKey = /^pk_/.test(panel.dataset.publicKey || '') ? panel.dataset.publicKey.trim() : '';
+        const feePercent = Number(panel.dataset.feePercent) || 0;
+        const GIVE_SKU = (panel.dataset.giftSku || '').trim() || 'ATRI-GIVE';
+        // Stripe's "skus" metadata: each one-time gift by its SKU and amount. A gift from the
+        // Audio Bibles section carries its SKU in `fund`; a Give to ATRI gift (fund "general",
+        // or older carts without a sku) uses this section's gift SKU. Covered fees aren't listed.
+        // Custom Audio Bible gifts already sitting in carts carry the old SKU; send FR16-C.
+        const RENAMED_SKUS = {'AUDIO-BIBLE-CUSTOM': 'FR16-C'};
+        const giftSku = item => {
+            let sku = item.sku || (item.fund && item.fund !== 'general' ? item.fund : GIVE_SKU);
+            sku = RENAMED_SKUS[sku] || sku;
+            return /^[A-Za-z0-9._-]{1,64}$/.test(sku) ? sku : GIVE_SKU;
+        };
+        const giftLines = t => t.gifts
+            .filter(item => item.frequency !== 'monthly' && item.amount_cents > 0)
+            .map(item => ({sku: giftSku(item), amount: toAmount(item.amount_cents)}));
+        // The WooCommerce subscription product each monthly amount renews under, by SKU; any other
+        // amount renews under ICF-Custom. The platform looks the SKU up in WooCommerce.
+        const MONTHLY_SKUS = {3000: 'ICF-30', 10000: 'ICF-100', 50000: 'ICF-500', 100000: 'ICF-1000'};
+        const MONTHLY_CUSTOM_SKU = 'ICF-Custom';
+        const CHECKOUT_FLAG = 'atri_checkout';
+        const DONATION_FLAG = 'atri_donation';
+        const MONTHLY_FLAG = 'atri_monthly';
+        const FLAGS = [CHECKOUT_FLAG, DONATION_FLAG, MONTHLY_FLAG];
+        const COMPLETE_PATHS = {
+            [CHECKOUT_FLAG]: '/api/v1/payments/checkout/',
+            [DONATION_FLAG]: '/api/v1/payments/donations/',
+            [MONTHLY_FLAG]: '/api/v1/integrations/woocommerce/subscriptions/monthly/'
+        };
+        const STRIPE_PARAMS = ['payment_intent', 'payment_intent_client_secret', 'redirect_status'];
+
+        let config = null;
+        let stripe = null;
+        let elements = null;
+        let paymentElement = null;
+        let addressElement = null;
+        let idempotencyKey = null;
+        let keyFor = '';        // the request body the current idempotency key belongs to
+        let shownCents = 0;     // the amount on the Pay button; nothing else is ever charged
+        let payLabel = 'Pay';
+        let busy = false;
+        let afterDone = null;
+        let turnstileId = null;
+        let turnstileToken = '';
+        let tokenWaiters = [];
+
+        const toCents = value => Math.round(parseFloat(value) * 100) || 0;
+        const toAmount = cents => (cents / 100).toFixed(2);
+
+        const appearance = {
+            theme: 'stripe',
+            variables: {
+                colorPrimary: '#8b1c1c',
+                colorText: '#1e1a17',
+                colorTextSecondary: '#5a514a',
+                colorBackground: '#ffffff',
+                colorDanger: '#8b1c1c',
+                fontFamily: '"Source Sans 3", -apple-system, "Segoe UI", Roboto, sans-serif',
+                fontSizeBase: '16px',
+                borderRadius: '4px'
+            },
+            rules: {
+                '.Input': {border: '1px solid #e3d8c6', boxShadow: 'none'},
+                '.Input:focus': {border: '1px solid #8b1c1c', boxShadow: '0 0 0 1px #8b1c1c'},
+                '.Label': {fontWeight: '600'}
+            }
+        };
+        const fonts = [{cssSrc: 'https://fonts.googleapis.com/css2?family=Source+Sans+3:wght@400;600&display=swap'}];
+
+        function newId() {
+            return window.crypto && crypto.randomUUID
+                ? crypto.randomUUID()
+                : 'k' + Date.now().toString(16) + Math.random().toString(16).slice(2) + Math.random().toString(16).slice(2);
+        }
+
+        // ── Platform API ──
+
+        const STATUS_MESSAGES = {
+            0: 'We couldn’t reach the payment server. Check your connection and try again.',
+            401: 'Checkout isn’t available right now. Please try again later.',
+            403: 'We couldn’t complete the security check. Please press Pay again.',
+            404: 'This checkout has expired. Please start again.',
+            409: 'Your order changed. Please review it and press Pay again.',
+            429: 'Too many attempts. Please wait a few minutes and try again.',
+            502: 'The payment provider didn’t respond, and you were not charged. Please try again.'
+        };
+
+        class ApiError extends Error {
+            constructor(status, body) {
+                // 401 messages are about the key/origin setup, not something the buyer can fix.
+                super(status !== 401 && body.message || STATUS_MESSAGES[status] || 'Something went wrong. Please try again.');
+                this.status = status;
+                this.code = body.code;
+                if (status === 401) console.error('[ATRI checkout] 401 from the payments API: check the module\'s public key and that this origin (' + location.origin + ') is in its allowed origins.', body);
+            }
+        }
+
+        async function api(path, method, body) {
+            let response;
+            try {
+                response = await fetch(apiBase + path, {
+                    method,
+                    headers: {'Content-Type': 'application/json', 'X-Public-Key': publicKey},
+                    body: body ? JSON.stringify(body) : undefined
+                });
+            } catch (err) {
+                throw new ApiError(0, {});
+            }
+            const data = await response.json().catch(() => ({}));
+            if (!response.ok) throw new ApiError(response.status, data);
+            return data;
+        }
+
+        let configPromise = null;
+        function loadConfig() {
+            if (!configPromise) {
+                configPromise = api('/api/v1/payments/donations/config', 'GET')
+                    .then(data => (config = data))
+                    .catch(err => {
+                        configPromise = null;
+                        throw err;
+                    });
+            }
+            return configPromise;
+        }
+
+        // ── Third-party scripts (must be loaded from their own CDNs) ──
+
+        const scripts = {};
+        function loadScript(src, globalName, attrs = {}) {
+            if (!scripts[src]) {
+                scripts[src] = new Promise((resolve, reject) => {
+                    if (window[globalName]) return resolve(window[globalName]);
+                    const script = document.createElement('script');
+                    script.src = src;
+                    Object.entries(attrs).forEach(([name, value]) => script.setAttribute(name, value));
+                    script.async = true;
+                    script.onload = () => window[globalName] ? resolve(window[globalName]) : reject();
+                    script.onerror = reject;
+                    document.head.appendChild(script);
+                }).catch(() => {
+                    delete scripts[src];
+                    throw new Error('The secure payment form could not load. Check your connection and try again.');
+                });
+            }
+            return scripts[src];
+        }
+
+        async function getStripe() {
+            if (!stripe) {
+                const Stripe = await loadScript('https://js.stripe.com/v3/', 'Stripe');
+                stripe = Stripe(config.stripe_publishable_key);
+            }
+            return stripe;
+        }
+
+        // Turnstile tokens are single-use, so the widget is reset after every start call.
+        async function renderTurnstile() {
+            if (!config.turnstile_site_key) return;
+            const ts = await loadScript('https://challenges.cloudflare.com/turnstile/v0/api.js?render=explicit', 'turnstile');
+            if (turnstileId !== null) return resetTurnstile();
+            turnstileId = ts.render(co('turnstile'), {
+                sitekey: config.turnstile_site_key,
+                appearance: 'interaction-only',
+                callback: token => {
+                    turnstileToken = token;
+                    tokenWaiters.splice(0).forEach(resolve => resolve(token));
+                },
+                'expired-callback': () => { turnstileToken = ''; },
+                'error-callback': () => { turnstileToken = ''; }
+            });
+        }
+
+        function resetTurnstile() {
+            turnstileToken = '';
+            if (window.turnstile && turnstileId !== null) window.turnstile.reset(turnstileId);
+        }
+
+        function waitForToken() {
+            if (!config.turnstile_site_key || turnstileToken) return Promise.resolve(turnstileToken);
+            return new Promise((resolve, reject) => {
+                const timer = setTimeout(() => {
+                    tokenWaiters = tokenWaiters.filter(fn => fn !== done);
+                    reject(new Error('Please complete the security check above the Pay button, then press Pay again.'));
+                }, 20000);
+                const done = token => {
+                    clearTimeout(timer);
+                    resolve(token);
+                };
+                tokenWaiters.push(done);
+            });
+        }
+
+        // ── Totals (an estimate; the platform's numbers replace it before anything is charged) ──
+
+        function totals() {
+            const items = Cart.items();
+            const products = items.filter(item => item.type !== 'gift');
+            const gifts = items.filter(item => item.type === 'gift');
+            const sum = list => list.reduce((cents, item) => cents + itemCents(item), 0);
+            const itemsCents = sum(products);
+            const giftCents = sum(gifts);
+            const cover = !!(co('cover') && co('cover').checked) && feePercent > 0;
+            // Covering fees is an extra donation, so the platform sees it as part of the gift.
+            const feeCents = cover ? Math.round((itemsCents + giftCents) * feePercent / 100) : 0;
+            const donation = giftCents + feeCents;
+
+            let shipping = 0;
+            if (products.length && config && toCents(config.shipping_fee)) {
+                const threshold = config.free_shipping_threshold ? toCents(config.free_shipping_threshold) : Infinity;
+                if (itemsCents + donation < threshold) shipping = toCents(config.shipping_fee);
+            }
+
+            return {
+                items, products, gifts, cover, feeCents, donation, shipping,
+                giftCents, total: itemsCents + donation + shipping,
+                isDonation: !products.length,
+                monthly: gifts.some(item => item.frequency === 'monthly')
+            };
+        }
+
+        // A monthly gift's payment: the platform's response carries its subscription status.
+        function isMonthly(payment) {
+            return !!payment && payment.subscription_status !== undefined;
+        }
+
+        function row(label, value, cls) {
+            const li = document.createElement('li');
+            if (cls) li.className = cls;
+            const a = document.createElement('span');
+            const b = document.createElement('span');
+            a.textContent = label;
+            b.textContent = value;
+            li.append(a, b);
+            return li;
+        }
+
+        function setShown(cents, isDonation, monthly) {
+            shownCents = cents;
+            payLabel = (isDonation ? 'Give ' : 'Pay ') + money(cents) + (monthly ? ' / month' : '');
+            co('summary-total').textContent = money(cents);
+            if (!busy) co('pay').textContent = payLabel;
+        }
+
+        // An order line with a Remove link under the name.
+        function lineRow(item) {
+            const li = row('', money(itemCents(item)));
+            const name = li.firstChild;
+            name.className = 'checkout__line-name';
+            const label = document.createElement('span');
+            label.textContent = itemLabel(item) + (item.quantity > 1 ? ' × ' + item.quantity : '');
+            const remove = document.createElement('button');
+            remove.type = 'button';
+            remove.className = 'checkout__remove';
+            remove.dataset.coRemove = item.id;
+            remove.textContent = 'Remove';
+            remove.setAttribute('aria-label', 'Remove ' + itemLabel(item) + ' from your order');
+            remove.disabled = busy;
+            name.append(label, remove);
+            return li;
+        }
+
+        function renderSummary(t) {
+            co('lines').replaceChildren(...t.items.map(lineRow));
+            const rows = [];
+            if (t.feeCents) rows.push(row('Added to cover fees (' + feePercent + '%)', money(t.feeCents)));
+            if (!t.isDonation) rows.push(row('Shipping', !config ? 'Calculated at payment' : t.shipping ? money(t.shipping) : 'Free'));
+            rows.push(row(t.monthly ? 'Today' : 'Total', money(t.total), 'is-total'));
+            if (t.monthly) rows.push(row('Then each month', money(t.total), 'is-note'));
+            co('totals').replaceChildren(...rows);
+            setShown(t.total, t.isDonation, t.monthly);
+        }
+
+        // The platform returns the donation part as one amount. Split it back into the cart's
+        // gifts so each keeps its own name; what's left over is the fee cover. If the numbers
+        // don't line up (cart changed in another tab), fall back to one general line.
+        function giftRows(donationCents, gifts) {
+            const listed = gifts.reduce((cents, gift) => cents + gift.amount_cents, 0);
+            const rest = donationCents - listed;
+            if (!gifts.length || rest < 0) return [row('Gift to ATRI', money(donationCents))];
+            const rows = gifts.map(gift => row(itemLabel(gift), money(gift.amount_cents)));
+            if (rest > 0) rows.push(row('Added to cover fees', money(rest)));
+            return rows;
+        }
+
+        // The platform's version of the order: what will actually be charged.
+        // gifts: the cart's gift items, passed in after the cart is cleared.
+        function orderRows(payment, gifts = Cart.items().filter(item => item.type === 'gift')) {
+            const order = payment.order;
+            if (isMonthly(payment)) {
+                const each = money(toCents(payment.amount)) + ' / month';
+                return {lines: [row('Monthly gift to ATRI', each)], totals: [row('Today', money(toCents(payment.amount)), 'is-total')]};
+            }
+            if (!order) return {lines: giftRows(toCents(payment.amount), gifts), totals: [row('Total', money(toCents(payment.amount)), 'is-total')]};
+            const lines = order.lines.map(line => row(line.title + (line.quantity > 1 ? ' × ' + line.quantity : ''), money(toCents(line.line_total))));
+            if (toCents(order.donation_amount)) lines.push(...giftRows(toCents(order.donation_amount), gifts));
+            const totalRows = [
+                row('Shipping', toCents(order.shipping_amount) ? money(toCents(order.shipping_amount)) : 'Free'),
+                row('Total', money(toCents(payment.amount)), 'is-total')
+            ];
+            if (toCents(order.deductible_amount)) totalRows.push(row('Tax-deductible portion', money(toCents(order.deductible_amount)), 'is-note'));
+            return {lines, totals: totalRows};
+        }
+
+        function renderServerOrder(payment) {
+            const rows = orderRows(payment);
+            co('lines').replaceChildren(...rows.lines);
+            co('totals').replaceChildren(...rows.totals);
+            co('summary').open = true;
+            setShown(toCents(payment.amount), !payment.order, isMonthly(payment));
+        }
+
+        function setError(message) {
+            co('error').textContent = message || '';
+            if (message) co('error').scrollIntoView({block: 'nearest', behavior: 'smooth'});
+        }
+
+        function setBusy(on) {
+            busy = on;
+            co('pay').disabled = on;
+            co('pay').setAttribute('aria-busy', String(on));
+            co('pay').textContent = on ? 'Processing…' : payLabel;
+            dialog.querySelectorAll('[data-co-close], [data-co-remove]').forEach(b => { b.disabled = on; });
+        }
+
+        function teardown() {
+            if (paymentElement) { paymentElement.destroy(); paymentElement = null; }
+            if (addressElement) { addressElement.destroy(); addressElement = null; }
+            elements = null;
+        }
+
+        function mountElements(t) {
+            teardown();
+            const options = {mode: 'payment', amount: t.total, currency: 'usd', appearance, fonts};
+            // A monthly gift's card is saved for WooCommerce to charge each month; this must match
+            // the platform's PaymentIntent or Stripe refuses the confirm.
+            if (t.monthly) options.setupFutureUsage = 'off_session';
+            elements = stripe.elements(options);
+
+            // Name and email come from our own fields and are passed at confirm time.
+            paymentElement = elements.create('payment', {
+                layout: 'tabs',
+                fields: {billingDetails: {name: 'never', email: 'never'}}
+            });
+            co('status').textContent = 'Loading secure payment form…';
+            paymentElement.on('ready', () => { co('status').textContent = ''; });
+            paymentElement.on('loaderror', event => {
+                co('status').textContent = '';
+                setError(event.error && event.error.message || 'The payment form could not load.');
+            });
+            paymentElement.mount(co('payment'));
+
+            // Store orders always need a shipping address, and monthly gifts a billing address
+            // (WooCommerce needs one for the subscription); one-time gifts need neither.
+            if (!t.isDonation || t.monthly) {
+                addressElement = elements.create('address', {mode: t.monthly ? 'billing' : 'shipping', allowedCountries: ['US']});
+                addressElement.mount(co('address'));
+            }
+        }
+
+        // report: where pre-check errors go (the Give panel by default; the cart drawer passes its own).
+        // Everything up to showModal() runs synchronously, so callers can tell straight away whether it opened.
+        async function openCheckout(report = showError) {
+            if (typeof report !== 'function') report = showError;
+            report('');
+            if (!Cart.count()) return;
+            if (!apiBase || !publicKey) {
+                report('Checkout is not available right now. Please try again later.');
+                return;
+            }
+            const cart = totals();
+            if (cart.monthly && cart.items.length > 1) {
+                report('A monthly gift checks out on its own. Please check out your other items first, or remove them.');
+                return;
+            }
+
+            showForm();
+            setError('');
+            keyFor = '';
+            let t = totals();
+            renderSummary(t);
+            co('shipping').hidden = t.isDonation && !t.monthly;
+            co('paypal-wrap').hidden = true;
+            co('address-legend').textContent = t.monthly ? 'Billing address' : 'Shipping address';
+            if (!dialog.open) dialog.showModal();
+
+            try {
+                await loadConfig();
+                if (!config.stripe_publishable_key || (config.providers && config.providers.indexOf('stripe') === -1)) {
+                    throw new Error('Card payments aren’t available right now. Please try again later.');
+                }
+                t = totals(); // now with the platform's shipping rule
+                renderSummary(t);
+                await getStripe();
+                mountElements(t);
+                renderTurnstile().catch(err => setError(err.message));
+                // PayPal is extra: if it can't load, card payments still work.
+                renderPayPal(t).catch(() => { co('paypal-wrap').hidden = true; });
+            } catch (err) {
+                co('status').textContent = '';
+                setError(err.message);
+            }
+        }
+
+        function showForm() {
+            form.hidden = false;
+            co('done').hidden = true;
+        }
+
+        function showDone(kind, payment, email, gifts) {
+            const isDonation = payment && !payment.order;
+            const received = isMonthly(payment) ? 'Your monthly gift is set up.' : isDonation ? 'Your gift has been received.' : 'Your order is confirmed.';
+            const copy = {
+                succeeded: ['✓', 'Thank you!', received + (email ? ' A receipt is on its way to ' + email + '.' : ''), 'Close'],
+                unscheduled: ['✓', 'Thank you!', 'Your first monthly gift was received, but we couldn’t finish setting up the monthly schedule. Please don’t give again; our team will take care of it and email you.', 'Close'],
+                processing: ['…', 'Thank you!', 'Your payment is being processed. We’ll email you once it’s confirmed.', 'Close'],
+                unconfirmed: ['…', 'Payment received', 'Your payment went through, but we couldn’t confirm your order just now. Please don’t pay again; you’ll get an email receipt.', 'Close'],
+                failed: ['!', 'Payment not completed', (payment && payment.failure_reason) || 'Your payment didn’t go through and you have not been charged. Please try again or use another payment method.', 'Try again']
+            }[kind];
+            co('done-icon').textContent = copy[0];
+            co('done-title').textContent = copy[1];
+            co('done-text').textContent = copy[2];
+            co('done-action').textContent = copy[3];
+
+            const receipt = co('receipt');
+            if (payment && (kind === 'succeeded' || kind === 'processing' || kind === 'unscheduled')) {
+                const rows = orderRows(payment, gifts);
+                receipt.replaceChildren(...rows.lines, ...rows.totals);
+                receipt.hidden = false;
+            } else {
+                receipt.hidden = true;
+            }
+
+            afterDone = kind === 'failed' ? openCheckout : () => dialog.close();
+            form.hidden = true;
+            co('done').hidden = false;
+            if (!dialog.open) dialog.showModal();
+            co('done-title').focus();
+        }
+
+        async function complete(flag, id, email) {
+            const path = COMPLETE_PATHS[flag] + encodeURIComponent(id) + '/complete';
+            let payment;
+            try {
+                payment = await api(path, 'POST');
+            } catch (err) {
+                if (err.status === 404 || err.status === 401) throw err;
+                // One retry for a network blip or rate limit: the card may already be charged.
+                await new Promise(resolve => setTimeout(resolve, 2500));
+                payment = await api(path, 'POST');
+            }
+
+            if (payment.status === 'captured' || payment.status === 'pending') {
+                const gifts = Cart.items().filter(item => item.type === 'gift');
+                Cart.clear();
+                teardown();
+                // Charged, but WooCommerce hasn't taken the signup: staff finish it from the platform admin.
+                const unscheduled = isMonthly(payment) && payment.status === 'captured' && payment.subscription_status !== 'accepted';
+                showDone(unscheduled ? 'unscheduled' : payment.status === 'pending' ? 'processing' : 'succeeded', payment, email, gifts);
+            } else {
+                keyFor = ''; // a new attempt needs a new idempotency key
+                showDone('failed', payment);
+            }
+        }
+
+        function returnUrl(flag, id) {
+            const url = new URL(window.location.href);
+            url.hash = '';
+            [...FLAGS, ...STRIPE_PARAMS].forEach(key => url.searchParams.delete(key));
+            url.searchParams.set(flag, id);
+            return url.toString();
+        }
+
+        function buildRequest(t, donor, address, provider = 'stripe') {
+            if (t.monthly) {
+                return {
+                    path: '/api/v1/integrations/woocommerce/subscriptions/monthly',
+                    flag: MONTHLY_FLAG,
+                    body: {
+                        amount: toAmount(t.donation),
+                        donor,
+                        billing_address: address,
+                        // By the gift chosen, not the total: covering fees doesn't change the product.
+                        product_sku: MONTHLY_SKUS[t.giftCents] || MONTHLY_CUSTOM_SKU,
+                        source: 'hubspot',
+                        form_name: '2026-x-mass-pop-up-form'
+                    }
+                };
+            }
+            if (t.isDonation) {
+                return {
+                    path: '/api/v1/payments/donations',
+                    flag: DONATION_FLAG,
+                    body: {provider, amount: toAmount(t.donation), currency: 'USD', donor, gifts: giftLines(t)}
+                };
+            }
+            return {
+                path: '/api/v1/payments/checkout',
+                flag: CHECKOUT_FLAG,
+                body: {
+                    provider,
+                    // Only SKU and quantity: the platform prices the order.
+                    items: t.products.map(item => ({sku: item.sku, quantity: item.quantity || 1})),
+                    donation: toAmount(t.donation),
+                    gifts: giftLines(t),
+                    donor,
+                    shipping_address: address
+                }
+            };
+        }
+
+        // The giver's details from the form, checked: name, email and, when the cart needs one, the
+        // address (from Stripe's Address Element). Shared by the Pay button and PayPal.
+        async function collectDetails(t) {
+            if (!form.reportValidity()) throw new Error('Please fill in your details above.');
+            const data = Object.fromEntries(new FormData(form));
+            const donor = {
+                first_name: data.first_name.trim(),
+                last_name: data.last_name.trim(),
+                email: data.email.trim(),
+                phone: (data.phone || '').trim()
+            };
+
+            let address;
+            if (addressElement) {
+                const {complete: isComplete, value} = await addressElement.getValue();
+                if (!isComplete) throw new Error('Please complete your ' + (t.monthly ? 'billing' : 'shipping') + ' address.');
+                address = {
+                    name: value.name,
+                    line1: value.address.line1,
+                    line2: value.address.line2 || '',
+                    city: value.address.city,
+                    state: value.address.state,
+                    postal_code: value.address.postal_code,
+                    country: value.address.country || 'US'
+                };
+                if (t.monthly) delete address.name; // the giver's own name fields name the subscription
+            }
+            return {donor, address};
+        }
+
+        // Start the payment with the platform. Same cart and provider → same key (a safe retry,
+        // never a second charge); anything changed → a new key. Refuses an amount the giver
+        // hasn't seen: the summary is redrawn with the platform's numbers instead.
+        async function startPayment(t, provider, donor, address) {
+            const request = buildRequest(t, donor, address, provider);
+            const signature = JSON.stringify(request.body);
+            if (signature !== keyFor) {
+                idempotencyKey = newId();
+                keyFor = signature;
+            }
+            const token = await waitForToken();
+            let payment;
+            try {
+                payment = await api(request.path, 'POST', Object.assign({}, request.body, {
+                    idempotency_key: idempotencyKey,
+                    turnstile_token: token || undefined
+                }));
+            } finally {
+                resetTurnstile();
+            }
+            const amountCents = toCents(payment.amount);
+            if (amountCents !== shownCents) {
+                renderServerOrder(payment);
+                if (elements) elements.update({amount: amountCents});
+                throw new Error('Your total is ' + money(amountCents) + '. Please review your order above and ' +
+                    (provider === 'paypal' ? 'choose PayPal' : 'press Pay') + ' again.');
+            }
+            return {request, payment};
+        }
+
+        form.addEventListener('submit', async event => {
+            event.preventDefault();
+            if (busy || !elements) return;
+            setError('');
+            if (!form.reportValidity()) return;
+
+            setBusy(true);
+            let started = false;
+            try {
+                // 1. Validate the Stripe fields (card, wallet, address) before starting anything.
+                const submitted = await elements.submit();
+                if (submitted.error) throw new Error(submitted.error.message);
+
+                // 2. Start the checkout.
+                const t = totals();
+                const {donor, address} = await collectDetails(t);
+                const {request, payment} = await startPayment(t, 'stripe', donor, address);
+                const clientSecret = payment.client_data && payment.client_data.client_secret;
+                if (!clientSecret) throw new Error('Checkout could not be started. Please try again later.');
+                elements.update({amount: toCents(payment.amount)});
+
+                // 3. Confirm with Stripe. Cards usually finish here; 3-D Secure may redirect to return_url.
+                started = true;
+                const result = await stripe.confirmPayment({
+                    elements,
+                    clientSecret,
+                    confirmParams: {
+                        return_url: returnUrl(request.flag, payment.id),
+                        payment_method_data: {
+                            billing_details: {name: donor.first_name + ' ' + donor.last_name, email: donor.email}
+                        }
+                    },
+                    redirect: 'if_required'
+                });
+                if (result.error) {
+                    keyFor = ''; // try another card as a new attempt
+                    throw new Error(result.error.message);
+                }
+
+                // 4. Let the platform record the result.
+                try {
+                    await complete(request.flag, payment.id, donor.email);
+                } catch (err) {
+                    showDone('unconfirmed');
+                }
+            } catch (err) {
+                if (err.status === 409) keyFor = '';
+                setError(err.message || 'Something went wrong. Please try again.');
+            } finally {
+                if (!form.hidden) setBusy(false);
+                else busy = false;
+            }
+        });
+
+        // ── PayPal ──
+        // Same flow as the Pay button: our form's details, the platform starts the payment (a PayPal
+        // order), the giver approves in PayPal's window, then complete() captures it and shows the
+        // same thank-you screen. Cards stay with Stripe, so PayPal's own card and credit buttons are off.
+        const PAYPAL_NAMESPACE = 'atriPayPal'; // keeps clear of any other PayPal SDK on the page
+        let paypalButtons = null;
+
+        async function renderPayPal(t) {
+            const wrap = co('paypal-wrap');
+            if (paypalButtons) { paypalButtons.close().catch(() => {}); paypalButtons = null; }
+            co('paypal').replaceChildren();
+            const on = !t.monthly && !!config.paypal_client_id && (config.providers || []).indexOf('paypal') !== -1;
+            wrap.hidden = true;
+            if (!on) return;
+
+            const sdk = 'https://www.paypal.com/sdk/js?' + new URLSearchParams({
+                'client-id': config.paypal_client_id,
+                currency: 'USD',
+                intent: 'capture',
+                components: 'buttons',
+                'disable-funding': 'card,credit,paylater'
+            });
+            const paypal = await loadScript(sdk, PAYPAL_NAMESPACE, {'data-namespace': PAYPAL_NAMESPACE});
+            let attempt = null;
+            const buttons = paypal.Buttons({
+                style: {layout: 'horizontal', color: 'gold', shape: 'rect', label: 'paypal', height: 46, tagline: false},
+                onClick: (data, actions) => {
+                    if (busy) return actions.reject();
+                    setError('');
+                    return form.reportValidity() ? actions.resolve() : actions.reject();
+                },
+                createOrder: async () => {
+                    setBusy(true);
+                    try {
+                        const t = totals();
+                        const {donor, address} = await collectDetails(t);
+                        const {request, payment} = await startPayment(t, 'paypal', donor, address);
+                        const orderId = payment.client_data && payment.client_data.order_id;
+                        if (!orderId) throw new Error('PayPal checkout could not be started. Please try again later.');
+                        attempt = {flag: request.flag, id: payment.id, email: donor.email};
+                        return orderId;
+                    } catch (err) {
+                        if (err.status === 409) keyFor = '';
+                        setBusy(false);
+                        setError(err.message || 'PayPal checkout could not be started. Please try again.');
+                        throw err;
+                    }
+                },
+                onApprove: async () => {
+                    setBusy(true);
+                    try {
+                        await complete(attempt.flag, attempt.id, attempt.email);
+                    } catch (err) {
+                        showDone('unconfirmed');
+                    } finally {
+                        if (!form.hidden) setBusy(false);
+                        else busy = false;
+                    }
+                },
+                onCancel: () => { setBusy(false); },
+                onError: () => {
+                    setBusy(false);
+                    if (!co('error').textContent) setError('PayPal checkout could not be completed. Please try again, or pay by card.');
+                }
+            });
+            if (!buttons.isEligible()) return;
+            paypalButtons = buttons;
+            await buttons.render(co('paypal'));
+            wrap.hidden = false;
+        }
+
+        co('cover') && co('cover').addEventListener('change', () => {
+            const t = totals();
+            renderSummary(t);
+            if (elements) elements.update({amount: t.total});
+        });
+
+        // Remove a line from the checkout. If the address need doesn't change, just update the
+        // totals and the Stripe amount; otherwise (e.g. the last shipped item goes) rebuild the
+        // form. The last item closes the checkout.
+        function removeLine(id) {
+            if (busy) return;
+            const before = totals();
+            const needsAddress = t => !t.isDonation || t.monthly;
+            Cart.remove(id);
+            if (!Cart.count()) { dialog.close(); return; }
+            const t = totals();
+            setError('');
+            keyFor = ''; // a different cart is a new attempt
+            if (elements && needsAddress(t) === needsAddress(before) && t.monthly === before.monthly) {
+                renderSummary(t);
+                elements.update({amount: t.total});
+            } else {
+                openCheckout();
+            }
+            const next = co('lines').querySelector('[data-co-remove]');
+            (next || co('pay')).focus();
+        }
+
+        dialog.addEventListener('click', event => {
+            const remove = event.target.closest('[data-co-remove]');
+            if (remove) { removeLine(remove.dataset.coRemove); return; }
+            if (event.target.closest('[data-co-close]')) { if (!busy) dialog.close(); }
+            else if (event.target.closest('[data-co="done-action"]') && afterDone) afterDone();
+        });
+
+        // Don't let Esc close the dialog mid-payment.
+        dialog.addEventListener('cancel', event => {
+            if (busy) event.preventDefault();
+        });
+
+        if (!apiBase || !publicKey) return;
+
+        // Back from 3-D Secure (?atri_checkout=, ?atri_donation= or ?atri_monthly=<id>): go straight to complete.
+        const params = new URLSearchParams(window.location.search);
+        const returnFlag = FLAGS.find(flag => params.has(flag)) || null;
+        if (returnFlag) {
+            const id = params.get(returnFlag);
+            const clean = new URL(window.location.href);
+            [...FLAGS, ...STRIPE_PARAMS].forEach(key => clean.searchParams.delete(key));
+            window.history.replaceState(null, '', clean.toString());
+            complete(returnFlag, id).catch(err => showDone(err.status === 404 ? 'failed' : 'unconfirmed', err.status === 404 ? {failure_reason: STATUS_MESSAGES[404]} : null));
+        } else {
+            // Warm up: the config holds the Stripe/Turnstile keys and the shipping rule.
+            loadConfig().catch(() => {});
+        }
+    })();
+</script>
+
+<script>
+    /*
+     * "You may also like" — product cards in the space beside the cart once it has items.
+     * Data: ATRI Store API (same products as the Resource Library). Picks: featured SKUs first, then products
+     * sharing a topic with what is in the cart, then the rest of the catalog. Items already in the cart are skipped.
+     * Add to cart → window.ATRICart (cart.js). Heart → the same saved picks the Resource Library and drawer use.
+     */
+    (function () {
+        'use strict';
+        const recs = document.getElementById('give-recs');
+        const give = document.getElementById('give-panel');
+        if (!recs || !give || !window.ATRICart) return;
+
+        const Cart = window.ATRICart;
+        const grid = recs.querySelector('.recs__grid');
+        const PICKS_KEY = 'atri-christmas-2026-picks';
+        const PICKS_DETAILS_KEY = 'atri-christmas-2026-picks-details';
+        const CACHE_KEY = 'give-recs:' + recs.dataset.url;
+        const list = v => (v || '').split(',').map(x => x.trim()).filter(Boolean);
+        const featured = list(recs.dataset.featured);
+        const exclude = list(recs.dataset.exclude);
+        const cols = Math.min(4, Math.max(2, Number(recs.dataset.cols) || 3));
+        recs.style.setProperty('--recs-cols', cols);
+
+        const esc = s => String(s == null ? '' : s).replace(/[&<>"']/g, c => ({'&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;'}[c]));
+        const money = cents => '$' + (cents / 100).toLocaleString('en-US', {minimumFractionDigits: 2, maximumFractionDigits: 2});
+        const HEART = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" aria-hidden="true" focusable="false"><path d="M12 20s-7-4.4-9.2-8.6C1.2 8.2 3 4.8 6.4 4.8c2 0 3.4 1.1 4.1 2.3h3c.7-1.2 2.1-2.3 4.1-2.3 3.4 0 5.2 3.4 3.6 6.6C19 15.6 12 20 12 20z"/></svg>';
+
+        let catalog = null;   // [{sku, name, image, unit_cents, shippable, topics:[]}]
+        let loading = null;
+
+        function normalize(raw) {
+            const cents = raw.price && typeof raw.price === 'object' ? Math.round(parseFloat(raw.price.current) * 100) : NaN;
+            const img = raw.image && raw.image.url ? raw.image : (raw.gallery || [])[0] || null;
+            return {
+                sku: raw.sku, name: raw.name || raw.sku, image: img ? img.url : '',
+                unit_cents: cents, shippable: raw.type === 'physical', type: raw.type,
+                topics: (raw.categories || []).map(c => c.slug)
+            };
+        }
+
+        function load() {
+            if (catalog) return Promise.resolve(catalog);
+            if (loading) return loading;
+            try {
+                const hit = JSON.parse(sessionStorage.getItem(CACHE_KEY) || 'null');
+                if (hit && Date.now() - hit.t < 10 * 60000) return Promise.resolve(catalog = hit.d);
+            } catch (e) {}
+            const all = [];
+            const step = url => fetch(url, {headers: {Accept: 'application/json'}})
+                .then(r => { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+                .then(json => {
+                    all.push(...(Array.isArray(json) ? json : (json.results || [])));
+                    return json.next && all.length < 1000 ? step(json.next) : all;
+                });
+            loading = step(recs.dataset.url).then(items => {
+                catalog = items.filter(p => p && p.sku).map(normalize)
+                    .filter(p => p.type !== 'donation' && isFinite(p.unit_cents) && p.unit_cents > 0 && p.image);
+                try { sessionStorage.setItem(CACHE_KEY, JSON.stringify({t: Date.now(), d: catalog})); } catch (e) {}
+                return catalog;
+            }).finally(() => { loading = null; });
+            return loading;
+        }
+
+        function loadPicks() {
+            try { const ids = JSON.parse(localStorage.getItem(PICKS_KEY) || '[]'); return Array.isArray(ids) ? ids : []; }
+            catch (e) { return []; }
+        }
+
+        function toggleFav(p) {
+            const ids = loadPicks();
+            const saved = ids.indexOf(p.sku) > -1;
+            const next = saved ? ids.filter(x => x !== p.sku) : ids.concat(p.sku);
+            try {
+                localStorage.setItem(PICKS_KEY, JSON.stringify(next));
+                const details = JSON.parse(localStorage.getItem(PICKS_DETAILS_KEY) || '{}') || {};
+                if (saved) delete details[p.sku];
+                else details[p.sku] = {sku: p.sku, name: p.name, image: p.image, unit_cents: p.unit_cents, shippable: p.shippable};
+                localStorage.setItem(PICKS_DETAILS_KEY, JSON.stringify(details));
+            } catch (e) {}
+            window.dispatchEvent(new CustomEvent('atri:picks', {detail: {ids: next, source: recs}}));
+            return !saved;
+        }
+
+        function choose(items) {
+            const inCart = new Set(items.map(i => i.sku).filter(Boolean));
+            const cartTopics = new Set();
+            catalog.forEach(p => { if (inCart.has(p.sku)) p.topics.forEach(t => cartTopics.add(t)); });
+            const usable = catalog.filter(p => !inCart.has(p.sku) && exclude.indexOf(p.sku) < 0);
+            const bySku = new Map(usable.map(p => [p.sku, p]));
+            const out = [];
+            const push = p => { if (p && out.indexOf(p) < 0) out.push(p); };
+            featured.forEach(sku => push(bySku.get(sku)));
+            usable.filter(p => p.topics.some(t => cartTopics.has(t))).forEach(push);
+            usable.forEach(push);
+            const rows = units(items) >= 4 ? 2 : 1;   // the cart grows taller, so fill a second row
+            return out.slice(0, cols * rows);
+        }
+
+        function units(items) {
+            return items.reduce((n, i) => n + (i.type === 'gift' ? 1 : Math.max(1, Number(i.quantity) || 1)), 0);
+        }
+
+        function cardHTML(p, saved) {
+            return '<li class="rec">' +
+                '<div class="rec__img"><img src="' + esc(p.image) + '" alt="" width="160" height="160" loading="lazy" decoding="async"></div>' +
+                '<button type="button" class="rec__fav" data-rec-fav="' + esc(p.sku) + '" aria-pressed="' + saved + '" ' +
+                    'aria-label="' + (saved ? 'Remove ' : 'Save ') + esc(p.name) + (saved ? ' from' : ' to') + ' favorites">' + HEART + '</button>' +
+                '<div class="rec__body">' +
+                    '<p class="rec__name">' + esc(p.name) + '</p>' +
+                    '<span class="rec__price">' + money(p.unit_cents) + '</span>' +
+                    '<button type="button" class="rec__add" data-rec-add="' + esc(p.sku) + '">Add to cart</button>' +
+                '</div>' +
+            '</li>';
+        }
+
+        let shown = [];
+        function render() {
+            const items = Cart.items();
+            if (!items.length) { hide(); return; }
+            load().then(() => {
+                const now = Cart.items();
+                if (!now.length) { hide(); return; }
+                shown = choose(now);
+                if (!shown.length) { hide(); return; }
+                const picks = loadPicks();
+                grid.innerHTML = shown.map(p => cardHTML(p, picks.indexOf(p.sku) > -1)).join('');
+                recs.hidden = false;
+                give.classList.add('has-recs');
+            }).catch(err => { console.warn('[Give panel] suggestions unavailable:', err); hide(); });
+        }
+
+        function hide() {
+            recs.hidden = true;
+            give.classList.remove('has-recs');
+        }
+
+        grid.addEventListener('click', event => {
+            const add = event.target.closest('[data-rec-add]');
+            if (add) {
+                const p = shown.find(x => x.sku === add.dataset.recAdd);
+                if (!p) return;
+                add.classList.add('is-added');
+                add.textContent = 'Added ✓';
+                // Re-render after the confirmation so the card is replaced by a new suggestion.
+                setTimeout(() => Cart.add({
+                    type: 'product', sku: p.sku, name: p.name, unit_cents: p.unit_cents, quantity: 1,
+                    image: p.image, shippable: p.shippable, campaign: 'you-may-also-like'
+                }), 700);
+                return;
+            }
+            const fav = event.target.closest('[data-rec-fav]');
+            if (fav) {
+                const p = shown.find(x => x.sku === fav.dataset.recFav);
+                if (!p) return;
+                const saved = toggleFav(p);
+                fav.setAttribute('aria-pressed', String(saved));
+                fav.setAttribute('aria-label', (saved ? 'Remove ' : 'Save ') + p.name + (saved ? ' from' : ' to') + ' favorites');
+            }
+        });
+
+        window.addEventListener('atri:cart', render);
+        window.addEventListener('atri:picks', e => { if (!e.detail || e.detail.source !== recs) render(); });
+        window.addEventListener('storage', e => { if (e.key === PICKS_KEY) render(); });
+        render();
+    })();
+</script>

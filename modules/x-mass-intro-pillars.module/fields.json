@@ -1,0 +1,100 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "content.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "ONE GIFT · ONE MISSION"
+  }, {
+    "id" : "content.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Give a gift with"
+  }, {
+    "id" : "content.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic line",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "a lasting impact."
+  }, {
+    "id" : "content.body_text",
+    "name" : "body_text",
+    "label" : "Body (rich text)",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p>Every gift helps make the work of Ankerberg Theological Research Institute possible. Together, we share biblical truth through television and digital media, provide trusted resources, and equip pastors around the world.</p><p>As a 100% viewer-supported ministry, we are grateful for the people who make this work possible.</p>"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "pillars",
+  "name" : "pillars",
+  "label" : "Pillars",
+  "required" : false,
+  "locked" : true,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 6,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "pillars.pillar_label",
+    "name" : "pillar_label",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "01 / Give"
+  }, {
+    "id" : "pillars.description",
+    "name" : "description",
+    "label" : "Description",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Help bring God’s Word to people who need to hear it."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "pillar_label" : "01 / Give",
+    "description" : "Help bring God’s Word to people who need to hear it."
+  }, {
+    "pillar_label" : "02 / Share",
+    "description" : "Pass along biblical answers, trusted teaching, and resources for life."
+  }, {
+    "pillar_label" : "03 / Equip",
+    "description" : "Strengthen pastors, churches, and believers around the world."
+  } ]
+} ]

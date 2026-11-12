@@ -1,0 +1,10 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "categories" : [ "forms_and_buttons" ],
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 172072221620,
+  "label" : "Button",
+  "icon" : "/JAS2024/images/module-icons/cta.svg",
+  "is_available_for_new_content" : false
+}

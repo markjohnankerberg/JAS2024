@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 180394683032,
+  "label" : "Disclaimer",
+  "icon" : "fontawesome-5.14.0:Exclamation%20Triangle:SOLID",
+  "is_available_for_new_content" : true
+}

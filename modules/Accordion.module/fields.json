@@ -1,0 +1,371 @@
+[ {
+  "id" : "02d0f0f3-dbb1-36b4-2453-0750858684b0",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "98df78ab-eb62-88ee-b36b-27608b427d24",
+    "name" : "heading_color",
+    "label" : "Heading color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#393D3F",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "d20b0d4e-41c6-fc13-7841-dccf3f61523b",
+    "name" : "items",
+    "label" : "Items",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "4a4dbce6-b55b-1124-4d5d-e40eb2c3d255",
+      "name" : "background_color",
+      "label" : "Background color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "2609cbf1-4685-3b55-06e8-5ba180a0378a",
+      "name" : "text_color",
+      "label" : "Text color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "b4d3e7f8-4638-c966-5a3b-784541337baa",
+      "name" : "border_field",
+      "label" : "Border",
+      "required" : false,
+      "locked" : false,
+      "allow_custom_border_sides" : false,
+      "type" : "border",
+      "display_width" : null,
+      "default" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "background_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      },
+      "text_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    }
+  }, {
+    "id" : "2150d3af-5384-d205-60fb-add88caa8b8e",
+    "name" : "module_spacing",
+    "label" : "Module spacing",
+    "required" : false,
+    "locked" : false,
+    "type" : "spacing",
+    "display_width" : null,
+    "default" : {
+      "padding" : {
+        "top" : {
+          "value" : 0,
+          "units" : "px"
+        },
+        "bottom" : {
+          "value" : 0,
+          "units" : "px"
+        },
+        "left" : {
+          "value" : 0,
+          "units" : "px"
+        },
+        "right" : {
+          "value" : 0,
+          "units" : "px"
+        }
+      }
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "heading_color" : {
+      "color" : "#393D3F",
+      "opacity" : 100
+    },
+    "items" : {
+      "background_color" : {
+        "color" : "#ffffff",
+        "opacity" : 100
+      },
+      "text_color" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "border_field" : {
+        "top" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "bottom" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "left" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        },
+        "right" : {
+          "style" : "solid",
+          "color" : "#C6C5B9",
+          "opacity" : 100,
+          "width" : {
+            "value" : 1,
+            "units" : "px"
+          }
+        }
+      }
+    },
+    "module_spacing" : {
+      "padding" : {
+        "top" : {
+          "value" : 0,
+          "units" : "px"
+        },
+        "bottom" : {
+          "value" : 0,
+          "units" : "px"
+        },
+        "left" : {
+          "value" : 0,
+          "units" : "px"
+        },
+        "right" : {
+          "value" : 0,
+          "units" : "px"
+        }
+      }
+    }
+  }
+}, {
+  "id" : "69272be6-ba43-ed06-3b1a-53948566e88e",
+  "name" : "module_id_name",
+  "label" : "Module ID",
+  "required" : false,
+  "locked" : false,
+  "placeholder" : "Enter your ID",
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null
+}, {
+  "id" : "dcfdd298-7457-6fc8-7f7d-4edece68003e",
+  "name" : "module_heading",
+  "label" : "Module heading",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "FAQ"
+}, {
+  "id" : "471d7e13-0572-4aef-1d66-4115e579e2f4",
+  "name" : "item",
+  "label" : "Item",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "a435aa23-83e4-1179-f715-a9882b1d14c0",
+    "name" : "question",
+    "label" : "Question",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Why are Audio Bibles so important?"
+  }, {
+    "id" : "05da748d-dc1d-b9cb-c7e3-5589366c9afc",
+    "name" : "answer_field_type",
+    "label" : "Answer field type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "ans-text", "Text" ], [ "ans-rich-text", "Rich-text" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "ans-text"
+  }, {
+    "id" : "d52683c2-17a9-94eb-3ada-f678aa750f06",
+    "name" : "richtext_field",
+    "label" : "Rich text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "item.answer_field_type",
+      "controlling_value_regex" : "ans-rich-text",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p><span>Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language.</span></p>"
+  }, {
+    "id" : "2a82d0a1-a291-627d-e3f6-c70113e98beb",
+    "name" : "text_field",
+    "label" : "Text",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "item.answer_field_type",
+      "controlling_value_regex" : "ans-text",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "question" : "Why are Audio Bibles so important?",
+    "answer_field_type" : "ans-text",
+    "richtext_field" : "<p><span>Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language.</span></p>",
+    "text_field" : "Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language."
+  }, {
+    "question" : "Why are Audio Bibles so important?",
+    "answer_field_type" : "ans-text",
+    "richtext_field" : "<p><span>Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language.</span></p>",
+    "text_field" : "Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language."
+  }, {
+    "question" : "Why are Audio Bibles so important?",
+    "answer_field_type" : "ans-text",
+    "richtext_field" : "<p><span>Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language.</span></p>",
+    "text_field" : "Approximately 70% of people worldwide learn primarily through audible communication, meaning that around 5.7 billion people need to hear the gospel to understand and accept it. Shockingly, over 1 billion people still do not have access to God's Word in a format they can understand. Our partnership with Faith Comes by Hearing (FCBH) brings God’s Word to those who have never heard the gospel in their native language."
+  } ]
+} ]

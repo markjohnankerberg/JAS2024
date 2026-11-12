@@ -1,0 +1,122 @@
+{#
+Christmas Facts On Promo (reference: section.facts). Copy, price and button beside the stocking photo.
+Empty image falls back to the theme photo. The button defaults to #facts-on (products section filtered to the Facts On series).
+#}
+{% set c = module.content %}
+{% set s = module.style %}
+{% set img_src = module.image.src or get_asset_url("/JAS2024/images/christmas-2026/facts-on-stocking.jpg") %}
+{# #facts-on = products section filtered to the Facts On series. An old "#books" value is upgraded too. #}
+{% set btn_url = "#facts-on" if (not c.button_url or c.button_url == "#books") else c.button_url %}
+{% set img_alt = module.image.alt if module.image.src else "Christmas stocking with The Facts On booklets, Little Books Big Questions" %}
+
+{% require_css %}
+<style>
+  .xmas-facts {
+    --xf-ink: #21372d;
+    --xf-muted: #626b63;
+    --xf-kicker: #927748;
+    --xf-forest: #18392f;
+    --xf-serif: Georgia, 'Times New Roman', serif;
+    --xf-sans: Arial, Helvetica, sans-serif;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: 80px max(2rem, calc(50vw - 568px));
+    background: var(--xf-bg, #f7f3ea);
+    color: var(--xf-ink);
+    font: 16px/1.65 var(--xf-sans);
+  }
+  .xmas-facts *, .xmas-facts *::before, .xmas-facts *::after { box-sizing: border-box; }
+
+  .xmas-facts__grid {
+    display: grid;
+    grid-template-columns: 1fr 1.25fr;
+    gap: 50px;
+    align-items: center;
+  }
+  .xmas-facts--img-left .xmas-facts__media { order: -1; }
+  .xmas-facts--img-left .xmas-facts__grid { grid-template-columns: 1.25fr 1fr; }
+
+  .xmas-facts__kicker {
+    margin: 0 0 14px;
+    font: 700 11px/1.6 var(--xf-sans);
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--xf-kicker);
+  }
+  .xmas-facts .xmas-facts__copy h2.xmas-facts__title {
+    margin: 0 0 22px;
+    font: 400 clamp(35px, 4.1vw, 62px)/1.12 var(--xf-serif);
+    letter-spacing: -.035em;
+    color: var(--xf-ink) !important;
+  }
+  .xmas-facts__title em { font-style: italic; }
+  .xmas-facts__text { margin: 0; color: var(--xf-muted); }
+  .xmas-facts__price {
+    margin: 22px 0 0;
+    font: 400 30px/1.2 var(--xf-serif);
+    color: #8d2728;
+  }
+  .xmas-facts__price-sub { font-size: 18px; color: #647365; }
+  .xmas-facts__notice { margin: 10px 0 0; font-size: 12px; color: #6e6d65; }
+
+  .xmas-facts .xmas-facts__copy a.xmas-facts__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 46px;
+    margin-top: 24px;
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: var(--xf-forest);
+    color: #fff;
+    font: 700 14px/1.2 var(--xf-sans);
+    text-decoration: none;
+    transition: background-color .2s;
+  }
+  .xmas-facts .xmas-facts__copy a.xmas-facts__btn:hover { background: #1f4a3d; color: #fff; }
+  .xmas-facts .xmas-facts__copy a.xmas-facts__btn:focus-visible { outline: 2px solid var(--xf-forest); outline-offset: 3px; }
+
+  .xmas-facts__media img {
+    display: block;
+    width: 100%;
+    max-width: none;
+    aspect-ratio: 1.7;
+    object-fit: cover;
+    border-radius: 6px;
+  }
+
+  @media (max-width: 900px) {
+    .xmas-facts { padding-top: 50px; padding-bottom: 50px; }
+    .xmas-facts__grid,
+    .xmas-facts--img-left .xmas-facts__grid { grid-template-columns: 1fr; gap: 32px; }
+    .xmas-facts--img-left .xmas-facts__media { order: 0; }
+  }
+  @media (max-width: 600px) {
+    .xmas-facts { padding-left: 16px; padding-right: 16px; }
+  }
+</style>
+{% end_require_css %}
+
+<section class="xmas-facts{% if s.image_side == 'left' %} xmas-facts--img-left{% endif %}" id="facts"
+         style="--xf-bg: {{ s.bg_color.color or '#f7f3ea' }};"
+         aria-labelledby="xf-{{ name }}-title">
+  <div class="xmas-facts__grid">
+    <div class="xmas-facts__copy">
+      {% if c.kicker %}<p class="xmas-facts__kicker">{{ c.kicker }}</p>{% endif %}
+      <h2 class="xmas-facts__title" id="xf-{{ name }}-title">{{ c.heading }}{% if c.heading_em %}<br><em>{{ c.heading_em }}</em>{% endif %}</h2>
+      {% if c.body_text %}<p class="xmas-facts__text">{{ c.body_text }}</p>{% endif %}
+      {% if c.price %}
+      <p class="xmas-facts__price">{{ c.price }}{% if c.price_sub %} <span class="xmas-facts__price-sub">{{ c.price_sub }}</span>{% endif %}</p>
+      {% endif %}
+      {% if c.notice %}<p class="xmas-facts__notice">{{ c.notice }}</p>{% endif %}
+      {% if c.button_text and btn_url %}
+      <a class="xmas-facts__btn" href="{{ btn_url|escape_attr }}">{{ c.button_text }} <span aria-hidden="true">&#8599;</span></a>
+      {% endif %}
+    </div>
+    <div class="xmas-facts__media">
+      <img src="{{ img_src|escape_attr }}" alt="{{ img_alt|escape_attr }}" loading="lazy">
+    </div>
+  </div>
+</section>

@@ -1,0 +1,146 @@
+<section class="section-{{name}}" role="region">
+  <h3 class="module-heading-{{name}} module-heading">{{ module.module_heading }}</h3>
+  
+  <div class="product-cards">
+    {% for item in module.cards %}
+      <div class="product-card">
+        
+        <h4 class="product-title">{{ item.title }}</h4>
+        
+        <div class="product-img">
+          {% if item.product_image.src %}
+            {% set sizeAttrs = 'width="{{ item.product_image.width|escape_attr }}" height="{{ item.product_image.height|escape_attr }}"' %}
+            {% if item.product_image.size_type == 'auto' %}
+              {% set sizeAttrs = 'width="{{ item.product_image.width|escape_attr }}" height="{{ item.product_image.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+            {% elif item.product_image.size_type == 'auto_custom_max' %}
+              {% set sizeAttrs = 'width="{{ item.product_image.max_width|escape_attr }}" height="{{ item.product_image.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+            {% endif %}
+             {% set loadingAttr = item.product_image.loading != 'disabled' ? 'loading="{{ item.product_image.loading|escape_attr }}"' : '' %}
+            <img src="{{ item.product_image.src|escape_url }}" alt="{{ item.product_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+          {% endif %}
+        </div>
+        
+        <div class="product-bottom">
+          <p class="product-text">{{ item.text_field }}</p>
+        
+          {% if item.show_button %}
+            {% set href = item.button.button_link.url.href %}
+            {% if item.button.button_link.url.type is equalto "EMAIL_ADDRESS" %}
+              {% set href = "mailto:" + href %}
+            {% endif %}
+            <a class="button {{ module.style.cards.button_style }} {{ module.style.cards.button_corner_radius }} {{ module.style.cards.button_horizontal_padding }}"
+              {% if item.button.button_link.url.type is equalto "CALL_TO_ACTION"  %}
+                href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+              {% else %}
+                href="{{ href|escape_url }}"
+              {% endif %}
+              {% if item.button.button_link.open_in_new_tab %}
+                target="_blank"
+              {% endif %}
+              {% if item.button.button_link.rel %}
+                rel="{{ item.button.button_link.rel|escape_attr }}"
+              {% endif %}
+              >
+              {{ item.button.button_text }}
+            </a>
+          {% endif %}
+        </div>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .section-{{name}} *,
+    .section-{{name}} *::before,
+    .section-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .section-{{name}} .module-heading-{{name}} {
+      margin-bottom: 20px;
+      color: rgba({{ module.style.module.heading_color.color|convert_rgb }}, {{ module.style.module.heading_color.opacity/100 }});
+    }
+    
+    .section-{{name}} {
+      margin: 0 auto;
+      background-color: rgba({{ module.style.module.background_color.color|convert_rgb }}, {{ module.style.module.background_color.opacity/100 }});
+      {{ module.style.module.spacing_desktop.css }}
+    }
+    
+    @media (max-width: 767px) {
+      .section-{{name}} {
+        {{ module.style.module.spacing_mobile.css }}
+      }
+    }
+    
+    .section-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }    
+    
+    .section-{{name}} .product-cards {
+      width: 100%;
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(min(250px, 100%), 1fr));
+      gap: {{ module.style.cards.card_row_gap ~ 'px' }} {{ module.style.cards.card_column_gap ~ 'px' }};
+    }
+    
+    .section-{{name}} .product-cards .product-card {
+      {{ module.style.cards.border_field.css }}
+      border-radius: {{ module.style.cards.corner_radius ~ 'px' }};
+      background-color: rgba({{ module.style.cards.background_color.color|convert_rgb }}, {{ module.style.cards.background_color.opacity/100 }});
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 10px;
+      min-width: 250px;
+      {{ module.style.cards.padding.css }}
+    }
+    
+    .section-{{name}} .product-cards .product-card .product-title {
+      color: rgba({{ module.style.cards.text_color.color|convert_rgb }}, {{ module.style.cards.text_color.opacity/100 }});
+      font-size: 18px;
+      font-weight: 700;
+      line-height: 1.4;
+      text-wrap: balance;
+      text-align: center;
+      margin: 0 auto;
+    }
+    
+    .section-{{name}} .product-cards .product-card .product-img {
+      width: 100%;
+      margin: 0 auto;
+      overflow: hidden;
+      max-width: 300px;
+      max-height: 300px;
+      padding: 0 22px;
+    }
+    
+    .section-{{name}} .product-cards .product-card .product-img img {
+      max-width: 100%;
+      max-height: 300px;
+      display: block;
+      margin: 0 auto;
+    }
+    
+    .product-cards .product-bottom {
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex: 1;
+    }
+    
+    .section-{{name}} .product-cards .product-bottom .product-text {
+      color: rgba({{ module.style.cards.text_color.color|convert_rgb }}, {{ module.style.cards.text_color.opacity/100 }});
+      font-size: 16px;
+      font-weight: 500;
+      line-height: 1.4;
+      text-wrap: balance;
+      text-align: center;
+      margin: 0 auto;
+    }
+  </style>
+{% end_require_css %}

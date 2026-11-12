@@ -1,0 +1,1467 @@
+[ {
+  "id" : "8be0349f-503c-8d7c-89dd-cc7c6a2b4c30",
+  "name" : "labels",
+  "label" : "Labels",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "ba471cc4-7a8b-1581-bf1c-cae488b4f68a",
+    "name" : "blog_tab",
+    "label" : "Blog tab",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Articles"
+  }, {
+    "id" : "68eb8a28-3f6c-9097-a6ae-44f03d433162",
+    "name" : "store_tab",
+    "label" : "Store tab",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "show_store_tab",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Store"
+  }, {
+    "id" : "fd250b16-4903-8cc7-7285-a268ff989c61",
+    "name" : "podcasts_tab",
+    "label" : "Podcasts tab",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Podcasts"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "blog_tab" : "Articles",
+    "store_tab" : "Store",
+    "podcasts_tab" : "Podcasts"
+  }
+}, {
+  "id" : "55b88cf0-7081-3887-107b-51a1b4c22d39",
+  "name" : "select_blog",
+  "label" : "Select blog to display",
+  "required" : true,
+  "locked" : false,
+  "type" : "blog",
+  "display_width" : null,
+  "default" : 138943615368
+}, {
+  "id" : "43fe076d-8bb3-edd2-d3ab-ccd9c687a999",
+  "name" : "number_of_posts_to_fetch",
+  "label" : "Number of posts to fetch",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 0,
+  "max" : 200,
+  "step" : 1,
+  "type" : "number",
+  "display_width" : null,
+  "default" : 3
+}, {
+  "id" : "e5131830-2770-c80c-41e5-09b8ab9e4865",
+  "name" : "number_of_columns",
+  "label" : "Number of columns",
+  "required" : false,
+  "locked" : false,
+  "display" : "text",
+  "min" : 1,
+  "max" : 3,
+  "step" : 1,
+  "type" : "number",
+  "display_width" : null,
+  "default" : 3
+}, {
+  "id" : "2a40bc09-b369-8d9c-ee04-9818a1d75503",
+  "name" : "featured_image_aspect_ratio",
+  "label" : "Featured image aspect ratio",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "3 / 2", "3:2" ], [ "2 / 1", "2:1" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "3 / 2"
+}, {
+  "id" : "6306922f-91ed-b8e9-a948-39687ec88249",
+  "name" : "see_all_articles_button",
+  "label" : "See all articles button",
+  "required" : false,
+  "locked" : false,
+  "display" : "toggle",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : true
+}, {
+  "id" : "28f86016-2d51-97b2-4a32-1475d5d91119",
+  "name" : "button",
+  "label" : "Button",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "see_all_articles_button",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "51b1faa1-a3da-f761-8d94-19920572da33",
+    "name" : "button_style",
+    "label" : "Button style",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "btn-primary"
+  }, {
+    "id" : "342cbc65-19f5-4de5-1f5f-73f7bfbc4827",
+    "name" : "corner_radius",
+    "label" : "Corner radius",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "radius-s"
+  }, {
+    "id" : "7394b989-e5e4-eac2-f98a-afbef5a3e400",
+    "name" : "horizontal_padding",
+    "label" : "Horizontal padding",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "padd-small", "Small" ], [ "padd-normal", "Normal" ], [ "padd-large", "Large" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "padd-normal"
+  }, {
+    "id" : "5dd47f3d-2800-3067-456c-6bbbbc507055",
+    "name" : "button_text",
+    "label" : "Button text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "See all articles"
+  }, {
+    "id" : "1b1b08e5-5683-2654-eabd-9939cbb41049",
+    "name" : "button_url",
+    "label" : "Button URL",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : 138943615368,
+        "href" : null,
+        "type" : "BLOG"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "button_style" : "btn-primary",
+    "corner_radius" : "radius-s",
+    "horizontal_padding" : "padd-normal",
+    "button_text" : "See all articles",
+    "button_url" : {
+      "url" : {
+        "content_id" : 138943615368,
+        "href" : null,
+        "type" : "BLOG"
+      },
+      "open_in_new_tab" : false,
+      "no_follow" : false
+    }
+  }
+}, {
+  "id" : "a4c51406-8440-d8cb-6773-1b3673707641",
+  "name" : "show_store_tab",
+  "label" : "Show store tab",
+  "required" : false,
+  "locked" : false,
+  "display" : "toggle",
+  "type" : "boolean",
+  "display_width" : null,
+  "default" : false
+}, {
+  "id" : "97594654-6899-7d4b-8c77-853664072766",
+  "name" : "products",
+  "label" : "Products",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "show_store_tab",
+    "controlling_value_regex" : "true",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "children" : [ {
+    "id" : "ab8c7c95-489f-b69e-6fae-32e33d32518f",
+    "name" : "product_card",
+    "label" : "Product card",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 3
+    },
+    "children" : [ {
+      "id" : "c30c2ccd-969b-c42e-f891-ca406e93acee",
+      "name" : "product_image",
+      "label" : "Image",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      }
+    }, {
+      "id" : "d9d4e922-62c0-2d2b-e2d5-9d3f2690c14c",
+      "name" : "title",
+      "label" : "Title",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Product name"
+    }, {
+      "id" : "6fc86dab-63d7-7d5b-f8f4-7d284b2d3a9a",
+      "name" : "sku",
+      "label" : "SKU",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "XY123"
+    }, {
+      "id" : "a7464eea-0d45-3708-48ae-ca0dfd7a2dc9",
+      "name" : "price",
+      "label" : "Price",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "$00"
+    }, {
+      "id" : "93b148ea-c665-da09-9b66-66659c3fe553",
+      "name" : "button_text",
+      "label" : "Button text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "To product"
+    }, {
+      "id" : "bac78989-887f-4f6b-5d50-bb298b4f7653",
+      "name" : "button_url",
+      "label" : "Button URL",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      },
+      "title" : "Product name",
+      "sku" : "XY123",
+      "price" : "$00",
+      "button_text" : "To product",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      },
+      "title" : "Product name",
+      "sku" : "XY123",
+      "price" : "$00",
+      "button_text" : "To product",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      },
+      "title" : "Product name",
+      "sku" : "XY123",
+      "price" : "$00",
+      "button_text" : "To product",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "id" : "d51140af-b319-e432-7a07-ed9ae826ca6b",
+    "name" : "card_button_style",
+    "label" : "Card button style",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "f8a7eb7b-26a9-0853-6710-5ff09534d52f",
+      "name" : "button_style",
+      "label" : "Button style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "btn-secondary"
+    }, {
+      "id" : "11e056c2-a572-55cd-d32e-fdf68c35b6d9",
+      "name" : "corner_radius",
+      "label" : "Corner radius",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "radius-s"
+    }, {
+      "id" : "e1e3c339-ac28-eddd-abc5-ad68be5b1501",
+      "name" : "horizontal_padding",
+      "label" : "Horizontal padding",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "padd-small", "Small" ], [ "padd-normal", "Normal" ], [ "padd-large", "Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "padd-normal"
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "button_style" : "btn-secondary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal"
+    }
+  }, {
+    "id" : "ab65a996-5090-3125-8012-9e622202a8be",
+    "name" : "see_all_products_button",
+    "label" : "See all products button",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "e7d9fd90-613d-e490-da76-2fb7bc0d56de",
+    "name" : "button",
+    "label" : "Button",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "products.see_all_products_button",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "5ca98db2-108c-f9a9-a821-da55626fefcc",
+      "name" : "button_style",
+      "label" : "Button style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "btn-primary"
+    }, {
+      "id" : "3e0fc2b8-1b0e-60e1-b70c-fa88f90055d1",
+      "name" : "corner_radius",
+      "label" : "Corner radius",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "radius-s"
+    }, {
+      "id" : "4c7636a0-b4d1-f5b0-faf0-2a2722f6167f",
+      "name" : "horizontal_padding",
+      "label" : "Horizontal padding",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "padd-small", "Small" ], [ "padd-normal", "Normal" ], [ "padd-large", "Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "padd-normal"
+    }, {
+      "id" : "fa994300-015e-1afe-9160-33884748e311",
+      "name" : "button_text",
+      "label" : "Button text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "See all products"
+    }, {
+      "id" : "2aa9d1e1-3181-6ec5-2528-c7fc2a630a0f",
+      "name" : "button_url",
+      "label" : "Button URL",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://atriresearchresources.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "button_style" : "btn-primary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal",
+      "button_text" : "See all products",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://atriresearchresources.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "product_card" : [ {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      },
+      "title" : "Product name",
+      "sku" : "XY123",
+      "price" : "$00",
+      "button_text" : "To product",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      },
+      "title" : "Product name",
+      "sku" : "XY123",
+      "price" : "$00",
+      "button_text" : "To product",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "product_image" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/RHK23-1-DVD%20600x600.png",
+        "alt" : "RHK23-1-DVD 600x600",
+        "loading" : "lazy",
+        "width" : 600,
+        "height" : 600,
+        "max_width" : 600,
+        "max_height" : 600
+      },
+      "title" : "Product name",
+      "sku" : "XY123",
+      "price" : "$00",
+      "button_text" : "To product",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "type" : "EXTERNAL",
+          "href" : ""
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ],
+    "card_button_style" : {
+      "button_style" : "btn-secondary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal"
+    },
+    "see_all_products_button" : true,
+    "button" : {
+      "button_style" : "btn-primary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal",
+      "button_text" : "See all products",
+      "button_url" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://atriresearchresources.org/",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }
+}, {
+  "id" : "7dff7bd9-604e-50ba-3dd2-330de7c26fbb",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "c9ac06a3-dfb7-4abb-3e2f-452b0644a262",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "podcast_cards.show_heading",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "children" : [ {
+      "id" : "25c7707b-4cb1-e0ec-302f-19dfa877485f",
+      "name" : "color_field",
+      "label" : "Text color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393d3f",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "9dcaaffe-3525-1338-aca2-9d7e9f3b871e",
+      "name" : "font_size",
+      "label" : "Font size",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 10,
+      "max" : 80,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 36
+    }, {
+      "id" : "4e8bf89f-4fa7-c67c-c4b8-93885d48abb3",
+      "name" : "font_weight",
+      "label" : "Font weight",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "300", "Light" ], [ "400", "Normal" ], [ "500", "Medium" ], [ "600", "SemiBold" ], [ "700", "Bold" ], [ "800", "Extra Bold" ], [ "900", "Black" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "400"
+    }, {
+      "id" : "84d6269f-cf95-1f23-6199-1ba118c2e53e",
+      "name" : "font_style",
+      "label" : "Font style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "normal", "Normal" ], [ "italic", "Italic" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "normal"
+    }, {
+      "id" : "830c8b02-8a6a-b5cf-41a6-003cba28c666",
+      "name" : "letter_spacing",
+      "label" : "Letter spacing",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 10,
+      "step" : 0.5,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    }, {
+      "id" : "3eab7d55-d3db-a37c-d69e-33eaccd497ea",
+      "name" : "line_height",
+      "label" : "Line height",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 1,
+      "max" : 2,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 1.2
+    }, {
+      "id" : "4a525718-4fe6-9fc5-bb79-cee0c4fa2f57",
+      "name" : "text_transform",
+      "label" : "Text transform",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "lowercase", "Lowercase" ], [ "capitalize", "Capitalize" ], [ "uppercase", "Uppercase" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "none"
+    }, {
+      "id" : "0e8b6339-ee11-2039-5e6e-70663a38dee6",
+      "name" : "alignment",
+      "label" : "Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "left", "Left" ], [ "center", "Center" ], [ "right", "Right" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "left"
+    }, {
+      "id" : "200e8ea8-5c73-f066-2982-42524c721d58",
+      "name" : "bottom_margin",
+      "label" : "Bottom margin",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "color_field" : {
+        "color" : "#393d3f",
+        "opacity" : 100
+      },
+      "font_size" : 36,
+      "font_weight" : "400",
+      "font_style" : "normal",
+      "letter_spacing" : 0,
+      "line_height" : 1.2,
+      "text_transform" : "none",
+      "alignment" : "left",
+      "bottom_margin" : 0
+    }
+  }, {
+    "id" : "cb3b187e-87e9-279c-d4dd-d1d141e1a0bd",
+    "name" : "subheading",
+    "label" : "Subscribe text",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "3e6d101e-4102-6cd5-c15f-7d9375fd01d4",
+      "name" : "color_field",
+      "label" : "Text color",
+      "required" : false,
+      "locked" : false,
+      "type" : "color",
+      "display_width" : null,
+      "default" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      }
+    }, {
+      "id" : "e8074228-99b0-5969-9aeb-3c4cb498f862",
+      "name" : "font_size",
+      "label" : "Font size",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 10,
+      "max" : 80,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 15
+    }, {
+      "id" : "484143e9-e144-d7b7-5b9d-6e28bde65cbd",
+      "name" : "font_weight",
+      "label" : "Font weight",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "300", "Light" ], [ "400", "Normal" ], [ "500", "Medium" ], [ "600", "SemiBold" ], [ "700", "Bold" ], [ "800", "Extra Bold" ], [ "900", "Black" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "400"
+    }, {
+      "id" : "42a32e00-7171-9b20-1d4e-1390554aba63",
+      "name" : "font_style",
+      "label" : "Font style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "normal", "Normal" ], [ "italic", "Italic" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "normal"
+    }, {
+      "id" : "8ded96cc-e2f4-f1e7-b868-97517d8b9b9c",
+      "name" : "letter_spacing",
+      "label" : "Letter spacing",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 10,
+      "step" : 0.5,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 3
+    }, {
+      "id" : "fb37610d-fa40-656f-bcf1-45b9d7414526",
+      "name" : "line_height",
+      "label" : "Line height",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 1,
+      "max" : 2,
+      "step" : 0.1,
+      "type" : "number",
+      "display_width" : null,
+      "default" : 1.2
+    }, {
+      "id" : "6a387f5c-f54b-72a3-66ed-cb3287396879",
+      "name" : "text_transform",
+      "label" : "Text transform",
+      "required" : false,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "none", "None" ], [ "lowercase", "Lowercase" ], [ "capitalize", "Capitalize" ], [ "uppercase", "Uppercase" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "uppercase"
+    }, {
+      "id" : "6f8c1370-e90e-4862-763e-204f4089a0ce",
+      "name" : "alignment",
+      "label" : "Alignment",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "left", "Left" ], [ "center", "Center" ], [ "right", "Right" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "left"
+    }, {
+      "id" : "dc180459-031c-9aa9-57ea-6368952842cb",
+      "name" : "bottom_margin",
+      "label" : "Bottom margin",
+      "required" : false,
+      "locked" : false,
+      "display" : "text",
+      "min" : 0,
+      "max" : 100,
+      "step" : 1,
+      "suffix" : "px",
+      "type" : "number",
+      "display_width" : null,
+      "default" : 0
+    } ],
+    "tab" : "STYLE",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "color_field" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "font_size" : 15,
+      "font_weight" : "400",
+      "font_style" : "normal",
+      "letter_spacing" : 3,
+      "line_height" : 1.2,
+      "text_transform" : "uppercase",
+      "alignment" : "left",
+      "bottom_margin" : 0
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : {
+    "heading" : {
+      "color_field" : {
+        "color" : "#393d3f",
+        "opacity" : 100
+      },
+      "font_size" : 36,
+      "font_weight" : "400",
+      "font_style" : "normal",
+      "letter_spacing" : 0,
+      "line_height" : 1.2,
+      "text_transform" : "none",
+      "alignment" : "left",
+      "bottom_margin" : 0
+    },
+    "subheading" : {
+      "color_field" : {
+        "color" : "#393D3F",
+        "opacity" : 100
+      },
+      "font_size" : 15,
+      "font_weight" : "400",
+      "font_style" : "normal",
+      "letter_spacing" : 3,
+      "line_height" : 1.2,
+      "text_transform" : "uppercase",
+      "alignment" : "left",
+      "bottom_margin" : 0
+    }
+  }
+}, {
+  "id" : "6a3725a3-fc04-6357-036e-67f35bbb5db5",
+  "name" : "podcast_cards",
+  "label" : "Podcast cards",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "b4b6ac5e-3518-bd4a-3ec4-70332cfd670f",
+    "name" : "podcast_image",
+    "label" : "Podcast image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png",
+      "alt" : "JA_podcast",
+      "loading" : "lazy",
+      "width" : 570,
+      "height" : 174,
+      "max_width" : 570,
+      "max_height" : 174
+    }
+  }, {
+    "id" : "6960cc76-3095-9b97-a1f4-ec8474c5bd76",
+    "name" : "show_heading",
+    "label" : "Show heading",
+    "required" : false,
+    "locked" : false,
+    "display" : "toggle",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : false
+  }, {
+    "id" : "491c9bfd-e373-a24d-51ab-684ceb5ed228",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "podcast_cards.show_heading",
+      "controlling_value_regex" : "true",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Lorem ipsum"
+  }, {
+    "id" : "75b7da75-5165-16d1-30ec-3db93a479a9e",
+    "name" : "supporting_text",
+    "label" : "Supporting text",
+    "required" : false,
+    "locked" : false,
+    "type" : "richtext",
+    "display_width" : null,
+    "default" : "<p style=\"text-align: left;\"><span style=\"color: #393d3f;\">The John Ankerberg Show is a daily radio program that discusses the historical accuracy of the life of Jesus, the Bible and how current issues stand up to Biblical history and Christianity.</span></p>"
+  }, {
+    "id" : "baba26a5-31f7-f36a-7376-f8d9c4318b9e",
+    "name" : "subscribe_text",
+    "label" : "Subscribe text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Subscribe"
+  }, {
+    "id" : "993f6c46-6247-60e4-c8b7-09600006cb00",
+    "name" : "podcast_link",
+    "label" : "Podcast link",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 1,
+      "max" : null,
+      "sorting_label_field" : null,
+      "default" : 2
+    },
+    "children" : [ {
+      "id" : "fe9a5ce5-1ccb-5b9b-128a-c91cbd062201",
+      "name" : "podcast_icon",
+      "label" : "Icon",
+      "required" : false,
+      "locked" : false,
+      "responsive" : true,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      }
+    }, {
+      "id" : "12dc0dd3-d6b1-6e31-ac87-42a76b1a3b85",
+      "name" : "link_field",
+      "label" : "Link",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "podcast_icon" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      },
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "podcast_icon" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      },
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ]
+  }, {
+    "id" : "eef373d1-5374-49f6-f156-d78b41c179fc",
+    "name" : "button",
+    "label" : "Button",
+    "required" : false,
+    "locked" : false,
+    "children" : [ {
+      "id" : "3762281c-d2c3-e74d-bac1-f23d5f49cb14",
+      "name" : "button_style",
+      "label" : "Button style",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "btn-primary", "Primary" ], [ "btn-secondary", "Secondary" ], [ "btn-white-outline", "Outline white" ], [ "btn-white-solid", "Solid white" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "btn-primary"
+    }, {
+      "id" : "1130dc01-31f1-0b7e-18fb-b4e518876385",
+      "name" : "corner_radius",
+      "label" : "Corner radius",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "radius-none", "None" ], [ "radius-s", "Small" ], [ "radius-l", "Large" ], [ "radius-xl", "Extra large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "radius-s"
+    }, {
+      "id" : "cc84f019-5286-ec3d-b8de-3d297f34cf25",
+      "name" : "horizontal_padding",
+      "label" : "Horizontal padding",
+      "required" : true,
+      "locked" : false,
+      "display" : "select",
+      "choices" : [ [ "padd-small", "Small" ], [ "padd-normal", "Normal" ], [ "padd-large", "Large" ] ],
+      "multiple" : false,
+      "reordering_enabled" : true,
+      "preset" : null,
+      "type" : "choice",
+      "display_width" : null,
+      "default" : "padd-normal"
+    }, {
+      "id" : "9e38d60b-e20f-ab73-0c09-37710abf66b7",
+      "name" : "button_text",
+      "label" : "Button text",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Listen now"
+    }, {
+      "id" : "ef864b61-2d1a-45a9-50e7-dc1680c76310",
+      "name" : "button_url",
+      "label" : "Button URL",
+      "required" : false,
+      "locked" : false,
+      "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+      "show_advanced_rel_options" : false,
+      "type" : "link",
+      "display_width" : null,
+      "default" : {
+        "url" : {
+          "content_id" : 185788294180,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : {
+      "button_style" : "btn-primary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal",
+      "button_text" : "Listen now",
+      "button_url" : {
+        "url" : {
+          "content_id" : 185788294180,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "podcast_image" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png",
+      "alt" : "JA_podcast",
+      "loading" : "lazy",
+      "width" : 570,
+      "height" : 174,
+      "max_width" : 570,
+      "max_height" : 174
+    },
+    "show_heading" : false,
+    "heading" : "Lorem ipsum",
+    "supporting_text" : "<p style=\"text-align: left;\"><span style=\"color: #393d3f;\">The John Ankerberg Show is a daily radio program that discusses the historical accuracy of the life of Jesus, the Bible and how current issues stand up to Biblical history and Christianity.</span></p>",
+    "subscribe_text" : "Subscribe",
+    "podcast_link" : [ {
+      "podcast_icon" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      },
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "podcast_icon" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      },
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ],
+    "button" : {
+      "button_style" : "btn-primary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal",
+      "button_text" : "Listen now",
+      "button_url" : {
+        "url" : {
+          "content_id" : 185788294180,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  }, {
+    "podcast_image" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/JA_podcast.png",
+      "alt" : "JA_podcast",
+      "loading" : "lazy",
+      "width" : 570,
+      "height" : 174,
+      "max_width" : 570,
+      "max_height" : 174
+    },
+    "show_heading" : false,
+    "heading" : "Lorem ipsum",
+    "supporting_text" : "<p style=\"text-align: left;\"><span style=\"color: #393d3f;\">The John Ankerberg Show is a daily radio program that discusses the historical accuracy of the life of Jesus, the Bible and how current issues stand up to Biblical history and Christianity.</span></p>",
+    "subscribe_text" : "Subscribe",
+    "podcast_link" : [ {
+      "podcast_icon" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      },
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    }, {
+      "podcast_icon" : {
+        "size_type" : "auto",
+        "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/castro_logo.png",
+        "alt" : "castro logo",
+        "loading" : "lazy",
+        "width" : 40,
+        "height" : 40,
+        "max_width" : 40,
+        "max_height" : 40
+      },
+      "link_field" : {
+        "url" : {
+          "content_id" : null,
+          "href" : "https://castro.fm/podcast/445bc051-2eb4-4f39-8632-51a9408662a0",
+          "type" : "EXTERNAL"
+        },
+        "open_in_new_tab" : true,
+        "no_follow" : false
+      }
+    } ],
+    "button" : {
+      "button_style" : "btn-primary",
+      "corner_radius" : "radius-s",
+      "horizontal_padding" : "padd-normal",
+      "button_text" : "Listen now",
+      "button_url" : {
+        "url" : {
+          "content_id" : 185788294180,
+          "href" : null,
+          "type" : "CONTENT"
+        },
+        "open_in_new_tab" : false,
+        "no_follow" : false
+      }
+    }
+  } ]
+} ]

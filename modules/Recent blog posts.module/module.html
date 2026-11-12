@@ -1,0 +1,318 @@
+{% if module.select_blog is number %}
+  {% set rec_posts = blog_recent_posts(module.select_blog, module.number_of_posts_to_fetch) %}
+{% else %}
+  {% set rec_posts = blog_recent_posts("default", module.number_of_posts_to_fetch) %}
+{% endif %}
+
+<section class="listing-{{name}}" role="region">
+  <div class="listing-limiter page-{{current_page_num}} cols-{{ module.number_of_columns }}">
+    {# {% set counter = 1 %} #}
+    {% for content in rec_posts %}
+    
+      {# <article class="post-card{% if current_page_num == 1 %}{% if counter < 3 %} featured-card featured-card-{{counter}}{% endif %}{% endif %}"> #}
+      <article class="post-card">
+        <div class="feat-img-wrapper">
+          <a class="post-link" href="{{ content.absolute_url }}">
+            <img class="post-img" src="{{ content.featured_image }}" loading="lazy" alt="{{ content.featured_image_alt_text }}">
+          </a>
+        </div>
+
+        <div class="card-content">
+          <div class="post-info">
+            <span class="post-author">
+              {# <a href="{{ blog_author_url(group.id, content.blog_post_author.slug) }}"> #} {# v1 #}
+              <a href="{{ blog_author_url(module.select_blog, content.blog_post_author.slug) }}"> {# v2 #}
+                {{ content.blog_post_author.display_name }}
+              </a>
+            </span>
+            <span class="info-divider">|</span>
+            <span class="published-date">{{ content.publish_date|datetimeformat('%B %e, %Y') }} </span>
+          </div>
+
+          <h4 class="post-heading"><a class="post-link" href="{{ content.absolute_url }}">{{content.name}}</a></h4>
+
+          <div class="card-tags">
+            {% for tag in content.tag_list %}
+            <span class="card-tag">
+              {# <a class="card-tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a> #} {# v1 #}
+              <a class="card-tag-link" href="{{ blog_tag_url(module.select_blog, tag.slug) }}">{{ tag.name }}</a> {# v2 #}
+            </span>
+            {% endfor %}
+          </div>
+        </div>
+      </article>
+      {# {% set counter = counter + 1 %} #}
+    {% endfor %}
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .listing-{{name}} *,
+    .listing-{{name}} *::before,
+    .listing-{{name}} *::after {
+      box-sizing: border-box;
+    }
+        
+    .listing-{{name}} .listing-limiter {
+      width: 100%;
+      max-width: 1200px;
+      margin: 0 auto;
+      display: grid;
+      gap: 30px;
+    }
+    
+    .listing-{{name}} .listing-limiter,
+    .listing-{{name}} .listing-limiter.cols-3 {
+      grid-template-columns: repeat(3, 1fr);
+    }
+    
+    .listing-{{name}} .listing-limiter.cols-2 {
+      grid-template-columns: repeat(2, 1fr);
+    }
+    
+    .listing-{{name}} .listing-limiter.cols-1 {
+      grid-template-columns: repeat(1, 1fr);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card {
+      list-style: none;
+      overflow: hidden;
+      border-radius: 5px 5px 8px 8px;
+      background: var(--clr-light-grey);
+      /* grid-column: span 2; */
+    }
+    
+    {#
+    .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+      grid-column: span 3;
+    } #}
+
+    .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper,
+    .listing-{{name}} .listing-limiter.cols-3 .post-card .feat-img-wrapper,
+    .listing-{{name}} .listing-limiter.cols-2 .post-card .feat-img-wrapper,
+    .listing-{{name}} .listing-limiter.cols-1 .post-card .feat-img-wrapper {
+      width: 100%;
+      overflow: hidden;
+      aspect-ratio: {{ module.featured_image_aspect_ratio }};
+      
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      
+      /* height: 220px; */
+      /* min-height: 220px; */
+      /* max-height: 220px; */      
+    }
+    
+    {#
+    .listing-{{name}} .listing-limiter.cols-1 .post-card .feat-img-wrapper {
+      height: 660px;
+      min-height: 660px;
+      max-height: 660px;
+    }
+    #}
+    
+    {#
+    .listing-{{name}} .listing-limiter.cols-2 .post-card .feat-img-wrapper {
+      height: 440px;
+      min-height: 440px;
+      max-height: 440px;
+    }
+    #}
+    
+    {#
+    .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper {
+      width: 100%;
+      height: 332px;
+      min-height: 332px;
+      max-height: 332px;
+      overflow: hidden;
+    }
+    #}
+
+    .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+      min-height: 100%;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-info {
+      margin: 0;
+      padding: 0;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a,
+    .listing-{{name}} .listing-limiter .post-card .card-content .info-divider,
+    .listing-{{name}} .listing-limiter .post-card .card-content .published-date {
+      color: var(--clr-dark-beige);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.5;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a {
+      cursor: pointer;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-author a:hover {
+      color: var(--clr-dark);
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .info-divider {
+      display: inline-block;
+      padding: 0 4px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 10px;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags a,
+    .listing-{{name}} .listing-limiter .post-card .card-content .more-tags {
+      display: block;
+      padding: 6px 12px;
+      background: #fff;
+      border: 1px solid var(--clr-dark-beige);
+      border-radius: 30px;
+      transition: var(--transition);
+      font-size: 17px;
+      font-weight: 500;
+      line-height: 1.5;
+      color: var(--clr-dark-beige);
+      cursor: pointer;
+      text-decoration: none;
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .card-tags a:hover {
+      background: var(--clr-dark-beige);
+      color: #fff;
+    }    
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--clr-grey);
+      transition: var(--transition);    
+      margin: 0;
+      padding: 0;
+    }
+    
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading:hover {
+      color: var(--clr-dark);
+    }
+
+    .listing-{{name}} .listing-limiter .post-card .card-content .post-heading a {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      font-weight: inherit;
+    }
+    
+    {#
+    @media (min-width: 961px) {
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card {
+        margin-bottom: 20px;
+      }
+      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card.featured-card-1 {
+        margin-right: 10px;
+      }
+      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card.featured-card-2 {
+        margin-left: 10px;
+      }
+    }    
+    #}
+    
+    @media (max-width: 960px) {
+      .listing-{{name}} .listing-limiter,
+      .listing-{{name}} .listing-limiter.cols-3 {
+        grid-template-columns: repeat(2, 1fr);
+      }
+
+      {#
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card,
+      .listing-{{name}} .listing-limiter .post-card {
+        grid-column: span 1;
+      }
+      #}
+
+      {#
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper,
+      .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper {
+        height: 250px;
+        min-height: 250px;
+        max-height: 250px;
+      }
+      #}
+    }
+    
+    {#
+    @media (max-width: 767px) {      
+      .listing-{{name}} .listing-limiter.page-1 .post-card.featured-card .feat-img-wrapper,
+      .listing-{{name}} .listing-limiter .post-card .feat-img-wrapper {
+        height: 220px;
+        min-height: 220px;
+        max-height: 220px;
+      }
+    }
+    #}
+    
+    @media (max-width: 620px) {
+      .listing-{{name}} .listing-limiter,
+      .listing-{{name}} .listing-limiter.cols-3,
+      .listing-{{name}} .listing-limiter.cols-2,
+      .listing-{{name}} .listing-limiter.cols-1 {
+        grid-template-columns: 1fr;
+      }
+    }
+   
+  </style>
+{% end_require_css %}
+
+{% require_js %}
+  <script>
+    $(document).ready(function() {
+      $('.listing-{{name}} .card-tags').each(function() {
+        const $tags = $(this).find('.card-tag');
+        const totalTags = $tags.length;
+
+        if (totalTags > 2) {
+          // Hide all tags except the first two
+          $tags.slice(2).hide();
+
+          // Create the "+X" element
+          const remainingCount = totalTags - 2;
+          const $moreTags = $('<span class="card-tag more-tags">+' + remainingCount + '</span>');
+
+          // Append the "+X" element after the second tag
+          $(this).append($moreTags);
+
+          // Click event to show the remaining tags
+          $moreTags.click(function() {
+            $tags.slice(2).show();
+            $(this).remove(); // Remove the "+X" element after showing all tags
+          });
+        }
+      });
+    });
+  </script>
+{% end_require_js %}

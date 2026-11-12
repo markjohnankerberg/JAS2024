@@ -1,0 +1,462 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Legacy Giving 2024
+  screenshotPath: ../images/template-previews/legacy-giving.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--legacy"
+%}
+
+  {# Section #1 - Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Hero",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "Ways you can give",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "href_with_scheme" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "href_with_scheme" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          heading="A Legacy That Lives On",
+          show_button=true,
+          show_subheading=true,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/legacy_hero_bg_2x.png"
+                },
+                "background_image_overlay" : false
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 185
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 185
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              }
+            },
+            "subheading" : {
+              "line_height" : 1.5
+            }
+          },
+          subheading='"One generation shall commend your works to another, and shall declare your mighty acts." Psalm 145:4'
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+
+  {# Section #2 - Content #}
+  {% dnd_section
+    full_width=false,
+    max_width=1200
+  %}
+    {% dnd_column
+      offset=0,
+      width=7,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "30px",
+          "top" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/CTA Info card",
+          offset=0,
+          width=12,
+          buttons=[ {
+            "button" : {
+              "button_style" : "btn-primary",
+              "button_text" : "Show how you can give",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "href_with_scheme" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://jashow.org/",
+                  "href_with_scheme" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          image_field_1={
+            "alt" : "Four star charity",
+            "height" : 104,
+            "loading" : "lazy",
+            "max_height" : 104,
+            "max_width" : 207,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/charity_navigator.png",
+            "width" : 207
+          },
+          show_image=false,
+          style={
+            "module_spacing" : {
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 20
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 0
+                }
+              }
+            }
+          },
+          supporting_text="A legacy gift is a planned future gift that designates some part of an individual's estate as a donation to a nonprofit, i.e., ministry. Legacy gifts enable individuals to create a powerful eternal legacy by making a direct impact on the mission's efforts that are important to them. Your gifts will support our mission for generations. While you may not see all that God has in store, you can create a legacy of impacting lives with the Gospel of Jesus Christ!",
+          title="What is a legacy gift?",
+          title_text_size=28
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <h2 style="font-weight: 600; font-size: 28px; font-family: Lato, sans-serif;">How to include John Ankerberg Show in your will or living trust</h2>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row
+        padding={
+          "default" : {
+            "bottom" : "20px",
+            "left" : "0px",
+            "right" : "0px",
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_module
+          path="@hubspot/linked_image",
+          offset=0,
+          width=12,
+          horizontal_alignment="CENTER",
+          img={
+            "alt" : "people praying",
+            "height" : 854,
+            "loading" : "lazy",
+            "max_height" : 854,
+            "max_width" : 1280,
+            "size_type" : "auto",
+            "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/legacy_illustration_2x.png",
+            "width" : 1280
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+
+      {% dnd_row %}
+        {% dnd_module
+          path="@hubspot/rich_text",
+          offset=0,
+          width=12
+        %}
+          {% module_attribute "html" %}
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">To include the John Ankerberg Show in your will or living trust, the following wording is suggested for use with your documents. Please consult your attorney or contact us regarding additional details:</span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">"After fulfilling other provisions, I give, devise and bequeath _____ % of my estate (or $_____ if a specific amount or the rest, residue and remainder of my estate) to the John Ankerberg Show (Federal tax ID number: 621138444), currently having an address at P.O. Box 8977, Chattanooga, TN 37414, to be used for such purposes as its Board of Directors determines at the time this bequest becomes effective."</span></p>
+            <p style="font-size: 16px; font-weight: 500;"><span style="color: #393d3f;">THE JOHN ANKERBERG SHOW<br>P.O. BOX 8977<br>CHATTANOOGA, TN 37414</span></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+      
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Accordion",
+          offset=0,
+          width=12,
+          item=[ {
+            "answer_field_type" : "ans-text",
+            "question" : "Your Retirement Plan",
+            "richtext_field" : "",
+            "text_field" : "When you leave the balance of an IRA or 401(k) to your heirs, they must carefully manage the account to avoid losing its tax-deferred status and potentially triggering large income taxes and possible penalties. You can simplify this by directing all or a portion of what remains in your retirement accounts to the John Ankerberg Show and leaving other assets to your heirs that are not subject to income taxes."
+          }, {
+            "answer_field_type" : "ans-text",
+            "question" : "Life Insurance",
+            "richtext_field" : "",
+            "text_field" : 'You may also make the John Ankerberg Show the beneficiary of a life insurance policy without changing your will. If your financial and family situation has changed over the years, you may have life insurance policies that are no longer needed for their original purpose, such as the payment of estate taxes that may no longer be due. Ask your insurance representative for a "change of beneficiary form" and return the completed form to them to confirm the exchange.'
+          }, {
+            "answer_field_type" : "ans-text",
+            "question" : "Gift Annuity",
+            "richtext_field" : "",
+            "text_field" : "A gift annuity is one option that can provide an income for you and a loved one while eventually funding a charitable gift to the John Ankerberg Show. In addition to immediate tax benefits, you or someone you choose will receive fixed payments for life. This can be a way to provide for retirement income or support parents. Please contact your attorney or financial advisor for more information regarding gift annuities with no obligation."
+          }, {
+            "answer_field_type" : "ans-rich-text",
+            "question" : "Your Will or Living Trust",
+            "richtext_field" : "<p>You may include a specific amount or a percentage of what remains after other distributions have been completed. You may be able to add a charitable gift through a simple amendment to your current will or living trust (called a codicil).</p>\n<p>This is the option chosen by most people, see above for wording to include in your will.</p>",
+            "text_field" : ""
+          } ],
+          module_heading="What are the ways you can give",
+          style={
+            "module_spacing" : {
+              "padding" : {
+                "bottom" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "left" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "right" : {
+                  "units" : "px",
+                  "value" : 0
+                },
+                "top" : {
+                  "units" : "px",
+                  "value" : 15
+                }
+              }
+            }
+          }
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+
+    {% dnd_column
+      offset=7,
+      width=5,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        },
+        "mobile" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "80px"
+        }
+      }
+    %}
+      {# Donate form module goes here #}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Disclaimer module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    }
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Disclaimer",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

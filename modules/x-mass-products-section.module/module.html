@@ -1,0 +1,111 @@
+{#
+Christmas Resource Catalog
+Products are fetched client-side from module.data.api_url (see module.js) — same Store API as the Audio Bibles banner.
+#}
+{% set c = module.content %}
+{% set l = module.labels %}
+{% set d = module.data %}
+{% set uid = "catalog-" ~ name %}
+
+<section
+        class="atri-catalog catalog-section"
+        id="{{ uid }}"
+        data-api-url="{{ d.api_url|escape_attr }}"
+        data-categories-url="{{ d.categories_url|escape_attr }}"
+        data-exclude-categories="{{ d.exclude_categories|escape_attr }}"
+        data-hide-tags="{{ d.hide_tags|escape_attr }}"
+        data-label-tags="{{ d.label_tags|escape_attr }}"
+        data-product-url="{{ d.product_url|escape_attr }}"
+        data-page-size="{{ d.page_size or 6 }}"
+        data-cache-minutes="{{ d.cache_minutes or 0 }}"
+        data-campaign="{{ d.campaign|escape_attr }}"
+        data-button-text="{{ l.button_text|escape_attr }}"
+        data-sample-text="{{ (l.sample_text or "Read a sample")|escape_attr }}"
+        data-tab-books="{{ l.tab_books|escape_attr }}"
+        data-tab-media="{{ l.tab_media|escape_attr }}"
+        data-tab-collections="{{ l.tab_collections|escape_attr }}"
+        aria-labelledby="{{ uid }}-title"
+>
+    <div class="wrap">
+        <div class="section-heading">
+            <div>
+                {% if c.eyebrow %}<p class="eyebrow">{{ c.eyebrow }}</p>{% endif %}
+                <h2 id="{{ uid }}-title">{{ c.heading }}{% if c.heading_em %}<br><em>{{ c.heading_em }}</em>{% endif %}</h2>
+            </div>
+            <div>
+                {% if c.intro %}<p>{{ c.intro }}</p>{% endif %}
+            </div>
+        </div>
+
+        {# Main categories (format tabs) across the top, then search + sort, then topic pills #}
+        <div class="browser-tabs" role="tablist" aria-label="Resource format" data-c="tabs" hidden></div>
+
+        <div class="catalog-tools">
+            <form class="resource-search" role="search" data-c="search-form">
+                <svg class="search-icon" viewBox="0 0 24 24" aria-hidden="true" focusable="false"><circle cx="10.5" cy="10.5" r="6.5" fill="none" stroke="currentColor" stroke-width="1.8"/><path d="m15.5 15.5 5 5" stroke="currentColor" stroke-width="1.8" stroke-linecap="round"/></svg>
+                <label class="sr-only" for="{{ uid }}-search">Search resources by title, guest, or topic</label>
+                <input id="{{ uid }}-search" data-c="search" type="search" placeholder="Search by title, guest, or topic…" autocomplete="off">
+                <button type="button" class="clear-search" data-c="clear" aria-label="Clear search" hidden>×</button>
+            </form>
+            <label class="sort-label">Sort
+                <select data-c="sort">
+                    <option value="featured">Featured</option>
+                    <option value="title">Title A–Z</option>
+                    <option value="price-asc">Price: low to high</option>
+                    <option value="price-desc">Price: high to low</option>
+                </select>
+            </label>
+        </div>
+        <div class="topic-filters" role="group" aria-label="Filter by topic" data-c="topics"></div>
+
+        <div class="results-row">
+            <p data-c="count" role="status" aria-live="polite">Loading resources…</p>
+            <button type="button" class="subtle-button" data-c="reset" data-reset hidden>Reset filters</button>
+        </div>
+
+        <div id="{{ uid }}-panel" data-c="panel">
+            <div class="resource-grid" data-c="grid">
+                {# Skeletons, replaced by module.js #}
+                {% for i in range(3) %}
+                <div class="resource-card resource-card--skeleton" aria-hidden="true">
+                    <div class="resource-media"></div>
+                    <div class="resource-info">
+                        <div class="sk sk--eyebrow"></div>
+                        <div class="sk sk--title"></div>
+                        <div class="sk"></div>
+                        <div class="sk sk--short"></div>
+                    </div>
+                </div>
+                {% endfor %}
+            </div>
+            <div class="empty-state" data-c="empty" hidden>
+                <span aria-hidden="true">⌕</span>
+                <h3>Let’s try another search.</h3>
+                <p>No resources match these filters. Search a guest’s name or choose another topic.</p>
+                <button type="button" class="button button-green" data-reset>Show all resources</button>
+            </div>
+            <div class="empty-state" data-c="error" hidden>
+                <h3>We couldn’t load resources right now.</h3>
+                <p>Please refresh the page, or <a href="{{ d.store_url|escape_attr }}" target="_blank" rel="noopener noreferrer">browse the ATRI resource store</a>.</p>
+            </div>
+        </div>
+
+        <div class="load-more-wrap">
+            <button type="button" class="button button-outline" data-c="more" hidden></button>
+            <p data-c="more-count"></p>
+        </div>
+
+        {% if c.footnote %}<p class="catalog-footnote">{{ c.footnote }}</p>{% endif %}
+        <noscript><p class="catalog-footnote">Turn on JavaScript to search and explore this guide, or <a href="{{ d.store_url|escape_attr }}">browse the ATRI resource store</a>.</p></noscript>
+    </div>
+
+    <dialog class="resource-dialog" data-c="dialog" aria-labelledby="{{ uid }}-detail-title">
+        <div class="dialog-top">
+            <p class="eyebrow">{{ l.dialog_label }}</p>
+            <button type="button" class="close-button" data-close aria-label="Close"><span aria-hidden="true">×</span></button>
+        </div>
+        <div data-c="detail"></div>
+    </dialog>
+
+    <div class="toast" data-c="toast" role="status" aria-live="polite"></div>
+</section>

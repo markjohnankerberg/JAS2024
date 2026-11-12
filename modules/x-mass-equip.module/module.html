@@ -1,0 +1,311 @@
+{#
+Equip Section — section heading, Follow Me discipleship card with stats, and side promo cards.
+#}
+{% set h = module.section_head %}
+{% set fm = module.follow_me %}
+
+{% require_css %}
+<style>
+  .xmas-equip {
+    --eq-ink: #21372d;
+    --eq-muted: #626b63;
+    --eq-line: #d9d1c2;
+    --eq-forest: #18392f;
+    --eq-gold: #e7d4a4;
+    --eq-paper: #f8f5ee;
+    --eq-beige: #f2ede4;
+    --eq-serif: Georgia, 'Times New Roman', serif;
+    --eq-sans: Arial, Helvetica, sans-serif;
+
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    padding: clamp(48px, 6vw, 80px) 0;
+    color: var(--eq-ink);
+    font-family: var(--eq-sans);
+  }
+  .xmas-equip *, .xmas-equip *::before, .xmas-equip *::after { box-sizing: border-box; }
+
+  .xmas-equip__wrap {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+  }
+
+  /* Section heading — same pattern as products module */
+  .xmas-equip__section-head {
+    display: grid;
+    grid-template-columns: 1fr .77fr;
+    gap: clamp(30px, 5vw, 100px);
+    align-items: end;
+    margin-bottom: clamp(32px, 4vw, 48px);
+  }
+
+  .xmas-equip__kicker {
+    margin: 0 0 16px;
+    font: 700 11px/1.6 var(--eq-sans);
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--eq-muted);
+  }
+
+  .xmas-equip__section-heading {
+    margin: 0;
+    font-family: var(--eq-serif);
+    font-weight: 400;
+    font-size: clamp(38px, 4.6vw, 61px);
+    line-height: 1.08;
+    letter-spacing: -1.8px;
+  }
+  .xmas-equip__section-heading em { font-style: italic; }
+
+  .xmas-equip__section-intro {
+    font-size: 14px;
+    line-height: 1.8;
+    color: var(--eq-muted);
+    margin: 0;
+  }
+
+  /* Main grid: Follow Me card + side cards */
+  .xmas-equip__grid {
+    display: grid;
+    grid-template-columns: 1.2fr .8fr;
+    gap: clamp(16px, 2vw, 24px);
+    align-items: start;
+  }
+
+  /* Follow Me card */
+  .xmas-equip__follow {
+    background: var(--eq-forest);
+    color: var(--eq-paper);
+    border-radius: 6px;
+    padding: clamp(32px, 4vw, 52px);
+  }
+
+  .xmas-equip__follow .xmas-equip__kicker { color: var(--eq-gold); }
+
+  .xmas-equip__follow-heading {
+    margin: 0;
+    font-family: var(--eq-serif);
+    font-weight: 400;
+    font-size: clamp(48px, 6vw, 72px);
+    line-height: 1.05;
+    letter-spacing: -2px;
+  }
+  .xmas-equip__follow-heading em { font-style: italic; }
+
+  .xmas-equip__follow-tagline {
+    margin: 10px 0 0;
+    font-size: 14px;
+    color: #b8c4b3;
+  }
+
+  .xmas-equip__stats {
+    display: flex;
+    gap: clamp(24px, 3vw, 40px);
+    margin: 28px 0;
+    padding: 20px 0;
+    border-top: 1px solid rgba(255,255,255,.15);
+    border-bottom: 1px solid rgba(255,255,255,.15);
+  }
+
+  .xmas-equip__stat strong {
+    display: block;
+    font-family: var(--eq-serif);
+    font-size: 28px;
+    font-weight: 400;
+    line-height: 1.1;
+  }
+
+  .xmas-equip__stat span {
+    font-size: 12px;
+    color: #b8c4b3;
+  }
+
+  .xmas-equip__follow-body {
+    font-size: 14px;
+    line-height: 1.75;
+    color: #c4ccc0;
+  }
+  .xmas-equip__follow-body p { margin: 0; }
+  .xmas-equip__follow-body p + p { margin-top: 12px; }
+  .xmas-equip__follow-body em { font-style: italic; }
+
+  .xmas-equip__follow-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 24px;
+    padding: 13px 26px;
+    border: 0;
+    border-radius: 3px;
+    background: var(--eq-gold);
+    color: var(--eq-forest);
+    font: 700 13px/1.5 var(--eq-sans);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .xmas-equip__follow-btn:hover { background: #d4c08e; transform: translateY(-2px); }
+  .xmas-equip__follow-btn:focus-visible { outline: 2px solid var(--eq-gold); outline-offset: 2px; }
+
+  /* Side cards */
+  .xmas-equip__sidecards {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  .xmas-equip__sidecard {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--eq-line);
+    background: var(--eq-paper);
+  }
+  .xmas-equip__sidecard--beige { background: var(--eq-beige); }
+
+  .xmas-equip__sidecard-copy {
+    padding: clamp(20px, 2.5vw, 32px);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .xmas-equip__sidecard-heading {
+    margin: 0;
+    font-family: var(--eq-serif);
+    font-weight: 400;
+    font-size: clamp(20px, 2vw, 26px);
+    line-height: 1.2;
+    letter-spacing: -.3px;
+  }
+
+  .xmas-equip__sidecard-body {
+    margin: 10px 0 0;
+    font-size: 13px;
+    line-height: 1.65;
+    color: var(--eq-muted);
+  }
+
+  .xmas-equip__sidecard-link {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    margin-top: 14px;
+    padding-bottom: 3px;
+    border-bottom: 1px solid #a4b1a4;
+    background: none;
+    color: var(--eq-forest);
+    font: 700 12px/1.5 var(--eq-sans);
+    text-decoration: none;
+  }
+  .xmas-equip__sidecard-link:hover { border-bottom-color: var(--eq-forest); }
+  .xmas-equip__sidecard-link:focus-visible { outline: 2px solid var(--eq-forest); outline-offset: 2px; }
+
+  .xmas-equip__sidecard-image {
+    min-height: 160px;
+  }
+  .xmas-equip__sidecard-image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  /* Line the boxes up: the Follow Me card and the side-card column share one height, and the
+     two side cards split it evenly (same height, same gap). The image is absolutely placed so
+     its 1:1 size can't make one card taller; each card's link sits on its bottom edge. */
+  .xmas-equip .xmas-equip__grid { align-items: stretch; }
+  .xmas-equip .xmas-equip__sidecards { height: 100%; }
+  .xmas-equip .xmas-equip__sidecard { flex: 1 1 0; min-height: 0; }
+  .xmas-equip .xmas-equip__sidecard-copy { display: flex; flex-direction: column; }
+  .xmas-equip .xmas-equip__sidecard-copy .xmas-equip__sidecard-link { margin-top: auto; align-self: flex-start; }
+  .xmas-equip .xmas-equip__sidecard-image { position: relative; }
+  .xmas-equip .xmas-equip__sidecard-image img { position: absolute; inset: 0; }
+  /* The theme colours every h2 dark grey, which hid "Follow Me" on the green card. */
+  .xmas-equip .xmas-equip__follow h2.xmas-equip__follow-heading { color: inherit; }
+
+  @media (max-width: 900px) {
+    .xmas-equip__grid { grid-template-columns: 1fr; }
+    .xmas-equip__section-head { display: block; }
+    .xmas-equip__section-intro { margin-top: 18px; max-width: 480px; }
+    .xmas-equip__section-heading { font-size: 42px; }
+  }
+
+  @media (max-width: 600px) {
+    .xmas-equip { padding: clamp(36px, 5vw, 60px) 0; }
+    .xmas-equip__wrap { padding: 0 1.25rem; }
+    .xmas-equip__sidecard { grid-template-columns: 1fr; }
+    .xmas-equip__sidecard-image { min-height: 180px; }
+    .xmas-equip__stats { flex-direction: column; gap: 16px; }
+  }
+</style>
+{% end_require_css %}
+
+<section class="xmas-equip" id="equip">
+  <div class="xmas-equip__wrap">
+    <div class="xmas-equip__section-head">
+      <div>
+        {% if h.kicker %}<p class="xmas-equip__kicker">{{ h.kicker }}</p>{% endif %}
+        <h2 class="xmas-equip__section-heading">
+          {{ h.heading }}{% if h.heading_em %}<br><em>{{ h.heading_em }}</em>{% endif %}
+        </h2>
+      </div>
+      <div>
+        {% if h.intro %}<p class="xmas-equip__section-intro">{{ h.intro }}</p>{% endif %}
+      </div>
+    </div>
+
+    <div class="xmas-equip__grid">
+      <div class="xmas-equip__follow">
+        {% if fm.kicker %}<p class="xmas-equip__kicker">{{ fm.kicker }}</p>{% endif %}
+        <h2 class="xmas-equip__follow-heading">
+          {{ fm.heading }}{% if fm.heading_em %} <em>{{ fm.heading_em }}</em>{% endif %}
+        </h2>
+        {% if fm.tagline %}<p class="xmas-equip__follow-tagline">{{ fm.tagline }}</p>{% endif %}
+
+        {% if module.stats %}
+        <div class="xmas-equip__stats">
+          {% for stat in module.stats %}
+          <div class="xmas-equip__stat">
+            <strong>{{ stat.number }}</strong>
+            <span>{{ stat.stat_label }}</span>
+          </div>
+          {% endfor %}
+        </div>
+        {% endif %}
+
+        <div class="xmas-equip__follow-body">{{ fm.body_text }}</div>
+
+        {% if fm.cta_text and fm.cta_url %}
+        <a class="xmas-equip__follow-btn" href="{{ fm.cta_url|escape_attr }}">{{ fm.cta_text }} <span aria-hidden="true">&#8599;</span></a>
+        {% endif %}
+      </div>
+
+      {% if module.side_cards %}
+      <div class="xmas-equip__sidecards">
+        {% for card in module.side_cards %}
+        <div class="xmas-equip__sidecard{% if card.bg_style == 'beige' %} xmas-equip__sidecard--beige{% endif %}">
+          <div class="xmas-equip__sidecard-copy">
+            {% if card.kicker %}<p class="xmas-equip__kicker">{{ card.kicker }}</p>{% endif %}
+            <h3 class="xmas-equip__sidecard-heading">{{ card.heading }}</h3>
+            {% if card.body_text %}<p class="xmas-equip__sidecard-body">{{ card.body_text }}</p>{% endif %}
+            {% if card.link_text and card.link_url %}
+            <a class="xmas-equip__sidecard-link" href="{{ card.link_url|escape_attr }}">{{ card.link_text }} <span aria-hidden="true">&#8599;</span></a>
+            {% endif %}
+          </div>
+          <div class="xmas-equip__sidecard-image">
+            {% if card.image.src %}
+            <img src="{{ card.image.src }}" alt="{{ card.image.alt|escape_attr }}" loading="lazy"
+                 {% if card.image.width %}width="{{ card.image.width }}"{% endif %}
+                 {% if card.image.height %}height="{{ card.image.height }}"{% endif %}>
+            {% endif %}
+          </div>
+        </div>
+        {% endfor %}
+      </div>
+      {% endif %}
+    </div>
+  </div>
+</section>

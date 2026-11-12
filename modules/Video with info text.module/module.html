@@ -1,0 +1,91 @@
+{% if module.embed_field.oembed_url or module.embed_field.embed_html or module.hubspot_video.player_id != null %}
+  {% if module.video_type == "embed" %}
+    {% if module.embed_field.source_type == "oembed" %}
+      <div class="oembed_container {% if module.embed_field.size_type == 'auto_full_width' %}oembed_container--full-size{% endif %}" id="oembed_container-{{ name }}">
+
+        {% if module.oembed_thumbnail.src %}
+          <button class="oembed_custom-thumbnail" style="background-image:url({{module.oembed_thumbnail.src}})">
+            <span class="oembed-info">Video player - {{ module.oembed_thumbnail.alt }} - Click to play video</span>
+            <div class="oembed_custom-thumbnail_icon">
+              <svg viewBox="0 0 135.39 149.4"><path d="M371.2,398.69l-127.79,71c-1.47.83-2.74.93-3.8.28a3.69,3.69,0,0,1-1.59-3.46V324.88a3.73,3.73,0,0,1,1.59-3.47,3.66,3.66,0,0,1,3.8.29l127.79,71c1.47.84,2.21,1.82,2.21,3S372.67,397.85,371.2,398.69Z" transform="translate(-238.02 -321)"></path></svg>
+            </div>
+          </button>
+        {% endif %}
+
+        {% set oembedResponse = module.embed_field.oembed_response %}
+        {% set isVideo = module.embed_field.oembed_url %}
+        {% set isSupportedOEmbedType = module.embed_field.supported_oembed_types.index(module.embed_field.oembed_response.type) >= 0 %}
+
+        {% if isVideo and isSupportedOEmbedType %}
+          <div class="iframe_wrapper"
+              data-embed-response-html="{{ oembedResponse.html|escape }}"
+              data-embed-response-width="{{ oembedResponse.width }}"
+              data-embed-response-height="{{ oembedResponse.height }}"
+              data-embed-url="{{ module.embed_field.oembed_url }}"
+              {% unless module.embed_field.size_type == "auto_full_width" or module.embed_field.size_type == "exact" %}
+                data-max-height="{% if module.embed_field.size_type == "auto_custom_max" %}{{ module.embed_field.max_height }}{% endif %}"
+                data-max-width="{% if module.embed_field.size_type == "auto_custom_max" %}{{ module.embed_field.max_width }}{% endif %}"
+              {% endunless %}
+              {% if module.embed_field.size_type == "exact" %}
+                data-height="{{ module.embed_field.height }}"
+                data-width="{{ module.embed_field.width }}"
+              {% endif %}
+              >
+          </div>
+        {% endif %}
+
+      </div>
+    {% else %}
+      <div id="embed_container" class="embed_container">
+        <div class="iframe_wrapper">
+          {{ module.embed_field.embed_html }}
+        </div>
+      </div>
+    {% endif %}
+  {% else %}
+    {% if module.hubspot_video.player_id %}
+      {% set max_width = module.hubspot_video.size_type == 'auto_custom_max' ? module.hubspot_video.max_width : module.hubspot_video.width %}
+      {% set max_height = module.hubspot_video.size_type == 'auto_custom_max' ? module.hubspot_video.max_height : module.hubspot_video.height %}
+      {% video_player "embed_player"
+        autoplay={{ module.hubspot_video.autoplay }},
+        conversion_asset={{ module.hubspot_video.conversion_asset|tojson|safe }},
+        full_width={{ module.hubspot_video.size_type == 'auto_full_width' }},
+        height={{ max_height }},
+        hidden_controls={{ module.hubspot_video.hide_controls }},
+        loop={{ module.hubspot_video.loop_video }},
+        muted={{ module.hubspot_video.mute_by_default }},
+        play_button_color={{ module.style_options.oembed_thumbnail_play_button_color.color }},
+        player_id={{ module.hubspot_video.player_id }},
+        type={{ module.hubspot_video.player_type or 'scriptV4' }},
+        width={{ max_width }}
+      %}
+    {% endif %}
+  {% endif %}
+{% else %}
+  <div class="hs-video-placeholder">
+    <div class="hs-video-placeholder__inner">
+      <p class="hs-video-placeholder__title">{{ module.placeholder_fields.placeholder_title }}</p>
+      <p class="hs-video-placeholder__description">{{ module.placeholder_fields.placeholder_description }}</p>
+    </div>
+  </div>
+{% endif %}
+
+<div class="info-text-{{name}}">
+  {{ module.info_text }}
+</div>
+
+{% require_css %}
+  <style>
+    #oembed_container-{{ name }} .oembed_custom-thumbnail_icon svg {
+      fill: {{ module.style_options.oembed_thumbnail_play_button_color.color }};
+    }
+    
+    .info-text-{{name}} {
+      margin-top: 5px;
+    }
+    
+    .info-text-{{name}} > *:last-child {
+      margin-bottom: 0;
+    }
+  </style>
+{% end_require_css %}

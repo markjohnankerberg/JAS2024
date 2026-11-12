@@ -1,0 +1,434 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Email Devotional Series 2024
+  screenshotPath: ../images/template-previews/email-devotional-series.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--eds"
+%}
+
+  {# Section #1 - Hero #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Hero",
+          offset=0,
+          width=12,
+          button_group=[ {
+            "button" : {
+              "button_style" : "btn-white-outline",
+              "button_text" : "Sign up now",
+              "button_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "#sign-up",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              },
+              "corner_radius" : "radius-s"
+            },
+            "button_type" : "regular",
+            "image" : {
+              "image_field" : {
+                "loading" : "lazy",
+                "size_type" : "auto",
+                "src" : ""
+              },
+              "image_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "rel" : "",
+                "sponsored" : false,
+                "url" : {
+                  "href" : "https://duckduckgo.com/",
+                  "href_with_scheme" : "https://duckduckgo.com/",
+                  "type" : "EXTERNAL"
+                },
+                "user_generated_content" : false
+              }
+            }
+          } ],
+          heading="Email Devotional Series",
+          show_button=true,
+          show_subheading=false,
+          show_supporting_text=true,
+          style={
+            "section" : {
+              "background" : {
+                "background_image" : {
+                  "background_position" : "MIDDLE_CENTER",
+                  "background_size" : "cover",
+                  "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Backgrounds/email_devotional_series_hero_bg_2x.png"
+                },
+                "background_image_overlay" : false
+              },
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 122
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "margin" : {
+                  "bottom" : { },
+                  "top" : { }
+                },
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 122
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 215
+                  }
+                }
+              }
+            },
+            "subheading" : {
+              "line_height" : 1.5
+            }
+          },
+          subheading=""
+        %}
+          {% module_attribute "supporting_text" %}
+            <p style="text-align: center;"><span style="color: #ffffff;">These short&nbsp;Email Devotional Series&nbsp;are a great way to focus your heart on a specific theme or occasion. Sometimes in the busyness of life, it is hard to pause and focus on the things of God.&nbsp; God established the "Feasts of the Lord" for the purpose of causing the children of Israel to stop and remember, or celebrate a specific aspect of God's faithfulness to them.&nbsp; It is our prayer that our devotionals will help you to pause and reflect on God's faithfulness, and take the time to share it with others!</span></p>
+          {% end_module_attribute %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #2 - How it works #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Numbered cards",
+          offset=0,
+          width=12,
+          cards=[ {
+            "image_field_1" : {
+              "alt" : "one",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "exact",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/one.svg",
+              "width" : 40
+            },
+            "text_field" : 'Choose the topic that speaks to you the most, and enter your information and click the "submit" button.'
+          }, {
+            "image_field_1" : {
+              "alt" : "two",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "exact",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/two.svg",
+              "width" : 40
+            },
+            "text_field" : "Check your inbox for your welcome e-mail. If you don't see it, try checking your spam folder as well."
+          }, {
+            "image_field_1" : {
+              "alt" : "three",
+              "height" : 40,
+              "loading" : "lazy",
+              "max_height" : 40,
+              "max_width" : 40,
+              "size_type" : "exact",
+              "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/three.svg",
+              "width" : 40
+            },
+            "text_field" : "When the series is completed, we hope you will come back and look for a new topic!"
+          } ],
+          show_arrows=true,
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              }
+            }
+          },
+          section_id="sign-up"
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Choose the topics #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Multiple forms",
+          offset=0,
+          width=12,
+          form_options={
+            "dropdown_placeholder" : "Choose The Topic"
+          },
+          forms=[ {
+            "form_field" : {
+              "form_id" : "5ebf5144-792c-48f1-9a32-119808d40163",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Back to School Prayer Series"
+          }, {
+            "form_field" : {
+              "form_id" : "9d68bfa8-5d39-4041-b9ee-4fc3e016530a",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Pray 21 Series"
+          }, {
+            "form_field" : {
+              "form_id" : "dbc247bf-4d37-43da-8781-49d8e5bf5831",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "God Said"
+          }, {
+            "form_field" : {
+              "form_id" : "6f9c7a74-8876-4f5b-ba24-dc85d255a2c2",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Famous Quotes"
+          }, {
+            "form_field" : {
+              "form_id" : "f5cbed36-025c-492d-88ae-60921b332fec",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Revival Series"
+          }, {
+            "form_field" : {
+              "form_id" : "bf44a376-b2cb-4ef8-93ea-ff55ff91d553",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Suffering Series"
+          }, {
+            "form_field" : {
+              "form_id" : "8e85a14c-8c0b-47df-8c5c-b139f42f629b",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Empty Tomb Series"
+          }, {
+            "form_field" : {
+              "form_id" : "85b7f85e-9550-41dc-971e-741d72476471",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Heaven Series"
+          }, {
+            "form_field" : {
+              "form_id" : "2b2114c8-6375-494e-b98f-f0f213ca3fed",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "It Is Written"
+          }, {
+            "form_field" : {
+              "form_id" : "dc14cfc7-7339-41ed-9588-2b13b3b61256",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Not I, But Christ"
+          }, {
+            "form_field" : {
+              "form_id" : "49aac7fb-d611-4056-ad4c-e077f5a311f6",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "The Creator Series"
+          }, {
+            "form_field" : {
+              "form_id" : "59ec39af-2ab5-4d4d-b756-c5f812e62041",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Names of God Series"
+          }, {
+            "form_field" : {
+              "form_id" : "13a0045d-f2a5-4494-9e3a-116a86b8843a",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Father's Day Series"
+          }, {
+            "form_field" : {
+              "form_id" : "5e00c7a7-9569-4a20-92f9-7ad733aaf044",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Mother's Day Series"
+          }, {
+            "form_field" : {
+              "form_id" : "48014616-a6b2-4105-892a-3ed600765396",
+              "form_type" : "HUBSPOT",
+              "message" : "<p>You will find your first e-mail in your inbox shortly. If you do not see the e-mail, check your spam folder.</p>",
+              "response_type" : "inline"
+            },
+            "form_name_in_dropdown" : "Holy Week Series"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+  
+{% end_dnd_area %}
+{% endblock body %}

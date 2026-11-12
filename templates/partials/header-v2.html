@@ -1,0 +1,30 @@
+<!--
+  templateType: global_partial
+  label: Website header V2
+-->
+
+<header id="jas-header" class="header">
+<!--   <a href="#main-content" class="header__skip">Skip to content</a> -->
+  {# Christmas campaign banner above the nav. It's inside the fixed header, so it stays with the
+     nav and HeaderV2's height script includes it. Turn it off with "Show banner" in the global
+     content editor (Website header V2), or delete this line after the campaign. #}
+  {% module "campaign_bar" path="/JAS2024/modules/x-mass-campaign-bar", label="Christmas campaign banner" %}
+  {% module "atri_header_v2" path="/JAS2024/modules/HeaderV2", label="Header V2" %}
+</header>
+
+{% require_js %}
+  <script>
+    var navbar = document.getElementById("jas-header");
+    function stickyHeader() {
+      if (window.pageYOffset >= 20) {
+        navbar.classList.add("sticky");
+      } else {
+        navbar.classList.remove("sticky");
+      }
+    }
+
+    window.onscroll = function() {
+      stickyHeader();
+    };
+  </script>
+{% end_require_js %}

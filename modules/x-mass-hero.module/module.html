@@ -1,0 +1,290 @@
+{#
+Christmas Hero — full-width hero with kicker, headline (italic second line), body, two CTAs,
+and optional quick links along the bottom edge (replaces the separate x-mass-quicklinks module).
+#}
+{% set c = module.content %}
+{% set s = module.style %}
+{% set ql = module.quicklinks %}
+{# Quick links are hard-coded (not editable) so each always lands on the right spot:
+   #audio / #equip are section ids; #books, #gifts, #study-resources, #tv-collections are
+   handled by the products section (x-mass-products-section module.js), which scrolls to the
+   catalog and opens the matching tab. #}
+{% set quick_links = [
+  ["audio bibles", "#audio"],
+  ["books", "#books"],
+  ["gifts", "#gifts"],
+  ["discipleship", "#equip"],
+  ["study resources", "#study-resources"],
+  ["tv collections", "#tv-collections"]
+] %}
+{% set has_links = ql.enabled %}
+
+{% require_css %}
+<style>
+  .xmas-hero {
+    --hero-bg: {{ s.bg_color.color }};
+    --hero-gold: {{ s.gold_color.color }};
+    --hero-ink: #f8f5ee;
+    --hero-muted: #c4ccc0;
+    --hero-serif: Georgia, 'Times New Roman', serif;
+    --hero-sans: Arial, Helvetica, sans-serif;
+
+    position: relative;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: var(--hero-bg);
+    color: var(--hero-ink);
+    font-family: var(--hero-sans);
+    padding: clamp(60px, 10vw, 120px) 0;
+    overflow: hidden;
+  }
+  .xmas-hero *, .xmas-hero *::before, .xmas-hero *::after { box-sizing: border-box; }
+
+  /* Quick links jump to #audio, #equip, #books… — stop them below the fixed site header. */
+  html { scroll-padding-top: calc(var(--jas-header-h, 158px) + 16px); }
+  @media (prefers-reduced-motion: no-preference) { html { scroll-behavior: smooth; } }
+
+  .xmas-hero--has-image::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: var(--hero-bg-image) center / cover no-repeat;
+  }
+
+  .xmas-hero__inner {
+    position: relative;
+    max-width: 535px;
+    margin: 0;
+    padding: 0 2rem;
+    margin-left: max(2rem, calc(45vw - 568px));
+  }
+
+  /* Text styles match ATRI-Christmas-Homepage-Updated.html. Selectors include the section class so the
+     theme's h1/p colours and Lato font (which turned the headline dark grey) don't win. */
+  .xmas-hero .xmas-hero__kicker {
+    margin: 0 0 17px;
+    font-family: var(--hero-sans);
+    font-size: 11px;
+    font-weight: 700;
+    line-height: 1.65;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: #e9d6aa;
+  }
+
+  .xmas-hero .xmas-hero__inner { max-width: 535px; box-sizing: content-box; }
+
+  .xmas-hero h1.xmas-hero__heading {
+    margin: 0 0 22px;
+    font-family: var(--hero-serif);
+    font-weight: 400;
+    font-size: clamp(52px, 6vw, 94px);
+    line-height: 1.12;
+    letter-spacing: -.035em;
+    color: #fff;
+  }
+  .xmas-hero h1.xmas-hero__heading em {
+    font-style: italic;
+    color: var(--hero-gold);
+  }
+
+  .xmas-hero p.xmas-hero__body {
+    margin: 0 0 18px;
+    max-width: 460px;
+    font-family: var(--hero-sans);
+    font-size: 18px;
+    line-height: 1.55;
+    color: #fff;
+  }
+
+  .xmas-hero .xmas-hero__actions {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 12px;
+    margin-top: 28px;
+  }
+
+  .xmas-hero a.xmas-hero__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    min-height: 46px;
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    font: 700 14px/1.65 var(--hero-sans);
+    letter-spacing: normal;
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .xmas-hero a.xmas-hero__btn:hover { transform: translateY(-2px); }
+  .xmas-hero a.xmas-hero__btn:focus-visible { outline: 3px solid #bb8c38; outline-offset: 3px; }
+
+  .xmas-hero a.xmas-hero__btn--gold {
+    background: var(--hero-gold);
+    color: #102d27;
+  }
+  .xmas-hero a.xmas-hero__btn--gold:hover { background: #d4c08e; color: #102d27; }
+
+  .xmas-hero a.xmas-hero__btn--outline {
+    background: transparent;
+    border-color: currentColor;
+    color: #fff;
+  }
+  .xmas-hero a.xmas-hero__btn--outline:hover { background: rgba(255,255,255,.08); color: #fff; }
+
+  /* Quick links along the bottom edge of the hero (same look as x-mass-quicklinks). */
+  .xmas-hero--has-links { padding-bottom: 0; }
+  .xmas-hero--has-links .xmas-hero__inner { padding-bottom: clamp(60px, 10vw, 120px); }
+
+  .xmas-hero__links {
+    position: relative;
+    z-index: 1;
+    padding: 23px 0;
+    background: #f7f3eb;
+    border-bottom: 1px solid #c8bca9;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .xmas-hero__links::-webkit-scrollbar { display: none; }
+  .xmas-hero__links-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .xmas-hero a.xmas-hero__link {
+    display: block;
+    padding: 0 23px;
+    font: italic clamp(17px, 1.7vw, 24px) var(--hero-serif);
+    line-height: 1.4;
+    letter-spacing: normal;
+    text-decoration: none;
+    text-transform: none;
+    color: #264a3e;
+    white-space: nowrap;
+  }
+  .xmas-hero a.xmas-hero__link + a.xmas-hero__link { border-left: 1px solid #c8bca9; }
+  .xmas-hero a.xmas-hero__link:hover { text-decoration: underline; }
+  .xmas-hero a.xmas-hero__link:focus-visible { outline: 2px solid currentColor; outline-offset: 2px; }
+
+  /* "On the hero image" style */
+  .xmas-hero__links--overlay {
+    background: rgba(9, 33, 29, .55);
+    border-top: 1px solid rgba(255, 255, 255, .15);
+    border-bottom: 0;
+    -webkit-backdrop-filter: blur(6px);
+    backdrop-filter: blur(6px);
+  }
+  .xmas-hero__links--overlay a.xmas-hero__link { color: #f8f5ee; }
+  .xmas-hero__links--overlay a.xmas-hero__link + a.xmas-hero__link { border-left-color: rgba(255, 255, 255, .3); }
+
+  /* Tablet: drop the desktop left offset so the copy isn't squeezed against one edge. */
+  @media (max-width: 900px) {
+    .xmas-hero .xmas-hero__inner { margin-left: 0; padding: 0 32px; }
+  }
+
+  /* On transparent-hero pages (homepage) the fixed header's logo/menu row sits ON the hero.
+     On narrow screens the copy starts high enough to collide with it, so push it below
+     that row: header height (--jas-header-h) minus the campaign bar above it (--jas-banner-h). */
+  @media (max-width: 900px) {
+    .body-wrapper:has(.has-transparent-hero) .xmas-hero,
+    .body-wrapper:has(.body-container--home) .xmas-hero {
+      padding-top: calc(var(--jas-header-h, 221px) - var(--jas-banner-h, 105px) + 28px);
+    }
+  }
+
+  @media (max-width: 600px) {
+    .xmas-hero { padding: 48px 0; }
+    .xmas-hero--has-links { padding-bottom: 0; }
+
+    /* Optional mobile-specific image; otherwise keep the desktop image. */
+    .xmas-hero--has-image::before { background-image: var(--hero-bg-image-mobile, var(--hero-bg-image)); }
+    /* Darken the photo behind the copy so white text stays readable on a narrow crop. */
+    .xmas-hero--has-image::after {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(180deg, rgba(9, 33, 29, .55) 0%, rgba(9, 33, 29, .78) 100%);
+      pointer-events: none;
+    }
+
+    /* Single, even gutter on both sides (was margin + padding stacked on the left only). */
+    .xmas-hero .xmas-hero__inner {
+      z-index: 1;
+      max-width: none;
+      margin: 0;
+      padding: 0 20px;
+      box-sizing: border-box;
+    }
+    .xmas-hero--has-links .xmas-hero__inner { padding-bottom: 48px; }
+
+    .xmas-hero .xmas-hero__kicker { margin-bottom: 14px; font-size: 11px; letter-spacing: .18em; }
+    .xmas-hero h1.xmas-hero__heading {
+      margin-bottom: 18px;
+      font-size: clamp(40px, 12vw, 54px);
+      line-height: 1.08;
+      letter-spacing: -.02em;
+    }
+    .xmas-hero p.xmas-hero__body { max-width: none; font-size: 16px; line-height: 1.5; }
+    .xmas-hero .xmas-hero__actions { flex-direction: column; gap: 10px; margin-top: 24px; }
+    .xmas-hero a.xmas-hero__btn { width: 100%; }
+    .xmas-hero a.xmas-hero__btn:hover { transform: none; }
+
+    /* Quick links: 2-column grid so all six are visible (no hidden sideways scroll). */
+    .xmas-hero__links { padding: 6px 0; overflow: visible; }
+    .xmas-hero__links-inner {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      padding: 0 20px;
+    }
+    .xmas-hero a.xmas-hero__link {
+      padding: 12px 8px;
+      font-size: 17px;
+      text-align: center;
+      white-space: normal;
+      border-bottom: 1px solid #c8bca9;
+    }
+    .xmas-hero a.xmas-hero__link + a.xmas-hero__link { border-left: 0; }
+    .xmas-hero a.xmas-hero__link:nth-child(even) { border-left: 1px solid #c8bca9; }
+    .xmas-hero a.xmas-hero__link:nth-last-child(-n+2) { border-bottom: 0; }
+    .xmas-hero__links--overlay a.xmas-hero__link { border-bottom-color: rgba(255, 255, 255, .3); }
+    .xmas-hero__links--overlay a.xmas-hero__link:nth-child(even) { border-left-color: rgba(255, 255, 255, .3); }
+  }
+</style>
+{% end_require_css %}
+
+<section class="xmas-hero{% if s.background_image.src %} xmas-hero--has-image{% endif %}{% if has_links %} xmas-hero--has-links{% endif %}" id="hero"
+  {% if s.background_image.src %}style="--hero-bg-image: url('{{ s.background_image.src }}');{% if s.background_image_mobile.src %} --hero-bg-image-mobile: url('{{ s.background_image_mobile.src }}');{% endif %}"{% endif %}>
+  <div class="xmas-hero__inner">
+    {% if c.kicker %}<p class="xmas-hero__kicker">{{ c.kicker }}</p>{% endif %}
+    <h1 class="xmas-hero__heading">
+      {{ c.heading }}{% if c.heading_em %}<br><em>{{ c.heading_em }}</em>{% endif %}
+    </h1>
+    {% if c.body_text %}<p class="xmas-hero__body">{{ c.body_text }}</p>{% endif %}
+    <div class="xmas-hero__actions">
+      {% if c.cta_primary_text and c.cta_primary_url %}
+      <a class="xmas-hero__btn xmas-hero__btn--gold" href="{{ c.cta_primary_url|escape_attr }}">{{ c.cta_primary_text }} <span aria-hidden="true">&#8599;</span></a>
+      {% endif %}
+      {% if c.cta_secondary_text and c.cta_secondary_url %}
+      <a class="xmas-hero__btn xmas-hero__btn--outline" href="{{ c.cta_secondary_url|escape_attr }}">{{ c.cta_secondary_text }} <span aria-hidden="true">&#8599;</span></a>
+      {% endif %}
+    </div>
+  </div>
+
+  {% if has_links %}
+  <nav class="xmas-hero__links{% if ql.style == 'overlay' %} xmas-hero__links--overlay{% endif %}" aria-label="Quick category links">
+    <div class="xmas-hero__links-inner">
+      {% for link in quick_links %}
+      <a class="xmas-hero__link" href="{{ link[1] }}">{{ link[0] }}</a>
+      {% endfor %}
+    </div>
+  </nav>
+  {% endif %}
+</section>

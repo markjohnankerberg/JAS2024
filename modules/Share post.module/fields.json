@@ -1,0 +1,51 @@
+[ {
+  "id" : "02b34ca8-95b1-8908-8697-5a3edf1e5670",
+  "name" : "share_label",
+  "label" : "Share label",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Share"
+}, {
+  "id" : "1e182274-ed0b-5b06-a8ac-9ab2459db00a",
+  "name" : "copy_link_label",
+  "label" : "Copy link label",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Copy link"
+}, {
+  "id" : "0f01c4c5-c96c-c84c-fff0-5f38e0b0f325",
+  "name" : "facebook_label",
+  "label" : "Facebook label",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Share on Facebook"
+}, {
+  "id" : "add04c1e-d522-de98-db1e-d93c98de97b4",
+  "name" : "twitter_label",
+  "label" : "Twitter label",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Share on Twitter"
+}, {
+  "id" : "68cc10c2-5c52-1ac7-bcc3-48e7adc958f6",
+  "name" : "linkedin_label",
+  "label" : "LinkedIn label",
+  "required" : false,
+  "locked" : true,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Share on LinkedIn"
+} ]

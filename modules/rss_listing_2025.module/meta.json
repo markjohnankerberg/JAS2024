@@ -1,0 +1,19 @@
+{
+  "content_tags" : [ {
+    "name" : "COMPATIBLE_BLOG",
+    "source" : "MARKETPLACE"
+  }, {
+    "name" : "COMPATIBLE_PAGE",
+    "source" : "MARKETPLACE"
+  } ],
+  "extra_classes" : "widget-type-rss_listing",
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "CASE_STUDY", "SITE_PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "categories" : [ "blog" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST", "CASE_STUDY" ],
+  "module_id" : 185449682334,
+  "label" : "RSS listing 2025",
+  "icon" : "../../../mV0_d-web-default-modules_hubspot/img/icon/high-rss.svg",
+  "is_available_for_new_content" : true
+}

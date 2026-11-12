@@ -1,0 +1,9 @@
+{
+  "global" : true,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE" ],
+  "smart_type" : "NOT_SMART",
+  "host_template_types" : [ "PAGE" ],
+  "module_id" : 226164271187,
+  "label" : "Christmas Mission Intro & Pillars",
+  "is_available_for_new_content" : true
+}

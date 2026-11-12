@@ -1,0 +1,409 @@
+{# Module variables #}
+
+{% if module.numbers.index("show_numbers") >= 0 %}
+  {% set show_numbers = true %}
+{% endif %}
+
+{% if module.previous_and_next.index("show_labels") >= 0 %}
+  {% set show_next_and_previous_labels = true %}
+{% endif %}
+
+{% if module.previous_and_next.index("show_arrows") >= 0 %}
+  {% set show_next_and_previous_arrows = true %}
+{% endif %}
+
+{% if module.first_and_last.index("show_labels") >= 0 %}
+  {% set show_first_and_last_labels = true %}
+{% endif %}
+
+{% if module.first_and_last.index("show_arrows") >= 0 %}
+  {% set show_first_and_last_arrows = true %}
+{% endif %}
+
+{% set first_page_link = blog_page_link(1)|cut("/page/1") %}
+
+{# Mock data for editor #}
+
+{% if is_in_editor %}
+  {% set total_page_count = 6 %}
+  {% set current_page_num = 2 %}
+  {% set next_page_num = true %}
+  {% set last_page_num = true %}
+{% else %}
+  {% set total_page_count = contents.total_page_count %}
+{% endif %}
+
+{# Module styles #}
+
+{% require_css %}
+  <style>
+    {% scope_css %}
+
+      {# Pagination #}
+
+      .hs-pagination {
+        {{ module.styles.pagination.spacing.spacing.css }}
+      }
+
+      .hs-pagination__link:not(:last-child) {
+        margin-right: {{ module.styles.pagination.spacing.space_between_links ~ "px" }};
+      }
+
+      {# Numbers #}
+
+      {% if show_numbers %}
+
+        .hs-pagination__link--number {
+          {% if module.styles.numbers.background.color.color %}
+            background-color: rgba({{ module.styles.numbers.background.color.color|convert_rgb }}, {{ module.styles.numbers.background.color.opacity / 100 }});
+          {% endif %}
+          {{ module.styles.numbers.border.border.css }}
+          {% if module.styles.numbers.corner.radius >= 0 %}
+            border-radius: {{ module.styles.numbers.corner.radius ~ "px" }};
+          {% endif %}
+          {{ module.styles.numbers.text.font.css }}
+          {{ module.styles.numbers.spacing.spacing.css }}
+        }
+
+        .hs-pagination__link--active {          
+          padding: 6px 10px;
+          border-radius: 5px;
+          border: 1px solid {{ module.styles.numbers.active.border.color.color }};
+          {% if module.styles.numbers.active.background.color.color %}
+            background-color: rgba({{ module.styles.numbers.active.background.color.color|convert_rgb }}, {{ module.styles.numbers.active.background.color.opacity / 100 }});
+          {% endif %}
+          {% if module.styles.numbers.active.border.color.color %}
+            border-color: {{ module.styles.numbers.active.border.color.color }};
+          {% endif %}
+          {% if module.styles.numbers.active.text.color.color %}
+            color: {{ module.styles.numbers.active.text.color.color }};
+          {% endif %}
+        }
+
+        .hs-pagination__link--number:hover,
+        .hs-pagination__link--number:focus {
+          {% if module.styles.numbers.hover.background.color.color %}
+            background-color: rgba({{ module.styles.numbers.hover.background.color.color|convert_rgb }}, {{ module.styles.numbers.hover.background.color.opacity / 100 }});
+          {% endif %}
+          {% if module.styles.numbers.hover.border.color.color %}
+            border-color: {{ module.styles.numbers.hover.border.color.color }};
+          {% endif %}
+          {% if module.styles.numbers.hover.text.color.color %}
+            color: {{ module.styles.numbers.hover.text.color.color }};
+          {% endif %}
+        }
+
+      {% endif %}
+
+      {# Next/previous #}
+
+      {% if show_next_and_previous_arrows or show_next_and_previous_labels %}
+        .hs-pagination__link--prev,
+        .hs-pagination__link--next {
+          {% if module.styles.previous_and_next.background.color.color %}
+            background-color: rgba({{ module.styles.previous_and_next.background.color.color|convert_rgb }}, {{ module.styles.previous_and_next.background.color.opacity / 100 }});
+          {% endif %}
+          {{ module.styles.previous_and_next.border.border.css }}
+          {% if module.styles.previous_and_next.corner.radius >= 0 %}
+            border-radius: {{ module.styles.previous_and_next.corner.radius ~ "px" }};
+          {% endif %}
+          {{ module.styles.previous_and_next.spacing.spacing.css }}
+        }
+
+        .hs-pagination__link--prev:hover,
+        .hs-pagination__link--prev:focus,
+        .hs-pagination__link--next:hover,
+        .hs-pagination__link--next:focus {
+          {% if module.styles.previous_and_next.hover.background.color.color %}
+            background-color: rgba({{ module.styles.previous_and_next.hover.background.color.color|convert_rgb }}, {{ module.styles.previous_and_next.hover.background.color.opacity / 100 }});
+          {% endif %}
+          {% if module.styles.previous_and_next.hover.border.color.color %}
+            border-color: {{ module.styles.previous_and_next.hover.border.color.color }};
+          {% endif %}
+        }
+
+        {% if show_next_and_previous_labels %}
+          .hs-pagination__link--prev > .hs-pagination__link-text,
+          .hs-pagination__link--next > .hs-pagination__link-text {
+            {{ module.styles.previous_and_next.text.font.css }}
+          }
+
+          {% if module.styles.previous_and_next.hover.text.color.color %}
+            .hs-pagination__link--prev:hover > .hs-pagination__link-text,
+            .hs-pagination__link--prev:focus > .hs-pagination__link-text,
+            .hs-pagination__link--next:hover > .hs-pagination__link-text,
+            .hs-pagination__link--next:focus > .hs-pagination__link-text {
+              color: {{ module.styles.previous_and_next.hover.text.color.color }};
+            }
+          {% endif %}
+        {% endif %}
+
+        {% if show_next_and_previous_arrows and show_next_and_previous_labels %}
+          {% if module.styles.previous_and_next.spacing.space_between_text_and_icon >= 0 %}
+            .hs-pagination__link--text-and-icon.hs-pagination__link--prev > .hs-pagination__link-icon {
+              margin-right: {{ module.styles.previous_and_next.spacing.space_between_text_and_icon ~ "px" }};
+            }
+          {% endif %}
+
+          {% if module.styles.previous_and_next.spacing.space_between_text_and_icon >= 0 %}
+            .hs-pagination__link--text-and-icon.hs-pagination__link--next > .hs-pagination__link-icon {
+              margin-left: {{ module.styles.previous_and_next.spacing.space_between_text_and_icon ~ "px" }};
+            }
+          {% endif %}
+        {% endif %}
+
+        {% if show_next_and_previous_arrows %}
+          .hs-pagination__link--prev > .hs-pagination__link-icon svg,
+          .hs-pagination__link--next > .hs-pagination__link-icon svg {
+            {% if module.styles.previous_and_next.icon.size %}
+              height: {{ module.styles.previous_and_next.icon.size ~ "px" }};
+              width: {{ module.styles.previous_and_next.icon.size ~ "px" }};
+            {% endif %}
+            {% if module.styles.previous_and_next.text.font.color %}
+              fill: {{ module.styles.previous_and_next.text.font.color }};
+            {% endif %}
+          }
+
+          {% if module.styles.previous_and_next.hover.text.color.color %}
+            .hs-pagination__link--prev:hover > .hs-pagination__link-icon svg,
+            .hs-pagination__link--prev:focus > .hs-pagination__link-icon svg,
+            .hs-pagination__link--next:hover > .hs-pagination__link-icon svg,
+            .hs-pagination__link--next:focus > .hs-pagination__link-icon svg {
+              fill: {{ module.styles.previous_and_next.hover.text.color.color }};
+            }
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+      {# First/last #}
+
+      {% if show_first_and_last_arrows or show_first_and_last_labels %}
+        .hs-pagination__link--first,
+        .hs-pagination__link--last {
+          {% if module.styles.first_and_last.background.color.color %}
+            background-color: rgba({{ module.styles.first_and_last.background.color.color|convert_rgb }}, {{ module.styles.first_and_last.background.color.opacity / 100 }});
+          {% endif %}
+          {{ module.styles.first_and_last.border.border.css }}
+          {% if module.styles.first_and_last.corner.radius >= 0 %}
+            border-radius: {{ module.styles.first_and_last.corner.radius ~ "px" }};
+          {% endif %}
+          {{ module.styles.first_and_last.spacing.spacing.css }}
+        }
+
+        .hs-pagination__link--first:hover,
+        .hs-pagination__link--first:focus,
+        .hs-pagination__link--last:hover,
+        .hs-pagination__link--last:focus {
+          {% if module.styles.first_and_last.hover.background.color.color %}
+            background-color: rgba({{ module.styles.first_and_last.hover.background.color.color|convert_rgb }}, {{ module.styles.first_and_last.hover.background.color.opacity / 100 }});
+          {% endif %}
+          {% if module.styles.first_and_last.hover.border.color.color %}
+            border-color: {{ module.styles.first_and_last.hover.border.color.color }};
+          {% endif %}
+        }
+
+        {% if show_first_and_last_labels %}
+          .hs-pagination__link--first > .hs-pagination__link-text,
+          .hs-pagination__link--last > .hs-pagination__link-text {
+            {{ module.styles.first_and_last.text.font.css }}
+          }
+
+          {% if module.styles.first_and_last.hover.text.color.color %}
+            .hs-pagination__link--first:hover > .hs-pagination__link-text,
+            .hs-pagination__link--first:focus > .hs-pagination__link-text,
+            .hs-pagination__link--last:hover > .hs-pagination__link-text,
+            .hs-pagination__link--last:focus > .hs-pagination__link-text {
+              color: {{ module.styles.first_and_last.hover.text.color.color }};
+            }
+          {% endif %}
+        {% endif %}
+
+        {% if show_first_and_last_arrows and show_first_and_last_labels %}
+          {% if module.styles.first_and_last.spacing.space_between_text_and_icon >= 0 %}
+            .hs-pagination__link--text-and-icon.hs-pagination__link--first > .hs-pagination__link-icon {
+              margin-right: {{ module.styles.first_and_last.spacing.space_between_text_and_icon ~ "px" }};
+            }
+          {% endif %}
+
+          {% if module.styles.first_and_last.spacing.space_between_text_and_icon >= 0 %}
+            .hs-pagination__link--text-and-icon.hs-pagination__link--last > .hs-pagination__link-icon {
+              margin-left: {{ module.styles.first_and_last.spacing.space_between_text_and_icon ~ "px" }};
+            }
+          {% endif %}
+        {% endif %}
+
+        {% if show_first_and_last_arrows %}
+          .hs-pagination__link--first > .hs-pagination__link-icon svg,
+          .hs-pagination__link--last > .hs-pagination__link-icon svg {
+            {% if module.styles.first_and_last.icon.size %}
+              height: {{ module.styles.first_and_last.icon.size ~ "px" }};
+              width: {{ module.styles.first_and_last.icon.size ~ "px" }};
+            {% endif %}
+            {% if module.styles.first_and_last.text.font.color %}
+              fill: {{ module.styles.first_and_last.text.font.color }};
+            {% endif %}
+          }
+
+          {% if module.styles.first_and_last.hover.text.color.color %}
+            .hs-pagination__link--first:hover > .hs-pagination__link-icon svg,
+            .hs-pagination__link--first:focus > .hs-pagination__link-icon svg,
+            .hs-pagination__link--last:hover > .hs-pagination__link-icon svg,
+            .hs-pagination__link--last:focus > .hs-pagination__link-icon svg {
+              fill: {{ module.styles.first_and_last.hover.text.color.color }};
+            }
+          {% endif %}
+        {% endif %}
+      {% endif %}
+
+    {% end_scope_css %}
+  </style>
+{% end_require_css %}
+
+{# Pagination #}
+
+{% if total_page_count > 1 %}
+  <nav aria-label="{{ module.default_text.pagination_navigation|escape_attr }}" role="navigation" class="hs-pagination">
+    {# First page link #}
+
+    {% if last_page_num and (show_first_and_last_arrows or show_first_and_last_labels) %}
+      <a
+        class="hs-pagination__link hs-pagination__link--first {{ "hs-pagination__link--text-and-icon" if show_first_and_last_arrows and show_first_and_last_labels }}"
+        href="{{ first_page_link|escape_url }}"
+      >
+        {% if show_first_and_last_arrows %}
+          {% icon "hs_first_icon"
+            extra_classes="hs-pagination__link-icon",
+            name="angle-double-left",
+            purpose="decorative",
+            style="SOLID",
+            unicode="f100" %}
+        {% endif %}
+        {% if show_first_and_last_labels %}
+          <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+            {{ module.first_label|sanitize_html }}
+          </span>
+        {% endif %}
+      </a>
+    {% endif %}
+
+    {# Previous page link #}
+
+    {% if last_page_num and (show_next_and_previous_arrows or show_next_and_previous_labels) %}
+      {% set last_blog_page_link = blog_page_link(last_page_num) %}
+      {% set prev_page_link = current_page_num == 2 ? first_page_link : last_blog_page_link %}
+      <a
+        class="hs-pagination__link hs-pagination__link--prev {{ "hs-pagination__link--text-and-icon" if show_next_and_previous_arrows and show_next_and_previous_labels }}"
+        href="{{ prev_page_link|escape_url }}"
+      >
+        {% if show_next_and_previous_arrows %}
+          {% icon "hs_previous_icon"
+            extra_classes="hs-pagination__link-icon",
+            name="angle-left",
+            purpose="decorative",
+            style="SOLID",
+            unicode="f104" %}
+        {% endif %}
+        {% if show_next_and_previous_labels %}
+          <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+            {{ module.previous_label|sanitize_html }}
+          </span>
+        {% endif %}
+      </a>
+    {% endif %}
+
+    {# Numbered pagination #}
+
+    {% if show_numbers %}
+
+      {% set current_page_count = total_page_count - current_page_num %}
+
+      {% set page_list = [ -2, -1, 0] %}
+
+      {% if current_page_count == 1 %}
+        {% set offset = -1 %}
+      {% elif current_page_count == 0 %}
+        {% set offset = -2 %}
+      {% elif current_page_num == 2 %}
+        {% set offset = 1 %}
+      {% elif current_page_num == 1 %}
+        {% set offset = 2 %}
+      {% else %}
+        {% set offset = 0 %}
+      {% endif %}
+
+    
+      <a
+         class="hs-pagination__link hs-pagination__link--number hs-pagination__link--active"
+         aria-label="{{ module.default_text.go_to_page ~ current_page_num }}"
+         {{ "aria-current=\"true\"" if this_page == current_page_num }}
+         href="{{ blog_page_link(current_page_num)|escape_url }}"
+         >
+        {{ current_page_num|escape_html }}
+      </a>
+    {#
+      {% for page in page_list %}
+        {% set this_page = current_page_num + page + offset %}
+        {% if this_page > 0 and this_page <= total_page_count %}
+          {% set not_first_blog_page_link = blog_page_link(this_page) %}
+          {% set this_page_link = (this_page == 1) ? first_page_link : not_first_blog_page_link %}
+          <a
+            class="hs-pagination__link hs-pagination__link--number {{ "hs-pagination__link--active" if this_page == current_page_num }}"
+            aria-label="{{ module.default_text.go_to_page }}"
+            {{ "aria-current=\"true\"" if this_page == current_page_num }}
+            href="{{ this_page_link|escape_url }}"
+            >
+              {{ this_page|escape_html }}
+            </a>
+        {% endif %}
+      {% endfor %}
+    #}
+
+    {% endif %}
+
+    {# Next page link #}
+
+    {% if next_page_num and (show_next_and_previous_arrows or show_next_and_previous_labels) %}
+      <a
+        class="hs-pagination__link hs-pagination__link--next {{ "hs-pagination__link--text-and-icon" if show_next_and_previous_arrows and show_next_and_previous_labels }}"
+        href="{{ blog_page_link(current_page_num + 1)|escape_url }}"
+      >
+        {% if show_next_and_previous_labels %}
+          <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+            {{ module.next_label|sanitize_html }}
+          </span>
+        {% endif %}
+        {% if show_next_and_previous_arrows %}
+          {% icon "hs_next_icon"
+            extra_classes="hs-pagination__link-icon",
+            name="angle-right",
+            purpose="decorative",
+            style="SOLID",
+            unicode="f105" %}
+        {% endif %}
+      </a>
+    {% endif %}
+
+    {# Last page link #}
+
+    {% if next_page_num and (show_first_and_last_arrows or show_first_and_last_labels) %}
+      <a
+        class="hs-pagination__link hs-pagination__link--last {{ "hs-pagination__link--text-and-icon" if show_first_and_last_arrows and show_first_and_last_labels }}"
+        href="{{ blog_page_link(total_page_count)|escape_url }}"
+      >
+        {% if show_first_and_last_labels %}
+          <span class="hs-pagination__link-text hs-pagination__show-for-sr--mobile">
+            {{ module.last_label|sanitize_html }}
+          </span>
+        {% endif %}
+        {% if show_first_and_last_arrows %}
+          {% icon "hs_last_icon"
+            extra_classes="hs-pagination__link-icon",
+            name="angle-double-right",
+            purpose="decorative",
+            style="SOLID",
+            unicode="f101" %}
+        {% endif %}
+      </a>
+    {% endif %}
+  </nav>
+{% endif %}

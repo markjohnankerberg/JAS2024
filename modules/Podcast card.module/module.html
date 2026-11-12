@@ -1,0 +1,254 @@
+<div class="section-{{name}}" role="region" id="{{ module.section_id }}">  
+  <div class="card-content">
+    <div class="img-wrapper">
+      {% set href = module.button.button_url.url.href %}
+      {% if module.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% endif %}
+      
+      <a aria-label="{{ item.button.button_text }}" class="img-link"
+        {% if module.button.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+        {% else %}
+          href="{{ href|escape_url }}"
+        {% endif %}
+        {% if module.button.button_url.open_in_new_tab %}
+          target="_blank"
+        {% endif %}
+        {% if module.button.button_url.rel %}
+          rel="{{ module.button.button_url.rel|escape_attr }}"
+        {% endif %}
+      >
+        {% if module.podcast_image.src %}
+          {% set sizeAttrs = 'width="{{ module.podcast_image.width|escape_attr }}" height="{{ module.podcast_image.height|escape_attr }}"' %}
+          {% if module.podcast_image.size_type == 'auto' %}
+            {% set sizeAttrs = 'width="{{ module.podcast_image.width|escape_attr }}" height="{{ module.podcast_image.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+          {% elif module.podcast_image.size_type == 'auto_custom_max' %}
+            {% set sizeAttrs = 'width="{{ module.podcast_image.max_width|escape_attr }}" height="{{ module.podcast_image.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+          {% endif %}
+           {% set loadingAttr = module.podcast_image.loading != 'disabled' ? 'loading="{{ module.podcast_image.loading|escape_attr }}"' : '' %}
+          <img src="{{ module.podcast_image.src|escape_url }}" alt="{{ module.podcast_image.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+        {% endif %}
+      </a>
+    </div>     
+
+    {% if module.show_heading %}
+      <h2 class="card-heading">{{ module.heading }}</h2>
+    {% endif %}
+
+    <div class="text-wrapper">
+      {{ module.supporting_text }}
+    </div>
+
+    <h5 class="subscribe-text">{{ module.subscribe_text }}</h5>
+    
+    {# Podcast icons #}
+    <div class="podcasts">
+      {% for item in module.podcast_link %}
+        <div class="podcast">
+          	{% set href = item.link_field.url.href %}
+	          {% if item.link_field.url.type is equalto "EMAIL_ADDRESS" %}
+              {% set href = "mailto:" + href %}
+            {% endif %}
+            <a
+              {% if item.link_field.url.type is equalto "CALL_TO_ACTION"  %}
+                href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+              {% else %}
+                href="{{ href|escape_url }}"
+              {% endif %}
+              {% if item.link_field.open_in_new_tab %}
+                target="_blank"
+              {% endif %}
+              {% if item.link_field.rel %}
+                rel="{{ item.link_field.rel|escape_attr }}"
+              {% endif %}
+              >
+              {% if item.podcast_icon.src %}
+                {% set sizeAttrs = 'width="{{ item.podcast_icon.width|escape_attr }}" height="{{ item.podcast_icon.height|escape_attr }}"' %}
+                {% if item.podcast_icon.size_type == 'auto' %}
+                  {% set sizeAttrs = 'width="{{ item.podcast_icon.width|escape_attr }}" height="{{ item.podcast_icon.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                {% elif item.podcast_icon.size_type == 'auto_custom_max' %}
+                  {% set sizeAttrs = 'width="{{ item.podcast_icon.max_width|escape_attr }}" height="{{ item.podcast_icon.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                {% endif %}
+                 {% set loadingAttr = item.podcast_icon.loading != 'disabled' ? 'loading="{{ item.podcast_icon.loading|escape_attr }}"' : '' %}
+                <img src="{{ item.podcast_icon.src|escape_url }}" alt="{{ item.podcast_icon.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+              {% endif %}
+          </a>
+        </div>
+      {% endfor %}
+    </div>
+    
+    {# Button #}
+    <div class="custom__btn-{{name}}">            
+      {% set href = module.button.button_url.url.href %}
+      {% if module.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% endif %}
+      
+      <a aria-label="{{ item.button.button_text }}" class="btn-{{name}} button {{ module.button.button_style }} {{ module.button.corner_radius }} {{ module.button.horizontal_padding }}"
+        {% if module.button.button_url.url.type is equalto "CALL_TO_ACTION"  %}
+          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+        {% else %}
+          href="{{ href|escape_url }}"
+        {% endif %}
+        {% if module.button.button_url.open_in_new_tab %}
+          target="_blank"
+        {% endif %}
+        {% if module.button.button_url.rel %}
+          rel="{{ module.button.button_url.rel|escape_attr }}"
+        {% endif %}
+      >
+        {{ module.button.button_text }}
+      </a>
+    </div>
+
+  </div>
+</div>
+
+{% require_css %}
+  <style>
+    .section-{{name}} *,
+    .section-{{name}} *::before,
+    .section-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .section-{{name}} {
+      margin: 0 auto;
+      {% if module.style.section.background.background_type == 'color' %}
+        background-color: rgba({{ module.style.section.background.background_color.color|convert_rgb }}, {{ module.style.section.background.background_color.opacity/100 }});
+      {% elif module.style.section.background.background_type == 'gradient' %}
+        background: {{ module.style.section.background.gradient_field.css }};
+      {% elif module.style.section.background.background_type == 'image' %}
+        position: relative;
+        {{ module.style.section.background.background_image.css }}
+      {% endif %}
+      {{ module.style.section.spacing_desktop.css }}
+    }
+    
+    {% if module.style.section.background.background_type == 'image' %}
+      {% if module.style.section.background.background_image_overlay %}
+        .overlay-{{name}}{
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          background: rgba({{ module.style.section.background.overlay_color_opacity.color|convert_rgb }}, {{ module.style.section.background.overlay_color_opacity.opacity/100 }});
+        }
+      {% endif %}
+    {% endif %}
+    
+    @media (max-width: 767px) {
+      .section-{{name}} {
+        {{ module.style.section.spacing_mobile.css }}
+      }
+    }
+    
+    .section-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }
+    
+    .section-{{name}} .card-content {
+      max-width: {{ module.style.section.content_maximum_width ~ 'px' }};
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+    }
+    
+    .section-{{name}} .card-content .img-wrapper {
+      width: 100%;
+      overflow: hidden;
+    }
+    
+    .section-{{name}} .card-content .img-wrapper img {
+      display: flex;
+      max-width: 100%;
+      object-fit: cover;
+    }
+        
+    .section-{{name}} .card-heading {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.style.heading.alignment }};
+      margin-bottom: {{ module.style.heading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.style.heading.color_field.color|convert_rgb }}, {{ module.style.heading.color_field.opacity/100 }});
+      font-size: {{ module.style.heading.font_size ~ 'px' }};
+      font-weight: {{ module.style.heading.font_weight }};
+      font-style: {{ module.style.heading.font_style }};
+      text-transform: {{ module.style.heading.text_transform }};
+      letter-spacing: {{ module.style.heading.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.heading.line_height }};
+    }
+    
+    .section-{{name}} .subscribe-text {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.style.subheading.alignment }};
+      margin-bottom: {{ module.style.subheading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.style.subheading.color_field.color|convert_rgb }}, {{ module.style.subheading.color_field.opacity/100 }});
+      font-size: {{ module.style.subheading.font_size ~ 'px' }};
+      font-weight: {{ module.style.subheading.font_weight }};
+      font-style: {{ module.style.subheading.font_style }};
+      text-transform: {{ module.style.subheading.text_transform }};
+      letter-spacing: {{ module.style.subheading.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.subheading.line_height }};
+    }
+    
+    .section-{{name}} .text-wrapper > *:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-{{name}} .podcasts {
+      display: flex;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .section-{{name}} .podcasts .podcast {
+      height: 40px !important;
+      width: 40px !important;
+      min-height: 40px !important;
+      max-height: 40px !important;
+      min-width: 40px !important;
+      max-height: 40px !important;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    .section-{{name}} .podcasts .podcast img {
+      display: block;
+      max-width: 40px;
+      object-fit: contain;
+    }
+
+    .section-{{name}} .custom__btn-{{name}} .btn-{{name}}.btn-custom {
+      text-decoration: none;
+      color: rgba({{ module.style.button.text_color.color|convert_rgb }}, {{ module.style.button.text_color.opacity/100 }});
+      background: rgba({{ module.style.button.background_color.color|convert_rgb }}, {{ module.style.button.background_color.opacity/100 }});
+      border-radius: {{ module.style.button.border_radius ~ 'px' }};
+      font-size: {{ module.style.button.text.font_size ~ 'px' }};
+      font-weight: {{ module.style.button.text.font_weight }};
+      font-style: {{ module.style.button.text.font_style }};
+      letter-spacing: {{ module.style.button.text.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.button.text.line_height }};
+      text-transform: {{ module.style.button.text.text_transform }};
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      {{ module.style.button.border_field.css }}
+      {{ module.style.button.spacing.css }}
+    }
+
+    .section-{{name}} .custom__btn-{{name}} .btn-{{name}}.btn-custom:hover {
+      background: rgba({{ module.style.button.background_color_hover.color|convert_rgb }}, {{ module.style.button.background_color_hover.opacity/100 }});
+      color: rgba({{ module.style.button.text_color_hover.color|convert_rgb }}, {{ module.style.button.text_color_hover.opacity/100 }});
+      {{ module.style.button.border_hover.css }}
+    }
+  </style>
+{% end_require_css %}

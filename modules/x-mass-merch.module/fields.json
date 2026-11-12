@@ -1,0 +1,217 @@
+[ {
+  "id" : "intro",
+  "name" : "intro",
+  "label" : "Intro",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "intro.enabled",
+    "name" : "enabled",
+    "label" : "Show intro",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "intro.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "NEW THIS CHRISTMAS · ATRI MERCHANDISE"
+  }, {
+    "id" : "intro.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Gifts that"
+  }, {
+    "id" : "intro.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic part",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "share the mission."
+  }, {
+    "id" : "intro.body_text",
+    "name" : "body_text",
+    "label" : "Body text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Discover our first-ever ATRI mug and tote, featured together in their own collection."
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "cards",
+  "name" : "cards",
+  "label" : "Merch cards",
+  "help_text" : "Leave the image empty on the first two cards to use the mug and tote photos from the theme.",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : 4,
+    "sorting_label_field" : null,
+    "default" : 2
+  },
+  "children" : [ {
+    "id" : "cards.image",
+    "name" : "image",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : true,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "src" : "",
+      "alt" : ""
+    }
+  }, {
+    "id" : "cards.kicker",
+    "name" : "kicker",
+    "label" : "Kicker",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "NEW THIS CHRISTMAS"
+  }, {
+    "id" : "cards.heading",
+    "name" : "heading",
+    "label" : "Heading",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Gifts that"
+  }, {
+    "id" : "cards.heading_em",
+    "name" : "heading_em",
+    "label" : "Heading italic part",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "share the mission."
+  }, {
+    "id" : "cards.body_text",
+    "name" : "body_text",
+    "label" : "Body text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "For the first time, discover ATRI mugs and totes, available while supplies last."
+  }, {
+    "id" : "cards.link_text",
+    "name" : "link_text",
+    "label" : "Link text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Explore ATRI Gifts"
+  }, {
+    "id" : "cards.link_url",
+    "name" : "link_url",
+    "label" : "Link",
+    "help_text" : "#product-<SKU> opens that product in the products section (e.g. #product-ATRI-WHT-MUG). #gifts shows all ATRI Merchandise. Left as #gifts on the first two cards, it opens the mug / tote.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#product-ATRI-WHT-MUG"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "kicker" : "NEW THIS CHRISTMAS",
+    "heading" : "Gifts that",
+    "heading_em" : "share the mission.",
+    "body_text" : "For the first time, discover ATRI mugs and totes, available while supplies last.",
+    "link_text" : "Explore ATRI Gifts",
+    "link_url" : "#product-ATRI-WHT-MUG",
+    "image" : {
+      "src" : "",
+      "alt" : ""
+    }
+  }, {
+    "kicker" : "ATRI GIFTS",
+    "heading" : "Carry what",
+    "heading_em" : "matters.",
+    "body_text" : "Simple gifts that represent a ministry you care about.",
+    "link_text" : "Browse Mugs & Totes",
+    "link_url" : "#product-ATRI-TOTE-DTF",
+    "image" : {
+      "src" : "",
+      "alt" : ""
+    }
+  } ]
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.bg_color",
+    "name" : "bg_color",
+    "label" : "Section background",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#eaece5",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.card_color",
+    "name" : "card_color",
+    "label" : "Card background",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#f7f2e9",
+      "opacity" : 100
+    }
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

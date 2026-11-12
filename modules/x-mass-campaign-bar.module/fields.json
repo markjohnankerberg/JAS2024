@@ -1,0 +1,418 @@
+[ {
+  "id" : "content",
+  "name" : "content",
+  "label" : "Content",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "content.show",
+    "name" : "show",
+    "label" : "Show banner",
+    "help_text" : "Untick to hide the banner everywhere it's placed (e.g. above the nav) without removing it.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "content.eyebrow",
+    "name" : "eyebrow",
+    "label" : "Eyebrow",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "CHRISTMAS AUDIO BIBLE OUTREACH"
+  }, {
+    "id" : "content.headline",
+    "name" : "headline",
+    "label" : "Headline",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "One gift can change three lives."
+  }, {
+    "id" : "content.headline_em",
+    "name" : "headline_em",
+    "label" : "Headline italic word",
+    "help_text" : "This word in the headline is styled italic and gold.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "three"
+  }, {
+    "id" : "content.subtext",
+    "name" : "subtext",
+    "label" : "Subtext",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Double matching gift · Your generosity goes three times as far"
+  }, {
+    "id" : "content.progress_label",
+    "name" : "progress_label",
+    "label" : "Progress label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Double matched"
+  }, {
+    "id" : "content.progress_note",
+    "name" : "progress_note",
+    "label" : "Progress note",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Campaign progress will connect to live totals"
+  }, {
+    "id" : "content.cta_text",
+    "name" : "cta_text",
+    "label" : "CTA text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Give an Audio Bible"
+  }, {
+    "id" : "content.cta_url",
+    "name" : "cta_url",
+    "label" : "CTA link",
+    "help_text" : "Full URL so it works from every page: the Audio Bibles donate form.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "https://atriresearch.org/audio-bibles#donate-form"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "progress",
+  "name" : "progress",
+  "label" : "Progress bar",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "progress.enabled",
+    "name" : "enabled",
+    "label" : "Show progress bar",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "progress.raised",
+    "name" : "raised",
+    "label" : "Amount raised ($)",
+    "help_text" : "Total raised so far, shown until live totals load (or if they can't). The Totals URL replaces it when connected.",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 0,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 0
+  }, {
+    "id" : "progress.goal",
+    "name" : "goal",
+    "label" : "Goal ($)",
+    "help_text" : "When set, the bar fills to raised ÷ goal. Leave at 0 to use the percent below.",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 0,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 750000
+  }, {
+    "id" : "progress.percent",
+    "name" : "percent",
+    "label" : "Progress percent (when no goal is set)",
+    "help_text" : "How full the bar is (0–100), used when Goal is 0.",
+    "required" : false,
+    "locked" : false,
+    "display" : "text",
+    "min" : 0,
+    "max" : 100,
+    "step" : 1,
+    "type" : "number",
+    "display_width" : null,
+    "default" : 0
+  }, {
+    "id" : "progress.totals_url",
+    "name" : "totals_url",
+    "label" : "Totals URL",
+    "help_text" : "Live dollars raised from the ATRI Platform (legacy DMS Audio Bible gifts, FR16-*, since Oct 22). Read on page load and every 2 minutes. Leave empty to use the static amount.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "https://admin.atriresearch.org/api/v1/legacy-dms/donations/summary?sku_prefix=FR16-&date_from=2026-10-22"
+  }, {
+    "id" : "progress.public_key",
+    "name" : "public_key",
+    "label" : "Platform public key",
+    "help_text" : "The same pk_ key as the Give module's \"Platform public key\". Its allowed origins must include this site. Never paste a secret key here.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  }, {
+    "id" : "progress.show_amount",
+    "name" : "show_amount",
+    "label" : "Show amount raised",
+    "help_text" : "Replaces the progress note with e.g. \"$612,450 raised of $750,000\".",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "progress.sse_url",
+    "name" : "sse_url",
+    "label" : "SSE endpoint",
+    "help_text" : "Server-Sent Events URL for live totals. JSON events with 'raised' (dollars) and optionally 'goal' or 'percent'. Leave empty for static mode.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : ""
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "devices",
+  "name" : "devices",
+  "label" : "Devices given",
+  "help_text" : "Live count of each Audio Bible device, from the same Totals URL and public key as the progress bar (it counts every SKU listed for a device). Hidden until the counts load.",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "devices.enabled",
+    "name" : "enabled",
+    "label" : "Show devices given",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  }, {
+    "id" : "devices.heading",
+    "name" : "heading",
+    "label" : "Label",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Given so far"
+  }, {
+    "id" : "devices.items",
+    "name" : "items",
+    "label" : "Devices",
+    "required" : false,
+    "locked" : false,
+    "occurrence" : {
+      "min" : 0,
+      "max" : 8,
+      "sorting_label_field" : null,
+      "default" : 4
+    },
+    "children" : [ {
+      "id" : "devices.items.title",
+      "name" : "title",
+      "label" : "Name (plural)",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Proclaimers"
+    }, {
+      "id" : "devices.items.title_one",
+      "name" : "title_one",
+      "label" : "Name (one)",
+      "help_text" : "Shown when the count is 1.",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "Proclaimer"
+    }, {
+      "id" : "devices.items.skus",
+      "name" : "skus",
+      "label" : "SKUs",
+      "help_text" : "Comma-separated. Every SKU that gives this device, e.g. FR16-1000-2, FR16-1000.",
+      "required" : false,
+      "locked" : false,
+      "allow_new_line" : false,
+      "type" : "text",
+      "display_width" : null,
+      "default" : "FR16-500"
+    }, {
+      "id" : "devices.items.image",
+      "name" : "image",
+      "label" : "Image",
+      "help_text" : "A small device photo shown before the count. A transparent PNG looks best on the banner.",
+      "required" : false,
+      "locked" : false,
+      "responsive" : false,
+      "resizable" : false,
+      "show_loading" : false,
+      "type" : "image",
+      "display_width" : null,
+      "default" : {
+        "src" : "",
+        "alt" : "",
+        "loading" : "lazy"
+      }
+    } ],
+    "tab" : "CONTENT",
+    "expanded" : false,
+    "group_occurrence_meta" : null,
+    "type" : "group",
+    "display_width" : null,
+    "default" : [ {
+      "skus" : "FR16-30",
+      "title" : "Micro SD Cards",
+      "title_one" : "Micro SD Card",
+      "image" : {
+        "src" : "https://atri-cms-bucket.s3.amazonaws.com/media/assets/2026/11/MicroSD_Card-_No_Shadow_600x600.png",
+        "alt" : "",
+        "width" : 600,
+        "height" : 600,
+        "loading" : "lazy"
+      }
+    }, {
+      "skus" : "FR16-100-2, FR16-100",
+      "title" : "Micro-Proclaimers",
+      "title_one" : "Micro-Proclaimer",
+      "image" : {
+        "src" : "https://atri-cms-bucket.s3.amazonaws.com/media/assets/2026/11/Audio_Bible_Micro-Proclaimer_and_Micro_SD_Card_Bundle-_No_Shadow__600x600_6JGcqov.png",
+        "alt" : "",
+        "width" : 600,
+        "height" : 600,
+        "loading" : "lazy"
+      }
+    }, {
+      "skus" : "FR16-500",
+      "title" : "Proclaimers",
+      "title_one" : "Proclaimer",
+      "image" : {
+        "src" : "https://atri-cms-bucket.s3.amazonaws.com/media/assets/2026/11/Proclaimer-_No_Shadow_600x600.png",
+        "alt" : "",
+        "width" : 600,
+        "height" : 600,
+        "loading" : "lazy"
+      }
+    }, {
+      "skus" : "FR16-1000-2, FR16-1000",
+      "title" : "Proclaimer Bundles",
+      "title_one" : "Proclaimer Bundle",
+      "image" : {
+        "src" : "https://atri-cms-bucket.s3.amazonaws.com/media/assets/2026/11/Proclaimer_Bundle-_No_Shadow_600x600.png",
+        "alt" : "",
+        "width" : 600,
+        "height" : 600,
+        "loading" : "lazy"
+      }
+    } ]
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+}, {
+  "id" : "style",
+  "name" : "style",
+  "label" : "Style",
+  "required" : false,
+  "locked" : false,
+  "children" : [ {
+    "id" : "style.bg_style",
+    "name" : "bg_style",
+    "label" : "Background",
+    "required" : false,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "burgundy", "Burgundy gradient (Christmas)" ], [ "solid", "Solid colour (below)" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "burgundy"
+  }, {
+    "id" : "style.bg_color",
+    "name" : "bg_color",
+    "label" : "Solid background colour",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#18392f",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.gold_color",
+    "name" : "gold_color",
+    "label" : "Gold accent color",
+    "required" : false,
+    "locked" : false,
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#e7d4a4",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "style.hide_on_scroll",
+    "name" : "hide_on_scroll",
+    "label" : "Hide when the page scrolls",
+    "help_text" : "Above the nav: the banner hides once the header turns sticky (after 20px of scrolling), so it doesn't stay on screen.",
+    "required" : false,
+    "locked" : false,
+    "display" : "checkbox",
+    "type" : "boolean",
+    "display_width" : null,
+    "default" : true
+  } ],
+  "tab" : "STYLE",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

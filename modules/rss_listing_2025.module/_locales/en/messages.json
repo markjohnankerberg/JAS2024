@@ -1,0 +1,292 @@
+{
+  "attribution_text.default" : {
+    "message" : "by",
+    "description" : "",
+    "placeholders" : null
+  },
+  "attribution_text.help_text" : {
+    "message" : "The text that attributes an author to a post",
+    "description" : "",
+    "placeholders" : null
+  },
+  "attribution_text.label" : {
+    "message" : "Author attribution text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "click_through_text.default" : {
+    "message" : "Listen now",
+    "description" : "",
+    "placeholders" : null
+  },
+  "click_through_text.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "click_through_text.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "click_through_text.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "click_through_text.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "content_group_id.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "content_group_id.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "content_group_id.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "content_group_id.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "include_featured_image.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "include_featured_image.help_text" : {
+    "message" : "Please note: the RSS Listing module won't show featured images from an external RSS feed.",
+    "description" : null,
+    "placeholders" : null
+  },
+  "include_featured_image.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "include_featured_image.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "include_featured_image.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "limit_to_chars.label" : {
+    "message" : "Limit summary length (number of characters)",
+    "description" : "",
+    "placeholders" : null
+  },
+  "name" : {
+    "message" : "rss_listing_2025",
+    "description" : "",
+    "placeholders" : null
+  },
+  "number_of_items.label" : {
+    "message" : "Maximum number of posts to display",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.choices.MMMM d, yyyy 'at' h:mm a" : {
+    "message" : "June 6, 2006 at 12:00 pm",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.choices.h:mm a 'on' MMMM d, yyyy" : {
+    "message" : "12:00 pm on June 6, 2006",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.choices.long" : {
+    "message" : "June 6, 2017 12:00:00 pm EDT",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.choices.medium" : {
+    "message" : "Jun 6, 2006 12:00:00 pm",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.choices.short" : {
+    "message" : "06/11/06 12:00PM",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.default" : {
+    "message" : "MMMM d, yyyy",
+    "description" : null,
+    "placeholders" : null
+  },
+  "publish_date_format.help_text" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "publish_date_format.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_format.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_text.default" : {
+    "message" : "posted at",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_text.help_text" : {
+    "message" : "The text that indicates when a post was published",
+    "description" : "",
+    "placeholders" : null
+  },
+  "publish_date_text.label" : {
+    "message" : "Publish date indicator text",
+    "description" : "",
+    "placeholders" : null
+  },
+  "rss_feed_type.choices.blog" : {
+    "message" : "Use a HubSpot-hosted blog",
+    "description" : "",
+    "placeholders" : null
+  },
+  "rss_feed_type.choices.external" : {
+    "message" : "Use an external RSS feed",
+    "description" : "",
+    "placeholders" : null
+  },
+  "rss_feed_type.default" : {
+    "message" : "external",
+    "description" : null,
+    "placeholders" : null
+  },
+  "rss_feed_type.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "rss_feed_type.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "rss_feed_type.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "rss_feed_type.placeholder" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "rss_url.default" : {
+    "message" : "https://jashow.org/feed/jasradio/",
+    "description" : null,
+    "placeholders" : null
+  },
+  "rss_url.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "rss_url.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "rss_url.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "rss_url.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "show_author.default" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "show_author.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "show_author.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "show_author.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "show_author.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "show_date.label" : {
+    "message" : "Show publish date",
+    "description" : "",
+    "placeholders" : null
+  },
+  "show_detail.label" : {
+    "message" : "Show summary",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.default" : {
+    "message" : "RECENT EPISODES",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "title.inline_help_text" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "title.label" : {
+    "message" : "",
+    "description" : "",
+    "placeholders" : null
+  },
+  "title.placeholder" : {
+    "message" : "",
+    "description" : null,
+    "placeholders" : null
+  },
+  "topic_id.label" : {
+    "message" : "Filter by tag",
+    "description" : "",
+    "placeholders" : null
+  }
+}

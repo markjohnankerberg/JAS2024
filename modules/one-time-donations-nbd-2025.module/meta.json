@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "KNOWLEDGE_BASE", "MEMBERSHIP", "CASE_STUDY", "LANDING_PAGE", "SITE_PAGE", "SUBSCRIPTION", "CUSTOMER_PORTAL", "BLOG_LISTING", "WEB_INTERACTIVE", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 187897080844,
+  "label" : "One Time Donations",
+  "icon" : "fontawesome-5.14.0:Donate:SOLID",
+  "is_available_for_new_content" : true
+}

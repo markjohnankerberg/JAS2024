@@ -1,0 +1,11 @@
+{
+  "global" : false,
+  "content_types" : [ "LANDING_PAGE", "SITE_PAGE", "WEB_INTERACTIVE", "BLOG_LISTING", "BLOG_POST" ],
+  "master_language" : "en",
+  "categories" : [ "media" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST", "WEB_INTERACTIVE" ],
+  "module_id" : 184255940404,
+  "label" : "Guest info",
+  "icon" : "fontawesome-5.14.0:User%20Tie:SOLID",
+  "is_available_for_new_content" : true
+}

@@ -1,0 +1,42 @@
+<!--
+  templateType: error_page
+  isAvailableForNewContent: true
+  label: JAS - 500 error
+-->
+
+{% set template_css = "../../css/templates/system.css" %}
+{% extends "../layouts/base.html" %}
+
+{# pageTitle is used on system templates for setting a value for the title tag #}
+{% set pageTitle = "Error 500 | Server error" %}
+
+{% block body %}
+
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div>
+
+  <section class="content-wrapper">
+    <div class="error-page" data-error="500">
+      {% module "content"
+        path="@hubspot/rich_text",
+        html="<h1>This page isn't working.</h1><p>Sorry, an internal server error occurred. But have no fear, we\'re on the case!</p>"
+      %}
+      
+      {% module "button"
+        path="../../modules/button",
+        button_text="Go to Home page"
+        link={
+          "url":
+            {
+              "type": "EXTERNAL",
+              "href": "/"
+            },
+            "open_in_new_tab": false,
+            "no_follow": false
+        }
+      %}
+    </div>
+  </section>
+{% endblock body %}

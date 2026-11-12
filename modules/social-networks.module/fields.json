@@ -1,0 +1,298 @@
+[ {
+  "id" : "e5de6952-fb5d-1e49-b214-b59d1de7da34",
+  "name" : "social_networks",
+  "label" : "Social networks",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 4
+  },
+  "children" : [ {
+    "id" : "3393f5ad-7a63-c5dd-31de-837d04ad5083",
+    "name" : "icon_type",
+    "label" : "Icon type",
+    "required" : true,
+    "locked" : false,
+    "display" : "select",
+    "choices" : [ [ "hs-icon", "HubSpot icon" ], [ "image", "Image" ], [ "embed-code", "Embed code" ] ],
+    "multiple" : false,
+    "reordering_enabled" : true,
+    "preset" : null,
+    "type" : "choice",
+    "display_width" : null,
+    "default" : "image"
+  }, {
+    "id" : "172beb38-c021-e41f-89b6-0ed80967f3b0",
+    "name" : "icon",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "social_networks.icon_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "responsive" : true,
+    "resizable" : false,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/facebook_logo.svg",
+      "alt" : "facebook logo",
+      "loading" : "lazy",
+      "width" : 24,
+      "height" : 25,
+      "max_width" : 24,
+      "max_height" : 25
+    }
+  }, {
+    "id" : "f6977dc8-adca-7a98-0230-9ba0ff38f317",
+    "name" : "icon_field",
+    "label" : "Icon",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "social_networks.icon_type",
+      "controlling_value_regex" : "hs-icon",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "icon_set" : "fontawesome-5.14.0",
+    "type" : "icon",
+    "display_width" : null,
+    "default" : {
+      "name" : "Facebook",
+      "unicode" : "f09a",
+      "type" : "REGULAR"
+    }
+  }, {
+    "id" : "0c855db6-1c9a-2ceb-4c6b-08cb9e3137f8",
+    "name" : "embed_code",
+    "label" : "Embed code",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "social_networks.icon_type",
+      "controlling_value_regex" : "embed-code",
+      "property" : null,
+      "operator" : "EQUAL",
+      "access" : null
+    },
+    "placeholder" : "Paste SVG code here",
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null
+  }, {
+    "id" : "218fb81a-8b2b-c1cd-dd59-6c404efcfa14",
+    "name" : "icon_color",
+    "label" : "Icon color",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "social_networks.icon_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#B7AB9F",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "d428b0ac-ed4e-389e-7197-97759886c2ed",
+    "name" : "icon_color_hover",
+    "label" : "Icon color - hover",
+    "required" : false,
+    "locked" : false,
+    "visibility" : {
+      "controlling_field" : null,
+      "controlling_field_path" : "social_networks.icon_type",
+      "controlling_value_regex" : "image",
+      "property" : null,
+      "operator" : "NOT_EQUAL",
+      "access" : null
+    },
+    "type" : "color",
+    "display_width" : null,
+    "default" : {
+      "color" : "#CCBFB2",
+      "opacity" : 100
+    }
+  }, {
+    "id" : "5368e8e9-d35f-7269-6a43-c038dcb48555",
+    "name" : "link_field",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "icon_type" : "image",
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/facebook_logo.svg",
+      "alt" : "facebook logo",
+      "loading" : "lazy",
+      "width" : 24,
+      "height" : 25,
+      "max_width" : 24,
+      "max_height" : 25
+    },
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    },
+    "icon_field" : {
+      "name" : "Facebook",
+      "unicode" : "f09a",
+      "type" : "REGULAR"
+    },
+    "icon_color" : {
+      "color" : "#B7AB9F",
+      "opacity" : 100
+    },
+    "icon_color_hover" : {
+      "color" : "#CCBFB2",
+      "opacity" : 100
+    }
+  }, {
+    "icon_type" : "image",
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/facebook_logo.svg",
+      "alt" : "facebook logo",
+      "loading" : "lazy",
+      "width" : 24,
+      "height" : 25,
+      "max_width" : 24,
+      "max_height" : 25
+    },
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    },
+    "icon_field" : {
+      "name" : "Facebook",
+      "unicode" : "f09a",
+      "type" : "REGULAR"
+    },
+    "icon_color" : {
+      "color" : "#B7AB9F",
+      "opacity" : 100
+    },
+    "icon_color_hover" : {
+      "color" : "#CCBFB2",
+      "opacity" : 100
+    }
+  }, {
+    "icon_type" : "image",
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/facebook_logo.svg",
+      "alt" : "facebook logo",
+      "loading" : "lazy",
+      "width" : 24,
+      "height" : 25,
+      "max_width" : 24,
+      "max_height" : 25
+    },
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    },
+    "icon_field" : {
+      "name" : "Facebook",
+      "unicode" : "f09a",
+      "type" : "REGULAR"
+    },
+    "icon_color" : {
+      "color" : "#B7AB9F",
+      "opacity" : 100
+    },
+    "icon_color_hover" : {
+      "color" : "#CCBFB2",
+      "opacity" : 100
+    }
+  }, {
+    "icon_type" : "image",
+    "icon" : {
+      "size_type" : "auto",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Icons/facebook_logo.svg",
+      "alt" : "facebook logo",
+      "loading" : "lazy",
+      "width" : 24,
+      "height" : 25,
+      "max_width" : 24,
+      "max_height" : 25
+    },
+    "link_field" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    },
+    "icon_field" : {
+      "name" : "Facebook",
+      "unicode" : "f09a",
+      "type" : "REGULAR"
+    },
+    "icon_color" : {
+      "color" : "#B7AB9F",
+      "opacity" : 100
+    },
+    "icon_color_hover" : {
+      "color" : "#CCBFB2",
+      "opacity" : 100
+    }
+  } ]
+} ]

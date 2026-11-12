@@ -1,0 +1,72 @@
+<section class="il-{{name}}">
+  <h3>{{ module.title }}</h3>
+  
+  <div class="il-container">
+    {% for item in module.image %}
+      <div class="il-wrapper">
+          {% set href = item.image_link.url.href %}
+	        {% if item.image_link.url.type is equalto "EMAIL_ADDRESS" %}
+          {% set href = "mailto:" + href %}
+        {% endif %}
+        <a
+          {% if item.image_link.url.type is equalto "CALL_TO_ACTION"  %}
+            href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+          {% else %}
+            href="{{ href|escape_url }}"
+          {% endif %}
+          {% if item.image_link.open_in_new_tab %}
+            target="_blank"
+          {% endif %}
+          {% if item.image_link.rel %}
+            rel="{{ item.image_link.rel|escape_attr }}"
+          {% endif %}
+          >
+          {% if item.image_field.src %}
+          {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{ item.image_field.height|escape_attr }}"' %}
+          {% if item.image_field.size_type == 'auto' %}
+            {% set sizeAttrs = 'width="{{ item.image_field.width|escape_attr }}" height="{{ item.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+          {% elif item.image_field.size_type == 'auto_custom_max' %}
+            {% set sizeAttrs = 'width="{{ item.image_field.max_width|escape_attr }}" height="{{ item.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+          {% endif %}
+           {% set loadingAttr = item.image_field.loading != 'disabled' ? 'loading="{{ item.image_field.loading|escape_attr }}"' : '' %}
+          <img src="{{ item.image_field.src|escape_url }}" alt="{{ item.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+        {% endif %}
+        </a>
+      </div>
+    {% endfor %}
+  </div>
+</section>
+
+
+{% require_css %}
+  <style>
+    .il-{{name}} *,
+    .il-{{name}} *::before,
+    .il-{{name}} *::after {
+      padding: 0;
+      margin: 0;
+      box-sizing: border-box;
+    }
+    
+    .il-{{name}} h3 {
+      margin-bottom: 0.75em;
+    }
+    
+    .il-{{name}} .il-container {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+    
+    .il-{{name}} .il-container a {
+      text-decoration: none;
+      cursor: pointer;
+    }
+    
+    .il-{{name}} .il-container img {
+      display: block;
+      max-width: 100%;
+    }
+  </style>
+{% end_require_css %}

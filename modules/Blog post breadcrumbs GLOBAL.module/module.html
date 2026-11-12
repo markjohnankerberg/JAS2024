@@ -1,0 +1,75 @@
+<div class="bp-breadcrumbs breadcrumbs-{{name}}">
+  {% for item in module.breadcrumbs %}
+    <span class="single-breadcrumb">
+      {% set href = item.page_url.url.href %}
+      {% if item.page_url.url.type is equalto "EMAIL_ADDRESS" %}
+        {% set href = "mailto:" + href %}
+      {% endif %}
+      <a
+        {% if item.page_url.url.type is equalto "CALL_TO_ACTION"  %}
+          href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+        {% else %}
+          href="{{ href|escape_url }}"
+        {% endif %}
+        {% if item.page_url.open_in_new_tab %}
+          target="_blank"
+        {% endif %}
+        {% if item.page_url.rel %}
+          rel="{{ item.page_url.rel|escape_attr }}"
+        {% endif %}
+        >
+        {{ item.text_field }}
+      </a>
+    </span>
+  
+    <span class="bp-divider">/</span>
+  {% endfor %}
+  
+    <span class="single-breadcrumb last-breadcrumb">{{content.name|striptags}}</span>
+</div>
+
+{% require_css %}
+  <style>
+    .breadcrumbs-{{name}} *,
+    .breadcrumbs-{{name}} *::before,
+    .breadcrumbs-{{name}} *::after {
+      box-sizing: border-box;
+      padding: 0;
+      margin: 0;
+    }
+
+    .breadcrumbs-{{name}} {
+      display: flex;
+      align-items: center;
+      gap: 8px;
+    }
+    
+    .breadcrumbs-{{name}} .single-breadcrumb a {
+      cursor: pointer;
+    }
+    
+    .breadcrumbs-{{name}} .single-breadcrumb a,
+    .breadcrumbs-{{name}} .bp-divider,
+    .breadcrumbs-{{name}} .last-breadcrumb,
+    .breadcrumbs-{{name}} span {
+      text-decoration: none;
+      text-transform: uppercase;
+      color: var(--clr-grey);
+      font-size: 14px;
+      font-weight: 400;
+      line-height: 1.2;
+      transition: var(--transition);
+    }
+    
+    .breadcrumbs-{{name}} .single-breadcrumb a:hover {
+      color: var(--clr-dark-beige);
+    }
+    
+    .breadcrumbs-{{name}} .last-breadcrumb {
+      color: var(--clr-light-beige);
+      text-overflow: ellipsis;
+      white-space: nowrap;
+      overflow: hidden;
+    }
+  </style>
+{% end_require_css %}

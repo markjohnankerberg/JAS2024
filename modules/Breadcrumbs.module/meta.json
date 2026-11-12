@@ -1,0 +1,9 @@
+{
+  "global" : false,
+  "content_types" : [ "BLOG_LISTING", "BLOG_POST" ],
+  "host_template_types" : [ "PAGE", "BLOG_LISTING", "BLOG_POST" ],
+  "module_id" : 175467570360,
+  "label" : "Breadcrumbs",
+  "icon" : "fontawesome-5.14.0:Bread%20Slice:SOLID",
+  "is_available_for_new_content" : true
+}

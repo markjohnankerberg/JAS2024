@@ -1,0 +1,108 @@
+<div class="custom__btn-{{name}} {{ module.alignment }}">
+  {# Custom button #}
+  {% if module.button_type == "regular" %}
+    {% set href = module.button.button_url.url.href %}
+    {% if module.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+      {% set href = "mailto:" + href %}
+    {% endif %}
+    <a href="{{ href|escape_url }}" class="btn-{{name}} button" aria-label="{{ module.button.button_text }}"
+      {% if module.button.button_url.open_in_new_tab %}target="_blank"{% endif %}
+      {% if module.button.button_url.rel %}rel="{{ module.button.button_url.rel|escape_attr }}"{% endif %}
+      >
+      {{ module.button.button_text }}
+    </a>
+  {% endif %}
+ 
+  {# CTA button #}
+  {% if module.button_type == "cta" %}
+    {% cta guid="{{ module.cta_field }}" %}
+  {% endif %}
+  
+  {# Image button #}
+  {% if module.button_type == "image" %}
+    {% set href = module.image.image_url.url.href %}
+    {% if module.image.image_url.url.type is equalto "EMAIL_ADDRESS" %}
+      {% set href = "mailto:" + href %}
+    {% endif %}
+    <a href="{{ href|escape_url }}"
+      {% if module.image.image_url.open_in_new_tab %}target="_blank"{% endif %}
+      {% if module.image.image_url.rel %}rel="{{ module.image.image_url.rel|escape_attr }}"{% endif %}
+      >
+      
+      {% if module.image.image_field.src %}
+        {% set sizeAttrs = 'width="{{ module.image.image_field.width|escape_attr }}" height="{{ module.image.image_field.height|escape_attr }}"' %}
+        {% if module.image.image_field.size_type == 'auto' %}
+          {% set sizeAttrs = 'width="{{ module.image.image_field.width|escape_attr }}" height="{{ module.image.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% elif module.image.image_field.size_type == 'auto_custom_max' %}
+          {% set sizeAttrs = 'width="{{ module.image.image_field.max_width|escape_attr }}" height="{{ module.image.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+        {% endif %}
+         {% set loadingAttr = module.image.image_field.loading != 'disabled' ? 'loading="{{ module.image.image_field.loading|escape_attr }}"' : '' %}
+        <img src="{{ module.image.image_field.src|escape_url }}" alt="{{ module.image.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+      {% endif %}
+    </a>
+  {% endif %}
+  
+  {# Supporting text that appears below the button #}
+  {% if module.show_additional_info_text %}
+	  <div class="supporting__text">
+      <small>{{ module.text_field }}</small>
+  </div>
+  {% endif %}
+</div>
+
+{% require_css %}
+  <style>
+    .custom__btn-{{name}} {
+      display: flex;
+      flex-direction: column;
+    }
+    
+    .custom__btn-{{name}}.left {
+      align-items: flex-start;
+    }
+    
+    .custom__btn-{{name}}.center {
+      align-items: center;
+    }
+    
+    .custom__btn-{{name}}.right {
+      align-items: flex-end;
+    }
+
+    .custom__btn-{{name}} .btn-{{name}} {
+      text-decoration: none;
+      color: rgba({{ module.style.button.text_color.color|convert_rgb }}, {{ module.style.button.text_color.opacity/100 }});
+      background: rgba({{ module.style.button.background_color.color|convert_rgb }}, {{ module.style.button.background_color.opacity/100 }});
+      border-radius: {{ module.style.button.border_radius ~ 'px' }};
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      {{ module.style.button.border_field.css }}
+      {{ module.style.button.spacing.css }}
+    }
+
+    .custom__btn-{{name}} .btn-{{name}}:hover {
+      background: rgba({{ module.style.button.background_color_hover.color|convert_rgb }}, {{ module.style.button.background_color_hover.opacity/100 }});
+      color: rgba({{ module.style.button.text_color_hover.color|convert_rgb }}, {{ module.style.button.text_color_hover.opacity/100 }});
+      {{ module.style.button.border_hover.css }}
+    }
+    
+    .custom__btn-{{name}} .supporting__text {
+      margin-top: 20px;
+    }
+
+    .custom__btn-{{name}} .supporting__text small {
+      color: #000000;
+      font-size: 18px;
+      margin: 0 auto;
+      text-align: center;
+    }
+    
+    @media (max-width: 767px) {      
+      .custom__btn-{{name}} .supporting__text small {
+        font-size: 16px;
+      }
+    }
+  </style>
+{% end_require_css %}

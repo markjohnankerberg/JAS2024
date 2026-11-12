@@ -1,0 +1,86 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: Christmas 2026 Homepage
+  screenshotPath: ../images/template-previews/christmas-2026.png
+-->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  {{ standard_header_includes }}
+  <style>
+    :root {
+      --forest: #18392f;
+      --burgundy: #7d2025;
+      --gold: #e7d4a4;
+      --ivory: #f8f5ee;
+      --paper: #f2ede4;
+      --sage: #e6ebe8;
+      --ink: #21372d;
+      --muted: #626b63;
+      --line: #d9d1c2;
+    }
+    *, *::before, *::after { box-sizing: border-box; }
+    html { scroll-behavior: smooth; }
+    body {
+      margin: 0;
+      background: var(--ivory);
+      color: var(--ink);
+      font: 16px/1.65 Arial, Helvetica, sans-serif;
+    }
+    img { display: block; max-width: 100%; }
+  </style>
+  {# Load the shared cart JS once for the whole page #}
+  {{ require_js(get_asset_url('../js/cart.js'), 'footer') }}
+</head>
+<body>
+
+  {# ── Campaign Bar ── #}
+  {% module "campaign_bar" path="./modules/x-mass-campaign-bar" %}
+
+  {# ── Header ── #}
+  {% module "header" path="./modules/2026-x-mass-header" %}
+
+  <main>
+    {# ── Hero ── #}
+    {% module "hero" path="./modules/x-mass-hero" %}
+
+    {# Category quick links now render inside the hero (module.quicklinks) #}
+
+    {# ── Mission Intro + Pillars ── #}
+    {% module "intro_pillars" path="./modules/x-mass-intro-pillars" %}
+
+    {# ── Audio Bible Gift Picker (existing API-driven module) ── #}
+    {% module "audio_bibles" path="./modules/x-mass-audio-bibles-banner" %}
+
+    {# ── Resource Library (existing catalog module) ── #}
+    {% module "resources" path="./modules/x-mass-products-section" %}
+
+    {# ── Merch Feature Strip ── #}
+    {% module "merch_cards" path="./modules/x-mass-merch" %}
+
+    {# ── Facts On Series Promo ── #}
+    {% module "facts_promo" path="./modules/x-mass-facts-on" %}
+
+    {# ── Give to ATRI Panel + Cart (existing checkout module) ── #}
+    {# The module carries id="giving" itself #}
+    {% module "give_panel" path="./modules/2026-x-mass-pop-up-form" %}
+
+    {# ── Equip Section ── #}
+    {% module "equip" path="./modules/x-mass-equip" %}
+
+    {# ── Newsletter Signup ── #}
+    {% module "newsletter" path="./modules/x-mass-newsletter" %}
+  </main>
+
+  {# ── Footer ── #}
+  {% module "footer" path="./modules/x-mass-footer" %}
+
+  {# ── Cart & Favorites Drawer (global, must be after all content) ── #}
+  {% module "cart_drawer" path="./modules/x-mass-cart-drawer" %}
+
+  {{ standard_footer_includes }}
+</body>
+</html>

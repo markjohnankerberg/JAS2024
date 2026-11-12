@@ -1,0 +1,564 @@
+{# Search results - version 1 #}
+
+{% set heading_tag = module.heading_tag  %}
+{% set searched_term = request.query_dict.term ? request.query_dict.term : request.query_dict.q %}
+{% set results_title = module.default_text.results_title %}
+{% set results_count_message = module.default_text.results_count_message %}
+
+{% if module.pagination.numbers.index("show_numbers") >= 0 %}
+  {% set show_numbers = true %}
+{% endif %}
+
+{% if module.pagination.previous_and_next.index("show_labels") >= 0 %}
+  {% set show_next_and_previous_labels = true %}
+{% endif %}
+
+{% if module.pagination.previous_and_next.index("show_arrows") >= 0 %}
+  {% set show_next_and_previous_arrows = true %}
+{% endif %}
+
+{% if module.pagination.first_and_last.index("show_labels") >= 0 %}
+  {% set show_first_and_last_labels = true %}
+{% endif %}
+
+{% if module.pagination.first_and_last.index("show_arrows") >= 0 %}
+  {% set show_first_and_last_arrows = true %}
+{% endif %}
+
+{% if module.results.display_for_each_result.index("image") >= 0 %}
+  {% set show_featured_images = true %}
+{% endif %}
+
+{# Module styles #}
+{% require_css %}
+<style>
+{% scope_css %}
+
+  {# Search results container #}
+
+  .hs-search-results {
+    {{ module.styles.container.spacing.spacing.css }}
+  }
+
+  {# Search results title #}
+
+  .hs-search-results-title {
+    {{ module.styles.title.font.css }}
+    {% if module.styles.title.transform %}
+      text-transform: {{ module.styles.title.transform }};
+    {% endif %}
+  }
+
+  {# Results #}
+
+  {# Results count message #}
+  .hs-search-results__message {
+    {{ module.styles.results_count_message.font.css }}
+    {% if module.styles.results_count_message.transform %}
+      text-transform: {{ module.styles.results_count_message.transform }};
+    {% endif %}
+  }
+
+  {% if module.styles.results.spacing.space_between_results %}
+    .hs-search-results__listing {
+      gap: {{ module.styles.results.spacing.space_between_results }}px;
+    }
+  {% endif %}
+
+  {# Image #}
+  .hs-search-results__featured-image-wrapper {
+    {{ module.styles.results.featured_image.spacing.spacing.css }}
+    {% if module.styles.results.featured_image.size.width %}
+      flex-basis: {{ module.styles.results.featured_image.size.width ~ "%" }};
+      min-width: {{ module.styles.results.featured_image.size.width ~ "%" }};
+    {% endif %}
+    {% if module.styles.results.featured_image.spacing.between_image_and_content > 0 %}
+      margin-right: {{ module.styles.results.featured_image.spacing.between_image_and_content ~ "px" }};
+    {% endif %}
+  }
+
+  .hs-search-results__featured-image {
+    {% if module.styles.results.featured_image.size.aspect_ratio %}
+      aspect-ratio: {{ module.styles.results.featured_image.size.aspect_ratio }};
+    {% endif %}
+    {% if module.styles.results.featured_image.corner.radius >= 0 %}
+      border-radius: {{ module.styles.results.featured_image.corner.radius ~ "px" }};
+    {% endif %}
+  }
+
+  {# Results title #}
+  .hs-search-results__title {
+    transition: var(--transition);
+    {{ module.styles.results.title.font.css }}
+  }
+  
+  {# Results author - dz #}
+  .hs-search-results__author {
+    margin-bottom: 0px;
+    {{ module.styles.results.author.font.css }}
+  }
+
+  {# Results body copy #}
+  .hs-search-results__description {
+    {{ module.styles.results.description.font.css }}
+  }
+
+
+  {# Pagination #}
+
+  .hs-search-results__pagination {
+    {{ module.styles.pagination.spacing.spacing.css }}
+  }
+
+  .hs-search-results__pagination__link {
+    {{ module.styles.pagination.text.font.css }}
+    {% if module.styles.pagination.spacing.space_between_links %}
+      margin-right: {{ module.styles.pagination.spacing.space_between_links ~ "px" }};
+    {% endif %}
+  }
+
+  {# Pagination links #}
+
+  {% if module.styles.pagination.spacing.space_between_links %}
+    .hs-search-results__pagination__link {
+      margin-right: {{ module.styles.pagination.spacing.space_between_links ~ "px" }};
+    }
+  {% endif %}
+
+  {% if module.pagination.first_and_last || module.pagination.previous_and_next %}
+    .hs-search-results__pagination__link-icon svg {
+      {% if module.styles.pagination.text.font.size %}
+        height: {{ module.styles.pagination.text.font.size ~ module.styles.pagination.text.font.size_unit }};
+        width: {{ module.styles.pagination.text.font.size ~ module.styles.pagination.text.font.size_unit }};
+      {% endif %}
+    }
+  {% endif %}
+
+  {% if module.styles.pagination.text.font.color %}
+    .hs-search-results__pagination__link--number:hover,
+    .hs-search-results__pagination__link--number:focus,
+    .hs-search-results__pagination__link:hover .hs-search-results__pagination__link-text,
+    .hs-search-results__pagination__link:focus .hs-search-results__pagination__link-text {
+      color: {{ color_variant(module.styles.pagination.text.font.color, -80) }};
+    }
+
+    .hs-search-results__pagination__link:hover .hs-search-results__pagination__link-icon svg,
+    .hs-search-results__pagination__link:focus .hs-search-results__pagination__link-icon svg {
+      fill: {{ color_variant(module.styles.pagination.text.font.color, -80) }};
+    }
+
+    .hs-search-results__pagination__link--number:active,
+    .hs-search-results__pagination__link:active .hs-search-results__pagination__link-text {
+      color: {{ color_variant(module.styles.pagination.text.font.color, 80) }};
+    }
+
+    .hs-search-results__pagination__link:active .hs-search-results__pagination__link-icon svg {
+      fill: {{ color_variant(module.styles.pagination.text.font.color, 80) }};
+    }
+  {% endif %}
+
+  {# Active pagination link #}
+
+  {% if show_numbers %}
+    .hs-search-results__pagination__link--active {
+      {{ module.styles.pagination.active.border.border.css }}
+      {% if module.styles.pagination.active.corner.radius >= 0 %}
+        border-radius: {{ module.styles.pagination.active.corner.radius ~ "px" }};
+      {% endif %}
+    }
+  {% endif %}
+
+  {# Numbers #}
+
+  {% if show_numbers %}
+
+    .hs-search-results__pagination__link--number {
+      {% if module.styles.pagination.numbers.background.color.color %}
+        background-color: rgba({{ module.styles.pagination.numbers.background.color.color|convert_rgb }}, {{ module.styles.pagination.numbers.background.color.opacity / 100 }});
+      {% endif %}
+      {{ module.styles.pagination.numbers.border.border.css }}
+      {% if module.styles.pagination.numbers.corner.radius >= 0 %}
+        border-radius: {{ module.styles.pagination.numbers.corner.radius ~ "px" }};
+      {% endif %}
+      {{ module.styles.pagination.numbers.text.font.css }}
+      {{ module.styles.pagination.numbers.spacing.spacing.css }}
+    }
+
+    .hs-search-results__pagination__link--ellipsis {
+      {{ module.styles.pagination.numbers.text.font.css }}
+    }
+
+    .hs-search-results__pagination__link--active {
+      {% if module.styles.pagination.numbers.active.background.color.color %}
+        background-color: rgba({{ module.styles.pagination.numbers.active.background.color.color|convert_rgb }}, {{ module.styles.pagination.numbers.active.background.color.opacity / 100 }});
+      {% endif %}
+      {% if module.styles.pagination.numbers.active.border.color.color %}
+        border-color: {{ module.styles.pagination.numbers.active.border.color.color }};
+      {% endif %}
+      {% if module.styles.pagination.numbers.active.text.color.color %}
+        color: {{ module.styles.pagination.numbers.active.text.color.color }};
+      {% endif %}
+    }
+
+    .hs-search-results__pagination__link--number:hover,
+    .hs-search-results__pagination__link--number:focus {
+      {% if module.styles.pagination.numbers.hover.background_color.color %}
+        background-color: rgba({{ module.styles.pagination.numbers.hover.background_color.color|convert_rgb }}, {{ module.styles.pagination.numbers.hover.background.color.opacity / 100 }});
+      {% endif %}
+      {% if module.styles.pagination.numbers.hover.border_color.color %}
+        border-color: {{ module.styles.pagination.numbers.hover.border_color.color }};
+      {% endif %}
+      {% if module.styles.pagination.numbers.hover.text_color.color %}
+        color: {{ module.styles.pagination.numbers.hover.text_color.color }};
+      {% endif %}
+    }
+
+  {% endif %}
+
+  {# Next/previous #}
+
+  {% if show_next_and_previous_arrows or show_next_and_previous_labels %}
+    .hs-search-results__pagination__link--prev,
+    .hs-search-results__pagination__link--next {
+      {% if module.styles.pagination.previous_and_next.background.color.color %}
+        background-color: rgba({{ module.styles.pagination.previous_and_next.background.color.color|convert_rgb }}, {{ module.styles.pagination.previous_and_next.background.color.opacity / 100 }});
+      {% endif %}
+      {{ module.styles.pagination.previous_and_next.border.border.css }}
+      {% if module.styles.pagination.previous_and_next.corner.radius >= 0 %}
+        border-radius: {{ module.styles.pagination.previous_and_next.corner.radius ~ "px" }};
+      {% endif %}
+      {{ module.styles.pagination.previous_and_next.spacing.spacing.css }}
+    }
+
+    .hs-search-results__pagination__link--prev:hover,
+    .hs-search-results__pagination__link--prev:focus,
+    .hs-search-results__pagination__link--next:hover,
+    .hs-search-results__pagination__link--next:focus {
+      {% if module.styles.pagination.previous_and_next.hover.background_color.color %}
+        background-color: rgba({{ module.styles.pagination.previous_and_next.hover.background_color.color|convert_rgb }}, {{ module.styles.pagination.previous_and_next.hover.background_color.opacity / 100 }});
+      {% endif %}
+      {% if module.styles.pagination.previous_and_next.hover.border_color.color %}
+        border-color: {{ module.styles.pagination.previous_and_next.hover.border_color.color }};
+      {% endif %}
+    }
+
+    {% if show_next_and_previous_labels %}
+      .hs-search-results__pagination__link--prev > .hs-search-results__pagination__link-text,
+      .hs-search-results__pagination__link--next > .hs-search-results__pagination__link-text {
+        {{ module.styles.pagination.previous_and_next.text.font.css }}
+      }
+
+      {% if module.styles.pagination.previous_and_next.hover.text_color.color %}
+        .hs-search-results__pagination__link--prev:hover > .hs-search-results__pagination__link-text,
+        .hs-search-results__pagination__link--prev:focus > .hs-search-results__pagination__link-text,
+        .hs-search-results__pagination__link--next:hover > .hs-search-results__pagination__link-text,
+        .hs-search-results__pagination__link--next:focus > .hs-search-results__pagination__link-text {
+          color: {{ module.styles.pagination.previous_and_next.hover.text_color.color }};
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if show_next_and_previous_arrows and show_next_and_previous_labels %}
+      {% if module.styles.pagination.previous_and_next.spacing.space_between_text_and_icon >= 0 %}
+        .hs-search-results__pagination__link--text-and-icon.hs-search-results__pagination__link--prev > .hs-search-results__pagination__link-icon {
+          margin-right: {{ module.styles.pagination.previous_and_next.spacing.space_between_text_and_icon ~ "px" }};
+        }
+      {% endif %}
+
+      {% if module.styles.pagination.previous_and_next.spacing.space_between_text_and_icon >= 0 %}
+        .hs-search-results__pagination__link--text-and-icon.hs-search-results__pagination__link--next > .hs-search-results__pagination__link-icon {
+          margin-left: {{ module.styles.pagination.previous_and_next.spacing.space_between_text_and_icon ~ "px" }};
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if show_next_and_previous_arrows %}
+      .hs-search-results__pagination__link--prev > .hs-search-results__pagination__link-icon svg,
+      .hs-search-results__pagination__link--next > .hs-search-results__pagination__link-icon svg {
+        {% if module.styles.pagination.previous_and_next.icon.size %}
+          height: {{ module.styles.pagination.previous_and_next.icon.size ~ "px" }};
+          width: {{ module.styles.pagination.previous_and_next.icon.size ~ "px" }};
+        {% endif %}
+        {% if module.styles.pagination.previous_and_next.text.font.color %}
+          fill: {{ module.styles.pagination.previous_and_next.text.font.color }};
+        {% endif %}
+      }
+
+      {% if module.styles.pagination.previous_and_next.hover.text.color.color %}
+        .hs-search-results__pagination__link--prev:hover > .hs-search-results__pagination__link-icon svg,
+        .hs-search-results__pagination__link--prev:focus > .hs-search-results__pagination__link-icon svg,
+        .hs-search-results__pagination__link--next:hover > .hs-search-results__pagination__link-icon svg,
+        .hs-search-results__pagination__link--next:focus > .hs-search-results__pagination__link-icon svg {
+          fill: {{ module.styles.pagination.previous_and_next.hover.text.color.color }};
+        }
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+  {# First/last #}
+
+  {% if show_first_and_last_arrows or show_first_and_last_labels %}
+    .hs-search-results__pagination__link--first,
+    .hs-search-results__pagination__link--last {
+      {% if module.styles.pagination.first_and_last.background.color.color %}
+        background-color: rgba({{ module.styles.pagination.first_and_last.background.color.color|convert_rgb }}, {{ module.styles.pagination.first_and_last.background.color.opacity / 100 }});
+      {% endif %}
+      {{ module.styles.pagination.first_and_last.border.border.css }}
+      {% if module.styles.pagination.first_and_last.corner.radius >= 0 %}
+        border-radius: {{ module.styles.pagination.first_and_last.corner.radius ~ "px" }};
+      {% endif %}
+      {{ module.styles.pagination.first_and_last.spacing.spacing.css }}
+    }
+
+    .hs-search-results__pagination__link--first:hover,
+    .hs-search-results__pagination__link--first:focus,
+    .hs-search-results__pagination__link--last:hover,
+    .hs-search-results__pagination__link--last:focus {
+      {% if module.styles.pagination.first_and_last.hover.background_color.color %}
+        background-color: rgba({{ module.styles.pagination.first_and_last.hover.background_color.color|convert_rgb }}, {{ module.styles.pagination.first_and_last.hover.background_color.opacity / 100 }});
+      {% endif %}
+      {% if module.styles.pagination.first_and_last.hover.border_color.color %}
+        border-color: {{ module.styles.pagination.first_and_last.hover.border_color.color }};
+      {% endif %}
+    }
+
+    {% if show_first_and_last_labels %}
+      .hs-search-results__pagination__link--first > .hs-search-results__pagination__link-text,
+      .hs-search-results__pagination__link--last > .hs-search-results__pagination__link-text {
+        {{ module.styles.pagination.first_and_last.text.font.css }}
+      }
+
+      {% if module.styles.pagination.first_and_last.hover.text_color.color %}
+        .hs-search-results__pagination__link--first:hover > .hs-search-results__pagination__link-text,
+        .hs-search-results__pagination__link--first:focus > .hs-search-results__pagination__link-text,
+        .hs-search-results__pagination__link--last:hover > .hs-search-results__pagination__link-text,
+        .hs-search-results__pagination__link--last:focus > .hs-search-results__pagination__link-text {
+          color: {{ module.styles.pagination.first_and_last.hover.text_color.color }};
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if show_first_and_last_arrows and show_first_and_last_labels %}
+      {% if module.styles.pagination.first_and_last.spacing.space_between_text_and_icon >= 0 %}
+        .hs-search-results__pagination__link--text-and-icon.hs-search-results__pagination__link--first > .hs-search-results__pagination__link-icon {
+          margin-right: {{ module.styles.pagination.first_and_last.spacing.space_between_text_and_icon ~ "px" }};
+        }
+      {% endif %}
+
+      {% if module.styles.pagination.first_and_last.spacing.space_between_text_and_icon >= 0 %}
+        .hs-search-results__pagination__link--text-and-icon.hs-search-results__pagination__link--last > .hs-search-results__pagination__link-icon {
+          margin-left: {{ module.styles.pagination.first_and_last.spacing.space_between_text_and_icon ~ "px" }};
+        }
+      {% endif %}
+    {% endif %}
+
+    {% if show_first_and_last_arrows %}
+      .hs-search-results__pagination__link--first > .hs-search-results__pagination__link-icon svg,
+      .hs-search-results__pagination__link--last > .hs-search-results__pagination__link-icon svg {
+        {% if module.styles.pagination.first_and_last.icon.size %}
+          height: {{ module.styles.pagination.first_and_last.icon.size ~ "px" }};
+          width: {{ module.styles.pagination.first_and_last.icon.size ~ "px" }};
+        {% endif %}
+        {% if module.styles.pagination.first_and_last.text.font.color %}
+          fill: {{ module.styles.pagination.first_and_last.text.font.color }};
+        {% endif %}
+      }
+
+      {% if module.styles.pagination.first_and_last.hover.text_color.color %}
+        .hs-search-results__pagination__link--first:hover > .hs-search-results__pagination__link-icon svg,
+        .hs-search-results__pagination__link--first:focus > .hs-search-results__pagination__link-icon svg,
+        .hs-search-results__pagination__link--last:hover > .hs-search-results__pagination__link-icon svg,
+        .hs-search-results__pagination__link--last:focus > .hs-search-results__pagination__link-icon svg {
+          fill: {{ module.styles.pagination.first_and_last.hover.text_color.color }};
+        }
+      {% endif %}
+    {% endif %}
+  {% endif %}
+
+{% end_scope_css %}
+</style>
+{% end_require_css %}
+
+{% macro first_page_icon_markup() %}
+  {% icon "first_icon"
+    extra_classes="hs-search-results__pagination__link-icon",
+    name="angle-double-left",
+    purpose="decorative",
+    style="SOLID",
+    unicode="f100"
+  %}
+{% endmacro %}
+{% macro previous_page_icon_markup() %}
+  {% icon "previous_icon"
+    extra_classes="hs-search-results__pagination__link-icon",
+    name="angle-left",
+    purpose="decorative",
+    style="SOLID",
+    unicode="f104"
+  %}
+{% endmacro %}
+{% macro next_page_icon_markup() %}
+  {% icon "next_icon"
+    extra_classes="hs-search-results__pagination__link-icon",
+    name="angle-right",
+    purpose="decorative",
+    style="SOLID",
+    unicode="f105"
+  %}
+{% endmacro %}
+{% macro last_page_icon_markup() %}
+  {% icon "last_icon"
+    extra_classes="hs-search-results__pagination__link-icon",
+    name="angle-double-right",
+    purpose="decorative",
+    style="SOLID",
+    unicode="f101"
+  %}
+{% endmacro %}
+
+{% if module.title.show_title and ( request.query_dict.term or request.query_dict.q or is_in_editor ) %}
+  {% if !heading_tag %}
+    {% set heading_tag = 'h1' %}
+  {% endif %}
+  <{{ heading_tag|escape_attr }} class="hs-search-results-title">{{ results_title|render|escape_html }}</{{ heading_tag|escape_attr }}>
+{% endif %}
+
+<div class="hs-search-results dzim">
+  {% if is_in_editor or is_in_previewer %}
+    {% set results_count_message_with_numbers = results_count_message
+                                                  |replace("[[offset]]", "1")
+                                                  |replace("[[limit]]", "10")
+                                                  |replace("[[total]]", "115") %}
+    <p class="hs-search-results__message" role="status">{{ results_count_message_with_numbers|escape_html }}</p>
+    <ul id="hsresults" class="hs-search-results__listing">
+      <li class="hs-search-results__listing__item">
+        {% if "image" in module.results.display_for_each_result %}
+        <div class="hs-search-results__featured-image-wrapper">
+          <img class="hs-search-results__featured-image" src="{{get_asset_url('@hubspot/img/slider-light-image.jpg')|escape_url}}" />
+        </div>
+        {% endif %}
+        <div class="hs-search-results__content">
+          <a href="#" class="hs-search-results__link"><h2 class="hs-search-results__title">{{ module.default_text.search_results_article_title|escape_html }}</h2></a>
+          <p class="hs-search-results__description">{{ module.default_text.search_results_article_description|escape_html }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit dignissimos voluptate iste architecto placeat, doloribus minus laboriosam.</p>
+        </div>
+      </li>
+      <li class="hs-search-results__listing__item">
+        {% if "image" in module.results.display_for_each_result %}
+        <div class="hs-search-results__featured-image-wrapper">
+          <img class="hs-search-results__featured-image" src="{{get_asset_url('@hubspot/img/slider-light-image.jpg')|escape_url}}" />
+        </div>
+        {% endif %}
+        <div class="hs-search-results__content">
+          <a href="#" class="hs-search-results__link"><h2 class="hs-search-results__title">{{ module.default_text.search_results_article_title|escape_html }}</h2></a>
+          <p class="hs-search-results__description">{{ module.default_text.search_results_article_description|escape_html }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit dignissimos voluptate iste architecto placeat, doloribus minus laboriosam.</p>
+        </div>
+      </li>
+      <li class="hs-search-results__listing__item">
+        {% if "image" in module.results.display_for_each_result %}
+        <div class="hs-search-results__featured-image-wrapper">
+          <img class="hs-search-results__featured-image" src="{{get_asset_url('@hubspot/img/slider-light-image.jpg')|escape_url}}" />
+        </div>
+        {% endif %}
+        <div class="hs-search-results__content">
+          <a href="#" class="hs-search-results__link"><h2 class="hs-search-results__title">{{ module.default_text.search_results_article_title|escape_html }}</h2></a>
+          <p class="hs-search-results__description">{{ module.default_text.search_results_article_description|escape_html }} Lorem ipsum dolor sit amet consectetur adipisicing elit. Sit dignissimos voluptate iste architecto placeat, doloribus minus laboriosam.</p>
+        </div>
+      </li>
+    </ul>
+    <nav class="hs-search-results__pagination" role="navigation" aria-label="{{ module.default_text.navigation_aria_label|escape_attr }}">
+      {% if module.pagination.first_and_last == true %}
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--text-and-icon hs-search-results__pagination__link--first" href="#">
+        {% if 'show_arrows' in module.pagination.first_and_last %}
+          {{ first_page_icon_markup() }}
+        {% endif %}
+        {% if 'show_labels' in module.pagination.first_and_last %}
+          <span class="hs-search-results__pagination__link-text show-for-sr--mobile">{{ module.pagination.first_label|escape_html }}</span>
+        {% endif %}
+      </a>
+      {% endif %}
+
+      {% if module.pagination.previous_and_next == true %}
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--text-and-icon hs-search-results__pagination__link--prev" href="#">
+        {% if 'show_arrows' in module.pagination.previous_and_next %}
+          {{ previous_page_icon_markup() }}
+        {% endif %}
+        {% if 'show_labels' in module.pagination.previous_and_next %}
+          <span class="hs-search-results__pagination__link-text show-for-sr--mobile">{{ module.pagination.previous_label|escape_html }}</span>
+        {% endif %}
+      </a>
+      {% endif %}
+
+      {% if show_numbers %}
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--number hs-search-results__pagination__link--active" href="#">
+        1
+      </a>
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--number" href="#">
+        2
+      </a>
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--number" href="#">
+        3
+      </a>
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--number" href="#">
+        4
+      </a>
+      <span class="hs-search-results__pagination__link hs-search-results__pagination__link--ellipsis">...</span>
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--number" href="#">
+        12
+      </a>
+      {% endif %}
+      {% if module.pagination.previous_and_next == true %}
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--text-and-icon hs-search-results__pagination__link--next" href="#">
+        {% if 'show_labels' in module.pagination.previous_and_next %}
+          <span class="hs-search-results__pagination__link-text show-for-sr--mobile">{{ module.pagination.next_label|escape_html }}</span>
+        {% endif %}
+        {% if 'show_arrows' in module.pagination.previous_and_next %}
+          {{ next_page_icon_markup() }}
+        {% endif %}
+      </a>
+      {% endif %}
+      {% if module.pagination.first_and_last == true %}
+      <a class="hs-search-results__pagination__link hs-search-results__pagination__link--text-and-icon hs-search-results__pagination__link--last" href="#">
+        {% if 'show_labels' in module.pagination.first_and_last %}
+          <span class="hs-search-results__pagination__link-text show-for-sr--mobile">{{ module.pagination.last_label|escape_html }}</span>
+        {% endif %}
+        {% if 'show_arrows' in module.pagination.first_and_last %}
+          {{ last_page_icon_markup() }}
+        {% endif %}
+      </a>
+      {% endif %}
+    </nav>
+  {% endif %}
+  {#
+    Search Results Title
+    Search Results Listing
+    Search Results Pagination
+    Populated By JS
+  #}
+</div>
+{% require_js position="head" %}
+
+<script data-search_results-config="config_{{ name|escape_attr }}" type="application/json">
+{
+  "search_results_heading_tag": "{{ heading_tag|escapejson }}",
+  "search_results_page_path": "{{ request.path|escapejson }}",
+  "search_results_count_message": "{{ results_count_message|escapejson }}",
+  "search_results_display_featured_images": "{{ show_featured_images|escapejson  }}",
+  "featured_image_alt": "{{ module.default_text.featured_image|escapejson }}",
+  "show_first_and_last_links": "{{ module.pagination.first_and_last|escapejson }}",
+  "show_previous_and_next_links": "{{ module.pagination.previous_and_next|escapejson }}",
+  "show_numbers": "{{ show_numbers|escapejson }}",
+  "current_page_aria_label": "{{ module.default_text.current_page_aria_label|escapejson }}",
+  "page_number_aria_label": "{{ module.default_text.page_number_aria_label|escapejson }}",
+  "first_page_link_text": "{{ module.default_text.first_page_link_text|escapejson }}",
+  "first_page_icon_markup": "{{ first_page_icon_markup() | escapejson }}",
+  "previous_page_link_text":"{{ module.default_text.previous_page_link_text|escapejson }}",
+  "previous_page_icon_markup": "{{ previous_page_icon_markup() | escapejson }}",
+  "next_page_link_text":"{{ module.default_text.next_page_link_text|escapejson }}",
+  "next_page_icon_markup": "{{ next_page_icon_markup() | escapejson }}",
+  "last_page_link_text":"{{ module.default_text.last_page_link_text|escapejson }}",
+  "last_page_icon_markup": "{{ last_page_icon_markup() | escapejson }}",
+  "no_results_message": "{{ module.default_text.no_results_message|escapejson }}",
+  "navigation_aria_label": "{{ module.default_text.navigation_aria_label|escapejson }}"
+}
+</script>
+{% end_require_js %}

@@ -1,0 +1,59 @@
+{# Category anchor-link strip — sits between hero and content sections. #}
+
+{% require_css %}
+<style>
+  .quicklinks {
+    --ql-bg: #f7f3eb;
+    --ql-ink: #264a3e;
+    --ql-line: #c8bca9;
+    --ql-serif: Georgia, 'Times New Roman', serif;
+
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: var(--ql-bg);
+    border-bottom: 1px solid var(--ql-line);
+    padding: 23px 0;
+    overflow-x: auto;
+    scrollbar-width: none;
+    -webkit-overflow-scrolling: touch;
+  }
+  .quicklinks::-webkit-scrollbar { display: none; }
+  .quicklinks *, .quicklinks *::before, .quicklinks *::after { box-sizing: border-box; }
+
+  .quicklinks__inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 0;
+    flex-wrap: wrap;
+  }
+
+  .quicklinks__link {
+    display: block;
+    padding: 0 23px;
+    font: italic clamp(17px, 1.7vw, 24px) var(--ql-serif);
+    text-decoration: none;
+    color: var(--ql-ink);
+    white-space: nowrap;
+  }
+  .quicklinks__link + .quicklinks__link { border-left: 1px solid var(--ql-line); }
+  .quicklinks__link:hover { text-decoration: underline; }
+  .quicklinks__link:focus-visible { outline: 2px solid var(--ql-ink); outline-offset: 2px; }
+
+  @media (max-width: 600px) {
+    .quicklinks__inner { padding: 0 1.25rem; justify-content: flex-start; }
+    .quicklinks__link { font-size: 15px; padding: 0 14px; }
+  }
+</style>
+{% end_require_css %}
+
+<nav class="quicklinks" aria-label="Quick category links">
+  <div class="quicklinks__inner">
+    {% for link in module.links %}
+    <a class="quicklinks__link" href="{{ link.url|escape_attr }}">{{ link.link_text }}</a>
+    {% endfor %}
+  </div>
+</nav>

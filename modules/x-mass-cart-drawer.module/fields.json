@@ -1,0 +1,74 @@
+[ {
+  "id" : "labels",
+  "name" : "labels",
+  "label" : "Labels",
+  "required" : false,
+  "locked" : true,
+  "children" : [ {
+    "id" : "labels.cart_title",
+    "name" : "cart_title",
+    "label" : "Cart title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Your Cart"
+  }, {
+    "id" : "labels.favorites_title",
+    "name" : "favorites_title",
+    "label" : "Favorites title",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Saved Resources"
+  }, {
+    "id" : "labels.empty_cart",
+    "name" : "empty_cart",
+    "label" : "Empty cart message",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Your cart is empty. Add a gift or resource to get started."
+  }, {
+    "id" : "labels.empty_favorites",
+    "name" : "empty_favorites",
+    "label" : "Empty favorites message",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "No saved resources yet. Select a heart on any resource card."
+  }, {
+    "id" : "labels.checkout_text",
+    "name" : "checkout_text",
+    "label" : "Checkout button text",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "Proceed to Checkout"
+  }, {
+    "id" : "labels.checkout_url",
+    "name" : "checkout_url",
+    "label" : "Checkout URL",
+    "help_text" : "Where the checkout button links. Use #giving to scroll to the Give panel.",
+    "required" : false,
+    "locked" : false,
+    "allow_new_line" : false,
+    "type" : "text",
+    "display_width" : null,
+    "default" : "#giving"
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null
+} ]

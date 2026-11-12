@@ -1,0 +1,86 @@
+[ {
+  "id" : "38b57fcb-4642-1d9a-1530-1d6c2307e071",
+  "name" : "divider_type",
+  "label" : "Divider type",
+  "required" : true,
+  "locked" : false,
+  "display" : "select",
+  "choices" : [ [ "div-line", "Line" ], [ "div-img", "Image" ] ],
+  "multiple" : false,
+  "reordering_enabled" : true,
+  "preset" : null,
+  "type" : "choice",
+  "display_width" : null,
+  "default" : "div-line"
+}, {
+  "id" : "533f1877-f7f8-be60-442f-8134e34309eb",
+  "name" : "image_field",
+  "label" : "Image",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "divider_type",
+    "controlling_value_regex" : "div-img",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "responsive" : true,
+  "resizable" : true,
+  "show_loading" : false,
+  "type" : "image",
+  "display_width" : null,
+  "default" : {
+    "size_type" : "auto",
+    "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Decorations/footer_deco.svg",
+    "alt" : "footer_deco",
+    "loading" : "lazy",
+    "width" : 1200,
+    "height" : 18,
+    "max_width" : 1200,
+    "max_height" : 18
+  }
+}, {
+  "id" : "df0c31cf-fa9a-aecf-4a3e-9a0cc610743b",
+  "name" : "line_height",
+  "label" : "Line height",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "divider_type",
+    "controlling_value_regex" : "div-line",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "display" : "text",
+  "min" : 1,
+  "max" : 30,
+  "step" : 1,
+  "suffix" : "px",
+  "type" : "number",
+  "display_width" : null,
+  "default" : 1
+}, {
+  "id" : "601242bd-ac1f-9366-bf47-3e5dfd56b16d",
+  "name" : "color_field",
+  "label" : "Color",
+  "required" : false,
+  "locked" : false,
+  "visibility" : {
+    "controlling_field" : null,
+    "controlling_field_path" : "divider_type",
+    "controlling_value_regex" : "div-line",
+    "property" : null,
+    "operator" : "EQUAL",
+    "access" : null
+  },
+  "type" : "color",
+  "display_width" : null,
+  "default" : {
+    "color" : "#494D4F",
+    "opacity" : 100
+  }
+} ]

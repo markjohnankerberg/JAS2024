@@ -1,0 +1,739 @@
+<section class="section-{{name}}" role="region" id="{{ module.section_id }}">
+  {% if module.style.section.background.background_type == 'image' %}
+    {% if module.style.section.background.background_image_overlay %}
+      <div class="overlay-{{name}}" aria-hidden="true"></div>
+    {% endif %}
+  {% endif %}
+  
+  <div class="section-limiter">
+     
+    {% if module.show_heading or module.show_supporting_text %}
+      <div class="section-header-{{name}}">
+        {% if module.show_decoration %}
+          <div class="section-decoration {{ module.decoration.alignment }}" aria-hidden="true">
+            {% if module.decoration.decoration.src %}
+              {% set sizeAttrs = 'width="{{ module.decoration.decoration.width|escape_attr }}" height="{{ module.decoration.decoration.height|escape_attr }}"' %}
+              {% if module.decoration.decoration.size_type == 'auto' %}
+                {% set sizeAttrs = 'width="{{ module.decoration.decoration.width|escape_attr }}" height="{{ module.decoration.decoration.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+              {% elif module.decoration.decoration.size_type == 'auto_custom_max' %}
+                {% set sizeAttrs = 'width="{{ module.decoration.decoration.max_width|escape_attr }}" height="{{ module.decoration.decoration.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+              {% endif %}
+               {% set loadingAttr = module.decoration.decoration.loading != 'disabled' ? 'loading="{{ module.decoration.decoration.loading|escape_attr }}"' : '' %}
+              <img src="{{ module.decoration.decoration.src|escape_url }}" alt="{{ module.decoration.decoration.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+            {% endif %}
+          </div>
+        {% endif %}
+        
+        {% if module.show_subheading %}
+          <h5 class="section-subheading">{{ module.subheading }}</h5>
+        {% endif %}
+        
+        {# Section title #}
+        {% if module.show_heading %}
+          <h2 class="section-heading">{{ module.heading }}</h2>
+        {% endif %}
+
+        {# Supporting text #}
+        {% if module.show_supporting_text %}
+          <div class="text-wrapper">
+            {% inline_rich_text field="supporting_text" value="{{ module.supporting_text }}" %}
+          </div>
+        {% endif %}
+      </div>
+    {% endif %}
+    
+    {# Button #}
+    {% if module.show_button %}
+      <div class="custom__btns-{{name}} {{ module.alignment }}">
+        {% for item in module.button_group %}
+          <div class="custom__btn-{{name}}">
+            
+            {# Regular button #}
+            {% if item.button_type == "regular" %}
+              {% set href = item.button.button_url.url.href %}
+              {% if item.button.button_url.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+              {% endif %}
+            
+              <a href="{{ href|escape_url }}" class="btn-{{name}} button {{ item.button.button_style }} btn-{{loop.index}} {{ item.button.corner_radius }} {{ item.button.horizontal_padding }}"
+                {% if item.button.button_url.open_in_new_tab %}target="_blank"{% endif %}
+                {% if item.button.button_url.rel %}rel="{{ item.button.button_url.rel|escape_attr }}"{% endif %}
+                >
+                {{ item.button.button_text }}
+              </a>
+            {% endif %}
+
+            {# CTA button #}
+            {% if item.button_type == "cta" %}
+              {% cta guid="{{ item.cta_field }}" %}
+            {% endif %}
+
+            {# Image button #}
+            {% if item.button_type == "image" %}      
+              {% set href = item.image.image_url.url.href %}
+              {% if item.image.image_url.url.type is equalto "EMAIL_ADDRESS" %}
+                {% set href = "mailto:" + href %}
+              {% endif %}
+            
+              <a href="{{ href|escape_url }}"
+                {% if item.image.image_url.open_in_new_tab %}target="_blank"{% endif %}
+                {% if item.image.image_url.rel %}rel="{{ item.image.image_url.rel|escape_attr }}"{% endif %}
+                >
+                {% if item.image.image_field.src %}
+                  {% set sizeAttrs = 'width="{{ item.image.image_field.width|escape_attr }}" height="{{ item.image.image_field.height|escape_attr }}"' %}
+                  {% if item.image.image_field.size_type == 'auto' %}
+                    {% set sizeAttrs = 'width="{{ item.image.image_field.width|escape_attr }}" height="{{ item.image.image_field.height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                  {% elif item.image.image_field.size_type == 'auto_custom_max' %}
+                    {% set sizeAttrs = 'width="{{ item.image.image_field.max_width|escape_attr }}" height="{{ item.image.image_field.max_height|escape_attr }}" style="max-width: 100%; height: auto;"' %}
+                  {% endif %}
+                   {% set loadingAttr = item.image.image_field.loading != 'disabled' ? 'loading="{{ item.image.image_field.loading|escape_attr }}"' : '' %}
+                  <img src="{{ item.image.image_field.src|escape_url }}" alt="{{ item.image.image_field.alt|escape_attr }}" {{ loadingAttr }} {{ sizeAttrs }}>
+                {% endif %}
+              </a>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    {% endif %}
+
+    <div class="articles-container">
+      <div class="article-tabs" role="tablist">
+        {% for item in module.article_tabs.card %}
+          <div class="article-tab{% if loop.index == 1 %} active{% endif %}" data-id="card-{{loop.index}}" role="tab">
+            <h4>{{ item.tab_name }}</h4>
+          </div>
+        {% endfor %}
+      </div>
+      
+      <div class="article-cards">
+        {% for item in module.article_tabs.card %}
+          <div class="article-card{% if loop.index == 1 %} active{% endif %}" data-id="card-{{loop.index}}" role="tabpanel">
+           
+            <div class="splide slider-{{name}} articles-{{name}}" aria-label="Articles slider">
+              <div class="splide__track">
+                {% set rec_posts = blog_recent_posts(item.select_blog, item.number_of_latest_articles_to_display) %}
+                
+                <ul class="splide__list slider-cards post-cards">
+                  {% for post in rec_posts %}
+                    {% set post_tag_names %}{% for tag in post.tag_list %}{{ tag.name|lower }} {% endfor %}{% endset %}
+                    {% if 'transcript' not in post_tag_names %}
+                    <li class="splide__slide slider-card post-card card-{{loop.index}}">
+                      <div class="feat-img-wrapper">
+                        <a class="post-link" href="{{ post.absolute_url }}">
+                          <img class="post-img" src="{{ post.featured_image }}" loading="lazy" alt="{{ post.featured_image_alt_text }}">
+                        </a>
+                      </div>
+                      
+                      <div class="card-content">
+                        <p class="published-date">{{ post.publish_date|datetimeformat('%B %e, %Y') }} </p>
+                        <p class="post-info">
+                          <span class="post-author">
+                            {# <a href="{{ blog_author_url(group.id, post.blog_post_author.slug) }}"> #} {# v1 #}
+                            <a href="{{ blog_author_url(item.select_blog, post.blog_post_author.slug) }}"> {# v2 #}
+                              {{ post.blog_post_author.display_name }}
+                            </a>
+                          </span>
+                          <span class="info-divider">|</span>
+                          <span class="post-tags">
+                          {% for tag in post.tag_list %}
+                            {# <a class="post-tag-link" href="{{ blog_tag_url(group.id, tag.slug) }}">{{ tag.name }}</a>{% if not loop.last %},{% endif %} #} {# v1 #}
+                            <a class="post-tag-link" href="{{ blog_tag_url(item.select_blog, tag.slug) }}">{{ tag.name }}</a>{% if not loop.last %},{% endif %}
+                          {% endfor %}
+                          </span>
+                        </p>
+                        
+                        <h4 class="post-heading"><a class="post-link" href="{{ post.absolute_url }}">{{post.name}}</a></h4>
+                      </div>
+                      
+                    </li>
+                    {% endif %}
+                  {% endfor %}
+                </ul>
+              </div>
+            </div>
+            
+            {% if item.show_button %}
+              <div class="card-btn-wrapper">
+                {% set href = item.button.link_field_1.url.href %}
+                {% if item.button.link_field_1.url.type is equalto "EMAIL_ADDRESS" %}
+                  {% set href = "mailto:" + href %}
+                {% endif %}
+                <a class="btn-{{name}} button {{ item.button.button_style }} {{ item.button.corner_radius }} {{ item.button.horizontal_padding }}"
+                  {% if item.button.link_field_1.url.type is equalto "CALL_TO_ACTION"  %}
+                    href="{{ href }}" {# The href here is not escaped as it is not editable and functions as a JavaScript call to the associated CTA #}
+                  {% else %}
+                    href="{{ href|escape_url }}"
+                  {% endif %}
+                  {% if item.button.link_field_1.open_in_new_tab %}
+                    target="_blank"
+                  {% endif %}
+                  {% if item.button.link_field_1.rel %}
+                    rel="{{ item.button.link_field_1.rel|escape_attr }}"
+                  {% endif %}
+                  >
+                  {{ item.button.text_field }}
+                </a>
+              </div>
+            {% endif %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+</section>
+
+{% require_css %}
+  <style>
+    .section-{{name}} *,
+    .section-{{name}} *::before,
+    .section-{{name}} *::after {
+      box-sizing: border-box;
+    }
+    
+    .section-{{name}} {
+      margin: 0 auto;
+      {% if module.style.section.background.background_type == 'color' %}
+        background-color: rgba({{ module.style.section.background.background_color.color|convert_rgb }}, {{ module.style.section.background.background_color.opacity/100 }});
+      {% elif module.style.section.background.background_type == 'gradient' %}
+        background: {{ module.style.section.background.gradient_field.css }};
+      {% elif module.style.section.background.background_type == 'image' %}
+        position: relative;
+        {{ module.style.section.background.background_image.css }}
+      {% endif %}
+      {{ module.style.section.spacing_desktop.css }}
+      
+      {% if module.style.section.show_top_and_bottom_border %}
+        {{ module.style.section.top_and_bottom_border.css }}
+        border-left: none !important;
+        border-right: none !important;
+      {% endif %}
+    }
+    
+    {% if module.style.section.background.background_type == 'image' %}
+      {% if module.style.section.background.background_image_overlay %}
+        .overlay-{{name}}{
+          position: absolute;
+          height: 100%;
+          width: 100%;
+          top: 0;
+          left: 0;
+          background: rgba({{ module.style.section.background.overlay_color_opacity.color|convert_rgb }}, {{ module.style.section.background.overlay_color_opacity.opacity/100 }});
+        }
+      {% endif %}
+    {% endif %}
+    
+    @media (max-width: 767px) {
+      .section-{{name}} {
+        {{ module.style.section.spacing_mobile.css }}
+      }
+    }
+    
+    .section-{{name}} :is(h1, h2, h3, h4, h5, h6, p) {
+      margin-top: 0;
+    }
+    
+    .section-{{name}} .section-limiter {
+      max-width: {{ module.style.section.content_maximum_width ~ 'px' }};
+      margin: 0 auto;
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 40px;
+    }
+    
+    .section-{{name}} .section-header-{{name}} {
+      display: flex;
+      flex-direction: column;
+      /* align-items: center; */
+      gap: 20px;
+      
+      margin: 0 auto;
+      max-width: {{ module.text_maximum_width ~ 'px' }};
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-decoration {
+      display: flex;
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-decoration.left {
+      justify-content: flex-start;
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-decoration.center {
+      justify-content: center;
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-decoration.right {
+      justify-content: flex-end;
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-decoration img {
+      display: block;
+      max-width: 100%;
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-heading {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.style.heading.alignment }};
+      margin-bottom: {{ module.style.heading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.style.heading.color_field.color|convert_rgb }}, {{ module.style.heading.color_field.opacity/100 }});
+      font-size: {{ module.style.heading.font_size ~ 'px' }};
+      font-weight: {{ module.style.heading.font_weight }};
+      font-style: {{ module.style.heading.font_style }};
+      text-transform: {{ module.style.heading.text_transform }};
+      letter-spacing: {{ module.style.heading.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.heading.line_height }};
+    }
+    
+    .section-{{name}} .section-header-{{name}} .section-subheading {
+      margin: 0;
+      padding: 0;
+      text-align: {{ module.style.subheading.alignment }};
+      margin-bottom: {{ module.style.subheading.bottom_margin ~ 'px' }};
+      color: rgba({{ module.style.subheading.color_field.color|convert_rgb }}, {{ module.style.subheading.color_field.opacity/100 }});
+      font-size: {{ module.style.subheading.font_size ~ 'px' }};
+      font-weight: {{ module.style.subheading.font_weight }};
+      font-style: {{ module.style.subheading.font_style }};
+      text-transform: {{ module.style.subheading.text_transform }};
+      letter-spacing: {{ module.style.subheading.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.subheading.line_height }};
+    }
+    
+    .section-{{name}} .section-header-{{name}} .text-wrapper .hs_cos_wrapper_type_inline_rich_text > *:last-child {
+      margin-bottom: 0;
+    }
+    
+    .section-{{name}} .custom__btns-{{name}} {
+      display: flex;
+      gap: 20px;
+      flex-wrap: wrap;
+    }
+    
+    .section-{{name}} .custom__btns-{{name}}.left {
+      justify-content: flex-start;
+    }
+    
+    .section-{{name}} .custom__btns-{{name}}.center {
+      justify-content: center;
+    }
+    
+    .section-{{name}} .custom__btns-{{name}}.right {
+      justify-content: flex-end;
+    }
+
+    .section-{{name}} .custom__btns-{{name}} .custom__btn-{{name}} .btn-{{name}}.btn-custom {
+      text-decoration: none;
+      color: rgba({{ module.style.button.text_color.color|convert_rgb }}, {{ module.style.button.text_color.opacity/100 }});
+      background: rgba({{ module.style.button.background_color.color|convert_rgb }}, {{ module.style.button.background_color.opacity/100 }});
+      border-radius: {{ module.style.button.border_radius ~ 'px' }};
+      font-size: {{ module.style.button.text.font_size ~ 'px' }};
+      font-weight: {{ module.style.button.text.font_weight }};
+      font-style: {{ module.style.button.text.font_style }};
+      letter-spacing: {{ module.style.button.text.letter_spacing ~ 'px' }};
+      line-height: {{ module.style.button.text.line_height }};
+      text-transform: {{ module.style.button.text.text_transform }};
+      transition: var(--transition);
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      {{ module.style.button.border_field.css }}
+      {{ module.style.button.spacing.css }}
+    }
+
+    .section-{{name}} .custom__btns-{{name}} .custom__btn-{{name}} .btn-{{name}}.btn-custom:hover {
+      background: rgba({{ module.style.button.background_color_hover.color|convert_rgb }}, {{ module.style.button.background_color_hover.opacity/100 }});
+      color: rgba({{ module.style.button.text_color_hover.color|convert_rgb }}, {{ module.style.button.text_color_hover.opacity/100 }});
+      {{ module.style.button.border_hover.css }}
+    }
+    
+    /* Articles */
+    
+    .section-{{name}} .section-limiter .articles-container {
+      width: 100%;
+    }
+    
+    .section-{{name}} .section-limiter .articles-container .article-tabs {
+      display: flex;
+      align-items: center;
+      gap: 32px;
+      border-bottom: var(--tabs-border-bottom);
+    }
+    
+    .section-{{name}} .articles-container .article-tab {
+      position: relative;
+      cursor: pointer;
+      padding-bottom: 16px;
+    }
+    
+    .section-{{name}} .articles-container .article-tab::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      bottom: -1px;
+      width: 100%;
+      height: 1px;
+      background: transparent;
+      transition: var(--transition);
+    }
+    
+    .section-{{name}} .articles-container .article-tab.active::before {
+      background: var(--clr-tabs-active);
+    }
+
+    .section-{{name}} .articles-container .article-tab h4 {
+      font-size: 24px;
+      font-weight: 700;
+      line-height: 1.2;
+      color: var(--clr-tabs);
+      /* opacity: 0.7; */
+      transition: var(--transition);
+      margin: 0;
+      padding: 0;
+    }
+    
+    .section-{{name}} .articles-container .article-tab:hover h4 {
+      color: var(--clr-tabs-hover);
+    } 
+    
+    .section-{{name}} .articles-container .article-tab.active h4 {
+      color: var(--clr-tabs-active);
+      opacity: 1;
+    }
+    
+    .section-{{name}} .section-limiter .article-cards {
+      padding-top: 40px;
+    }
+
+    .section-{{name}} .articles-container .article-cards .article-card {
+      display: none;
+      /* overflow: hidden; */
+    }
+    
+    .section-{{name}} .articles-container .article-cards .article-card.active {
+      display: block;
+    }
+    
+    .section-{{name}} .section-limiter .article-cards .post-card {
+      list-style: none;
+      overflow: hidden;
+      border-radius: 5px 5px 8px 8px;
+      background: var(--clr-light-grey);
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .feat-img-wrapper {
+      width: 100%;
+      height: 220px;
+      min-height: 220px;
+      max-height: 220px;
+      overflow: hidden;
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .feat-img-wrapper img {
+      max-width: 100%;
+      display: block;
+      object-fit: cover;
+      min-height: 100%;
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content {
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+      padding: 20px;
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .published-date {
+      color: var(--clr-dark-beige);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 500;
+      line-height: 1.5;
+      letter-spacing: 0.0;
+      text-transform: uppercase;
+    }
+    
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-info {
+      margin: 0;
+      padding: 0;
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-author a,
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-tags a,
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .info-divider {
+      color: var(--clr-dark-beige);
+      margin: 0;
+      padding: 0;
+      font-size: 14px;
+      font-weight: 600;
+      line-height: 1.5;
+      letter-spacing: 0.02em;
+      text-transform: uppercase;
+      text-decoration: none;
+      transition: var(--transition);
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-author a,
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-tags a {
+      cursor: pointer;
+    }
+    
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-author a:hover,
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-tags a:hover {
+      color: var(--clr-dark);
+    }
+    
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .info-divider {
+      display: inline-block;
+      padding: 0 4px;
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-tag-link {
+      text-decoration: none;
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-heading {
+      font-size: 24px;
+      font-weight: 500;
+      line-height: 1.4;
+      color: var(--clr-grey);
+      transition: var(--transition);    
+      margin: 0;
+      padding: 0;
+    }
+    
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-heading:hover {
+      color: var(--clr-dark);
+    }
+
+    .section-{{name}} .section-limiter .article-cards .post-card .card-content .post-heading a {
+      cursor: pointer;
+      text-decoration: none;
+      color: inherit;
+      font-weight: inherit;
+    }
+    
+    .section-{{name}} .articles-container .article-card .card-btn-wrapper {
+      margin: 40px auto 0 auto;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+    
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__arrows {
+      display: flex;
+      align-items: center;
+      gap: 9px;
+      position: absolute;
+      right: 0;
+      top: -82px;
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__arrow {
+      background: transparent;
+      width: 40px;
+      height: 40px;
+      transform: translate(0);
+      opacity: 1;
+      position: static !important;
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__arrow svg {
+      width: 24px;
+      height: 24px;
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__arrow svg path {
+      transition: var(--transition);
+      fill: var(--clr-slider-arrow);
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__arrow:hover svg path {
+      fill: var(--clr-slider-arrow-hover);
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .slide-counter {
+      font-weight: 500;
+      font-size: 16px;
+      line-height: 1.5;
+      margin: 0;
+      color: var(--clr-slider-arrow);
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__pagination {
+      counter-reset: pagination-num;
+      bottom: auto;
+      left: auto;
+      padding: 0;
+      position: absolute;
+      top: -80px;
+      right: 45px;
+      opacity: 0;
+      pointer-events: none;
+      z-index: -1;
+    }
+    
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__pagination .splide__pagination__page.is-active {
+      transform: scale(1);
+      opacity: 1;
+    }
+
+    .section-{{name}} .section-limiter .slider-{{name}} .splide__pagination__page:before {
+      counter-increment: pagination-num;
+      content: counter( pagination-num );
+    }
+    
+    @media (max-width: 1080px) {
+      .section-{{name}} .section-limiter .articles-container .article-tabs {
+        overflow-x: scroll;
+        max-width: calc(100% - 130px);
+      }
+      
+      .section-{{name}} .articles-container .article-tab h4 {
+        width: max-content;
+      }
+    }
+    
+    @media (max-width: 767px) {
+      .section-{{name}} .section-limiter .articles-container .article-tabs {
+        overflow-x: scroll;
+        max-width: 100%;
+      }
+      
+      .section-{{name}} .articles-container .article-tab {
+        padding-bottom: 12px;
+      }
+      
+      .section-{{name}} .articles-container .article-tab h4 {
+        width: max-content;
+        font-size: 18px;
+      }
+      
+      .section-{{name}} .articles-container .article-tab::before {
+        bottom: 0px;
+      }
+      
+      .section-{{name}} .section-limiter .slider-{{name}} {
+        padding-top: 60px;
+      }
+      
+      .section-{{name}} .section-limiter .slider-{{name}} .splide__arrows {
+        top: 0px;
+        right: 50%;
+        transform: translateX(50%);
+      }
+    }
+    
+    {#
+    @media (max-width: 640px) {
+      .section-{{name}} .section-limiter .slider-{{name}} {
+        padding-top: 60px;
+      }
+      
+      .section-{{name}} .section-limiter .slider-{{name}} .splide__arrows {
+        top: 0px;
+        right: 50%;
+        transform: translateX(50%);
+      }
+    }
+    #}
+    
+    @media (max-width: 480px) {
+      .section-{{name}} .section-limiter .articles-container .article-tabs {
+        gap: 20px;
+      }
+    }
+   
+  </style>
+{% end_require_css %}
+
+{% require_js %}
+  <script>
+    $(document).ready(function() {
+      $('.section-{{name}} .article-tab').click(function() {
+        // Remove 'active' class from all tabs and article cards
+        $('.section-{{name}} .article-tab').removeClass('active');
+        $('.section-{{name}} .article-card').removeClass('active').hide();
+
+        // Add 'active' class to the clicked tab
+        $(this).addClass('active');
+
+        // Get the data-id of the clicked tab
+        var dataId = $(this).data('id');
+
+        // Find the article card with the same data-id and add 'active' class to it, then fade it in
+        $('.section-{{name}} .article-card[data-id="' + dataId + '"]').addClass('active').fadeIn();
+      });
+
+      // Initially hide all article cards except the active one
+      $('.section-{{name}} .article-card:not(.active)').hide();
+    
+      // Initialize all sliders
+      $('.articles-{{name}}').each(function() {
+        let $this = $(this);  // Current slider element
+        let articleSlider = new Splide(this, {
+          type: 'loop',
+          pagination: true,
+          arrows: true,
+//           autoplay: true,
+          rewind: true,
+          interval: 5000,
+          pauseOnHover: true,
+          arrowPath: "M20 0C8.97219 0 0 8.97219 0 20C0 31.0278 8.97219 40 20 40C31.0278 40 40 31.0278 40 20C40 8.97219 31.0278 0 20 0ZM20 37.5C10.3503 37.5 2.5 29.6497 2.5 20C2.5 10.3503 10.3503 2.5 20 2.5C29.6497 2.5 37.5 10.3503 37.5 20C37.5 29.6497 29.6497 37.5 20 37.5ZM28.3838 19.1163C28.8722 19.6047 28.8722 20.3956 28.3838 20.8838L22.1338 27.1338C21.8897 27.3778 21.5697 27.5 21.25 27.5C20.9303 27.5 20.6103 27.3778 20.3662 27.1338C19.8778 26.6453 19.8778 25.8544 20.3662 25.3662L24.4825 21.25H12.5C11.8097 21.25 11.25 20.6909 11.25 20C11.25 19.3091 11.8097 18.75 12.5 18.75H24.4825L20.3662 14.6337C19.8778 14.1453 19.8778 13.3544 20.3662 12.8663C20.8547 12.3781 21.6456 12.3778 22.1338 12.8663L28.3838 19.1163Z",
+          speed: 600,
+          gap: 30,
+          perPage: 3,
+          perMove: 3,
+          breakpoints: {
+            920: {
+              perPage: 2,
+              perMove: 2
+            },
+            580: {
+              perPage: 1,
+              perMove: 1
+            },
+          },
+        });
+
+        articleSlider.mount();
+
+        let totalPages = $this.find('.splide__pagination li').length;
+
+        // Create the slide counter element
+        let $slideCounter = $('<div class="slide-counter" style="margin: auto 0;">1/' + totalPages + '</div>');
+
+        // Insert the slide counter between the arrows
+        let $prevArrow = $this.find('.splide__arrow--prev');
+        $prevArrow.after($slideCounter);
+
+        // Function to update the slide counter
+        function updateSlideCounter() {
+          let currentPage = $this.find('.splide__pagination__page.is-active').parent().index() + 1;
+          $slideCounter.text(currentPage + '/' + totalPages);
+        }
+
+        // Update the counter whenever the slide moves
+        articleSlider.on('move', function() {
+          updateSlideCounter();
+        });
+
+        articleSlider.on('resize', function() {
+          updateSlideCounter();
+        });
+
+        // Initial update
+        updateSlideCounter();
+    
+        $(window).resize(function() {
+            updateSlideCounter();
+        });
+      });
+    });
+  </script>
+{% end_require_js %}
+
+

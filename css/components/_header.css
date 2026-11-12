@@ -1,0 +1,35 @@
+header.header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  max-height: 100vh;
+  overflow-y: auto;
+  z-index: 1000;
+  display: block;
+  background-color: transparent;
+}
+
+body.no-scroll {
+  overflow: hidden; /* Prevent body from scrolling */
+}
+
+header.header.transparent {
+  background-color: transparent !important;
+}
+
+header.header.clr-grey {
+  background-color: var(--clr-grey) !important;
+}
+
+header.header.clr-beige {
+  background-color: var(--clr-beige) !important;
+}
+
+header.header.clr-dark-beige {
+  background-color: var(--clr-dark-beige) !important;
+}
+
+header.header.clr-light-beige {
+  background-color: var(--clr-light-beige) !important;
+}

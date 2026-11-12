@@ -1,0 +1,79 @@
+/* @import url('http://example.com/example_style.css'); */
+
+/***********************************************/
+/* CSS @imports must be at the top of the file */
+/* Add them above this section                 */
+/***********************************************/
+
+/*****************************************/
+/* Start your style declarations here    */
+/*****************************************/
+
+@font-face {
+    font-family: Lato;
+    font-weight: 500;
+    font-style: italic;
+    text-rendering: optimizeLegibility;
+    src: url(../fonts/lato-medium.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: Lato;
+    font-weight: 600;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    src: url(../fonts/lato-semibold.ttf) format("ttf");
+}
+
+@font-face {
+    font-family: Lato;
+    font-weight: 900;
+    font-style: normal;
+    text-rendering: optimizeLegibility;
+    src: url(../fonts/lato-black.ttf) format("ttf");
+}
+
+body {
+  --fs-normal: 18px;
+  --transition: 0.3s ease-in-out;
+  
+  /* Colors */
+  --clr-grey: #393D3F;
+  --clr-grey-300: #585E61;
+  --clr-light-grey: #FAF9F8;
+  --clr-navy: #1B314B;
+  --clr-sea: #546A7B;
+  --clr-tale: #62929E;
+  --clr-beige: #C6C5B9;
+  --clr-light-beige: #B7AB9F; /* prev: --clr-dark-beige */
+  --clr-dark-beige: #88817B; /* prev: --clr-grey-200 */
+  --clr-light: #fff;
+  --clr-dark: #000;
+  
+  --clr-btn-primary: #88817B;
+  --clr-btn-primary-hover: #B7AB9F;
+  
+  --clr-btn-secondary: #B7AB9F;
+  --clr-btn-secondary-hover: #fff;
+  
+  --clr-slider-arrow: #88817B;
+  --clr-slider-arrow-hover: #665E58;
+  
+  --clr-form-error-label: #ef6b51;
+  
+  --clr-tabs: #B7AB9F;
+  --clr-tabs-active: #88817B;
+  --clr-tabs-hover: #88817B;
+  --tabs-border-bottom: 1px solid rgba(183, 171, 159, 0.2);
+  
+  --ff-lato-medium: 'Lato Medium', 'Lato', sans-serif;
+  --ff-lato-600: 'Lato Semibold', 'Lato', sans-serif;
+  
+  --content-max-width: 1200px;
+}
+  
+@media (max-width: 767px) {
+  body {
+    --fs-normal: 16px;
+  }
+}

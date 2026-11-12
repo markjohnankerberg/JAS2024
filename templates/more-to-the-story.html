@@ -1,0 +1,2528 @@
+<!--
+  templateType: page
+  isAvailableForNewContent: true
+  label: More to the Story 2024
+  screenshotPath: ../images/template-previews/more-to-the-story.png
+-->
+{% extends "./layouts/base.html" %}
+
+{% block body %}
+  <div class="body-container">
+    {% module "header_bg" path="/JAS2024/modules/Header background color", label="Header background color" %}
+    <div class="header-top-fill"></div> {# It serves to position the next section below the header #}
+  </div> 
+
+{% dnd_area "dnd_area"
+  label="Main section",
+  class="body-container body-container--mtts"
+%}
+
+  {# Section #1 - Breadcrumbs #}
+  {% dnd_section
+      max_width=1200,
+      background_color="rgba(250, 249, 248, 1)",
+      padding={
+        "default" : {
+          "bottom" : "15px",
+          "left" : "30px",
+          "right" : "30px",
+          "top" : "18px"
+        },
+        "mobile" : {
+          "left" : "20px",
+          "right" : "20px"
+        }
+      }
+    %}
+      {% dnd_column
+        offset=0,
+        width=12,
+        padding={
+          "default" : {
+            "bottom" : "0px",
+            "left" : "0px",
+            "right" : "0px",
+            "top" : "0px"
+          }
+        }
+      %}
+        {% dnd_row %}
+          {% dnd_module
+            path="/JAS2024/modules/Breadcrumbs",
+            offset=0,
+            width=12,
+            breadcrumbs=[ {
+              "page_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "",
+                  "type" : "CONTENT"
+                }
+              },
+              "text_field" : "Home"
+            }, {
+              "page_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "",
+                  "type" : "CONTENT"
+                }
+              },
+              "text_field" : "Watch"
+            }, {
+              "page_url" : {
+                "no_follow" : false,
+                "open_in_new_tab" : false,
+                "url" : {
+                  "href" : "",
+                  "type" : "CONTENT"
+                }
+              },
+              "text_field" : "More to the Story"
+            } ]
+          %}
+          {% end_dnd_module %}
+        {% end_dnd_row %}
+      {% end_dnd_column %}
+    {% end_dnd_section %}
+  
+  {# Section #2 - Heading #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "40px",
+        "left" : "30px",
+        "right" : "30px",
+        "top" : "40px"
+      },
+      "mobile" : {
+        "left" : "20px",
+        "right" : "20px"
+      }
+    }
+  %}
+    {% dnd_module
+      path="@hubspot/rich_text",
+      offset=0,
+      width=12
+    %}
+      {% module_attribute "html" %}
+        <h1 style="text-align: center; margin-bottom: 0;"><span style="color: #000000;">More To The Story</span></h1>{{ include_custom_fonts({"Lato":["Regular","Medium","Black","Semibold"],"Adobe Garamond Pro":["Bold","Bold Italic","Regular","Regular Italic","Semi Bold","Semi Bold Italic"]}) }}
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #3 - Video section #}
+  {% dnd_section
+    background_color="rgba(27, 49, 75, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px"
+      }
+    },
+    max_width=878
+  %}
+    {% dnd_module
+      path='/JAS2024/modules/Video with info text',
+      offset=0,
+      width=12,
+      embed_field={
+        "height" : 240,
+        "max_height" : 240,
+        "max_width" : 426,
+        "oembed_response" : {
+          "author_name" : "John Ankerberg",
+          "author_url" : "https://vimeo.com/johnankerberg",
+          "height" : "240",
+          "html" : "<iframe src=\"https://player.vimeo.com/video/1011056741?app_id=122963\" width=\"426\" height=\"240\" frameborder=\"0\" allow=\"autoplay; fullscreen; picture-in-picture; clipboard-write\" title=\"Demystifying UFOs: The UFO-Occult Connection\"></iframe>",
+          "provider_name" : "Vimeo",
+          "provider_url" : "https://vimeo.com/",
+          "thumbnail_height" : "166",
+          "thumbnail_url" : "https://i.vimeocdn.com/video/1932705607-98515267fcd18faf9f079bd092d3d216db15fd8cb1f2f2fc0386459862390c1f-d_295x166",
+          "thumbnail_width" : "295",
+          "title" : "Demystifying UFOs: The UFO-Occult Connection",
+          "type" : "video",
+          "version" : "1.0",
+          "width" : "426"
+        },
+        "oembed_url" : "https://player.vimeo.com/video/1011056741?loop=0&title=0&portrait=0&byline=0&dnt=0&color&autopause=0&autoplay=1",
+        "size_type" : "auto_full_width",
+        "source_type" : "oembed",
+        "width" : 426
+      }
+    %}
+      {% module_attribute "info_text" %}
+
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #4 - Custom section heading module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_module
+      path="/JAS2024/modules/Custom section header",
+      offset=0,
+      width=12,
+      button_group=[ {
+        "button" : {
+          "button_style" : "btn-white-outline",
+          "button_text" : "Watch this series",
+          "button_url" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "",
+              "type" : "EXTERNAL"
+            }
+          },
+          "corner_radius" : "radius-s",
+          "horizontal_padding" : "padd-normal"
+        },
+        "button_type" : "regular",
+        "image" : {
+          "image_field" : {
+            "loading" : "lazy",
+            "size_type" : "auto",
+            "src" : ""
+          },
+          "image_url" : {
+            "no_follow" : false,
+            "open_in_new_tab" : false,
+            "url" : {
+              "href" : "https://duckduckgo.com/",
+              "type" : "EXTERNAL"
+            }
+          }
+        }
+      } ],
+      heading="UFO - occult connection",
+      show_button=true,
+      show_heading=true,
+      style={
+        "heading" : {
+          "color_field" : {
+            "color" : "#fff",
+            "css" : "#ffffff",
+            "hex" : "#fff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          }
+        },
+        "section" : {
+          "background" : {
+            "background_color" : {
+              "color" : "#1b314b",
+              "css" : "#1b314b",
+              "hex" : "#1b314b",
+              "opacity" : 100,
+              "rgb" : "rgb(27, 49, 75)",
+              "rgba" : "rgba(27, 49, 75, 1)"
+            }
+          },
+          "content_maximum_width" : 880,
+          "spacing_desktop" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 30
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 20
+              }
+            }
+          },
+          "spacing_mobile" : {
+            "padding" : {
+              "bottom" : {
+                "units" : "px",
+                "value" : 60
+              },
+              "left" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "right" : {
+                "units" : "px",
+                "value" : 20
+              },
+              "top" : {
+                "units" : "px",
+                "value" : 20
+              }
+            }
+          }
+        },
+        "subheading" : {
+          "color_field" : {
+            "color" : "#fff",
+            "css" : "#ffffff",
+            "hex" : "#fff",
+            "opacity" : 100,
+            "rgb" : "rgb(255, 255, 255)",
+            "rgba" : "rgba(255, 255, 255, 1)"
+          }
+        }
+      },
+      subheading="Watch our latest episode"
+    %}
+      {% module_attribute "supporting_text" %}
+        <p style="text-align: center; margin-bottom: 0px; font-size: 16px;"><span style="color: #b7ab9f;">featuring Dr. Hugh Ross</span></p>
+        <p style="text-align: center; margin-bottom: 0;">&nbsp;</p>
+        <p style="text-align: center; margin-bottom: 0px; font-size: 16px;"><span style="color: #ffffff;">Dr. Ross reveals the clear connection between occult influences in your life and your chances of encountering a UFO. He explains how you can unintentionally open yourself to occult forces through some seemingly innocent practices.</span></p>
+      {% end_module_attribute %}
+    {% end_dnd_module %}
+  {% end_dnd_section %}
+
+  {# Section #5 - Tabs module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Tabs",
+          offset=0,
+          width=12,
+          style={
+            "section" : {
+              "spacing_desktop" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              },
+              "spacing_mobile" : {
+                "padding" : {
+                  "bottom" : {
+                    "units" : "px",
+                    "value" : 30
+                  },
+                  "left" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "right" : {
+                    "units" : "px",
+                    "value" : 20
+                  },
+                  "top" : {
+                    "units" : "px",
+                    "value" : 60
+                  }
+                }
+              }
+            }
+          },
+          tabs=[ {
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "rel" : "",
+                  "sponsored" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "href_with_scheme" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  },
+                  "user_generated_content" : false
+                },
+                "text_field" : "More resources on ufos"
+              },
+              "content" : [ {
+                "content_type" : "con-h",
+                "heading" : "Hugh Ross",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Dr. Myers joins Dr. Ankerberg to discuss how Christians should respond to the Israeli war. He shares compelling stories from his time in Israel shortly after October 7, 2023 and challenges viewers to discover the facts for themselves. Myers shares biblical evidence for support of Israel, as well as specific information regarding Hamas’ propaganda campaign that has led to the anti-Semitism we see in our culture today."
+              }, {
+                "content_type" : "con-rt",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : '<p style=\"font-weight: 18px; margin-top: -10px;\">Founder and senior scholar of Reasons to Believe</p>\n<p style=\"font-weight: 16px;\">Hugh Ross is the founder and senior scholar of Reasons to Believe, an organization dedicated to communicating the compatibility of science and the Christian faith. While in college, Hugh committed his life to Jesus Christ after his study of cosmology convinced him of the existence of a Creator, specifically the God of the Bible.</p>\n<p style=\"font-weight: 16px;\">Hugh holds a degree in physics from the University of British Columbia and a PhD in astronomy from the University of Toronto. After five years on the Caltech faculty, he transitioned to full-time ministry and still serves on the pastoral team at Christ Church Sierra Madre. His writings include journal and magazine articles, hundreds of blogs, and numerous books-Why the Universe Is the Way It Is, Improbable Planet, Designed to the Core, and <a href=\"https://support.reasons.org/category/featured-products/rescuing-inerrancy\" rel=\"noopener\" target=\"_blank\">Rescuing Inerrancy</a>, among others.</p>\n<p style=\"font-weight: 16px;\">He has spoken on hundreds of university campuses as well as at conferences and churches around the world and participates in the weekly Stars, Cells, and God podcast.</p>',
+                "subheading" : "Lorem ipsum",
+                "text" : ""
+              } ],
+              "image_field_1" : {
+                "alt" : "Headshot of Dr Hugh Ross",
+                "height" : 1104,
+                "loading" : "lazy",
+                "max_height" : 1104,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/dr_hugh_ross_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : true
+            } ],
+            "tab_name" : "Our Guest"
+          }, {
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "rel" : "",
+                  "sponsored" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "href_with_scheme" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  },
+                  "user_generated_content" : false
+                },
+                "text_field" : "More resources"
+              },
+              "content" : [ {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "When we bring a guest into our studio, we usually speak with them about a specific topic—some area in which they have established expertise or a particular passion. But there’s more to their story. In this new series hosted by Michelle Ankerberg and Jeff Pallansch, you’ll get to know our guests better as they chat about their salvation story, their own faith journey, and perhaps a glimpse into their plans for the future.  Because there’s More To The Story."
+              } ],
+              "image_field_1" : {
+                "alt" : "Michele Ankerberg and Jeff Pallansch in studio",
+                "height" : 740,
+                "loading" : "lazy",
+                "max_height" : 740,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/about_the_show_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : false
+            } ],
+            "tab_name" : "About the Show"
+          }, {
+            "card" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "More resources"
+              },
+              "content" : [ {
+                "content_type" : "con-h",
+                "heading" : "Michelle Ankerberg",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Lorem ipsum"
+              }, {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Michelle graduated with a BS degree in Communications from Bob Jones University in May 2000. She joined the staff of the John Ankerberg Show in May 2000, but that just formalized a working relationship with the Show that began when she was very, very young. Currently she is Supervisor of Customer Service and Shipping. In that position, she oversees all orders that come in and products that are shipped out. She is also involved in making decisions with any of the print material that goes out. In addition to her hosting duties with “More To The Story,” Michelle hosts her own radio podcast called “A Moment with Michelle.” In her spare time, Michelle enjoys playing the piano, swimming, playing tennis, and traveling."
+              }, {
+                "content_type" : "con-sh",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Fun Fact",
+                "text" : "Lorem ipsum"
+              }, {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "When we asked her to relate a memory about her co-host Jeff, who is also her cousin, she told us: “One of the memories I have with Jeff is when we took a trip to India with my parents. In India, when we went sightseeing all the kids came up and wanted a selfie with us because Jeff is over 6 feet tall and looked like some professional athlete. We also both have blonde hair. We’re pretty sure our pictures are all around Delhi in India because of those selfies!”"
+              } ],
+              "image_field_1" : {
+                "alt" : "Headshot of Michelle Ankerberg",
+                "height" : 1104,
+                "loading" : "lazy",
+                "max_height" : 1104,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/michelle_ankerberg_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : false
+            }, {
+              "button" : {
+                "button_style" : "btn-primary",
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal",
+                "link_field_1" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "text_field" : "More resources"
+              },
+              "content" : [ {
+                "content_type" : "con-h",
+                "heading" : "Jeff Pallansch",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Lorem ipsum"
+              }, {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "Jeff attended Briercrest College in Canada, where he earned a BA in Biblical Studies. He later earned an MDiv from Trinity Evangelical Divinity School. Jeff is married to Michelle (yes, same name as his cousin!), and they have two young children. Jeff came on staff of the John Ankerberg Show in 2017. In addition to co-hosting “More To The Story,” he helps prepare and edit programs, and had a big role in developing the Discipleship Course, “Follow Me,” which is available free at the website, JAshow.org. He also writes articles for the website and tackles theological questions that viewers submit. In his spare time, Jeff enjoys making pizza, hiking, camping, and playing with his children. When we asked him to share a memory with his cousin and co-host Michelle, he related this story:"
+              }, {
+                "content_type" : "con-sh",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Fun Fact",
+                "text" : "Lorem ipsum"
+              }, {
+                "content_type" : "con-t",
+                "heading" : "Lorem ipsum",
+                "richtext_field" : "<p>Lorem ipsum</p>",
+                "subheading" : "Lorem ipsum",
+                "text" : "“Since I was a kid, the favorite part of my summer has been going on vacation with my extended family. We have long had the yearly tradition of our three families packing into a rented house by the beach. Up until I got married, this entailed my cousin Ryan and I sleeping on the couch or cushions from the patio chairs outside. And being the younger siblings that we were, we would often go bug Michelle and our sisters late at night when we couldn't sleep. Some nights we would attack them with rolled up socks. Other nights, we would just stay up and talk.  “We as cousins had a blast floating in the ocean, riding bikes, and going out for ice cream together at night. For us, vacation was a time to truly laugh, catch up, and come alongside each other in life's difficulties."
+              } ],
+              "image_field_1" : {
+                "alt" : "Headshot of Jeff Pallansch",
+                "height" : 1104,
+                "loading" : "lazy",
+                "max_height" : 1104,
+                "max_width" : 1000,
+                "size_type" : "auto_custom_max",
+                "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Images/jeff_pallansch_2x.png",
+                "width" : 1000
+              },
+              "layout" : "img-txt",
+              "show_button" : false
+            } ],
+            "tab_name" : "Meet Our Hosts"
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #6 - Playlist by Series module #}
+  {% dnd_section
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Video playlists",
+          offset=0,
+          width=12,
+          playlists=[ {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Donate audio bibles",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "content_id" : 180586071563,
+                    "type" : "CONTENT"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "featuring Morgan Jackson of Faith Comes By Hearing",
+            "show_button" : true,
+            "supporting_text" : "Morgan Jackson is passionate about God’s Word and getting it to people across the world in a way they understand. He serves as Senior Vice President of Faith Comes By Hearing, where he’s worked for decades with partners to record Audio Bibles in the languages of the world. In this segment Morgan explains how God took his carefully planned life and turned it upside down, taking him from doing business in Arizona to living by faith in Albuquerque New Mexico.",
+            "tab_name" : "The Faith Journey of Morgan Jackson",
+            "videos" : [ {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "hubspot_video" : {
+                "height" : 1080,
+                "player_id" : 137554064394,
+                "player_type" : "hsvideo2",
+                "width" : 1920
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "hubspot_video"
+            }, {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "hubspot_video" : {
+                "height" : 1080,
+                "player_id" : 139300324983,
+                "player_type" : "hsvideo2",
+                "width" : 1920
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "hubspot_video"
+            }, {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "hubspot_video" : {
+                "height" : 1080,
+                "player_id" : 140340122399,
+                "player_type" : "hsvideo2",
+                "width" : 1920
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "hubspot_video"
+            }, {
+              "embed_field" : {
+                "source_type" : "oembed"
+              },
+              "hubspot_video" : {
+                "height" : 1080,
+                "player_id" : 140341415465,
+                "player_type" : "hsvideo2",
+                "width" : 1920
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "hubspot_video"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "SEE MORE FROM ANNE GRAHAM LOTZ",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/resources/agl21",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "featuring Anne Graham Lotz and her daughter, Rachel-Ruth Lotz Wright",
+            "show_button" : true,
+            "supporting_text" : "Drawing from their own experiences, Anne Graham Lotz and her daughter, Rachel Ruth Lotz Wright, relate first how they received the message of the gospel from their own parents, then give valuable information for those who want to pass that faith along to their own children or others within their sphere of influence.",
+            "tab_name" : "Equipping the Next Generation with the Truth",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/672019426?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Passing the Baton of Faith: A Fathers Influence"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916564042-d4b4be418dd905658a70abd67ba16dd04de279e1ccffb0f3cc73174b10e4c666-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Passing the Baton of Faith: A Fathers Influence",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/672019426",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/672026870?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Passing the Baton of Faith: A Mothers Influence"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916565017-742c8895d9e626dbfa3226b943aaaf877b5f212479c20eaa00d3db72f1cee2ac-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Passing the Baton of Faith: A Mothers Influence",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/672026870",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/690630201?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Passing the Baton of Faith: Meeting with God"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916565243-3c0db63f1a061dd4985c42f46f98600a0dd907b32ca365b204b232d9b582a58e-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Passing the Baton of Faith: Meeting with God",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/690630201",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/695666464?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Passing the Baton of Faith: Praying for Your Children"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916565445-9580a7315993e6c455f2c826d6392736e33f310cf139e34c63d204731b02b0de-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Passing the Baton of Faith: Praying for Your Children",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/695666464",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/704622933?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Passing the Baton of Faith"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916565743-d6679ee36e6fe6268530f6e20bc58398f444ce6ca533c422210fac01b68ada0d-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Passing the Baton of Faith",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/704622933",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "LEARN MORE ABOUT DR. STEPHEN MEYER",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : true,
+                  "url" : {
+                    "href" : "https://stephencmeyer.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "featuring Dr. Stephen Meyer",
+            "show_button" : true,
+            "supporting_text" : "Stephen Meyer is more than just a scientist. In this series you will go behind the degrees to get a glimpse of the man. You’ll learn about some of the events that shaped his own ideas about the origin of life. You’ll find out what he is doing to solidify the case for the Intelligent Designer behind the origin of the universe. Because there’s always More To The Story.",
+            "tab_name" : "Going Behind the Story with Dr. Stephen Meyer",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/711216953?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Going Behind the Story with Dr. Stephen Meyer: In Search of the First Light"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916562991-9354a264d67542d31ed5e1804709ef5f54556db8c993bca65dc9cfbe890dfb9d-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Going Behind the Story with Dr. Stephen Meyer: In Search of the First Light",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/711216953",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/727027478?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Going Behind the Story with Dr. Stephen Meyer: A Season of Metaphysical Anxiety"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916563214-eb3f4e3e6ad8f21df1cfbf35cab27e0ea970d940a9762b86f2d330214b8cfc91-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Going Behind the Story with Dr. Stephen Meyer: A Season of Metaphysical Anxiety",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/727027478",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/727844508?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Going Behind the Story with Dr. Stephen Meyer: Off to Cambridge"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916563361-7697c0b86d08ad6679b6b629aec02969a4a1ca19b35e599582ef66ae6c9038bf-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Going Behind the Story with Dr. Stephen Meyer: Off to Cambridge",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/727844508",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/727845796?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Going Behind the Story with Dr. Stephen Meyer: The Discovery Institute"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916563758-827069b7c6a37834e982242bce45eb0ac43c0895870547084bb71d2c4b041da3-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Going Behind the Story with Dr. Stephen Meyer: The Discovery Institute",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/727845796",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/727845569?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Teaching our Children to Evaluate Evolutions Claims: Teaching Our Children to Evaluate Evolutions Claims"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916568214-b5b05f3ad207cff7e50bf29a89b4206cdc6ec74cc38ed091f5c7d5ace07b35e8-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Teaching our Children to Evaluate Evolution's Claims: Teaching Our Children to Evaluate Evolution's Claims",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/727845569",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/727845193?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Going Behind the Story with Dr. Stephen Meyer: Sharing Your Faith with the Scientifically Minded"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1916563517-d00b2cb12679b8963ddef833998531ff52dba5e9ab907aaf0bb7790bcc5bd89b-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Going Behind the Story with Dr. Stephen Meyer: Sharing Your Faith with the Scientifically Minded",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/727845193",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "About John and Darlene Ankerberg",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/meet-the-ankerbergs/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "Featuring John & Darlene Ankerberg",
+            "show_button" : true,
+            "supporting_text" : "Michelle and Jeff put the Ankerbergs on the hot seat to talk about their faith, their courtship, and their lives together. They discuss their first steps in the faith, how they met, the courtship, wedding, and reflect on 50 years serving the Lord together in this candid interview",
+            "tab_name" : "Getting to Know John and Darlene Ankerberg",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/801203920?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know John and Darlene Ankerberg: Most Memorable Moments"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917518617-fbb012019e101bc9179e719f83be157f367e8851b13ae329242a2864f6be6e6f-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know John and Darlene Ankerberg: Most Memorable Moments",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/801203920",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/788658800?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know John and Darlene Ankerberg: Not Exactly a Hallmark Movie!"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917518931-506a3e221dd70460e637bceafa13714873afa062a1ede8d54aa805f2c81d83a3-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know John and Darlene Ankerberg: Not Exactly a Hallmark Movie!",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/788658800",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/790022538?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know John and Darlene Ankerberg: We’ve Come This Far by Faith"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917518487-58aee85a0e49cebc17c74b8eaa2a48963c0ab8db27b558835604df25b6e28782-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know John and Darlene Ankerberg: We’ve Come This Far by Faith",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/790022538",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/776586759?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know John and Darlene Ankerberg: Watching God at Work"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917518331-f8406792bbee032578739f88ee816a3b54580c4aff50cdc1c759e17dbd847a25-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know John and Darlene Ankerberg: Watching God at Work",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/776586759",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/761819702?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know John and Darlene Ankerberg: Reflecting on Their Spiritual Heritage"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917518149-d700d4920085a7ee6da7bef0b81613494f1688e639d59424c3f5bd09a713df49-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know John and Darlene Ankerberg: Reflecting on Their Spiritual Heritage",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/761819702",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/805214111?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know John and Darlene Ankerberg: Looking Back on 50 Years of Marriage"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917518784-8da7f49d3a6004ca286d677ecf3c8151fa15363f9355643b3e069ee03bdbaa72-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know John and Darlene Ankerberg: Looking Back on 50 Years of Marriage",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/805214111",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "About dr. Hugh Ross",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/hr22/#ourguest",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "Featuring Dr. Hugh Ross",
+            "show_button" : true,
+            "supporting_text" : "Jeff and Michelle sit down one on one to learn more about Dr. Hugh Ross, what led him to a life-long study of astronomy, and his ongoing interest in the evidence for God found in the skies.",
+            "tab_name" : "One-On-One with Dr. Hugh Ross",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/793068942?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="One-on-One with Dr. Hugh Ross: Quasars"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917406361-4b4457edcc8ef20e20c01fef71c00d82cc2ae5f7d9c35c4f1a436ad0cf8809c6-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "One-on-One with Dr. Hugh Ross: Quasars",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/793068942",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/800857287?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="One-on-One with Dr. Hugh Ross: On the Spectrum"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917406660-4162cdb0098da3b26b7cf9bbc93baff6645c771a33f4deccaf038a230dfddf5a-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "One-on-One with Dr. Hugh Ross: On the Spectrum",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/800857287",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/794994188?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="One-on-One with Dr. Hugh Ross: Reasons to Believe"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1917406820-a1a177d9e16d965edf061609859ea2fa829facf1e7299cac2703d20711cb6e09-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "One-on-One with Dr. Hugh Ross: Reasons to Believe",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/794994188",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "About dr. Erwin Lutzer",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/christ-among-other-gods-series/#aboutdrlutzer",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "Featuring Dr. Erwin Lutzer",
+            "show_button" : true,
+            "supporting_text" : "Dr. Erwin Lutzer talks about his parents, his conversion, some of the chief influences in his life, his time at Moody Church, and how to reach the next generation with the gospel of Jesus Christ.",
+            "tab_name" : "Spending Time with Dr. Erwin Lutzer",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/833395743?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Spending Time with Dr. Erwin Lutzer: Journey to Faith"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1696328713-12f4779f3d3ef5df5f5d3f9449006a0130f028d61474eeb6b71c68f27e699d32-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Spending Time with Dr. Erwin Lutzer: Journey to Faith",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/833395743",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/833661685?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Spending Time with Dr. Erwin Lutzer: Moody Church"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1710309895-0d158729f58e529b1c393313fe68909e4216190e12ba4a8bf7c552cff0c3a049-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Spending Time with Dr. Erwin Lutzer: Moody Church",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/833661685",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/834731667?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Spending Time with Dr. Erwin Lutzer: Meeting John Ankerberg"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1722362319-5a6d271b699fedad809bbac78912e822ab792680a7a575c334e05608e3ba177d-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Spending Time with Dr. Erwin Lutzer: Meeting John Ankerberg",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/834731667",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/833661762?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Spending Time with Dr. Erwin Lutzer: Raising Godly Children"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1736226396-d8c72a2348a2165e22e66df6b388c425a2f33cb427cc4c02fa56830083e605db-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Spending Time with Dr. Erwin Lutzer: Raising Godly Children",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/833661762",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "More resources on end-time prophecy",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/resources/iran-israel-and-end-time-events/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "Featuring Dr. Ron Rhodes, Dr. Mark Hitchock, & Jeff Kinley",
+            "show_button" : true,
+            "supporting_text" : "Michelle and Jeff sit down individually with Dr. Ron Rhodes, Dr. Mark Hitchcock, and Jeff Kinley to find out more about these scholars and what led them to a lifetime of teaching Christians.",
+            "tab_name" : "Behind the Prophecy Scholars",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/876458510?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Ron Rhodes: The Allure of Bible Prophecy"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1924720768-89c1d9d72a861660943336c40efb4652cf4a7e12a834fde0cd60a7e684f06f67-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Ron Rhodes: The Allure of Bible Prophecy",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/876458510",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/883029268?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Dr. Ron Rhodes: Strike up the Band"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1924721179-62b06f30eac03e8b8f639c73db5aba2af3246cf0ce4a0a01853ea9090737145d-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Dr. Ron Rhodes: Strike up the Band",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/883029268",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/891040666?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Dr. Mark Hitchcock: Why Prophecy?"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1925890118-750fb1ba80a7537e6119ecac4b7d25835ec4b90a30d89f504c117086f94b9fb7-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Dr. Mark Hitchcock: Why Prophecy?",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/891040666",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 113,
+                "max_height" : 113,
+                "max_width" : 200,
+                "oembed_response" : {
+                  "author_name" : "More to the Story",
+                  "author_url" : "https://www.youtube.com/@atri_mtts",
+                  "height" : "113",
+                  "html" : '<iframe width="200" height="113" src="https://www.youtube.com/embed/wzvdHge-EwQ?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Finding Jesus"></iframe>',
+                  "provider_name" : "YouTube",
+                  "provider_url" : "https://www.youtube.com/",
+                  "thumbnail_height" : "360",
+                  "thumbnail_url" : "https://i.ytimg.com/vi/wzvdHge-EwQ/hqdefault.jpg",
+                  "thumbnail_width" : "480",
+                  "title" : "Finding Jesus",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "200"
+                },
+                "oembed_url" : "https://www.youtube.com/watch?v=wzvdHge-EwQ",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 200
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 113,
+                "max_height" : 113,
+                "max_width" : 200,
+                "oembed_response" : {
+                  "author_name" : "More to the Story",
+                  "author_url" : "https://www.youtube.com/@atri_mtts",
+                  "height" : "113",
+                  "html" : '<iframe width="200" height="113" src="https://www.youtube.com/embed/9A26bSfVxDM?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Fear of the Future"></iframe>',
+                  "provider_name" : "YouTube",
+                  "provider_url" : "https://www.youtube.com/",
+                  "thumbnail_height" : "360",
+                  "thumbnail_url" : "https://i.ytimg.com/vi/9A26bSfVxDM/hqdefault.jpg",
+                  "thumbnail_width" : "480",
+                  "title" : "Fear of the Future",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "200"
+                },
+                "oembed_url" : "https://www.youtube.com/watch?v=9A26bSfVxDM",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 200
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 113,
+                "max_height" : 113,
+                "max_width" : 200,
+                "oembed_response" : {
+                  "author_name" : "More to the Story",
+                  "author_url" : "https://www.youtube.com/@atri_mtts",
+                  "height" : "113",
+                  "html" : '<iframe width="200" height="113" src="https://www.youtube.com/embed/fvrE7o3R_ws?feature=oembed" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen title="Will Children Be Left Behind?"></iframe>',
+                  "provider_name" : "YouTube",
+                  "provider_url" : "https://www.youtube.com/",
+                  "thumbnail_height" : "360",
+                  "thumbnail_url" : "https://i.ytimg.com/vi/fvrE7o3R_ws/hqdefault.jpg",
+                  "thumbnail_width" : "480",
+                  "title" : "Will Children Be Left Behind?",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "200"
+                },
+                "oembed_url" : "https://www.youtube.com/watch?v=fvrE7o3R_ws",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 200
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/895043633?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Dr. Ron Rhodes: How to Understand UFOs"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1924721399-959f056f02ab3e8305a15462b9765c1e80ace222d8052693621a1a9726ce86f6-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Dr. Ron Rhodes: How to Understand UFOs",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/895043633",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/895869226?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Dr. Ron Rhodes: Where is America in End Time Prophecy?"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1924721659-0c9058d3deb17247441a0d56d9680e0a385ea87bda8dcc035a55ba8ecfdf4a80-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Dr. Ron Rhodes: Where is America in End Time Prophecy?",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/895869226",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/895940404?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Jeff Kinley: End Time or All Time?"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1924704678-0e9c6aff46c06102fb014e8b55b91fd94ddf7ccbfdb26cab13c552e149eda9f8-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Jeff Kinley: End Time or All Time?",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/895940404",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/895950114?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Getting to Know Dr. Mark Hitchcock: Teaching the Next Generation"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1945962391-9c3a429f1fb29cd1d59825147d9c193e21bc7ba5af65f04d8552fee0a7b2eadc-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Getting to Know Dr. Mark Hitchcock: Teaching the Next Generation",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/895950114",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Donate an audio bible",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/christmas-catalog-2023/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "Featuring Morgan Jackson",
+            "show_button" : true,
+            "supporting_text" : "In this series Morgan Jackson updates us on efforts to have the Bible translated into every language by the year 2033. Because only as we listen to God’s Word and the Holy Spirit to speak to us through it will our hearts and our lives be changed.",
+            "tab_name" : "Just Listen",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/808277068?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Just Listen: Pressing on to 2033"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1771436360-20da7efa79284ef06d9ae9bd324e4a51e32425ce351d516d2544b3537b082c07-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Just Listen: Pressing on to 2033",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/808277068",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "MORE RESOURCES ON UFOS",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/hugh-ross-ufo-series-2024/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "Featuring Dr. Hugh Ross",
+            "show_button" : true,
+            "supporting_text" : "Many people around the world claim they have seen a UFO. What are these UFOs, and is there any reason to be concerned? Our guest, Dr. Hugh Ross, says yes. In fact, he says there is a real, and dangerous, power behind them. But he also explains that not all UFOs are “unidentified,” and many of them are not “flying objects.” So what are they?",
+            "tab_name" : "Demystifying UFOs",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/948340453?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Demystifying UFOs: What Are UFOs?"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1856259864-08ddec8010c700a7aa6d13b93e6da34372943b7289ce95d93a3e99acc8080dd8-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Demystifying UFOs: What Are UFOs?",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/948340453",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/952292754?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Demystifying UFOs: Can UFOs defy the laws of physics?"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1862046066-ae1ec695c648e8c05b031c79176022b9f3cbefef2e16bc63de13c304a52e9f4d-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Demystifying UFOs: Can UFOs defy the laws of physics?",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/952292754",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/1011056741?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="Demystifying UFOs: The UFO-Occult Connection"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1932705607-98515267fcd18faf9f079bd092d3d216db15fd8cb1f2f2fc0386459862390c1f-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "Demystifying UFOs: The UFO-Occult Connection",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/1011056741",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          }, {
+            "alignment" : "left",
+            "button_group" : [ {
+              "button" : {
+                "button_style" : "btn-primary",
+                "button_text" : "Watch more",
+                "button_url" : {
+                  "no_follow" : false,
+                  "open_in_new_tab" : false,
+                  "url" : {
+                    "href" : "https://jashow.org/",
+                    "type" : "EXTERNAL"
+                  }
+                },
+                "corner_radius" : "radius-s",
+                "horizontal_padding" : "padd-normal"
+              },
+              "button_type" : "regular",
+              "image" : {
+                "image_field" : {
+                  "loading" : "lazy",
+                  "size_type" : "auto",
+                  "src" : ""
+                },
+                "image_url" : {
+                  "href" : "https://jashow.org/",
+                  "type" : "EXTERNAL"
+                }
+              }
+            } ],
+            "featured_text" : "featuring various guests",
+            "show_button" : false,
+            "supporting_text" : "Every year, the National Religious Broadcasting (NRB) convention meets in early March. This year, we took our crew along to meet with some of our favorite friends of the show so that you can hear from people you may not otherwise know.",
+            "tab_name" : "Conference interviews, NRB Conference 2022 ",
+            "videos" : [ {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/695668626?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="MTTS-NRB22-REBECCA LUTZER-REVIEW.mp4"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1412689524-d01f4858b78a7e39603c9129dc9490d5949f1645871d5c982b648a2c5f396974-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "MTTS-NRB22-REBECCA LUTZER-REVIEW.mp4",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/695668626",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/695667124?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="MTTS-NRB22-ERWIN LUTZER-REVIEW.mp4"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1412693327-59740eab8111e590ceb51f770e23721f3e2bc458cfdd0e02e73d5c30c7ff248b-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "MTTS-NRB22-ERWIN LUTZER-REVIEW.mp4",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/695667124",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/696925519?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="MTTS-NRB22-Mark Patterson-FINAL.mp4"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1412738834-0111599ab52b383664b91c08bff75f45d9e226ccab20089731338c9be9c4a154-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "MTTS-NRB22-Mark Patterson-FINAL.mp4",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/696925519",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "oembed_url" : "https://vimeo.com/696926027",
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "oembed_url" : "https://vimeo.com/698139744",
+                "source_type" : "oembed"
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            }, {
+              "embed_field" : {
+                "height" : 240,
+                "max_height" : 240,
+                "max_width" : 426,
+                "oembed_response" : {
+                  "author_name" : "John Ankerberg",
+                  "author_url" : "https://vimeo.com/johnankerberg",
+                  "height" : "240",
+                  "html" : '<iframe src="https://player.vimeo.com/video/698260711?app_id=122963" width="426" height="240" frameborder="0" allow="autoplay; fullscreen; picture-in-picture; clipboard-write" title="More to the Story - NRB 2022 - Ron Harris"></iframe>',
+                  "provider_name" : "Vimeo",
+                  "provider_url" : "https://vimeo.com/",
+                  "thumbnail_height" : "166",
+                  "thumbnail_url" : "https://i.vimeocdn.com/video/1412740138-81ee318898bc105d4aad5c2be92fdd6f5c955b3fb92368c2799b0c2e8b6f402d-d_295x166",
+                  "thumbnail_width" : "295",
+                  "title" : "More to the Story - NRB 2022 - Ron Harris",
+                  "type" : "video",
+                  "version" : "1.0",
+                  "width" : "426"
+                },
+                "oembed_url" : "https://vimeo.com/698260711",
+                "size_type" : "auto",
+                "source_type" : "oembed",
+                "width" : 426
+              },
+              "oembed_thumbnail" : {
+                "loading" : "disabled",
+                "src" : ""
+              },
+              "placeholder_fields" : {
+                "placeholder_description" : "Select a video type in the sidebar.",
+                "placeholder_title" : "No video selected"
+              },
+              "video_type" : "embed"
+            } ]
+          } ]
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}
+
+  {# Section #7 - Subscription Global module #}
+  {% dnd_section
+    background_color="rgba(171, 159, 147, 1)",
+    padding={
+      "default" : {
+        "bottom" : "0px",
+        "left" : "0px",
+        "right" : "0px",
+        "top" : "0px"
+      }
+    },
+    full_width=true
+  %}
+    {% dnd_column
+      offset=0,
+      width=12,
+      padding={
+        "default" : {
+          "bottom" : "0px",
+          "left" : "0px",
+          "right" : "0px",
+          "top" : "0px"
+        }
+      }
+    %}
+      {% dnd_row %}
+        {% dnd_module
+          path="/JAS2024/modules/Subscription GLOBAL",
+          offset=0,
+          width=12
+        %}
+        {% end_dnd_module %}
+      {% end_dnd_row %}
+    {% end_dnd_column %}
+  {% end_dnd_section %}  
+  
+{% end_dnd_area %}
+{% endblock body %}

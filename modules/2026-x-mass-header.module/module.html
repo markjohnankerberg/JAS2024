@@ -1,0 +1,326 @@
+{#
+ATRI Christmas header — matches the prototype's forest-green style.
+- Nav links, mobile menu links, donate button, and logo are all editable via fields.
+- Cart badge reads window.ATRICart (cart.js, loaded in the base template).
+- Favorites badge reads localStorage picks (same key as the products module).
+- Cart/favorites icons open window.ATRIDrawer (from the cart-drawer module).
+#}
+{% set logo = module.logo %}
+{% set actions = module.actions %}
+
+{% require_css %}
+<style>
+  .sitehead {
+    --sh-bg: #18392f;
+    --sh-ink: #f8f5ee;
+    --sh-muted: #8a9b87;
+    --sh-gold: #e7d4a4;
+    --sh-line: rgba(255,255,255,.12);
+    --sh-serif: Georgia, 'Times New Roman', serif;
+    --sh-sans: Arial, Helvetica, sans-serif;
+
+    position: sticky;
+    top: 0;
+    z-index: 100;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+    background: var(--sh-bg);
+    color: var(--sh-ink);
+    font-family: var(--sh-sans);
+  }
+  .sitehead *, .sitehead *::before, .sitehead *::after { box-sizing: border-box; }
+
+  /* Top bar: logo + tools */
+  .sitehead__top {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 12px 2rem;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .sitehead__menu-btn {
+    display: none;
+    border: 0;
+    background: none;
+    color: var(--sh-ink);
+    font: 700 14px var(--sh-sans);
+    cursor: pointer;
+    padding: 8px 0;
+    gap: 8px;
+    align-items: center;
+  }
+
+  .sitehead__logo {
+    text-decoration: none;
+    color: var(--sh-ink);
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+  .sitehead__wordmark {
+    font-size: 32px;
+    font-weight: 700;
+    letter-spacing: .02em;
+    line-height: 1;
+  }
+  .sitehead__tagline {
+    font-size: 8px;
+    letter-spacing: .02em;
+    margin-top: 2px;
+    color: var(--sh-muted);
+    white-space: pre-line;
+  }
+
+  .sitehead__tools {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .sitehead__icon-btn {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 38px;
+    height: 38px;
+    border: 0;
+    border-radius: 50%;
+    background: none;
+    color: var(--sh-ink);
+    font-size: 20px;
+    cursor: pointer;
+    text-decoration: none;
+    line-height: 1;
+  }
+  .sitehead__icon-btn:hover { background: rgba(255,255,255,.08); }
+  .sitehead__icon-btn:focus-visible { outline: 2px solid var(--sh-gold); outline-offset: 2px; }
+
+  .sitehead__badge {
+    position: absolute;
+    top: -2px;
+    right: -4px;
+    min-width: 18px;
+    height: 18px;
+    padding: 0 4px;
+    border-radius: 9px;
+    background: var(--sh-gold);
+    color: var(--sh-bg);
+    font-size: 10px;
+    font-weight: 700;
+    line-height: 18px;
+    text-align: center;
+  }
+  .sitehead__badge[hidden] { display: none; }
+
+  .sitehead__donate {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    margin-left: 8px;
+    padding: 9px 16px;
+    border: 0;
+    border-radius: 3px;
+    background: #f9f6f0;
+    color: #23372e;
+    font: 700 12px/1.4 var(--sh-sans);
+    letter-spacing: .5px;
+    text-decoration: none;
+    white-space: nowrap;
+    cursor: pointer;
+  }
+  .sitehead__donate:hover { background: #eee9df; }
+  .sitehead__donate:focus-visible { outline: 2px solid var(--sh-gold); outline-offset: 2px; }
+
+  /* Nav row */
+  .sitehead__nav {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 2rem;
+    display: flex;
+    gap: 0;
+    border-top: 1px solid var(--sh-line);
+    overflow-x: auto;
+    scrollbar-width: none;
+  }
+  .sitehead__nav::-webkit-scrollbar { display: none; }
+
+  .sitehead__nav-link {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+    padding: 12px 14px;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .8px;
+    color: var(--sh-muted);
+    text-decoration: none;
+    white-space: nowrap;
+    border-bottom: 2px solid transparent;
+    transition: color .2s, border-color .2s;
+  }
+  .sitehead__nav-link:hover { color: var(--sh-ink); border-bottom-color: var(--sh-ink); }
+  .sitehead__nav-link:focus-visible { outline: 2px solid var(--sh-gold); outline-offset: -2px; }
+  .sitehead__nav-icon { font-size: 14px; line-height: 1; }
+
+  /* Mobile menu panel */
+  .sitehead__mobile-panel {
+    display: none;
+    flex-direction: column;
+    padding: 12px 2rem 20px;
+    border-top: 1px solid var(--sh-line);
+    background: var(--sh-bg);
+  }
+  .sitehead__mobile-panel.is-open { display: flex; }
+  .sitehead__mobile-link {
+    display: block;
+    padding: 12px 0;
+    font-size: 15px;
+    color: var(--sh-ink);
+    text-decoration: none;
+    border-bottom: 1px solid var(--sh-line);
+  }
+  .sitehead__mobile-link:hover { color: var(--sh-gold); }
+  .sitehead__mobile-link:focus-visible { outline: 2px solid var(--sh-gold); outline-offset: 2px; }
+
+  @media (max-width: 900px) {
+    .sitehead__nav { display: none; }
+    .sitehead__menu-btn { display: flex; }
+    .sitehead__top { padding: 10px 1.25rem; }
+    .sitehead__mobile-panel { padding: 8px 1.25rem 16px; }
+    .sitehead__donate { padding: 8px 12px; font-size: 11px; }
+  }
+
+  @media (max-width: 480px) {
+    .sitehead__wordmark { font-size: 26px; }
+    .sitehead__tagline { display: none; }
+    .sitehead__icon-btn { width: 34px; height: 34px; font-size: 18px; }
+  }
+</style>
+{% end_require_css %}
+
+<header class="sitehead" id="site-header">
+  <div class="sitehead__top">
+    <div style="display:flex;align-items:center;gap:16px">
+      <button class="sitehead__menu-btn" id="hdr-menu-toggle" type="button"
+              aria-label="Open menu" aria-expanded="false" aria-controls="hdr-mobile-menu">
+        <span aria-hidden="true">&#9776;</span> MENU
+      </button>
+      <a class="sitehead__logo" href="{{ logo.url|escape_attr }}" aria-label="{{ logo.text }} home">
+        <span class="sitehead__wordmark">{{ logo.text }}</span>
+        {% if logo.tagline %}<span class="sitehead__tagline">{{ logo.tagline }}</span>{% endif %}
+      </a>
+    </div>
+
+    <div class="sitehead__tools">
+      <button class="sitehead__icon-btn" type="button" id="hdr-search"
+              aria-label="Search resources"
+              onclick="document.getElementById('{{ actions.search_target|replace('#','')|escape_attr }}').scrollIntoView({behavior:'smooth'})">
+        <span aria-hidden="true">&#8981;</span>
+      </button>
+
+      <a class="sitehead__donate" href="{{ actions.donate_url|escape_attr }}">
+        {{ actions.donate_text }} <span aria-hidden="true">&#8964;</span>
+      </a>
+
+      <button class="sitehead__icon-btn" type="button" id="hdr-fav-btn"
+              aria-label="Favorites">
+        <span aria-hidden="true">&#9825;</span>
+        <span class="sitehead__badge" id="hdr-fav-count" hidden>0</span>
+      </button>
+
+      <button class="sitehead__icon-btn" type="button" id="hdr-cart-btn"
+              aria-label="Shopping cart, 0 items">
+        <span aria-hidden="true">&#9831;</span>
+        <span class="sitehead__badge" id="hdr-cart-count" hidden>0</span>
+      </button>
+    </div>
+  </div>
+
+  <nav class="sitehead__nav" aria-label="Main navigation">
+    {% for link in module.nav_links %}
+    <a class="sitehead__nav-link" href="{{ link.url|escape_attr }}">
+      {% if link.icon %}<span class="sitehead__nav-icon" aria-hidden="true">{{ link.icon }}</span>{% endif %}{{ link.link_text }}
+    </a>
+    {% endfor %}
+  </nav>
+
+  <div class="sitehead__mobile-panel" id="hdr-mobile-menu">
+    {% for link in module.mobile_links %}
+    <a class="sitehead__mobile-link" href="{{ link.url|escape_attr }}">{{ link.link_text }}</a>
+    {% endfor %}
+  </div>
+</header>
+
+{% require_js position="footer" %}
+<script>
+  (function () {
+    var header = document.getElementById('site-header');
+    if (!header) return;
+
+    var PICKS_KEY = 'atri-christmas-2026-picks';
+
+    /* ---- Cart badge ---- */
+    var cartBtn = document.getElementById('hdr-cart-btn');
+    var cartBadge = document.getElementById('hdr-cart-count');
+
+    function updateCartBadge() {
+      var count = window.ATRICart ? window.ATRICart.count() : 0;
+      cartBadge.textContent = count > 99 ? '99+' : String(count);
+      cartBadge.hidden = count === 0;
+      cartBtn.setAttribute('aria-label', 'Shopping cart, ' + count + ' item' + (count === 1 ? '' : 's'));
+    }
+    window.addEventListener('atri:cart', updateCartBadge);
+    updateCartBadge();
+
+    /* ---- Favorites badge ---- */
+    var favBtn = document.getElementById('hdr-fav-btn');
+    var favBadge = document.getElementById('hdr-fav-count');
+
+    function updateFavBadge() {
+      var count = 0;
+      try {
+        var ids = JSON.parse(localStorage.getItem(PICKS_KEY) || '[]');
+        count = Array.isArray(ids) ? ids.length : 0;
+      } catch (e) {}
+      favBadge.textContent = String(count);
+      favBadge.hidden = count === 0;
+      favBtn.setAttribute('aria-label', 'Favorites, ' + count + ' saved');
+    }
+    window.addEventListener('storage', function (e) { if (e.key === PICKS_KEY) updateFavBadge(); });
+    window.addEventListener('atri:picks', updateFavBadge);
+    updateFavBadge();
+    // Re-check periodically since same-tab storage writes don't fire the storage event
+    setInterval(updateFavBadge, 2000);
+
+    /* ---- Open drawer ---- */
+    cartBtn.addEventListener('click', function () {
+      if (window.ATRIDrawer) window.ATRIDrawer.open('cart');
+    });
+    favBtn.addEventListener('click', function () {
+      if (window.ATRIDrawer) window.ATRIDrawer.open('favorites');
+    });
+
+    /* ---- Mobile menu ---- */
+    var menuToggle = document.getElementById('hdr-menu-toggle');
+    var mobileMenu = document.getElementById('hdr-mobile-menu');
+
+    menuToggle.addEventListener('click', function () {
+      var open = mobileMenu.classList.toggle('is-open');
+      menuToggle.setAttribute('aria-expanded', String(open));
+      menuToggle.setAttribute('aria-label', open ? 'Close menu' : 'Open menu');
+    });
+
+    document.addEventListener('keydown', function (e) {
+      if (e.key === 'Escape' && mobileMenu.classList.contains('is-open')) {
+        mobileMenu.classList.remove('is-open');
+        menuToggle.setAttribute('aria-expanded', 'false');
+        menuToggle.setAttribute('aria-label', 'Open menu');
+        menuToggle.focus();
+      }
+    });
+  })();
+</script>
+{% end_require_js %}

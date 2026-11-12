@@ -1,0 +1,532 @@
+/* Audio Bibles Matching Gift — matches the "01 / GIVE" section of the Christmas homepage */
+.abb {
+    --abb-bg: #f4f0e8;
+    --abb-panel: #e5eae6;
+    --abb-accent: #18392f;
+    --abb-gold: #e7d4a4;
+    --abb-ink: #21372d;
+    --abb-muted: #626b63;
+    --abb-kicker: #927748;
+    --abb-serif: Georgia, 'Times New Roman', serif;
+    --abb-sans: Arial, Helvetica, sans-serif;
+    width: 100vw;
+    margin-left: calc(50% - 50vw);
+
+    position: relative;
+    padding: 80px 0;
+    background: var(--abb-bg);
+    color: var(--abb-ink);
+    font: 16px/1.65 var(--abb-sans);
+}
+.abb *, .abb *::before, .abb *::after { box-sizing: border-box; }
+.abb p { margin: 0 0 18px; }
+
+.abb__container {
+    width: min(1190px, calc(100% - 52px));
+    margin: auto;
+}
+
+.abb__kicker {
+    margin: 0 !important;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: .22em;
+    text-transform: uppercase;
+    color: var(--abb-kicker);
+}
+.abb__kicker--gold { color: var(--abb-gold); }
+/* "01 / GIVE" is pinned to the banner's upper far-left corner (the section edge, not the
+   centred content column), clear of the heading below it. */
+.abb .abb__kicker--section {
+    position: absolute;
+    top: 32px;
+    left: 26px;
+    margin: 0 !important;
+    text-align: left;
+}
+@media (max-width: 600px) {
+    .abb .abb__kicker--section { top: 20px; left: 16px; }
+}
+
+.abb__title,
+.abb__photo-title,
+.abb__form-title {
+    font-family: var(--abb-serif);
+    font-weight: 400;
+    letter-spacing: -.035em;
+    line-height: 1.12;
+}
+
+/* ---------- Section head ---------- */
+.abb__head {
+    display: flex;
+    justify-content: space-between;
+    align-items: end;
+    gap: 40px;
+    margin-bottom: 35px;
+}
+.abb__title {
+    margin: 0 0 22px;
+    font-size: clamp(35px, 4.1vw, 62px);
+    color: var(--abb-ink);
+}
+.abb__intro { max-width: 440px; color: var(--abb-muted); }
+
+/* ---------- Two-panel grid ---------- */
+.abb__grid {
+    display: grid;
+    grid-template-columns: 1.04fr .96fr;
+    gap: 22px;
+    align-items: stretch;
+}
+
+.abb__photo {
+    min-height: 405px;
+    display: flex;
+    align-items: flex-end;
+    padding: 35px;
+    background: linear-gradient(0deg, #081c19a8, transparent 50%), var(--abb-photo, none) center / cover no-repeat, var(--abb-accent);
+    color: #fff;
+}
+.abb__photo-title {
+    max-width: 410px;
+    margin: 0 0 16px;
+    font-size: clamp(26px, 2.7vw, 42px);
+}
+.abb__photo-text { font-size: 13px; }
+
+/* ---------- Photo panel with video ---------- */
+.abb__photo--video {
+    position: relative;
+    overflow: hidden;
+    isolation: isolate;
+}
+.abb__video {
+    display: block;
+    width: 100%;
+    background: var(--abb-accent);
+}
+/* Background loop: the video fills the panel behind the copy, under the same
+   bottom gradient the photo gets, so the text stays legible. */
+.abb__photo--background .abb__video {
+    position: absolute;
+    inset: 0;
+    height: 100%;
+    object-fit: cover;
+    z-index: -2;
+}
+.abb__photo--background::after {
+    content: "";
+    position: absolute;
+    inset: 0;
+    z-index: -1;
+    background: linear-gradient(0deg, #081c19a8, transparent 50%);
+    pointer-events: none;
+}
+.abb__photo-copy { position: relative; }
+/* Theme CSS forces !important styles on every <button> (specificity 0,2,2),
+   so these need !important and 0,3,1+ to win. */
+.abb .abb__photo button.abb__video-toggle {
+    position: absolute !important;
+    top: 16px !important;
+    right: 16px !important;
+    left: auto !important;
+    width: auto !important;
+    min-width: 0 !important;
+    height: auto !important;
+    margin: 0 !important;
+    padding: 7px 12px !important;
+    border: 1px solid #ffffff80 !important;
+    border-radius: 999px !important;
+    background: #081c1999 !important;
+    color: #fff !important;
+    font: inherit !important;
+    font-size: 12px !important;
+    line-height: 1.2 !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    box-shadow: none !important;
+    cursor: pointer;
+    z-index: 1;
+}
+.abb .abb__photo button.abb__video-toggle[hidden] { display: none !important; }
+.abb .abb__photo button.abb__video-toggle:hover { background: #081c19cc !important; }
+.abb .abb__photo button.abb__video-toggle:focus-visible { outline: 2px solid var(--abb-gold) !important; outline-offset: 2px; }
+/* Player: the video on top with its own controls, the copy below it, so
+   nothing covers the play button or the scrubber. */
+.abb__photo--player {
+    flex-direction: column;
+    align-items: stretch;
+    padding: 0;
+    background: var(--abb-accent);
+}
+.abb__photo--player .abb__video {
+    aspect-ratio: 16 / 9;
+    height: auto;
+    object-fit: contain;
+    background: #000;
+}
+.abb__photo--player .abb__photo-copy { padding: 28px 35px 35px; margin-top: auto; }
+
+/* Video panel background: the holly illustration (--abb-video-bg), forest green behind it.
+   0,2,0 so it beats the accent fill above (which the editor has set to white). */
+.abb .abb__photo--video {
+    background: var(--abb-video-bg, none) center / cover no-repeat, #0f2d22;
+}
+.abb .abb__photo--player { justify-content: center; }
+.abb .abb__photo--player .abb__video {
+    background: transparent;             /* no black bars over the green */
+    box-shadow: 0 18px 40px rgba(0, 0, 0, .45);
+}
+.abb .abb__photo--player .abb__photo-copy { margin-top: 0; }
+
+/* Rounded corners to match the page's other boxes (6px, as on the Equip cards). */
+.abb .abb__photo--video { border-radius: 6px; overflow: hidden; }
+.abb .abb__photo--player .abb__video { border-radius: 6px; }
+
+/* Player wrapper + gold play button centred on the video. */
+.abb__player { position: relative; width: 100%; }
+.abb--video-wide .abb__player { max-width: 960px; }
+.abb__player .abb__video { width: 100%; }
+.abb .abb__player button.abb__play {
+    position: absolute !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%);
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 78px !important;
+    min-width: 78px !important;
+    height: 78px !important;
+    margin: 0 !important;
+    padding: 0 0 0 4px !important;          /* nudge the triangle to look centred */
+    border: 2px solid var(--abb-gold) !important;   /* outlined: gold ring, gold triangle */
+    border-radius: 50% !important;
+    background: rgba(8, 28, 25, .35) !important;     /* light tint so it reads over bright frames */
+    color: var(--abb-gold) !important;
+    box-shadow: 0 10px 28px rgba(0, 0, 0, .25) !important;
+    cursor: pointer;
+    transition: transform .2s ease, background-color .2s ease, opacity .2s ease;
+}
+.abb .abb__player button.abb__play:hover,
+.abb .abb__player button.abb__play:focus {
+    background: rgba(8, 28, 25, .55) !important;
+    border-color: #f0e0b6 !important;
+    color: #f0e0b6 !important;
+    transform: translate(-50%, -50%) scale(1.06);
+}
+.abb .abb__player button.abb__play:focus-visible { outline: 3px solid #fff !important; outline-offset: 4px; }
+.abb .abb__player.is-playing button.abb__play { opacity: 0; pointer-events: none; }
+@media (max-width: 600px) {
+    .abb .abb__player button.abb__play { width: 62px !important; min-width: 62px !important; height: 62px !important; }
+}
+@media (prefers-reduced-motion: reduce) {
+    .abb .abb__player button.abb__play { transition: none; }
+}
+
+/* Side (default): video left of the gift picker, in a slightly wider column than the photo
+   gets (about 667×375 on desktop instead of ~607×342), centred on the green. */
+.abb--video-side .abb__grid { grid-template-columns: 1.2fr .9fr; }
+/* 3px of the green showing either side of the video. */
+.abb--video-side .abb__photo--player { padding-left: 3px; padding-right: 3px; }
+@media (max-width: 900px) {
+    .abb--video-side .abb__grid { grid-template-columns: 1fr; }
+}
+
+/* Wide: the video gets its own full-width row above the gift picker (about 960×540 on
+   desktop instead of ~600×340), and the gift cards go four across beneath it. */
+.abb--video-wide .abb__grid { grid-template-columns: 1fr; }
+.abb--video-wide .abb__photo--video { min-height: 0; }
+.abb--video-wide .abb__photo--player {
+    align-items: center;
+    padding: clamp(20px, 4vw, 44px);
+}
+.abb--video-wide .abb__photo--player .abb__video { width: 100%; max-width: 960px; }
+.abb--video-wide .abb__photo--player .abb__photo-copy { padding: 24px 0 0; text-align: center; }
+.abb--video-wide .abb__photo--background { aspect-ratio: 16 / 9; max-height: 640px; }
+.abb--video-wide .abb__choices { grid-template-columns: repeat(4, 1fr); }
+@media (max-width: 1000px) {
+    .abb--video-wide .abb__choices { grid-template-columns: repeat(2, 1fr); }
+}
+@media (max-width: 600px) {
+    .abb--video-wide .abb__choices { grid-template-columns: 1fr; }
+}
+
+.abb__form {
+    padding: 34px;
+    background: var(--abb-panel);
+    border-radius: 6px;          /* page-wide box rounding */
+}
+.abb__form-title {
+    max-width: 11em;
+    margin: 0 0 16px;
+    font-size: 35px;
+}
+.abb__form-text { font-size: 14px; color: #4d6157; }
+
+/* ---------- Choices ---------- */
+.abb__choices {
+    list-style: none;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 9px;
+    margin: 18px 0;
+    padding: 0;
+}
+.abb__choices > li { display: flex; margin: 0; }
+/* Custom gift spans the full row under the product choices */
+.abb__choices > li[data-abb-custom-item] { grid-column: 1 / -1; }
+
+.abb-choice {
+    width: 100%;
+    padding: 13px;
+    background: #fff;
+    border: 1px solid #c6d2cb;
+    border-radius: 3px;
+    color: var(--abb-ink);
+    font: inherit;
+    text-align: left;
+    cursor: pointer;
+}
+.abb-choice[aria-pressed="true"] {
+    border: 2px solid var(--abb-accent);
+    background: #f0e3c6;
+    padding: 12px;
+}
+.abb-choice strong { display: block; font-size: 13px; }
+.abb-choice small { display: block; font-size: 12px; line-height: 1.5; color: #5c6b63; }
+.abb-choice:focus-visible { outline: 3px solid #bb8c38; outline-offset: 3px; }
+
+/* Device thumbnail (product choices with an API image) */
+.abb-choice--media {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+.abb-choice__img {
+    flex: none;
+    width: 62px;
+    height: 62px;
+    object-fit: contain;
+}
+.abb-choice__text { min-width: 0; }
+
+/* Custom amount input */
+.abb__amount {
+    display: flex;
+    align-items: stretch;
+    gap: 8px;
+    margin: -9px 0 18px;
+}
+.abb__amount[hidden] { display: none; }
+.abb__amount-field { position: relative; display: block; flex: 1; min-width: 0; }
+.abb__amount-prefix { position: absolute; left: 13px; top: 50%; transform: translateY(-50%); color: var(--abb-muted); font-size: 14px; font-weight: 700; }
+.abb__amount input {
+    width: 100%;
+    height: 46px;
+    padding: 0 13px 0 26px;
+    border: 1px solid #c6d2cb;
+    border-radius: 3px;
+    background: #fff;
+    color: var(--abb-ink);
+    font: 700 14px var(--abb-sans);
+}
+.abb__amount input:focus { outline: 3px solid #bb8c38; outline-offset: 3px; border-color: var(--abb-accent); }
+.abb__amount input[aria-invalid="true"] { border-color: #8e443b; }
+
+/* ---------- Per-card quantity stepper ----------
+   The card <button> can't contain buttons, so the li is the visible card (border,
+   fill, selected state) and holds the choice button plus the − qty + bar, which
+   sits inside the card below the words. */
+.abb__choices > li.abb-card {
+    flex-direction: column;
+    background: #fff;
+    border: 1px solid #c6d2cb;
+    border-radius: 6px;          /* page-wide box rounding */
+    cursor: pointer;
+}
+.abb__choices > li.abb-card.is-selected {
+    border-color: var(--abb-accent);
+    box-shadow: inset 0 0 0 1px var(--abb-accent);   /* 2px look without shifting layout */
+    background: #f0e3c6;
+}
+.abb-card .abb-choice,
+.abb-card .abb-choice[aria-pressed="true"] {
+    flex: 1;
+    padding: 13px 13px 10px;
+    border: 0;
+    background: transparent;
+}
+.abb-card__qty {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    overflow: hidden;
+    margin: auto 13px 13px;   /* auto top: anchored to the card's bottom; spans the card's full width */
+    border: 1px solid #c6d2cb;
+    border-radius: 3px;
+    background: #fff;
+}
+.abb-card__qty-value { flex: 1; text-align: center; font: 700 14px var(--abb-sans); color: var(--abb-ink); }
+
+/* Theme CSS forces !important styles on every <button> (specificity 0,2,2),
+   so these need !important and 0,3,1+ to win. */
+.abb .abb__form button.abb__step {
+    display: inline-flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    width: 32px !important;
+    min-width: 32px !important;
+    height: 32px !important;
+    margin: 0 !important;
+    padding: 0 !important;
+    border: 0 !important;
+    border-radius: 3px !important;
+    background: transparent !important;
+    color: var(--abb-accent) !important;
+    font: 700 20px/1 var(--abb-sans) !important;
+    text-transform: none !important;
+    letter-spacing: normal !important;
+    box-shadow: none !important;
+    cursor: pointer;
+}
+.abb .abb__form button.abb__step:hover { background: #eef2ef !important; }
+.abb .abb__form button.abb__step:focus-visible { outline: 3px solid #bb8c38 !important; outline-offset: 2px; }
+.abb .abb__form button.abb__step:disabled { opacity: .35 !important; cursor: not-allowed; background: transparent !important; }
+/* The card counter's buttons (0,4,1, so they beat the rules above). */
+.abb .abb__form .abb-card__qty button.abb__step {
+    flex: 0 0 36px;
+    width: 36px !important;
+    min-width: 36px !important;
+    height: 36px !important;
+    border-radius: 0 !important;
+    background: #f3f4f6 !important;
+    color: #374151 !important;
+    font: 700 20px/1 var(--abb-sans) !important;
+    transition: background-color .2s ease;
+}
+.abb .abb__form .abb-card__qty button.abb__step:hover { background: #e2e8f0 !important; }
+.abb .abb__form .abb-card__qty button.abb__step:focus-visible { outline-offset: -3px; }
+.abb .abb__form .abb-card__qty button.abb__step:disabled { background: #f3f4f6 !important; }
+/* Custom-amount −/+ sit beside the input as their own bordered squares. */
+.abb .abb__amount button.abb__step {
+    width: 46px !important;
+    min-width: 46px !important;
+    height: 46px !important;
+    border: 1px solid #c6d2cb !important;
+    background: #fff !important;
+}
+.abb .abb__amount button.abb__step:hover { background: #eef2ef !important; }
+
+/* ---------- Button ---------- */
+.abb__btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    width: 100%;
+    min-height: 46px;
+    padding: 13px 22px;
+    border: 1px solid transparent;
+    border-radius: 3px;
+    background: var(--abb-accent);
+    color: #fff;
+    font: 700 14px/1.65 var(--abb-sans);
+    cursor: pointer;
+    transition: background .2s;
+}
+.abb__btn:hover,
+.abb__btn.is-ready { background: color-mix(in srgb, var(--abb-accent) 85%, white); }   /* is-ready: selected card's counter > 0 */
+.abb__btn:focus-visible { outline: 3px solid #bb8c38; outline-offset: 3px; }
+.abb__btn[disabled] { opacity: .6; cursor: not-allowed; }
+.abb__btn.is-added { background: #295446; }
+
+/* The theme restyles every <button> (white/taupe outline, uppercase) and its hover is a taupe
+   fill, so the rules above don't show on the live site. Selectors are 0,4,1 + !important to win.
+   Add to Cart's hover colour (#6b1f2b) also shows while the selected card's counter is above 0. */
+.abb .abb__actions button.abb__btn:hover,
+.abb .abb__actions button.abb__btn.is-ready {
+    background-color: #6b1f2b !important;
+    border-color: #6b1f2b !important;
+    color: #fff !important;
+}
+/* Gift cards: no hover/focus change. The li draws the card, so the inner button never gets
+   the theme's grey border (which made a box-in-a-box) or its taupe hover, in any state. */
+.abb .abb__choices li.abb-card button.abb-choice,
+.abb .abb__choices li.abb-card button.abb-choice:hover,
+.abb .abb__choices li.abb-card button.abb-choice:focus {
+    background: transparent !important;
+    border: 0 !important;
+    box-shadow: none !important;
+    color: #88817b !important;
+}
+.abb .abb__choices li button.abb-choice[data-abb-choice="custom"]:hover,
+.abb .abb__choices li button.abb-choice[data-abb-choice="custom"]:focus {
+    background: #fff !important;
+    border: 1px solid #88817b !important;
+    color: #88817b !important;
+}
+/* Custom Gift card: 6px like every other box (the theme's button rule made it 5px). */
+.abb .abb__choices > li[data-abb-custom-item] > button.abb-choice.abb-choice { border-radius: 6px !important; }   /* after, so the "Added!" flash still shows */
+
+/* Add to Cart button row */
+.abb__actions {
+    display: flex;
+    gap: 9px;
+}
+.abb__actions .abb__btn { flex: 1; width: auto; }
+
+.abb__notice { margin: 10px 0 0 !important; font-size: 12px; color: #6e6d65; }
+.abb__error { font-size: 13px; color: var(--abb-muted); font-style: italic; }
+
+/* Skeletons */
+.abb-choice--skeleton {
+    flex-direction: column;
+    gap: 8px;
+    min-height: 70px;
+    padding: 13px;
+    background: #fff;
+    border: 1px solid #c6d2cb;
+    border-radius: 3px;
+    cursor: default;
+}
+.abb-sk {
+    display: block;
+    height: 14px;
+    background: linear-gradient(90deg, #e7ece8 25%, #f4f6f4 50%, #e7ece8 75%);
+    background-size: 200% 100%;
+    animation: abb-shimmer 1.3s infinite linear;
+    border-radius: 3px;
+}
+.abb-sk--title { width: 75%; height: 18px; }
+.abb-sk--text { width: 55%; }
+@keyframes abb-shimmer { to { background-position: -200% 0; } }
+@media (prefers-reduced-motion: reduce) {
+    .abb-sk { animation: none; }
+    .abb__btn { transition: none; }
+}
+
+.abb-visually-hidden {
+    position: absolute !important;
+    width: 1px; height: 1px;
+    padding: 0; margin: -1px;
+    overflow: hidden; clip: rect(0 0 0 0);
+    white-space: nowrap; border: 0;
+}
+
+@media (max-width: 900px) {
+    .abb__head { display: block; }
+    .abb__grid { grid-template-columns: 1fr; }
+}
+
+@media (max-width: 600px) {
+    .abb { padding: 50px 0; font-size: 15px; }
+    .abb__container { width: calc(100% - 32px); }
+    .abb__photo { min-height: 320px; padding: 26px; }
+    .abb__photo--player { padding: 0; }
+    .abb__photo--player .abb__photo-copy { padding: 22px 26px 26px; }
+    .abb__form { padding: 24px; }
+    .abb__form-title { font-size: 30px; }
+    .abb__choices { grid-template-columns: 1fr; }
+}

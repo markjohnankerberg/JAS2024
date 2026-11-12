@@ -1,0 +1,130 @@
+[ {
+  "id" : "91c99302-e718-f146-b262-4b160de8e2f1",
+  "name" : "title",
+  "label" : "Title",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "Subscribe"
+}, {
+  "id" : "b4621207-86d3-9867-cc59-b6b481aa108a",
+  "name" : "image",
+  "label" : "Image",
+  "required" : false,
+  "locked" : false,
+  "occurrence" : {
+    "min" : 1,
+    "max" : null,
+    "sorting_label_field" : null,
+    "default" : 3
+  },
+  "children" : [ {
+    "id" : "b20baf66-fbc0-0539-8945-558cd191b593",
+    "name" : "image_field",
+    "label" : "Image",
+    "required" : false,
+    "locked" : false,
+    "responsive" : false,
+    "resizable" : true,
+    "show_loading" : false,
+    "type" : "image",
+    "display_width" : null,
+    "default" : {
+      "size_type" : "exact",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/button-castro-01.png",
+      "alt" : "Castro podcast",
+      "loading" : "lazy",
+      "width" : 150,
+      "height" : 38,
+      "max_width" : 555,
+      "max_height" : 142
+    }
+  }, {
+    "id" : "e01d4796-6aa4-b27a-3ab6-ff081218bafc",
+    "name" : "image_link",
+    "label" : "Link",
+    "required" : false,
+    "locked" : false,
+    "supported_types" : [ "EXTERNAL", "CONTENT", "FILE", "EMAIL_ADDRESS", "BLOG", "CALL_TO_ACTION", "PHONE_NUMBER", "WHATSAPP_NUMBER", "PAYMENT" ],
+    "show_advanced_rel_options" : false,
+    "type" : "link",
+    "display_width" : null,
+    "default" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  } ],
+  "tab" : "CONTENT",
+  "expanded" : false,
+  "group_occurrence_meta" : null,
+  "type" : "group",
+  "display_width" : null,
+  "default" : [ {
+    "image_field" : {
+      "size_type" : "exact",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/button-castro-01.png",
+      "alt" : "Castro podcast",
+      "loading" : "lazy",
+      "width" : 150,
+      "height" : 38,
+      "max_width" : 555,
+      "max_height" : 142
+    },
+    "image_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  }, {
+    "image_field" : {
+      "size_type" : "exact",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/button-castro-01.png",
+      "alt" : "Castro podcast",
+      "loading" : "lazy",
+      "width" : 150,
+      "height" : 38,
+      "max_width" : 555,
+      "max_height" : 142
+    },
+    "image_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  }, {
+    "image_field" : {
+      "size_type" : "exact",
+      "src" : "https://23773134.fs1.hubspotusercontent-na1.net/hubfs/23773134/The%20John%20Ankerberg%20Show%202024/Podcasts/button-castro-01.png",
+      "alt" : "Castro podcast",
+      "loading" : "lazy",
+      "width" : 150,
+      "height" : 38,
+      "max_width" : 555,
+      "max_height" : 142
+    },
+    "image_link" : {
+      "url" : {
+        "content_id" : null,
+        "type" : "EXTERNAL",
+        "href" : ""
+      },
+      "open_in_new_tab" : true,
+      "no_follow" : false
+    }
+  } ]
+} ]

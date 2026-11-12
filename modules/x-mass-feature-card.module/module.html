@@ -1,0 +1,219 @@
+{#
+Feature Cards — flexible image + text cards with layout and background options.
+Used for merch feature strip, Facts On promo, and Equip side cards.
+#}
+{% set intro = module.intro %}
+
+{% require_css %}
+<style>
+  .xmas-feature {
+    --fc-ink: #21372d;
+    --fc-muted: #626b63;
+    --fc-line: #d9d1c2;
+    --fc-forest: #18392f;
+    --fc-gold: #e7d4a4;
+    --fc-paper: #f8f5ee;
+    --fc-beige: #f2ede4;
+    --fc-serif: Georgia, 'Times New Roman', serif;
+    --fc-sans: Arial, Helvetica, sans-serif;
+
+    color: var(--fc-ink);
+    font-family: var(--fc-sans);
+  }
+  .xmas-feature *, .xmas-feature *::before, .xmas-feature *::after { box-sizing: border-box; }
+
+  .xmas-feature__intro {
+    max-width: 700px;
+    margin-bottom: clamp(28px, 3vw, 40px);
+  }
+
+  .xmas-feature__intro-kicker {
+    margin: 0 0 12px;
+    font: 700 11px/1.6 var(--fc-sans);
+    letter-spacing: 2.2px;
+    text-transform: uppercase;
+    color: var(--fc-muted);
+  }
+
+  .xmas-feature__intro-heading {
+    margin: 0;
+    font-family: var(--fc-serif);
+    font-weight: 400;
+    font-size: clamp(32px, 4vw, 48px);
+    line-height: 1.1;
+    letter-spacing: -1px;
+  }
+  .xmas-feature__intro-heading em { font-style: italic; }
+
+  .xmas-feature__intro-body {
+    margin: 14px 0 0;
+    font-size: 14px;
+    line-height: 1.75;
+    color: var(--fc-muted);
+  }
+
+  .xmas-feature__stack {
+    display: flex;
+    flex-direction: column;
+    gap: clamp(16px, 2vw, 24px);
+  }
+
+  .xmas-feature__card {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 0;
+    border-radius: 6px;
+    overflow: hidden;
+    border: 1px solid var(--fc-line);
+    background: var(--fc-paper);
+  }
+  .xmas-feature__card--beige { background: var(--fc-beige); }
+  .xmas-feature__card--forest { background: var(--fc-forest); color: var(--fc-paper); }
+  .xmas-feature__card--forest .xmas-feature__kicker { color: var(--fc-gold); }
+  .xmas-feature__card--forest .xmas-feature__body { color: #b8c4b3; }
+  .xmas-feature__card--forest .xmas-feature__link { color: var(--fc-gold); border-bottom-color: rgba(231,212,164,.4); }
+  .xmas-feature__card--white { background: #fff; }
+
+  .xmas-feature__card--img-right .xmas-feature__image { order: 2; }
+  .xmas-feature__card--img-right .xmas-feature__copy { order: 1; }
+
+  .xmas-feature__image {
+    position: relative;
+    min-height: 260px;
+  }
+  .xmas-feature__image img {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
+
+  .xmas-feature__copy {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    padding: clamp(28px, 3vw, 48px);
+  }
+
+  .xmas-feature__kicker {
+    margin: 0 0 12px;
+    font: 700 10px/1.6 var(--fc-sans);
+    letter-spacing: 2px;
+    text-transform: uppercase;
+    color: var(--fc-muted);
+  }
+
+  .xmas-feature__heading {
+    margin: 0;
+    font-family: var(--fc-serif);
+    font-weight: 400;
+    font-size: clamp(24px, 2.5vw, 32px);
+    line-height: 1.15;
+    letter-spacing: -.5px;
+  }
+  .xmas-feature__heading em { font-style: italic; }
+
+  .xmas-feature__body {
+    margin: 12px 0 0;
+    font-size: 14px;
+    line-height: 1.7;
+    color: var(--fc-muted);
+  }
+
+  .xmas-feature__price {
+    margin: 16px 0 0;
+    font-family: var(--fc-serif);
+    font-size: 22px;
+    line-height: 1.2;
+    color: var(--fc-forest);
+  }
+  .xmas-feature__price-sub {
+    font-size: 16px;
+    color: var(--fc-muted);
+  }
+
+  .xmas-feature__link {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 18px;
+    padding-bottom: 3px;
+    border: 0;
+    border-bottom: 1px solid #a4b1a4;
+    background: none;
+    color: var(--fc-forest);
+    font: 700 13px/1.5 var(--fc-sans);
+    text-decoration: none;
+  }
+  .xmas-feature__link:hover { border-bottom-color: var(--fc-forest); }
+  .xmas-feature__link:focus-visible { outline: 2px solid var(--fc-forest); outline-offset: 2px; }
+
+  .xmas-feature__btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    margin-top: 20px;
+    padding: 13px 24px;
+    border: 0;
+    border-radius: 3px;
+    background: var(--fc-forest);
+    color: #fff;
+    font: 700 13px/1.5 var(--fc-sans);
+    text-decoration: none;
+    cursor: pointer;
+    transition: background .2s, transform .2s;
+  }
+  .xmas-feature__btn:hover { background: #1f4a3d; transform: translateY(-2px); }
+  .xmas-feature__btn:focus-visible { outline: 2px solid var(--fc-gold); outline-offset: 2px; }
+
+  @media (max-width: 700px) {
+    .xmas-feature__card { grid-template-columns: 1fr; }
+    .xmas-feature__card--img-right .xmas-feature__image { order: 0; }
+    .xmas-feature__card--img-right .xmas-feature__copy { order: 0; }
+    .xmas-feature__image { min-height: 200px; }
+    .xmas-feature__copy { padding: 24px; }
+    .xmas-feature__heading { font-size: 26px; }
+  }
+</style>
+{% end_require_css %}
+
+<div class="xmas-feature">
+  {% if intro.kicker or intro.heading %}
+  <div class="xmas-feature__intro">
+    {% if intro.kicker %}<p class="xmas-feature__intro-kicker">{{ intro.kicker }}</p>{% endif %}
+    {% if intro.heading %}
+    <h2 class="xmas-feature__intro-heading">
+      {{ intro.heading }}{% if intro.heading_em %} <em>{{ intro.heading_em }}</em>{% endif %}
+    </h2>
+    {% endif %}
+    {% if intro.body_text %}<p class="xmas-feature__intro-body">{{ intro.body_text }}</p>{% endif %}
+  </div>
+  {% endif %}
+
+  <div class="xmas-feature__stack">
+    {% for card in module.cards %}
+    <div class="xmas-feature__card xmas-feature__card--{{ card.bg_style }}{% if card.layout == 'right' %} xmas-feature__card--img-right{% endif %}">
+      <div class="xmas-feature__image">
+        {% if card.image.src %}
+        <img src="{{ card.image.src }}" alt="{{ card.image.alt|escape_attr }}" loading="lazy"
+             {% if card.image.width %}width="{{ card.image.width }}"{% endif %}
+             {% if card.image.height %}height="{{ card.image.height }}"{% endif %}>
+        {% endif %}
+      </div>
+      <div class="xmas-feature__copy">
+        {% if card.kicker %}<p class="xmas-feature__kicker">{{ card.kicker }}</p>{% endif %}
+        <h3 class="xmas-feature__heading">
+          {{ card.heading }}{% if card.heading_em %} <em>{{ card.heading_em }}</em>{% endif %}
+        </h3>
+        {% if card.body_text %}<p class="xmas-feature__body">{{ card.body_text }}</p>{% endif %}
+        {% if card.price_text %}<p class="xmas-feature__price">{{ card.price_text }}</p>{% endif %}
+        {% if card.cta_text and card.link_url %}
+          <a class="xmas-feature__btn" href="{{ card.link_url|escape_attr }}">{{ card.cta_text }} <span aria-hidden="true">&#8599;</span></a>
+        {% elif card.link_text and card.link_url %}
+          <a class="xmas-feature__link" href="{{ card.link_url|escape_attr }}">{{ card.link_text }} <span aria-hidden="true">&#8599;</span></a>
+        {% endif %}
+      </div>
+    </div>
+    {% endfor %}
+  </div>
+</div>
