@@ -223,7 +223,6 @@ CSS and JS are inline (require_css / require_js) so the banner renders immediate
   <div class="campaign-bar__inner{% if not show_progress %} campaign-bar__inner--no-progress{% endif %}">
     <div>
       {# "01 / GIVE" is hard-coded for now: the homepage's section number for the campaign. #}
-      <p class="campaign-bar__eyebrow"><span class="campaign-bar__section">01 / GIVE</span>{% if c.eyebrow %} {{ c.eyebrow }}{% endif %}</p>
       <strong class="campaign-bar__headline">
         {%- if c.headline_em and c.headline_em in c.headline -%}
           {{ c.headline|escape|replace(c.headline_em|escape, '<em>' ~ c.headline_em|escape ~ '</em>') }}
