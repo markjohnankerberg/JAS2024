@@ -8,6 +8,14 @@
 
 {% block body %}
 
+{# Hide the Saved (heart) and cart icons in the header and mobile dock on this page so donors
+   stay on the donation form. #}
+{% require_head %}
+  <style>
+    [data-hv2-drawer] { display: none !important; }
+  </style>
+{% end_require_head %}
+
 {% dnd_area "dnd_area"
   label="Main section",
   class="body-container body-container--audio-bible"

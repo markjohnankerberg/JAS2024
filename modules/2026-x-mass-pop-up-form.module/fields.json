@@ -72,6 +72,42 @@
     "type" : "EXTERNAL"
   }
 }, {
+  "id" : "opt_in_form",
+  "name" : "opt_in_form",
+  "label" : "Marketing opt-in form",
+  "help_text" : "HubSpot form that records the checkout's email and SMS opt-ins, sent once a payment goes through and only when a box is ticked. Leave empty to hide the opt-ins. Receipts are sent either way.",
+  "required" : false,
+  "locked" : false,
+  "embed_versions" : [ "v2", "v4" ],
+  "type" : "form",
+  "display_width" : null,
+  "default" : {
+    "response_type" : "inline",
+    "message" : ""
+  }
+}, {
+  "id" : "opt_in_email_property",
+  "name" : "opt_in_email_property",
+  "label" : "Email opt-in contact property",
+  "help_text" : "Internal name of the HubSpot contact property set to \"yes\" or \"no\" for the email opt-in.",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "opt_in_email"
+}, {
+  "id" : "opt_in_sms_property",
+  "name" : "opt_in_sms_property",
+  "label" : "SMS opt-in contact property",
+  "help_text" : "Internal name of the HubSpot contact property set to \"yes\" or \"no\" for the SMS opt-in.",
+  "required" : false,
+  "locked" : false,
+  "allow_new_line" : false,
+  "type" : "text",
+  "display_width" : null,
+  "default" : "opt_in_sms"
+}, {
   "id" : "recommendations",
   "name" : "recommendations",
   "label" : "You may also like",

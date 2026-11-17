@@ -1,0 +1,47 @@
+<component name="InspectionProjectProfileManager">
+  <profile version="1.0">
+    <option name="myName" value="Project Default" />
+    <inspection_tool class="PyPackageRequirementsInspection" enabled="false" level="WARNING" enabled_by_default="false">
+      <option name="ignoredPackages">
+        <list>
+          <option value="asgiref" />
+          <option value="attrs" />
+          <option value="certifi" />
+          <option value="cffi" />
+          <option value="charset-normalizer" />
+          <option value="cryptography" />
+          <option value="dj-database-url" />
+          <option value="Django" />
+          <option value="django-cors-headers" />
+          <option value="djangorestframework" />
+          <option value="drf-spectacular" />
+          <option value="drf-spectacular-sidecar" />
+          <option value="gunicorn" />
+          <option value="idna" />
+          <option value="inflection" />
+          <option value="jsonschema" />
+          <option value="jsonschema-specifications" />
+          <option value="packaging" />
+          <option value="paypal-checkout-serversdk" />
+          <option value="paypalhttp" />
+          <option value="psycopg2-binary" />
+          <option value="pycparser" />
+          <option value="pyOpenSSL" />
+          <option value="python-decouple" />
+          <option value="PyYAML" />
+          <option value="referencing" />
+          <option value="requests" />
+          <option value="rpds-py" />
+          <option value="six" />
+          <option value="sqlparse" />
+          <option value="stripe" />
+          <option value="typing_extensions" />
+          <option value="uritemplate" />
+          <option value="urllib3" />
+          <option value="whitenoise" />
+          <option value="WooCommerce" />
+        </list>
+      </option>
+    </inspection_tool>
+  </profile>
+</component>

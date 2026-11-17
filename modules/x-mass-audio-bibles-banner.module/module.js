@@ -338,7 +338,9 @@
                         return true;
                     })
                     .sort(function (a, b) { return a.sort - b.sort; })
-                    .slice(0, cfg.max);
+                    .slice(0, cfg.max)
+                    // sort_order picks which products show; they are listed cheapest first.
+                    .sort(function (a, b) { return a.price - b.price; });
 
                 list.forEach(function (p) { products[p.id] = p; });
                 clearSkeletons();

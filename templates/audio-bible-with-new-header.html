@@ -8,6 +8,14 @@
 
 {% block body %}
 
+{# Hide the Christmas campaign banner above the nav on this page so donors stay on the donation
+   form. HeaderV2 measures the header's live height, so the page content moves up to match. #}
+{% require_head %}
+  <style>
+    #campaign-bar { display: none !important; }
+  </style>
+{% end_require_head %}
+
 {% dnd_area "dnd_area"
   label="Main section",
   class="body-container body-container--audio-bible"

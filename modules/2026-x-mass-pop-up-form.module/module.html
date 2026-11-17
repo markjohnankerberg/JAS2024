@@ -822,6 +822,13 @@ docs/woocommerce.md).
         flex: none;
     }
 
+    .atri-give .checkout__disclaimer {
+        margin: 0.4rem 0 0;
+        font-size: 0.8rem;
+        line-height: 1.45;
+        color: var(--muted);
+    }
+
     .atri-give .checkout__status {
         margin: 0;
         font-size: 0.9rem;
@@ -1054,7 +1061,10 @@ docs/woocommerce.md).
              data-public-key="{{ module.public_key|escape_attr }}"
              data-fee-percent="{{ module.fee_percent or 0 }}"
              data-gift-sku="{{ (module.gift_sku or 'ATRI-GIVE')|escape_attr }}"
-             data-legacy-url="{{ module.legacy_giving_url.href|escape_attr }}">
+             data-legacy-url="{{ module.legacy_giving_url.href|escape_attr }}"
+             data-opt-in-form="{{ module.opt_in_form.form_id|escape_attr }}"
+             data-opt-in-email-property="{{ (module.opt_in_email_property or 'opt_in_email')|escape_attr }}"
+             data-opt-in-sms-property="{{ (module.opt_in_sms_property or 'opt_in_sms')|escape_attr }}">
         <button class="give__close" type="button" aria-label="Close">&times;</button>
 
         <div class="give__intro">
@@ -1192,6 +1202,29 @@ docs/woocommerce.md).
                     <span>Add {{ module.fee_percent }}% to help cover processing fees, so more of my gift goes to ministry.</span>
                 </label>
                 {% endif %}
+
+                {# Marketing opt-ins, matching the Audio Bible form. Optional, and separate from receipts. #}
+                {% if module.opt_in_form.form_id %}
+                <label class="check">
+                    <input type="checkbox" name="opt_in_email">
+                    <span>I agree to receive other communications from The John Ankerberg Show.</span>
+                </label>
+                <label class="check">
+                    <input type="checkbox" name="opt_in_sms">
+                    <span>I agree to receive SMS messages from ATRI that may include ministry updates,
+                        early-access content, prayer updates, and occasional opportunities to donate
+                        to the ministry. Message frequency varies. Msg &amp; data rates may apply.
+                        Reply STOP to unsubscribe and HELP for help. Please see Privacy Policy and
+                        Terms of Use.</span>
+                </label>
+                {% endif %}
+                <p class="checkout__disclaimer">
+                    As a 100% donor-funded ministry, your non-restricted gift supports the entirety
+                    of ATRI's work including the broadcasting, expansion, and production of The John
+                    Ankerberg Show in the US and international markets. The John Ankerberg Show
+                    broadcasts to potentially 4.5 billion viewers in more than 200 countries and
+                    territories.
+                </p>
 
                 <p class="checkout__error" data-co="error" role="alert"></p>
             </div>
@@ -1450,6 +1483,12 @@ docs/woocommerce.md).
             [MONTHLY_FLAG]: '/api/v1/integrations/woocommerce/subscriptions/monthly/'
         };
         const STRIPE_PARAMS = ['payment_intent', 'payment_intent_client_secret', 'redirect_status'];
+        // Marketing opt-ins go to a HubSpot form, never to the payments API: receipts are sent
+        // whatever is ticked. Kept in sessionStorage until the payment goes through, so a
+        // 3-D Secure redirect doesn't lose them.
+        const HUBSPOT_PORTAL = '23773134';
+        const OPT_IN_KEY = 'atri_checkout_opt_in';
+        const optInForm = (panel.dataset.optInForm || '').trim();
 
         let config = null;
         let stripe = null;
@@ -1775,7 +1814,11 @@ docs/woocommerce.md).
             // Store orders always need a shipping address, and monthly gifts a billing address
             // (WooCommerce needs one for the subscription); one-time gifts need neither.
             if (!t.isDonation || t.monthly) {
-                addressElement = elements.create('address', {mode: t.monthly ? 'billing' : 'shipping', allowedCountries: ['US']});
+                addressElement = elements.create('address', {
+                    mode: t.monthly ? 'billing' : 'shipping',
+                    allowedCountries: ['US'],
+                    display:{name: 'split'}
+                });
                 addressElement.mount(co('address'));
             }
         }
@@ -1874,6 +1917,7 @@ docs/woocommerce.md).
 
             if (payment.status === 'captured' || payment.status === 'pending') {
                 const gifts = Cart.items().filter(item => item.type === 'gift');
+                sendOptIn();
                 Cart.clear();
                 teardown();
                 // Charged, but WooCommerce hasn't taken the signup: staff finish it from the platform admin.
@@ -1958,7 +2002,44 @@ docs/woocommerce.md).
                 };
                 if (t.monthly) delete address.name; // the giver's own name fields name the subscription
             }
+            saveOptIn(donor, data);
             return {donor, address};
+        }
+
+        // Only a ticked box is recorded; with neither ticked nothing is sent to HubSpot.
+        function saveOptIn(donor, data) {
+            const email = !!data.opt_in_email;
+            const sms = !!data.opt_in_sms;
+            try {
+                if (optInForm && (email || sms)) sessionStorage.setItem(OPT_IN_KEY, JSON.stringify({donor, email, sms}));
+                else sessionStorage.removeItem(OPT_IN_KEY);
+            } catch (e) {}
+        }
+
+        // Called once the payment is captured or pending. A failure here never affects the payment.
+        function sendOptIn() {
+            let saved = null;
+            try {
+                saved = JSON.parse(sessionStorage.getItem(OPT_IN_KEY) || 'null');
+                sessionStorage.removeItem(OPT_IN_KEY);
+            } catch (e) {}
+            if (!saved || !optInForm) return;
+            const fields = [
+                ['email', saved.donor.email],
+                ['firstname', saved.donor.first_name],
+                ['lastname', saved.donor.last_name],
+                ['phone', saved.donor.phone],
+                [panel.dataset.optInEmailProperty || 'opt_in_email', saved.email ? 'yes' : 'no'],
+                [panel.dataset.optInSmsProperty || 'opt_in_sms', saved.sms ? 'yes' : 'no']
+            ].filter(([, value]) => value).map(([name, value]) => ({name, value}));
+            const hutk = (document.cookie.match(/hubspotutk=([^;]+)/) || [])[1];
+            fetch('https://api.hsforms.com/submissions/v3/integration/submit/' + HUBSPOT_PORTAL + '/' + encodeURIComponent(optInForm), {
+                method: 'POST',
+                headers: {'Content-Type': 'application/json'},
+                body: JSON.stringify({fields, context: {hutk, pageUri: window.location.href, pageName: document.title}})
+            }).then(res => {
+                if (!res.ok) res.text().then(text => console.warn('[Checkout] opt-in not recorded:', res.status, text));
+            }).catch(err => console.warn('[Checkout] opt-in not recorded:', err));
         }
 
         // Start the payment with the platform. Same cart and provider → same key (a safe retry,

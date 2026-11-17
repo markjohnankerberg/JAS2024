@@ -1,0 +1,4 @@
+# Files the HubSpot CLI should not upload to Design Manager
+docs/
+.github/
+README.md
